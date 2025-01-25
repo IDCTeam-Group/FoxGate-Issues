@@ -1,0 +1,18 @@
+name: Bug Report
+about: Report any type of problem or error for enhance.
+title: ''
+labels: bug, invalid
+assignees: ImZowi
+body:
+
+- type: dropdown
+  attributes:
+    label: What is your type of database?
+    options:
+      - 'MySQL'
+      - 'MariaDB'
+      - 'PostgreSQL'
+      - 'SQLite'
+      - 'H2'
+  validations:
+    required: true

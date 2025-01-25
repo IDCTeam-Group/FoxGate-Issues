@@ -32,3 +32,12 @@ body:
     placeholder: "1.x.x"
   validations:
     required: true
+
+- type: input
+  id: server-version
+  attributes:
+    label: 'Provide your server version.'
+    description: Put here your software and version of server.
+    placeholder: "Purpur 1.x.x"
+  validations:
+    required: true

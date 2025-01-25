@@ -1,9 +1,16 @@
 name: Bug Report
 description: Report any type of problem or error for enhance.
 title: 'Provide your problem'
-labels: bug, invalid
+labels: []
 assignees: ImZowi
 body:
+
+- type: textarea
+  attributes:
+    label: Say about your problem and how to reproduce.
+    description: What is your expected behavior and what happened instead? How can we reproduce the issue? 
+  validations:
+    required: true
 
 - type: dropdown
   attributes:
@@ -14,5 +21,14 @@ body:
       - 'PostgreSQL'
       - 'SQLite'
       - 'H2'
+  validations:
+    required: true
+
+- type: input
+  id: plugin-version
+  attributes:
+    label: 'Plugin version'
+    description: Say your version of the plugin.
+    placeholder: "1.x.x"
   validations:
     required: true

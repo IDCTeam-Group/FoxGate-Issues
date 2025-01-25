@@ -1,0 +1,13 @@
+name: Feature Request
+description: Suggest an idea for this project
+title: 'Your Idea Title'
+labels: []
+body:
+
+- type: textarea
+  attributes:
+    label: "Summary"
+    description: |
+      What you want to add in the plugin? Explain the problem and your idea for adding.
+  validations:
+    required: true

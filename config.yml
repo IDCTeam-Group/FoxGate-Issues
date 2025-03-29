@@ -1,0 +1,1776 @@
+# ------------------------------------------------------------------------------------------- #
+#                           ______           _____         _                                  #
+#                           |  ___|         |  __ \       | |                                 #
+#                           | |_  ___ __  __| |  \/  __ _ | |_  ___                           #
+#                           |  _|/ _ \\ \/ /| | __  / _` || __|/ _ \                          #
+#                           | | | (_) |>  < | |_\ \| (_| || |_|  __/                          #
+#                           \_|  \___//_/\_\ \____/ \__,_| \__|\___|                          #
+#                                                                                             #
+#                                          [v1.0.2]                                           #
+#                                                                                             #
+# ------------------------------------------------------------------------------------------- #
+# If you still has questions, you can join to the discord server in:
+# https://discord.com/invite/FTtVXfj or you can use the Discussion page in https://www.spigotmc.org/threads/646308/.
+
+#      ___      _        _
+#     /   \__ _| |_ __ _| |__   __ _ ___  ___
+#    / /\ / _` | __/ _` | '_ \ / _` / __|/ _ \
+#   / /_// (_| | || (_| | |_) | (_| \__ \  __/
+#  /___,' \__,_|\__\__,_|_.__/ \__,_|___/\___|
+
+# Configure a database for use.
+database:
+
+    # - Available options in type.
+    #   All options use HikariCP for better performance.
+    #  |=> MySQL
+    #  |=> MariaDB
+    #  |=> PostgreSQL
+    #  |=> SQLite
+    #  |=> H2
+    #
+    # If you change this configuration and your server is already
+    # started. You can use the command "/foxgate db reconnect" to
+    # apply the changes without restarting plugin or server.
+    # Remember first reload the plugin with "/foxgate reload"
+    # and use that command.
+    type: "SQLite"
+    # Edit table in case you want a different.
+    # If you want to use your actually stats (of 1.0.5-pre4 or older),
+    # use the next:
+    # - "vpn_cache"
+    table: "foxgate"
+    
+    # MariaDB/MySQL databases type. Edit here.
+    remote:
+      # Determine information of your database.
+      hostname: "localhost"
+      port: 3306
+      database: "foxav_db"
+      username: "root"
+      password: "password123"
+      
+      # These settings apply to the MySQL/MariaDB connection pool (HikariCP).
+      # - Default values are suitable for most users. Only modify these if you know what you're doing!
+      pool-settings:
+
+        # The maximum number of connections in the connection pool.
+        # - Determines the upper limit of active database connections that can be managed simultaneously.
+        # - Setting this too high can overload your database server, while setting it too low can cause delays.
+        # Example:
+        #   If your server has high traffic and the database can handle it, set this to 10 or higher.
+        # Recommended: 10
+        # More information: https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing
+        maximum-pool-size: 10
+
+        # Minimum number of idle connections to maintain in the pool.
+        # - The pool will try to maintain this number of idle (inactive) connections ready for use.
+        # - Setting this equal to 'maximum-pool-size' creates a fixed-size connection pool,
+        #   ensuring consistent resource allocation.
+        # Example:
+        #   For a server with occasional traffic spikes, set this to half of 'maximum-pool-size'.
+        # Recommended: 2
+        minimum-idle: 2
+       
+        # Sets the maximum time an idle connection can remain in the pool before being automatically closed.
+        # - Connections that remain idle for longer than the configured value will be removed from the pool
+        #   and replaced with new connections as needed.
+        # - This is useful to free up resources and keep connections "fresh" avoiding possible problems with
+        #   stale connections.
+        # Recommended: 600000 (10 minutes)
+        idle-timeout: 600000
+
+        # Maximum lifetime of a connection in the pool, in milliseconds.
+        # - Connections older than this value will be closed and replaced.
+        # - This prevents stale connections from lingering indefinitely and reduces database timeout issues.
+        # - Should be at least 30 seconds less than the timeout imposed by the database itself.
+        # Example:
+        #   If your database timeout is 30 minutes, set this value to 25 minutes (1500000 ms).
+        # Recommended: 1500000 (25 minutes)
+        maximum-lifetime: 1500000
+
+        # Frequency of pings to keep the connection alive, in milliseconds.
+        # - This prevents connections from being closed due to inactivity (common in many databases or firewalls).
+        # - Must be less than 'maximum-lifetime' and greater than 30 seconds (30000 ms).
+        # Example:
+        #   For long-running servers, a value of 10 minutes (600000 ms) is generally ideal.
+        # Recommended: 600000 (10 minutes)
+        keepalive-time: 600000
+
+        # The maximum time in milliseconds to wait for a connection from the pool.
+        # - If no connection is available within this time, an exception will be thrown.
+        # - Setting a low value ensures responsiveness but may cause issues under heavy load.
+        # Example:
+        #   For responsive applications, a value between 3-5 seconds (3000-5000 ms) is ideal.
+        # Recommended: 5000 (5 seconds)
+        connection-timeout: 5000
+
+        # Custom validation timeout (time taken to validate a connection), in milliseconds.
+        # - Determines how long the pool will wait while testing if a connection is still valid.
+        # - A low value improves responsiveness, but setting it too low may cause false negatives.
+        # Example:
+        #   For most databases, 3 seconds (3000 ms) is sufficient for validation.
+        # Recommended: 3000 (3 seconds)
+        validation-timeout: 3000
+        
+        # Leak detection threshold in milliseconds.
+        # - This setting helps detect connections that are not properly closed.
+        # - If a connection is checked out but not closed within this time, a warning will be logged.
+        # - Useful for debugging connection leaks in plugins or applications.
+        # Example:
+        #   If you expect queries to be fast, a value of 60 seconds (60000 ms) can help catch leaks.
+        #   If you have long transactions, set a higher value to avoid false positives.
+        # Recommended: 60000 (1 minute)
+        leak-detection-threshold: 60000
+   
+      # Custom properties for advanced users.
+      # Add any additional properties to fine-tune the connection.
+      #
+      # You can uncomment unnecesary properties or remove,
+      # also edit to values that is perfect for you.
+      # (!) THIS PROPERTIES IS BASED WITH SUPPORT
+      # MARIADB, IF YOU GET ERROR IN MYSQL, YOU CAN
+      # ADAPT OR CONSIDERING TO CHANGE TO MARIADB,
+      # THAT WORKS WITH MYSQL DATABASES.
+      properties:
+
+        # - SSL.
+        # Database connection settings.
+        # Adjust these properties to optimize the connection with your MySQL/MariaDB server.
+        # Enables or disables SSL for secure connections.
+        # It is highly recommended to set this to true if your server supports SSL.
+        # Default is false, as many MySQL/MariaDB servers do not support SSL.
+        sslMode: "disabled"
+        requireSSL: "false"                   # If set to "true", forces SSL connections. Overrides 'sslMode'.
+        verifyServerCertificate: "false"      # Validates the server's SSL certificate. Set to "true" for production.
+        # - Connection Optimization
+        cachePrepStmts: "true"                # Enables prepared statement caching
+        prepStmtCacheSize: "250"              # Number of prepared statements to cache
+        prepStmtCacheSqlLimit: "2048"         # Maximum size of a query in the cache
+        useServerPrepStmts: "true"            # Uses server-side prepared statements
+        # - Performance and Buffering
+        rewriteBatchedStatements: "true"      # Optimizes batch insert/update performance
+        useCompression: "false"               # Enables compression for data transfer (optional)
+        maintainTimeStats: "false"            # Disables time statistics for improved performance
+        autoReconnect: "true"                 # Automatically reconnects if the connection is lost
+        # - Character Encoding
+        # Specifies whether Unicode character encoding should be used.
+        # If working with multilingual data, this is highly recommended.
+        useUnicode: "true"
+        # Defines the character encoding for the database connection.
+        # Use "utf8" for compatibility with most character sets.
+        characterEncoding: "utf8"
+        # - Time Zone
+        serverTimezone: "UTC"                 # Ensures consistent timezone handling
+
+    postgresql:
+      hostname: "localhost"
+      port: 5432
+      database: "foxav_db"
+      username: "postgres"
+      password: "password123"
+
+      # Database connection settings for PostgreSQL.
+      settings:
+
+        # Adjust these properties to optimize the connection with your PostgreSQL server.
+        # Enables or disables SSL for secure connections.
+        # It is highly recommended to set this to true if your server supports SSL.
+        # Default is false.
+        ssl: false
+ 
+        # The maximum time in seconds to wait for a connection from the pool.
+        # Choose a value between 1 and 5 for a balance between availability and performance.
+        # Recommended: 3.0
+        connectiontimeout: 3.0
+
+        # Specifies whether Unicode character encoding should be used.
+        # PostgreSQL natively supports Unicode, so this can be left as true.
+        useUnicode: true
+
+        # Defines the character encoding for the database connection.
+        # Use "UTF-8" to handle multilingual data and ensure compatibility.
+        characterEncoding: "UTF-8"
+
+        # Keeps idle connections alive.
+        tcpKeepAlive: true
+
+        # Timeout for socket operations in seconds.
+        socketTimeout: 30
+
+        # Number of prepared statement executions before switching to server-side prepared statements.
+        prepareThreshold: 5
+
+        # Application name for debugging or monitoring purposes.
+        applicationName: "FoxGate"
+
+        # Enables optimized binary transfer for certain data types.
+        binaryTransfer: true
+      
+      # These settings apply to this PostgreSQL, because uses Hikari for connection.
+      # - Default values are suitable for most users. Only modify these if you know what you're doing!
+      pool-settings:
+
+        # The maximum number of connections in the connection pool.
+        # - Determines the upper limit of active database connections that can be managed simultaneously.
+        # - Setting this too high can overload your database server, while setting it too low can cause delays.
+        # Example: 
+        #   If your server has high traffic and the database can handle it, set this to 10 or higher.
+        # Recommended: 10
+        # More information: https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing
+        maximum-pool-size: 10
+
+        # Minimum number of idle connections to maintain in the pool.
+        # - The pool will try to maintain this number of idle (inactive) connections ready for use.
+        # - Setting this equal to 'maximum-pool-size' creates a fixed-size connection pool,
+        #   ensuring consistent resource allocation.
+        # Example:
+        #   For a server with occasional traffic spikes, set this to half of 'maximum-pool-size'.
+        # Recommended: 2
+        minimum-idle: 2
+
+        # Maximum lifetime of a connection in the pool, in milliseconds.
+        # - Connections older than this value will be closed and replaced.
+        # - This prevents stale connections from lingering indefinitely and reduces database timeout issues.
+        # - Should be at least 30 seconds less than the timeout imposed by the database itself.
+        # Example:
+        #   If your database timeout is 30 minutes, set this value to 25 minutes (1500000 ms).
+        # Recommended: 1800000 (30 minutes)
+        maximum-lifetime: 1800000
+
+        # The maximum time in milliseconds to wait for a connection from the pool.
+        # - If no connection is available within this time, an exception will be thrown.
+        # - Setting a low value ensures responsiveness but may cause issues under heavy load.
+        # Example:
+        #   For responsive applications, a value between 30-50 seconds (30000-50000 ms) is ideal.
+        # Recommended: 30000 (30 seconds)
+        connection-timeout: 30000
+        
+        # Leak detection threshold in milliseconds.
+        # - This setting helps detect connections that are not properly closed.
+        # - If a connection is checked out but not closed within this time, a warning will be logged.
+        # - Useful for debugging connection leaks in plugins or applications.
+        # Example:
+        #   If you expect queries to be fast, a value of 60 seconds (60000 ms) can help catch leaks.
+        #   If you have long transactions, set a higher value to avoid false positives.
+        # Recommended: 60000 (1 minute)
+        leak-detection-threshold: 60000
+
+    sqlite:
+      file: "FoxGate.db"
+     
+      # These settings apply to this SQLite, because uses Hikari for connection.
+      # - Default values are suitable for most users. Only modify these if you know what you're doing!
+      #
+      # Yeah... I know HikariCP isn't better to use with SQLite, but is only for avoid any
+      # type of errors! Please, don't kill me!
+      pool-settings:
+
+        # The maximum number of connections in the connection pool.
+        # - Determines the upper limit of active database connections that can be managed simultaneously.
+        # - Setting this too high can overload your database server, while setting it too low can cause delays.
+        # Example: 
+        #   If your server has high traffic and the database can handle it, set this to 10 or higher.
+        # Recommended: 10
+        # More information: https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing
+        maximum-pool-size: 10
+
+        # Minimum number of idle connections to maintain in the pool.
+        # - The pool will try to maintain this number of idle (inactive) connections ready for use.
+        # - Setting this equal to 'maximum-pool-size' creates a fixed-size connection pool,
+        #   ensuring consistent resource allocation.
+        # Example:
+        #   For a server with occasional traffic spikes, set this to half of 'maximum-pool-size'.
+        # Recommended: 1
+        minimum-idle: 1
+
+        # Maximum lifetime of a connection in the pool, in milliseconds.
+        # - Connections older than this value will be closed and replaced.
+        # - This prevents stale connections from lingering indefinitely and reduces database timeout issues.
+        # - Should be at least 30 seconds less than the timeout imposed by the database itself.
+        # Example:
+        #   If your database timeout is 30 minutes, set this value to 25 minutes (1500000 ms).
+        # Recommended: 1800000 (30 minutes)
+        maximum-lifetime: 1800000
+
+        # The maximum time in milliseconds to wait for a connection from the pool.
+        # - If no connection is available within this time, an exception will be thrown.
+        # - Setting a low value ensures responsiveness but may cause issues under heavy load.
+        # Example:
+        #   For responsive applications, a value between 30-50 seconds (30000-50000 ms) is ideal.
+        # Recommended: 30000 (30 seconds)
+        connection-timeout: 30000
+        
+        # Leak detection threshold in milliseconds.
+        # - This setting helps detect connections that are not properly closed.
+        # - If a connection is checked out but not closed within this time, a warning will be logged.
+        # - Useful for debugging connection leaks in plugins or applications.
+        # Example:
+        #   If you expect queries to be fast, a value of 60 seconds (60000 ms) can help catch leaks.
+        #   If you have long transactions, set a higher value to avoid false positives.
+        # Recommended: 60000 (1 minute)
+        leak-detection-threshold: 60000
+
+    h2:
+      file: "h2db"
+      
+      # These settings apply to this H2, because uses Hikari for connection.
+      # - Default values are suitable for most users. Only modify these if you know what you're doing!
+      pool-settings:
+
+        # The maximum number of connections in the connection pool.
+        # - Determines the upper limit of active database connections that can be managed simultaneously.
+        # - Setting this too high can overload your database server, while setting it too low can cause delays.
+        # Example: 
+        #   If your server has high traffic and the database can handle it, set this to 10 or higher.
+        # Recommended: 10
+        # More information: https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing
+        maximum-pool-size: 10
+
+        # Minimum number of idle connections to maintain in the pool.
+        # - The pool will try to maintain this number of idle (inactive) connections ready for use.
+        # - Setting this equal to 'maximum-pool-size' creates a fixed-size connection pool,
+        #   ensuring consistent resource allocation.
+        # Example:
+        #   For a server with occasional traffic spikes, set this to half of 'maximum-pool-size'.
+        # Recommended: 1
+        minimum-idle: 1
+
+        # Maximum lifetime of a connection in the pool, in milliseconds.
+        # - Connections older than this value will be closed and replaced.
+        # - This prevents stale connections from lingering indefinitely and reduces database timeout issues.
+        # - Should be at least 30 seconds less than the timeout imposed by the database itself.
+        # Example:
+        #   If your database timeout is 30 minutes, set this value to 25 minutes (1500000 ms).
+        # Recommended: 1800000 (30 minutes)
+        maximum-lifetime: 1800000
+
+        # The maximum time in milliseconds to wait for a connection from the pool.
+        # - If no connection is available within this time, an exception will be thrown.
+        # - Setting a low value ensures responsiveness but may cause issues under heavy load.
+        # Example:
+        #   For responsive applications, a value between 30-50 seconds (30000-50000 ms) is ideal.
+        # Recommended: 30000 (30 seconds)
+        connection-timeout: 30000
+        
+        # Leak detection threshold in milliseconds.
+        # - This setting helps detect connections that are not properly closed.
+        # - If a connection is checked out but not closed within this time, a warning will be logged.
+        # - Useful for debugging connection leaks in plugins or applications.
+        # Example:
+        #   If you expect queries to be fast, a value of 60 seconds (60000 ms) can help catch leaks.
+        #   If you have long transactions, set a higher value to avoid false positives.
+        # Recommended: 60000 (1 minute)
+        leak-detection-threshold: 60000
+
+    # When an IP isn't detected a vpn or proxy, this need to save in
+    # cache to don't make more requests for a little time for save
+    # performance and requests, customizable here.
+    bypass:
+        # Enable this feature?
+        enable: true
+
+        # Determine the amount in hours to save the IP in cache and avoid
+        # make more requests to this IP. Useful to save performance and
+        # verify only one time for certain time.
+        #
+        # Recommended: 2
+        # Type 'permanent' for bypass permanent.
+        expiration_time: 2
+
+    # When an IP is detected in a result, this is save in the cache
+    # to don't make more request for a little time, this value is
+    # saved in hours.
+    #
+    # Recommended: 36
+    # Type 'permanent' for blocking permanent.
+    expiration_time: 36
+
+#     ___             __ _                       _   _             
+#    / __\___  _ __  / _(_) __ _ _   _ _ __ __ _| |_(_) ___  _ __  
+#   / /  / _ \| '_ \| |_| |/ _` | | | | '__/ _` | __| |/ _ \| '_ \ 
+#  / /__| (_) | | | |  _| | (_| | |_| | | | (_| | |_| | (_) | | | |
+#  \____/\___/|_| |_|_| |_|\__, |\__,_|_|  \__,_|\__|_|\___/|_| |_|
+#                          |___/                                   
+
+# Configure some others little options.
+configuration:
+
+   # Allow the usage of Metrics (bStats) in your server?
+   # - This is only for stadistics usage.
+   #
+   #   ❝ What data is collected?
+   #   We are using bStats (https://bstats.org/), this does not collect
+   #   any personal data. Most of the collected data is information about
+   #   the plugin's server like player count, online mode, Minecraft version,
+   #   Java version, and more. All data gets sent and stored completely
+   #   anonymously. See more in information about this in "bStats: Getting Started"
+   #   https://bstats.org/getting-started
+   #
+   # (!) Since 1.0.2 (premium) and 1.1.0 (free), FoxGate uses
+   #     their own code base for Metrics, but following their
+   #     rules. This use asynchronous methods to send data and
+   #     changes to Gson for better stability; improving the
+   #     performance of this. You can safety has enable this to
+   #     help to the creator without affecting the performance.
+   metrics: true
+
+   # Print to console?
+   # - Enable this to send the equal notification to the console when
+   #   a player is flagged.
+   console: true
+
+   # Define the permission.
+   # - Set here the permission to see the notification in case this
+   #   is used in case a player is using VPN. By default, this is one
+   #   permission default of the antivpn: 'foxav.notifications'
+   permission: 'foxav.notifications'
+
+   # Do you want to enable this feature?
+   # - Automatic check new updates in the Spigot page. This only detect
+   #   when the server is starting. You need to have connection for check
+   #   new updates.
+   update: true
+
+#                                            
+#    /\/\   ___ ___ ___  __ _  __ _  ___ ___ 
+#   /    \ / _ / __/ __|/ _` |/ _` |/ _ / __|
+#  / /\/\ |  __\__ \__ | (_| | (_| |  __\__ \
+#  \/    \/\___|___|___/\__,_|\__, |\___|___/
+#                             |___/          
+
+# 🔨 Configure here the messages to show.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because this
+# has incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.advntr.dev/minimessage/format.html
+message:
+
+   # Message to return when a player is kicked with the option of actions in 'kick', this
+   # his useful if you want kick with the plugin and no with command. You can use the
+   # placeholders: %PLAYER%, %IP%, %UUID%, %COUNTRY% (Premium and only if function is enabled)
+   # and %ASN% (Premium and only if function is enabled).
+   kick: "<red>You have been disconnected by FoxGate:\n<white>VPN or Proxy has been found in your connection!\n\n<gray>This is an error? <white>Join to our discord server.\n<aqua><underlined>discord.idcteam.xyz"
+
+   # Notification when a player is kicked. You can suppress this with only
+   # leave in blank.
+   notify: '{prefix} <aqua>{player} <gray>has been detected using VPN and has been removed! <green>({IP})'
+   # This only show in console.
+   # This can help in debug in case a service is not working correctly.
+   # On the end, the plugin already send the message of error. You can
+   # suppress this with only leave in blank.
+   error: '{prefix} Error while verifying VPN in service <aqua>"{service}"</aqua> to <yellow>{player}</yellow>: {error}'
+   # Determine the prefix to use when a player use a command.
+   prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+   help:
+      add: 'Add a IP to the database.'
+      check: 'Check an external IP and save in database.'
+      db: 'Purge or reconnect the database.'
+      reload: 'Reload configuration file to apply changes.'
+      remove: 'Remove a IP from the database.'
+      status: 'View information from a cached IP in the database.'
+      verbose: 'Enable/disable verbose mode.'
+   verbose:
+      enable: '{prefix} <green>You enabled the verbose mode.'
+      disable: '{prefix} <red>You disabled the verbose mode.'
+      no_malicious: '{prefix} <green>[VERBOSE] <aqua>{player} <gray>is not a VPN in service: <green>{service} <dark_gray>({IP})'
+      malicious: '{prefix} <red>[VERBOSE] <aqua>{player} <gray>is marked a VPN in service: <green>{service} <dark_gray>({IP})'
+      ignored: '{prefix} <yellow>[VERBOSE] <aqua>{player} <gray>has been ignored for whitelist in <green>{type} <dark_gray>({IP})'
+   db:
+      invalid_usage: '{prefix} Use the command <aqua>/foxgate db <purge/reconnect><reset>.'
+      reconnecting: '{prefix} <yellow>Trying to reconnecting the database...'
+      reconnect_correctly: '{prefix} <green>The database was reconnected.'
+      reconnect_problem: '{prefix} <red>Error while trying to reconnect the database. Check the console.'
+      purging: '{prefix} <yellow>Trying to purging the database...'
+      purging_correctly: '{prefix} <green>The database has been purged/reseted.'
+      purging_problem: '{prefix} <red>Error while trying to purge the database. Check the console.'
+   reload:
+      message: '{prefix} <green>The configuration file has been reloaded.'
+   add-remove:
+      invalidip: '{prefix} {IP}<red> is not a valid IP/Username!'
+      already: '{prefix} {IP}<red> is already added/removed from the database!'
+      add: '{prefix} {IP}<green> has been added to the dabatase!'
+      remove: '{prefix} {IP}<green> has been removed from the database!'
+   status:
+      invalidip: '{prefix} {IP}<red> is not a valid IP!'
+      # Here you can find new placeholders only for this message:
+      #
+      # {DETECTED} - Return only the services that detected that IP has VPN.
+      # {UNDETECTED} - Return only the services that doesn't detect that IP is VPN.
+      # {LIST} - Return both list, but this difference with color (customizable).
+      # {MAX} - Return the number of maximum flags to deny access to the player.
+      # {COUNT_DETECTED} - Return the count of services that the player has been detected.
+      # {COUNT_UNDETECTED} - Return the count of services that the player doesn't has been detected.
+      # {STATUS} - Return the status of the player.
+      # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
+      # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+      detected: '<red>'
+      undetected: '<green>'
+      none: '<red>None.'
+      no_cached: '<red>Not cached in database.'
+      allow: '<green>Verified.'
+      deny: '<red>Blocked.'
+      saved: '<yellow>Scanned.'
+      info: " \n <green>Viewing status of <aqua>{IP}\n <dark_gray>▪ <white>Status: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Undetected: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Detected: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Services: {LIST}\n "
+   check:
+      invalidip: '{prefix} {IP}<red> is not a valid IP!'
+      cached: '{prefix} {IP}<yellow> is already cached in the database. You can <white><underlined><click:run_command:"/foxgate status {IP}">click here to view information saved in the database</click></underlined></white>.'
+      checking: '{prefix} <yellow>Checking <white>{IP}<yellow>...'
+      checked: '{prefix} {IP}<green> was successfully checked, view the information obtained in the database with the command <gray>(/foxgate status)</gray> or <white><underlined><click:run_command:"/foxgate status {IP}">click here</click></underlined></white>.'
+
+#     _         _   _        ___    __ 
+#    /_\  _ __ | |_(_/\   /\/ _ \/\ \ \
+#   //_\\| '_ \| __| \ \ / / /_)/  \/ /
+#  /  _  | | | | |_| |\ V / ___/ /\  / 
+#  \_/ \_|_| |_|\__|_| \_/\/   \_\ \/  
+#                                      
+
+# 🪓 Configure and customize VPN detection.
+# This section allows you to configure and manage anti-VPN lists, which are used to perform
+# checks when players join to determine if they are using a VPN. By default, several anti-VPN
+# services are pre-configured for detection purposes.
+antivpn:
+
+   # Specify the minimum number of services
+   # required to flag a player's IP as a VPN/proxy.
+   # - This value must be equal to or less than the
+   #   number of enabled/created services.
+   max_flags: 3
+   
+   # Continue when reached minium to flag?
+   # - To save requests and performance, you can
+   #   disable FoxGate in still checking in the
+   #   others services to verify for VPN. By
+   #   default, it's enable for better experience
+   #   for beginners users using this plugin.
+   #
+   #   In '/foxgate status':
+   #   This can affect in some cases, because only go
+   #   to show only the services that was request.
+   #   
+   # (!) This don't affect to '/foxgate check' command.
+   continue: true
+
+   # Change userAgent value in case is necessary.
+   # Recommended default:
+   # - 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11'
+   # Or:
+   # - 'FoxGate/plugin'
+   userAgent: "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11"
+
+   # Determine here the timeout to prevent any
+   # type of crash if the API is down, this help
+   # a lot in case an API dead or you use a
+   # service that is down.
+   # Use in milliseconds.
+   #
+   # (1500ms = 1.5s)
+   # (1000ms = 1.0s)
+   timeout: 1750
+
+   # Whitelist the detection to this name's.
+   # - Allow players in the list to bypass the detection of
+   #   the antivpn. To disable this feature, use the value:
+   #
+   #   whitelist-name: []
+   #
+   # (!) It's case sensetive!
+   whitelist-name:
+     - 'ImZowi' # It's me! :3
+
+   # Whitelist the detection to this IP's.
+   # - Allow ip's in the list to bypass the detection of
+   #   the antivpn. To disable this feature, use the value:
+   #
+   #   whitelist-ip: []
+   #
+   # (!) The value under is the default in localhost.
+   whitelist-ip:
+     - '127.0.0.1'
+
+   # Actions to make when is detected.
+   # - Use this to kick with the plugin instantly:
+   #
+   #   - 'kick'
+   #
+   #   Or add your custom command. Disable this feature
+   #   with only adding 'actions: {}'.
+   actions:
+     - 'kick'
+     #- 'ipban %IP% Trying to access with %PLAYER% using a VPN.'
+   
+   # List of services.
+   # You can create your check antivpn with:
+   #
+   # 'servicename':
+   #    # Enable this service?
+   #    enabled: true
+   #    # Add this field in case requere key.
+   #    key: "KEY"
+   #    # Add the model to request the page, this
+   #    # use JSON in case is invalid the value or
+   #    # is not set.
+   #    #
+   #    # Supported:
+   #    # JSON, HTML
+   #    model: "JSON"
+   #    # This field is necessary. Insert your
+   #    # service URL.
+   #    #
+   #    # Remember:
+   #    # %IP% = Return player's ip.
+   #    # %KEY% = Return 'key' field value.
+   #    url: "https://example-antivpn.com/check/%IP%?key=%KEY%"
+   #    # Headers in case is necessary.
+   #    #
+   #    # Set to: 'headers: []' to disable or only don't
+   #    # add in the settings for this service.
+   #    headers:
+   #       'Example-header': 'KEY'
+   #    # Values to check.
+   #    # This equal is necessary to determine.
+   #    values:
+   #       # Fields to check.
+   #       # In case you disable this with adding
+   #       # 'fields: {}' to exclude and only get if
+   #       # 'type' option contains in the final request.
+   #       # This is a example.
+   #       fields:
+   #       - "vpn"
+   #       # Type to determine.
+   #       # If this return true/false, use "boolean", in case
+   #       # this is string, only put string, example:
+   #       #
+   #       # type: 'yes'
+   #       type: boolean
+   services:
+
+      # ⛽ IP-API
+      # 🔗 https://ip-api.com/
+      #
+      # 🛒 Details:
+      # - Unlimited requests, no key.
+      ipapi:
+         # Enable this service?
+         enabled: true
+         # Model request to use.
+         model: "JSON"
+         # URL.
+         url: "http://ip-api.com/json/%IP%?fields=status,message,proxy,hosting,query"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "proxy"
+            - "hosting"
+            # Type to determine.
+            type: boolean
+
+      # ⛽ BlackBox
+      # 🔗 https://blackbox.ipinfo.app/
+      #
+      # 🛒 Details:
+      # - Unlimited requests, no key.
+      blackbox:
+         # Enable this service?
+         enabled: true
+         # Model request to use.
+         model: "HTML"
+         # URL.
+         url: "https://blackbox.ipinfo.app/lookup/%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields: {}
+            # Type to determine.
+            type: "Y"
+            
+      # ⛽ Rayzs DE
+      # 🔗 https://www.rayzs.de/
+      #
+      # 🛒 Details:
+      # - Unlimited requests, no key.
+      rayzsde:
+         # Enable this service?
+         enabled: true
+         # Model request to use.
+         model: "HTML"
+         # URL.
+         url: "https://www.rayzs.de/provpn/api/proxy.php/?a=%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields: {}
+            # Type to determine.
+            type: boolean
+           
+      # ⛽ SkyDB
+      # 🔗 http://ipcheck.skydb.de/
+      # WARNING: DISABLED BY DEFAULT BECAUSE THEIR BIG DELAY IN
+      # RESPONSE! ENABLE IT IF YOU REALLY WANT THIS.
+      #
+      # 🛒 Details:
+      # - Unlimited requests, no key.
+      skydb:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # URL.
+         url: "http://ipcheck.skydb.de/getinfo?ip=%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "Hosting"
+            - "Proxy"
+            - "VPN"
+            - "TOR"
+            # Type to determine.
+            type: boolean
+                        
+      # ⛽ FunkeMunky
+      # 🔗 https://funkemunky.cc/
+      #
+      # 🛒 Details:
+      # - 20k montly requests, no key.
+      # - 150k-2Mo montly requests, paid account.
+      # - 200 minutly requests, paid account (unlimited).
+      funkemunky:
+         # Enable this service?
+         enabled: true
+         # Model request to use.
+         model: "JSON"
+         # URL.
+         # Use this for paid account:
+         # url: "https://funkemunky.cc/vpn?ip=%IP%&license=%KEY%&cached=USE_WEB_CACHE"
+         url: "https://funkemunky.cc/vpn?ip=%IP%"
+         # Insert your key here.
+         # You can use this field in case you
+         # has a paid account.
+         key: ""
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "proxy"
+            - "data_center"
+            - "vpn"
+            # Type to determine.
+            type: boolean
+           
+      # ⛽ IPRisk
+      # 🔗 https://api.iprisk.info/
+      #
+      # 🛒 Details:
+      # - Unlimited requests, no key.
+      iprisk:
+         # Enable this service?
+         enabled: true
+         # Model request to use.
+         model: "JSON"
+         # URL.
+         url: "https://api.iprisk.info/v1/%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "vpn"
+            - "data_center"
+            - "open_proxy"
+            # Type to determine.
+            type: boolean
+            
+      # ⛽ IPdb-Amelia
+      # 🔗 https://ipdb.amelia.fun/
+      #
+      # 🛒 Details:
+      # - Unlimited requests, no key.
+      amelia:
+         # Enable this service?
+         enabled: true
+         # Model request to use.
+         model: "JSON"
+         # URL.
+         url: "https://ipdb.amelia.fun/query?address=%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "result.types"
+            # Type to determine.
+            #
+            # Amelia provide list of types:
+            # https://ipdb.amelia.fun/types
+            type: ["3", "4", "6", "10"]
+            
+      # ⛽ IP2LOCATION
+      # 🔗 https://ip2location.io/
+      #
+      # 🛒 Details:
+      # 💼 https://ip2location.io/sign-up
+      # 
+      # - 500 requests per day, no key, only proxy detection.
+      # - 30k montlhy requests, "free" plan, basic vpn detection.
+      # - 150k montlhy requests, "starter" plan, basic vpn detection.
+      # - 300k montlhy requests, "plus" plan, advanced vpn detection.
+      # - 600k montlhy requests, "security" plan, full vpn detection.
+      ip2location:
+         # Enable this service?
+         enabled: true
+         # Model request to use.
+         model: "JSON"
+         # Insert your key here.
+         # Don't delete this field!
+         #
+         # I changed here because if "key" parameters is
+         # in the URL, this make like this is trying to
+         # use a key. Delete '#' under and delete 'key: ""',
+         # remember to replace 'KEY' with your API key.
+         #key: "&key=KEY"
+         key: ""
+         # URL.
+         url: "https://api.ip2location.io/?ip=%IP%&format=json%KEY%"
+         # Values to check.
+         values:
+            # Fields to check.
+            # "is_proxy" only field if you don't has "Security" plan, the
+            # others if you pay 499$ for this...
+            fields:
+            - "is_proxy"
+            - "proxy.is_vpn"
+            - "proxy.is_tor"
+            - "proxy.is_public_proxy"
+            - "proxy.is_web_proxy"
+            - "proxy.is_web_crawler"
+            - "proxy.is_residential_proxy"
+            - "proxy.is_botnet"
+            - "proxy.is_spammer"
+            - "proxy.is_scanner"
+            - "proxy.is_consumer_privacy_network"
+            - "proxy.is_enterprise_private_network"
+            - "proxy.is_data_center"
+            # Type to determine.
+            type: boolean
+            
+      # ⛽ FreeIPAPI
+      # 🔗 https://freeipapi.com/
+      #
+      # 🛒 Details:
+      # 📃 See more information in https://docs.freeipapi.com/request.html#authorization
+      # 🏷 Prices and usages: https://freeipapi.com/#pricing
+      # 💼 Login: https://freeipapi.com/register
+      #
+      # - 60 requests per minute, without key.
+      # - Unlimited requests, "premium" plan.
+      freeipapi:
+         # Enable this service?
+         enabled: true
+         # Model request to use.
+         model: "JSON"
+         # Headers in case is necessary.
+         #
+         # Set to: 'headers: []' to disable.
+         #headers:
+         #   'Authorization': 'Bearer KEY'
+         #
+         # Remove comment from above to use key in case
+         # you has one.
+         headers: []
+         # URL.
+         url: "https://freeipapi.com/api/json/%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "isProxy"
+            # Type to determine.
+            type: boolean
+            
+      # ⛽ Negativity API
+      # 🔗 https://negativity.fr/
+      #
+      # 🛒 Details:
+      # - Unlimited requests, no key.
+      negativity:
+         # Enable this service?
+         enabled: true
+         # Model request to use.
+         model: "JSON"
+         # URL.
+         url: "https://api.negativity.fr/ip/%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "proxy"
+            - "vpn"
+            # Type to determine.
+            type: boolean
+            
+      # ⛽ BanProxy
+      # 🔗 https://www.banproxy.com/
+      #
+      # 🛒 Details:
+      # 💼 https://banproxy.com/panel
+      #
+      # - 50 minutly requests, free account.
+      # - Unlimited requests, paid account.
+      banproxy:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Insert your key here.
+         # Don't delete this field!
+         key: ""
+         # URL.
+         url: "https://banproxy.com/api/%IP%/%KEY%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "proxy"
+            - "hosting"
+            # Type to determine.
+            type: boolean
+
+      # ⛽ GetIPIntel
+      # 🔗 https://getipintel.net/
+      #
+      # 🛒 Details:
+      # 💼 https://getipintel.net/free-proxy-vpn-tor-detection-api/#FAQ
+      #
+      # - 500 requests per day and 15 requests per minute - normal.
+      # - Unknowned requests with a "package".
+      getipintel:
+         # Enable this service?
+         # PLEASE, PUT A VALID "EMAIL" LIKE
+         # KEY TO USE THIS, OTHERWISE, THIS CAN
+         # BLOCK YOU (SOMETIMES, INSTANTLY).
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Insert your key here.
+         # Don't delete this field!
+         # PLEASE, PUT A VALID "EMAIL" LIKE
+         # KEY TO USE THIS, OTHERWISE, THIS CAN
+         # BLOCK YOU (SOMETIMES, INSTANTLY).
+         key: ""
+         # URL.
+         url: "https://check.getipintel.net/check.php?ip=%IP%&contact=%KEY%&flags=m&format=json"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "result"
+            # Type to determine.
+            type: '1'
+            
+      # ⛽ VPN-API XYZ
+      # 🔗 https://vpn-api.xyz/
+      #
+      # 🛒 Details:
+      # 💼 https://vpn-api.xyz/dashboard
+      # 🔑 Autokey: https://vpn-api.xyz/getkey.php
+      # 
+      # - Unlimited requests, key required.
+      vpn-apixyz:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Insert your key here.
+         # Don't delete this field!
+         key: ""
+         # URL.
+         url: "https://vpn-api.xyz/detector?key=%KEY%&host=%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "is_proxy"
+            # Type to determine.
+            type: boolean
+            
+      # ⛽ VPN Blocker
+      # 🔗 https://vpnblocker.net/
+      #
+      # 🛒 Details:
+      # 💼 https://vpnblocker.net/
+      #
+      # - 500 montlhy requests, no key/free.
+      # - Unlimited requests, paid.
+      vpnblocker:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Headers in case is necessary.
+         #
+         # Set to: 'headers: []' to disable.
+         headers:
+            'X-API-KEY': 'KEY'
+         # URL.
+         url: "https://api.vpnblocker.net/v2/json/%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "host-ip"
+            # Type to determine.
+            type: boolean
+         
+      # ⛽ IPQualityScore
+      # 🔗 https://www.ipqualityscore.com/
+      #
+      # 🛒 Details:
+      # 💼 https://www.ipqualityscore.com/user/dashboard
+      # 
+      # - 5.000 monthly requests, free account.
+      # - 500k monthly requests, "SMB Basic" plan.
+      # - 1M monthly requests, "SMB Premium" plan.
+      # - 4M monthly requests, "SMB Enhanced" plan.
+      # - "CUSTOM" monthly requests, "Enterprise" plan.
+      ipqualityscore:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Insert your key here.
+         # Don't delete this field!
+         key: ""
+         # URL.
+         url: "https://ipqualityscore.com/api/json/ip/%KEY%/%IP%?strictness=0&allow_public_access_points=true"
+         # Values to check.
+         values:
+            # Fields to check.
+            # "bot_status" and "recent_abuse" can probably detect bots, I added for better detection in
+            # some services of VPN. If you get false flags of this, delete both values and try.
+            fields:
+            - "proxy"
+            - "vpn"
+            - "tor"
+            - "bot_status"
+            - "recent_abuse"
+            # Type to determine.
+            type: boolean
+   
+      # ⛽ IDCTeam-API (👑 own API)
+      # 🔗 https://www.idcteam.xyz/discord
+      #
+      # 🛒 Details:
+      # 💼 https://www.idcteam.xyz/profile
+      #
+      # - 250 hours requests, free account.
+      # - Infinite hours requests, paid account.
+      idcteam:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # URL.
+         url: "https://api.idcteam.xyz/utils/checkip?ip=%IP%&key=%KEY%"
+         # Insert your key here.
+         # Don't delete this field!
+         key: ""
+         # Values to check.
+         values:
+            # Fields to check.
+            #
+            # 👑 Premium feature, in the future, read:
+            # (Future plan, for the moment, this can detect bot's and
+            # vpn's)
+            # This also can prevent some types of bots, if you use
+            # a legitimated copy of the plugin (paid), you can join
+            # to our discord server and get a key that detects
+            # bot's ips, also can unlock a completely feature that
+            # prevents requests when an attack on your server
+            # occurs.
+            fields:
+            - "proxy"
+            - "bot"
+            # Type to determine.
+            type: boolean
+      
+      # ⛽ ProxyCheck
+      # 🔗 https://proxycheck.io/
+      #
+      # 🛒 Details:
+      # 💼 https://proxycheck.io/pricing
+      # 
+      # - 100 daily requests, no key.
+      # - 1,000 daily requests, free account.
+      # - 10k-512m daily requests, paid account.
+      #
+      # WARNING! This use 2 requets, why? This use
+      # the field 'vpn=3' (3) to check for vpn and proxy,
+      # this in the DOCS say this use 2 request instead of
+      # 1, but this is because use value '3' to detect
+      # better VPNs and proxys. Set to '1' for only
+      # check 'VPN' or '2' to only check 'PROXY', and
+      # only use 1 request.
+      proxycheck:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Insert your key here.
+         # Don't delete this field!
+         key: ""
+         # URL.
+         url: "https://proxycheck.io/v2/%IP%?vpn=3&key=%KEY%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "%IP%.proxy"
+            - "%IP%.vpn"
+            # Type to determine.
+            type: "yes"
+         
+      # ⛽ VPNAPI
+      # 🔗 https://vpnapi.io/
+      #
+      # 🛒 Details:
+      # 💼 https://vpnapi.io/signup
+      # 
+      # - 100 daily requests, no key.
+      # - 1,000 daily requests, free account.
+      # - 10k-200k daily requests, paid account.
+      vpnapi:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Insert your key here.
+         # Set empty to don't use one. Don't delete this field!
+         key: ""
+         # URL.
+         url: "https://vpnapi.io/api/%IP%?key=%KEY%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "security.vpn"
+            - "security.proxy"
+            - "security.tor"
+            - "security.relay"
+            # Type to determine.
+            type: boolean
+            
+      # ⛽ ANTIVPN NET
+      # 🔗 https://www.antivpn.net/
+      #
+      # 🛒 Details:
+      # 💼 https://www.antivpn.net/account/
+      # 
+      # - 10k requests, free account.
+      # - 1M-10M requests, paid account.
+      antivpnnet:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Insert your key here.
+         # Don't delete this field!
+         key: ""
+         # URL.
+         url: "https://antivpn.net/api/v1/lookup?ip=%IP%&key=%KEY%&format=-json"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "is_proxy"
+            # Type to determine.
+            type: boolean
+            
+      # ⛽ ANTIVPN IO
+      # 🔗 https://www.antivpn.io/
+      #
+      # 🛒 Details:
+      # 💼 https://dash.antivpn.io/
+      # 
+      # - 15k mothly requests, free account.
+      # - 2M-10M montlhy requests, paid account.
+      antivpnio:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Headers in case is necessary.
+         #
+         # Set to: 'headers: []' to disable.
+         # How to get a key here? Easy, when you
+         # create a server, this send you a command,
+         # you only need to copy the code (key) and
+         # replace 'KEY' for that code. REMOVE
+         # THE COMMAND NAME AND / WHEN YOU COPY!
+         #
+         # Example value:
+         # 'Bearer XXXXXXXX'
+         headers:
+            'Authorization': 'Bearer KEY'
+         # URL.
+         url: "https://connection.antivpn.io/api/check?ip=%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "VPN"
+            # Type to determine.
+            type: boolean
+            
+      # ⛽ IPHub
+      # 🔗 https://iphub.info/
+      #
+      # 🛒 Details:
+      # 💼 https://iphub.info/login
+      # 
+      # - 1,000 daily requests, free account.
+      # - 10k-200k daily requests, paid account.
+      iphub:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Headers in case is necessary.
+         #
+         # Set to: 'headers: []' to disable.
+         headers:
+            'X-Key': 'KEY'
+         # URL.
+         url: "https://v2.api.iphub.info/ip/%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "block"
+            # Type to determine.
+            type: '1'
+            
+      # ⛽ IPHunter
+      # 🔗 https://www.iphunter.info/
+      #
+      # 🛒 Details:
+      # 💼 https://www.iphunter.info/user/register
+      # 
+      # - 1,000 daily requests, free account.
+      # - 60k-20M daily requests, paid account.
+      iphunter:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Headers in case is necessary.
+         #
+         # Set to: 'headers: []' to disable.
+         headers:
+            'X-Key': 'KEY'
+         # URL.
+         url: "https://www.iphunter.info:8082/v1/ip/%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "block"
+            # Type to determine.
+            type: '1'
+            
+      # ⛽ IPDetective
+      # 🔗 https://ipdetective.io/
+      #
+      # 🛒 Details:
+      # 💼 https://ipdetective.io/login
+      # 
+      # - 1,000 daily requests, free account.
+      # - 30k daily requests, basic account.
+      # - 80k daily requests, premium account.
+      # - 200k daily requests, enterprise account.
+      ipdetective:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Headers in case is necessary.
+         #
+         # Set to: 'headers: []' to disable.
+         headers:
+            'x-api-key': 'KEY'
+         # URL.
+         url: "https://api.ipdetective.io/ip/%IP%?info=true"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "type"
+            # Type to determine.
+            type: ["vpn", "datacenter", "bot", "proxy"]
+            
+#     ___                    _
+#    / _ \_ __ ___ _ __ ___ (_)_   _ _ __ ___   __/\__
+#   / /_)/ '__/ _ \ '_ ` _ \| | | | | '_ ` _ \  \    /
+#  / ___/| | |  __/ | | | | | | |_| | | | | | | /_  _\
+#  \/    |_|  \___|_| |_| |_|_|\__,_|_| |_| |_|   \/
+
+# Premium features, only available for paid users,
+# this is here in case you purchase the premium
+# version, so you avoid reset your currently config.yml
+premium:
+
+    # Enable the option to hide any disconnection message
+    # when a player is detected for VPN, it's blocked for
+    # their Country or ASN.
+    # This probably doesn't go to work in some platforms or
+    # versions, because only support Apache Log4J and SLF4J.
+    consolefilter:
+        # Enable hide the message of disconnection if the next
+        # scenaries.
+        vpn: true
+        country: true
+        asn: true
+
+    # Enable the detection for GeoBlocking when a player
+    # join to the server. If you enable this feature, you can
+    # block or whitelist country from joining or detecting.
+    #
+    # This uses MaxMind for working this feature.
+    # https://www.maxmind.com/en/home
+    geo:
+        # Enter here your key of maxmind for enabling this
+        # feature, if you leave this empty, this disable
+        # this feature. This is used to download
+        # the database.
+        key: ""
+        
+        # Determine here the time to pass for update the
+        # database of ASN and Country. This is for avoid
+        # downloading every time and is checked every 2 hours
+        # and when plugin starts or reload (with /foxgate reload).
+        # Use in hours.
+        update: 12
+        
+        # We allow customize options here,
+        # you can allow to FoxGate in verify whitelist
+        # for bypass detection by Country or ASN,
+        # and blacklist/whitelist by Country and ASN.
+        
+        # List for allow/deny connections in certain countries.
+        # Use ISO code for this system, view all ISO codes in
+        # the list: (A-2)
+        # https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
+        country:
+            # Bypass detections of FoxGate.
+            bypass:
+                # Add the list of ISO codes allowed for bypass detections
+                # of VPN in FoxGate. Use the value "[]" to disable, like:
+                #
+                # list: []
+                list: []
+                #- AR
+                #- BR
+                #- MX
+                #- ES
+                #- VE
+                # Blacklist the bypass to this name's.
+                # Works like the configuration of the antivpn system.
+                blacklist-name:
+                  - 'ImZowi' # It's me! :3
+                # Blacklist the bypass to this IP's.
+                # Works like the configuration of the antivpn system.
+                blacklist-ip:
+                  - '127.0.0.1'
+            # Whitelist/blacklist connections from X countries.
+            # The player is blocked from joining but the IP doesn't get verified!
+            blocker:
+                # Define the type of usage to this list.
+                # 'whitelist': Allow the access to certain countries.
+                # 'blacklist': Deny the access in certain countries.
+                type: 'blacklist'
+                # Add the list of ISO codes for block/allow connections
+                # to the server. Use the value "[]" to disable, like:
+                #
+                # list: []
+                list:
+                - PK
+                - IR
+                - DZ
+                # Add the connections to the database for prevent joining
+                # in X amount of type? This is useful if you want deny
+                # connections of bots in certain countries.
+                #
+                # "The player is blocked from joining but the IP doesn't get verified!"
+                # In this case, the plugin add the player to the database like
+                # "Blocked", but doesn't save services detected, because the player
+                # isn't scanned for VPN/Proxy.
+                database:
+                    # Enable this feature?
+                    enable: true
+                    # Determine here the time to add the player to
+                    # the database in case their country isn't allowed to
+                    # join in hours.
+                    time: 2
+                # Message to return when a player isn't from a country that isn't allowed
+                # to join, this is useful for kick the player fast without commands. You can
+                # use the placeholders: %PLAYER%, %IP%, %UUID%, %COUNTRY% and %ASN%.
+                kick: "<red>You have been disconnected by FoxGate:\n<white>Your country isn't allowed from joining! (%COUNTRY%)\n\n<gray>This is an error? <white>Join to our discord server.\n<aqua><underlined>discord.idcteam.xyz"
+                # Notification when a player is kicked. You can suppress this with only
+                # leave in blank.
+                notify: '{prefix} <aqua>{player} <gray>has been removed for joining in blacklisted country: <aqua>{COUNTRY}</aqua>! <green>({IP})'
+                # Whitelist the detection to this name's.
+                # Works like the configuration of the antivpn system.
+                whitelist-name:
+                  - 'ImZowi' # It's me! :3
+                # Whitelist the detection to this IP's.
+                # Works like the configuration of the antivpn system.
+                whitelist-ip:
+                  - '127.0.0.1'
+                # Actions to make when is detected.
+                # - Use this to kick with the plugin instantly:
+                #
+                #   - 'kick'
+                #
+                #   Or add your custom command. Disable this feature
+                #   with only adding 'actions: {}'.
+                actions:
+                  - 'kick'
+                # Change here the status name in the command '/foxgate status'
+                # to show when a player is detected in the database has been blocked
+                # for their country. This is in the case, the player was blocked
+                # for the option 'database' enabled.
+                status: '<gold>Blocked by their Country.'
+                
+        # List for allow/deny connections in certain ASN.
+        # Use ASN system for this part, you can get ASN from an
+        # IP with the link:
+        # https://www.ipvoid.com/ip-to-asn/
+        # Example:
+        # 1.1.1.1 (Cloudflare) is: AS13335
+        # Use the number for this list: 13335
+        asn:
+            # Bypass detections of FoxGate.
+            bypass:
+                # Add the list of ASN allowed for bypass detections
+                # in FoxGate. Use the value "[]" to disable, like:
+                #
+                # list: []
+                list: []
+                #- '13335' # (Cloudflare)
+                #- '15169' # (Google)
+                # Blacklist the bypass to this name's.
+                # Works like the configuration of the antivpn system.
+                blacklist-name:
+                  - 'ImZowi' # It's me! :3
+                # Blacklist the bypass to this IP's.
+                # Works like the configuration of the antivpn system.
+                blacklist-ip:
+                  - '127.0.0.1'
+            # Whitelist/blacklist connections from X ASN's.
+            # The player is blocked from joining but the IP doesn't get verified!
+            blocker:
+                # Define the type of usage to this list.
+                # 'whitelist': Allow the access to certain ASN's.
+                # 'blacklist': Deny the access in certain ASN's.
+                type: 'blacklist'
+                # Add the list of ASN'S allowed for join to the server.
+                # Use the value "[]" to disable, like:
+                #
+                # list: []
+                # (!) In this list, we are blocking ASN from knowed
+                #     services of hosting, can prevent some bots and VPN.
+                list:
+                - '210644'
+                # More in the original list inside the plugin.
+                # Add the connections to the database for prevent joining
+                # in X amount of type? This is useful if you want deny
+                # connections of bots in certain ASN's.
+                #
+                # "The player is blocked from joining but the IP doesn't get verified!"
+                # In this case, the plugin add the player to the database like
+                # "Blocked", but doesn't save services detected, because the player
+                # isn't scanned for VPN/Proxy.
+                database:
+                    # Enable this feature?
+                    enable: true
+                    # Determine here the time to add the player to
+                    # the database in case their country isn't allowed to
+                    # join in hours.
+                    time: 2
+                # Message to return when a player isn't from a ASN that isn't allowed
+                # to join, this is useful for kick the player fast without commands. You can
+                # use the placeholders: %PLAYER%, %IP%, %UUID%, %COUNTRY% and %ASN%.
+                kick: "<red>You have been disconnected by FoxGate:\n<white>Your ASN isn't allowed from joining! (%ASN%)\n\n<gray>This is an error? <white>Join to our discord server.\n<aqua><underlined>discord.idcteam.xyz"
+                # Notification when a player is kicked. You can suppress this with only
+                # leave in blank.
+                notify: '{prefix} <aqua>{player} <gray>has been removed for joining in blacklisted ASN: <aqua>{ASN}</aqua>! <green>({IP})'
+                # Whitelist the detection to this name's.
+                # Works like the configuration of the antivpn system.
+                whitelist-name:
+                  - 'ImZowi' # It's me! :3
+                # Whitelist the detection to this IP's.
+                # Works like the configuration of the antivpn system.
+                whitelist-ip:
+                  - '127.0.0.1'
+                # Actions to make when is detected.
+                # - Use this to kick with the plugin instantly:
+                #
+                #   - 'kick'
+                #
+                #   Or add your custom command. Disable this feature
+                #   with only adding 'actions: {}'.
+                actions:
+                  - 'kick'
+                # Change here the status name in the command '/foxgate status'
+                # to show when a player is detected in the database has been blocked
+                # for their ASN. This is in the case, the player was blocked
+                # for the option 'database' enabled.
+                status: '<gold>Blocked by their ASN.'
+
+    # Enable the usage of Discord Webhooks to send any alert's or
+    # messages if the player is vpn/proxy or if is allowed to connect
+    # to the server.
+    discord:
+        # Enter here the webhook URL, set to empty to
+        # disable this feature or add URL of webhook to
+        # enable this feature.
+        #
+        # See https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+        # for how to use it.
+        webhook: ""
+
+        # Customize the messages.
+        # Here you can find some placeholders for use:
+        #
+        # {NAME} - Return name of the user.
+        # {IP} - Return IP of the user.
+        # {UUID} - Return IP of the user.
+        # {DETECTED} - Return only the services that detected that IP has VPN.
+        # {UNDETECTED} - Return only the services that doesn't detect that IP is VPN.
+        # {LIST} - Return both list, but this difference with color (customizable).
+        # {MAX} - Return the number of maximum flags to deny access to the player.
+        # {COUNT_DETECTED} - Return the count of services that the player has been detected.
+        # {COUNT_UNDETECTED} - Return the count of services that the player doesn't has been detected.
+        # {GEO_COUNTRY} - Return the country player (Only works enabling the feature).
+        # {GEO_ASN} - Return the ASN player (Only works enabling the feature).
+        # Use '%nl%', '\n' or '\nl' for new line.
+        embed:
+
+          # Messages when the player is allowed to connect.
+          allowed:
+            # Enable this webhook?
+            enable: true
+            # Username to show.
+            # - Determine here a custom username for the webhook.
+            username: "FoxGate: High Quality AntiVPN"
+            # Avatar to show.
+            # - Determine here a custom avatar for the webhook.
+            avatar: "https://i.imgur.com/86T0cIF.png"
+            
+            # Determine here the content in the message.
+            # Set "" to disable the content.
+            content: ""
+            # Determine here the title of the embed.
+            # Set "" to disable the title or url.
+            title:
+              text: "An IP was verified by FoxGate."
+              url: "https://www.spigotmc.org/resources/116596/"
+            # Determine here the description of the embed.
+            # Set "" to disable the description.
+            description: ""
+            # Show thumbnail in the embed.
+            # Set "" to disable the content.
+            thumbnail: "https://api.creepernation.net/avatar/{UUID}"
+            # Add fields.
+            # Delete "fields" for disable anything about it.
+            fields:
+              '1':
+                name: "User"
+                description: "`{NAME}`"
+                inline: true
+              '2':
+                name: "IP"
+                description: "`{IP}`"
+                inline: true
+              '3':
+                name: "Count"
+                description: "`{COUNT_DETECTED}`/`{MAX}`"
+                inline: true
+              '4':
+                name: "Detected ({COUNT_DETECTED})"
+                description: "`{DETECTED}`"
+                inline: true
+              '5':
+                name: "Undetected ({COUNT_UNDETECTED})"
+                description: "`{UNDETECTED}`"
+                inline: true
+              '6':
+                name: "Country & ASN"
+                description: "`{GEO_COUNTRY}`/`{GEO_ASN}`"
+                inline: true
+            # Determine here the color in decimal.
+            color: 5793266
+            # Determine the footer to use.
+            footer:
+              text: "Powered by FoxGate"
+              icon: "https://i.imgur.com/86T0cIF.png"
+            
+          # Messages when the player is denied to connect.
+          denied:
+            # Enable this webhook?
+            enable: true
+            # Username to show.
+            # - Determine here a custom username for the webhook.
+            username: "FoxGate: High Quality AntiVPN"
+            # Avatar to show.
+            # - Determine here a custom avatar for the webhook.
+            avatar: "https://i.imgur.com/86T0cIF.png"
+            
+            # Determine here the content in the message.
+            # Set "" to disable the content.
+            content: ""
+            # Determine here the title of the embed.
+            # Set "" to disable the title or url.
+            title:
+              text: "An IP was blocked by FoxGate."
+              url: "https://www.spigotmc.org/resources/116596/"
+            # Determine here the description of the embed.
+            # Set "" to disable the description.
+            description: ""
+            # Show thumbnail in the embed.
+            # Set "" to disable the content.
+            thumbnail: "https://api.creepernation.net/avatar/{UUID}"
+            # Add fields.
+            # Delete "fields" for disable anything about it.
+            fields:
+              '1':
+                name: "User"
+                description: "`{NAME}`"
+                inline: true
+              '2':
+                name: "IP"
+                description: "`{IP}`"
+                inline: true
+              '3':
+                name: "Count"
+                description: "`{COUNT_DETECTED}`/`{MAX}`"
+                inline: true
+              '4':
+                name: "Detected ({COUNT_DETECTED})"
+                description: "`{DETECTED}`"
+                inline: true
+              '5':
+                name: "Undetected ({COUNT_UNDETECTED})"
+                description: "`{UNDETECTED}`"
+                inline: true
+              '6':
+                name: "Country & ASN"
+                description: "`{GEO_COUNTRY}`/`{GEO_ASN}`"
+                inline: true
+            # Determine here the color in decimal.
+            color: 16711680
+            # Determine the footer to use.
+            footer:
+              text: "Powered by FoxGate"
+              icon: "https://i.imgur.com/86T0cIF.png"
+              
+          # Messages when the player is blocked to connect
+          # because their country.
+          country:
+            # Enable this webhook?
+            enable: true
+            # Username to show.
+            # - Determine here a custom username for the webhook.
+            username: "FoxGate: High Quality AntiVPN"
+            # Avatar to show.
+            # - Determine here a custom avatar for the webhook.
+            avatar: "https://i.imgur.com/86T0cIF.png"
+            
+            # Determine here the content in the message.
+            # Set "" to disable the content.
+            content: ""
+            # Determine here the title of the embed.
+            # Set "" to disable the title or url.
+            title:
+              text: "An IP was blocked by FoxGate."
+              url: "https://www.spigotmc.org/resources/116596/"
+            # Determine here the description of the embed.
+            # Set "" to disable the description.
+            description: "A player tried to join from banned country."
+            # Show thumbnail in the embed.
+            # Set "" to disable the content.
+            thumbnail: "https://api.creepernation.net/avatar/{UUID}"
+            # Add fields.
+            # Delete "fields" for disable anything about it.
+            fields:
+              '1':
+                name: "User"
+                description: "`{NAME}`"
+                inline: true
+              '2':
+                name: "IP"
+                description: "`{IP}`"
+                inline: true
+              '3':
+                name: "Country & ASN"
+                description: "`{GEO_COUNTRY}`/`{GEO_ASN}`"
+                inline: true
+            # Determine here the color in decimal.
+            color: 16741120
+            # Determine the footer to use.
+            footer:
+              text: "Powered by FoxGate"
+              icon: "https://i.imgur.com/86T0cIF.png"
+              
+          # Messages when the player is blocked to connect
+          # because their ASN.
+          asn:
+            # Enable this webhook?
+            enable: true
+            # Username to show.
+            # - Determine here a custom username for the webhook.
+            username: "FoxGate: High Quality AntiVPN"
+            # Avatar to show.
+            # - Determine here a custom avatar for the webhook.
+            avatar: "https://i.imgur.com/86T0cIF.png"
+            
+            # Determine here the content in the message.
+            # Set "" to disable the content.
+            content: ""
+            # Determine here the title of the embed.
+            # Set "" to disable the title or url.
+            title:
+              text: "An IP was blocked by FoxGate."
+              url: "https://www.spigotmc.org/resources/116596/"
+            # Determine here the description of the embed.
+            # Set "" to disable the description.
+            description: "A player tried to join from banned ASN."
+            # Show thumbnail in the embed.
+            # Set "" to disable the content.
+            thumbnail: "https://api.creepernation.net/avatar/{UUID}"
+            # Add fields.
+            # Delete "fields" for disable anything about it.
+            fields:
+              '1':
+                name: "User"
+                description: "`{NAME}`"
+                inline: true
+              '2':
+                name: "IP"
+                description: "`{IP}`"
+                inline: true
+              '3':
+                name: "Country & ASN"
+                description: "`{GEO_COUNTRY}`/`{GEO_ASN}`"
+                inline: true
+            # Determine here the color in decimal.
+            color: 16741120
+            # Determine the footer to use.
+            footer:
+              text: "Powered by FoxGate"
+              icon: "https://i.imgur.com/86T0cIF.png"

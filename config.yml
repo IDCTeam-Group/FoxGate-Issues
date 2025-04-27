@@ -28,6 +28,17 @@ database:
     #  |=> PostgreSQL
     #  |=> SQLite
     #  |=> H2
+    #  |=> Jaybird (Experimental, USE IN YOUR RISK!)
+    #
+    # -----------------------------------------------------------------------------
+    #     Type	  |   Stability	| Performance | Support | Popularity | Concurrence |
+    # -----------------------------------------------------------------------------
+    #   MariaDB	  |      4⭐	    |     4⭐	  |    5⭐	|     5⭐	 |     5⭐
+    #    MySQL	  |      4⭐	    |     4⭐	  |    5⭐	|     5⭐	 |     4⭐
+    #  PostgreSQL |      5⭐	    |     5⭐	  |    4⭐	|     3⭐	 |     5⭐
+    #    SQLite	  |      2⭐	    |     5⭐	  |    4⭐	|     4⭐	 |     1⭐
+    #      H2	  |      2⭐	    |     4⭐	  |    3⭐	|     2⭐	 |     1⭐
+    #    Jaybird  |      2⭐	    |     2⭐	  |    1⭐	|     1⭐	 |     1⭐
     #
     # If you change this configuration and your server is already
     # started. You can use the command "/foxgate db reconnect" to
@@ -40,6 +51,16 @@ database:
     # use the next:
     # - "vpn_cache"
     table: "foxgate"
+    # You want to save the cache in the database in new table
+    # instead of use a file? Use this only if you want to use
+    # multi-proxy or you're sure you don't has problems with your
+    # database.
+    #
+    # Name of this table it's '"table"_cache', so, if the "table"
+    # it's "foxgate", the name will be: "foxgate_cache", or if
+    # the "table" it's "vpn_cache", will be "vpn_cache_cache". Always
+    # finish with "_cache".
+    cache_database: false
     
     # MariaDB/MySQL databases type. Edit here.
     remote:
@@ -112,16 +133,6 @@ database:
         #   For most databases, 3 seconds (3000 ms) is sufficient for validation.
         # Recommended: 3000 (3 seconds)
         validation-timeout: 3000
-        
-        # Leak detection threshold in milliseconds.
-        # - This setting helps detect connections that are not properly closed.
-        # - If a connection is checked out but not closed within this time, a warning will be logged.
-        # - Useful for debugging connection leaks in plugins or applications.
-        # Example:
-        #   If you expect queries to be fast, a value of 60 seconds (60000 ms) can help catch leaks.
-        #   If you have long transactions, set a higher value to avoid false positives.
-        # Recommended: 60000 (1 minute)
-        leak-detection-threshold: 60000
    
       # Custom properties for advanced users.
       # Add any additional properties to fine-tune the connection.
@@ -245,71 +256,11 @@ database:
         #   For responsive applications, a value between 30-50 seconds (30000-50000 ms) is ideal.
         # Recommended: 30000 (30 seconds)
         connection-timeout: 30000
-        
-        # Leak detection threshold in milliseconds.
-        # - This setting helps detect connections that are not properly closed.
-        # - If a connection is checked out but not closed within this time, a warning will be logged.
-        # - Useful for debugging connection leaks in plugins or applications.
-        # Example:
-        #   If you expect queries to be fast, a value of 60 seconds (60000 ms) can help catch leaks.
-        #   If you have long transactions, set a higher value to avoid false positives.
-        # Recommended: 60000 (1 minute)
-        leak-detection-threshold: 60000
 
+    # For avoid any auto closing, this only connect to HikariCP without additional values,
+    # so prevent any issues, allowing the usage of pure SQLite.
     sqlite:
       file: "FoxGate.db"
-     
-      # These settings apply to this SQLite, because uses Hikari for connection.
-      # - Default values are suitable for most users. Only modify these if you know what you're doing!
-      #
-      # Yeah... I know HikariCP isn't better to use with SQLite, but is only for avoid any
-      # type of errors! Please, don't kill me!
-      pool-settings:
-
-        # The maximum number of connections in the connection pool.
-        # - Determines the upper limit of active database connections that can be managed simultaneously.
-        # - Setting this too high can overload your database server, while setting it too low can cause delays.
-        # Example: 
-        #   If your server has high traffic and the database can handle it, set this to 10 or higher.
-        # Recommended: 10
-        # More information: https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing
-        maximum-pool-size: 10
-
-        # Minimum number of idle connections to maintain in the pool.
-        # - The pool will try to maintain this number of idle (inactive) connections ready for use.
-        # - Setting this equal to 'maximum-pool-size' creates a fixed-size connection pool,
-        #   ensuring consistent resource allocation.
-        # Example:
-        #   For a server with occasional traffic spikes, set this to half of 'maximum-pool-size'.
-        # Recommended: 1
-        minimum-idle: 1
-
-        # Maximum lifetime of a connection in the pool, in milliseconds.
-        # - Connections older than this value will be closed and replaced.
-        # - This prevents stale connections from lingering indefinitely and reduces database timeout issues.
-        # - Should be at least 30 seconds less than the timeout imposed by the database itself.
-        # Example:
-        #   If your database timeout is 30 minutes, set this value to 25 minutes (1500000 ms).
-        # Recommended: 1800000 (30 minutes)
-        maximum-lifetime: 1800000
-
-        # The maximum time in milliseconds to wait for a connection from the pool.
-        # - If no connection is available within this time, an exception will be thrown.
-        # - Setting a low value ensures responsiveness but may cause issues under heavy load.
-        # Example:
-        #   For responsive applications, a value between 30-50 seconds (30000-50000 ms) is ideal.
-        # Recommended: 30000 (30 seconds)
-        connection-timeout: 30000
-        
-        # Leak detection threshold in milliseconds.
-        # - This setting helps detect connections that are not properly closed.
-        # - If a connection is checked out but not closed within this time, a warning will be logged.
-        # - Useful for debugging connection leaks in plugins or applications.
-        # Example:
-        #   If you expect queries to be fast, a value of 60 seconds (60000 ms) can help catch leaks.
-        #   If you have long transactions, set a higher value to avoid false positives.
-        # Recommended: 60000 (1 minute)
-        leak-detection-threshold: 60000
 
     h2:
       file: "h2db"
@@ -352,16 +303,39 @@ database:
         #   For responsive applications, a value between 30-50 seconds (30000-50000 ms) is ideal.
         # Recommended: 30000 (30 seconds)
         connection-timeout: 30000
-        
-        # Leak detection threshold in milliseconds.
-        # - This setting helps detect connections that are not properly closed.
-        # - If a connection is checked out but not closed within this time, a warning will be logged.
-        # - Useful for debugging connection leaks in plugins or applications.
-        # Example:
-        #   If you expect queries to be fast, a value of 60 seconds (60000 ms) can help catch leaks.
-        #   If you have long transactions, set a higher value to avoid false positives.
-        # Recommended: 60000 (1 minute)
-        leak-detection-threshold: 60000
+    
+    # This database is experimental.
+    jaybird:
+      hostname: "localhost"
+      port: 3050
+      database: "FoxGate.fdb"
+      username: "foxgate"
+      password: ""
+      
+      # These settings apply to this Firebird database, as it uses Hikari for connection pooling.
+      # - Default values are suitable for most users. Modify only if necessary.
+      pool-settings:
+
+        # The maximum number of connections in the connection pool.
+        # - Determines the upper limit of active database connections that can be managed simultaneously.
+        # - Setting this too high can overload your database server, while setting it too low can cause delays.
+        # Recommended: 10
+        maximum-pool-size: 10
+
+        # Minimum number of idle connections to maintain in the pool.
+        # - The pool will try to maintain this number of idle (inactive) connections ready for use.
+        # Recommended: 1
+        minimum-idle: 1
+
+        # Maximum lifetime of a connection in the pool, in milliseconds.
+        # - Connections older than this value will be closed and replaced.
+        # Recommended: 1800000 (30 minutes)
+        maximum-lifetime: 1800000
+
+        # The maximum time in milliseconds to wait for a connection from the pool.
+        # - If no connection is available within this time, an exception will be thrown.
+        # Recommended: 30000 (30 seconds)
+        connection-timeout: 30000
 
     # When an IP isn't detected a vpn or proxy, this need to save in
     # cache to don't make more requests for a little time for save
@@ -427,10 +401,47 @@ configuration:
    permission: 'foxav.notifications'
 
    # Do you want to enable this feature?
-   # - Automatic check new updates in the Spigot page. This only detect
+   # - Automatic check new updates in the Market pages. This only detect
    #   when the server is starting. You need to have connection for check
    #   new updates.
+   #
+   # (!) Since 1.0.0 (premium) and 1.0.6 (free), FoxGate uses
+   #     their own code code for update chacking. This use
+   #     asynchronous methods to scan updates; improving the
+   #     performance of this. You can safety has enable this to
+   #     verify updates without affecting the performance.
    update: true
+   
+   # Do you want debug enable debug messages of FoxGate?
+   # - Set what messages you want to debug when the debugging mode
+   #   is enabled with the command '/fg debug'. This only shows in
+   #   the console.
+   debug:
+      # Messages about Events of the player?
+      events: true
+      # Messages returning service's responses for better
+      # creation or control of this. Enable only for testing,
+      # don't recommend enable this in production, otherwise,
+      # your console can be flooded a lot.
+      services: true
+      # Messages about actions making by FoxGate.
+      # Like, sending discord webhooks (responses), downloading
+      # GeoLocation databases and seding Telegram (requests).
+      actions: true
+      
+    # Enable the option to hide any disconnection message
+    # when a player is detected for VPN, it's blocked for
+    # their Country or ASN.
+    # This probably doesn't go to work in some platforms or
+    # versions, because only support Apache Log4J and SLF4J.
+    consolefilter:
+        # Enable hide the message of disconnection if the next
+        # scenaries.
+        vpn: true
+        limiter: true
+        # Premium Edition features.
+        country: true
+        asn: true
 
 #                                            
 #    /\/\   ___ ___ ___  __ _  __ _  ___ ___ 
@@ -471,17 +482,28 @@ message:
    help:
       add: 'Add a IP to the database.'
       check: 'Check an external IP and save in database.'
+      clearcache: 'Clear the cache file with username saves.'
       db: 'Purge or reconnect the database.'
+      debug: 'Debug actions made by FoxGate in the console.'
       reload: 'Reload configuration file to apply changes.'
       remove: 'Remove a IP from the database.'
       status: 'View information from a cached IP in the database.'
       verbose: 'Enable/disable verbose mode.'
-   verbose:
-      enable: '{prefix} <green>You enabled the verbose mode.'
-      disable: '{prefix} <red>You disabled the verbose mode.'
-      no_malicious: '{prefix} <green>[VERBOSE] <aqua>{player} <gray>is not a VPN in service: <green>{service} <dark_gray>({IP})'
-      malicious: '{prefix} <red>[VERBOSE] <aqua>{player} <gray>is marked a VPN in service: <green>{service} <dark_gray>({IP})'
-      ignored: '{prefix} <yellow>[VERBOSE] <aqua>{player} <gray>has been ignored for whitelist in <green>{type} <dark_gray>({IP})'
+      whitelist: 'Edit configuration via command whitelist user/IP.'
+   add-remove:
+      invalidip: '{prefix} {IP}<red> is not a valid IP/Username!'
+      already: '{prefix} {IP}<red> is already added/removed from the database!'
+      add: '{prefix} {IP}<green> has been added to the dabatase!'
+      remove: '{prefix} {IP}<green> has been removed from the database!'
+   check:
+      invalidip: '{prefix} {IP}<red> is not a valid IP!'
+      cached: '{prefix} {IP}<yellow> is already cached in the database. You can <white><underlined><click:run_command:"/foxgate status {IP}">click here to view information saved in the database</click></underlined></white>.'
+      checking: '{prefix} <yellow>Checking <white>{IP}<yellow>...'
+      checked: '{prefix} {IP}<green> was successfully checked, view the information obtained in the database with the command <gray>(/foxgate status)</gray> or <white><underlined><click:run_command:"/foxgate status {IP}">click here</click></underlined></white>.'
+   clearcache:
+      purging: '{prefix} <white>We are <yellow>purging</yellow> the cache file...'
+      purging_correctly: '{prefix} <green>The cache file has been purged/reseted.'
+      purging_problem: '{prefix} <red>Error while trying to purge the cache file. Check the console.'
    db:
       invalid_usage: '{prefix} Use the command <aqua>/foxgate db <purge/reconnect><reset>.'
       reconnecting: '{prefix} <yellow>Trying to reconnecting the database...'
@@ -490,13 +512,11 @@ message:
       purging: '{prefix} <yellow>Trying to purging the database...'
       purging_correctly: '{prefix} <green>The database has been purged/reseted.'
       purging_problem: '{prefix} <red>Error while trying to purge the database. Check the console.'
+   debug:
+      enable: '{prefix} <green>You enabled the debug mode. Check the console.'
+      disable: '{prefix} <red>You disabled the debug mode.'
    reload:
       message: '{prefix} <green>The configuration file has been reloaded.'
-   add-remove:
-      invalidip: '{prefix} {IP}<red> is not a valid IP/Username!'
-      already: '{prefix} {IP}<red> is already added/removed from the database!'
-      add: '{prefix} {IP}<green> has been added to the dabatase!'
-      remove: '{prefix} {IP}<green> has been removed from the database!'
    status:
       invalidip: '{prefix} {IP}<red> is not a valid IP!'
       # Here you can find new placeholders only for this message:
@@ -517,12 +537,21 @@ message:
       allow: '<green>Verified.'
       deny: '<red>Blocked.'
       saved: '<yellow>Scanned.'
-      info: " \n <green>Viewing status of <aqua>{IP}\n <dark_gray>▪ <white>Status: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Undetected: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Detected: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Services: {LIST}\n "
-   check:
-      invalidip: '{prefix} {IP}<red> is not a valid IP!'
-      cached: '{prefix} {IP}<yellow> is already cached in the database. You can <white><underlined><click:run_command:"/foxgate status {IP}">click here to view information saved in the database</click></underlined></white>.'
-      checking: '{prefix} <yellow>Checking <white>{IP}<yellow>...'
-      checked: '{prefix} {IP}<green> was successfully checked, view the information obtained in the database with the command <gray>(/foxgate status)</gray> or <white><underlined><click:run_command:"/foxgate status {IP}">click here</click></underlined></white>.'
+      info: " \n <green>Viewing status of <aqua>{IP}\n <dark_gray>▪ <white>Status: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Undetected: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Detected: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Services: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Country: <aqua>{GEO_COUNTRY} \n "
+   verbose:
+      enable: '{prefix} <green>You enabled the verbose mode.'
+      disable: '{prefix} <red>You disabled the verbose mode.'
+      no_malicious: '{prefix} <green>[VERBOSE] <aqua>{player} <gray>is not a VPN in service: <green>{service} <dark_gray>({IP})'
+      malicious: '{prefix} <red>[VERBOSE] <aqua>{player} <gray>is marked a VPN in service: <green>{service} <dark_gray>({IP})'
+      ignored: '{prefix} <yellow>[VERBOSE] <aqua>{player} <gray>has been ignored for whitelist in <green>{type} <dark_gray>({IP})'
+   whitelist:
+      invalid_usage: '{prefix} Use the command <aqua>/foxgate whitelist <add/remove> <name/ip><reset>.'
+      already: '{prefix} {IP}<red> is already whitelisted/unwhitelisted in the configuration!'
+      whitelisted: '{prefix} {IP}<green> was whitelisted in the configuration with type <white>{type}</white>. You can <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">click here for remove again</click></underlined></white>.'
+      unwhitelisted: '{prefix} {IP}<green> was unwhitelisted in the configuration with type <white>{type}</white>. You can <white><underlined><click:run_command:"/foxgate whitelist add {IP}">click here for add again</click></underlined></white>.' 
+      type_ip: 'IP'
+      type_name: 'Name'
+      problem: '{prefix} <red>Error while trying to add/remove to the whitelist. Check the console.'
 
 #     _         _   _        ___    __ 
 #    /_\  _ __ | |_(_/\   /\/ _ \/\ \ \
@@ -536,6 +565,25 @@ message:
 # checks when players join to determine if they are using a VPN. By default, several anti-VPN
 # services are pre-configured for detection purposes.
 antivpn:
+
+   # Limit maximum connections per IP.
+   # - When a player join to the server, this is saved
+   #   in a list for count the numbers of players in
+   #   a connection. If the limit is reached, the
+   #   player isn't allowed from joining.
+   limiter:
+     # Enable this feature?
+     enable: true
+     # Determine the maximum limit of connections per
+     # IP. '3' is the best value by default, increase in
+     # case is required. This can help in prevent bots with
+     # same IP.
+     maxium: 3
+     # Message to return when a player is kicked with this option. 
+     # placeholders: %PLAYER%, %IP%, %UUID%, %COUNTRY% (Premium and
+     # only if function is enabled) and %ASN% (Premium and only if
+     # function is enabled).
+     kick: "<red>You have been disconnected by FoxGate:\n<white>Maximum accounts per IP in your connection.\n\n<gray>This is an error? <white>Join to our discord server.\n<aqua><underlined>discord.idcteam.xyz"
 
    # Specify the minimum number of services
    # required to flag a player's IP as a VPN/proxy.
@@ -568,31 +616,11 @@ antivpn:
    # type of crash if the API is down, this help
    # a lot in case an API dead or you use a
    # service that is down.
-   # Use in milliseconds.
+   # - Use in milliseconds.
    #
    # (1500ms = 1.5s)
    # (1000ms = 1.0s)
    timeout: 1750
-
-   # Whitelist the detection to this name's.
-   # - Allow players in the list to bypass the detection of
-   #   the antivpn. To disable this feature, use the value:
-   #
-   #   whitelist-name: []
-   #
-   # (!) It's case sensetive!
-   whitelist-name:
-     - 'ImZowi' # It's me! :3
-
-   # Whitelist the detection to this IP's.
-   # - Allow ip's in the list to bypass the detection of
-   #   the antivpn. To disable this feature, use the value:
-   #
-   #   whitelist-ip: []
-   #
-   # (!) The value under is the default in localhost.
-   whitelist-ip:
-     - '127.0.0.1'
 
    # Actions to make when is detected.
    # - Use this to kick with the plugin instantly:
@@ -817,13 +845,13 @@ antivpn:
       # 💼 https://ip2location.io/sign-up
       # 
       # - 500 requests per day, no key, only proxy detection.
-      # - 30k montlhy requests, "free" plan, basic vpn detection.
-      # - 150k montlhy requests, "starter" plan, basic vpn detection.
-      # - 300k montlhy requests, "plus" plan, advanced vpn detection.
-      # - 600k montlhy requests, "security" plan, full vpn detection.
+      # - 30k monthly requests, "free" plan, basic vpn detection.
+      # - 150k monthly requests, "starter" plan, basic vpn detection.
+      # - 300k monthly requests, "plus" plan, advanced vpn detection.
+      # - 600k monthly requests, "security" plan, full vpn detection.
       ip2location:
          # Enable this service?
-         enabled: true
+         enabled: false
          # Model request to use.
          model: "JSON"
          # Insert your key here.
@@ -914,6 +942,41 @@ antivpn:
             # Type to determine.
             type: boolean
             
+      # ⛽ IPAPI IS
+      # 🔗 https://ipaphttps://ipapi.is/i.is/
+      #
+      # 🛒 Details:
+      # 💼 https://ipapi.is/app/signup
+      #
+      # - 1k daily requests, free account or without key (IP-based for limit). 
+      # - 10k daily requests, pay $10 monthly.
+      # - 20k daily requests, pay $20 monthly.
+      # - 50k daily requests, pay $50 monthly.
+      # - 100k daily requests, pay $100 monthly.
+      # - 2M daily requests, pay $200 monthly.
+      ipapiis:
+         # Enable this service?
+         enabled: true
+         # Model request to use.
+         model: "JSON"
+         # You can use this field in case you
+         # has an account in this page.
+         key: ""
+         # URL.
+         url: "https://api.ipapi.is/?q=%IP%&key=%KEY%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "is_datacenter"
+            - "is_tor"
+            - "is_proxy"
+            - "is_vpn"
+            - "is_abuser"
+            - "is_bogon" # Read more about this in https://ipgeolocation.io/blog/bogon-ip-addresses
+            # Type to determine.
+            type: boolean
+            
       # ⛽ BanProxy
       # 🔗 https://www.banproxy.com/
       #
@@ -971,7 +1034,7 @@ antivpn:
             fields:
             - "result"
             # Type to determine.
-            type: '1'
+            type: boolean
             
       # ⛽ VPN-API XYZ
       # 🔗 https://vpn-api.xyz/
@@ -1005,7 +1068,7 @@ antivpn:
       # 🛒 Details:
       # 💼 https://vpnblocker.net/
       #
-      # - 500 montlhy requests, no key/free.
+      # - 500 monthly requests, no key/free.
       # - Unlimited requests, paid.
       vpnblocker:
          # Enable this service?
@@ -1198,7 +1261,7 @@ antivpn:
       # 💼 https://dash.antivpn.io/
       # 
       # - 15k mothly requests, free account.
-      # - 2M-10M montlhy requests, paid account.
+      # - 2M-10M monthly requests, paid account.
       antivpnio:
          # Enable this service?
          enabled: false
@@ -1253,7 +1316,7 @@ antivpn:
             fields:
             - "block"
             # Type to determine.
-            type: '1'
+            type: boolean
             
       # ⛽ IPHunter
       # 🔗 https://www.iphunter.info/
@@ -1279,9 +1342,9 @@ antivpn:
          values:
             # Fields to check.
             fields:
-            - "block"
+            - "data.block"
             # Type to determine.
-            type: '1'
+            type: boolean
             
       # ⛽ IPDetective
       # 🔗 https://ipdetective.io/
@@ -1313,28 +1376,151 @@ antivpn:
             # Type to determine.
             type: ["vpn", "datacenter", "bot", "proxy"]
             
+      # ⛽ IPStack
+      # 🔗 https://ipstack.com/
+      #
+      # 🛒 Details:
+      # 💼 https://ipstack.com/signup/free
+      # 
+      # - 100 monthly requests, free account.
+      # - 50k monthly requests, basic account.
+      # - 500k monthly requests, professional account.
+      # - 2M monthly requests, professional plus account.
+      ipstack:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Insert your key here.
+         # Don't delete this field!
+         key: ""
+         # URL.
+         url: "https://api.ipstack.com/%IP%?access_key=%KEY%&security=1"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "security.is_proxy"
+            - "security.is_crawler"
+            - "security.is_tor"
+            - "security.hosting_facility"
+            # Type to determine.
+            type: boolean
+            
+      # ⛽ 2IP
+      # 🔗 https://2ip.io/
+      #
+      # 🛒 Details:
+      # 💼 https://2ip.io/registration/api/
+      #
+      # - 10k requests free per month.
+      # (Based in Billing)
+      2ip:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Insert your key here.
+         # Don't delete this field!
+         key: ""
+         # URL.
+         url: "https://api.2ip.io/%IP%?token=%KEY%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "asn.hosting"
+            # Type to determine.
+            type: boolean
+            
+      # ⛽ GreIP
+      # 🔗 https://greip.io/
+      #
+      # 🛒 Details:
+      # 💼 https://dashboard.greip.io/login
+      #
+      # - 15k monthly requests, free account.
+      # - 170k monthly requests, Standard account.
+      # - 400k monthly requests, Premium account.
+      # - Unlimited requests, "Pay-as-you-go".
+      greip:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Headers in case is necessary.
+         #
+         # Set to: 'headers: []' to disable.
+         headers:
+            'Authorization': 'Bearer KEY'
+         # URL.
+         url: "https://greipapi.com/lookup/ip/threats?ip=%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "data.threats.isProxy"
+            - "data.threats.isRelay"
+            - "data.threats.isTor"
+            - "data.threats.isHosting"
+            # Type to determine.
+            type: boolean
+            
+      # ⛽ IPGeolocation (PAID SERVICE)
+      # 🔗 https://ipgeolocation.io/
+      #
+      # 🛒 Details:
+      # 💼 https://app.ipgeolocation.io/login
+      #
+      # This is a PAID SERVICE, require starting from
+      # $15 monthly subscription for using IP-security
+      # feature. First plan it's $15 (Bronze).
+      #
+      # - 150k monthly requests, Bronze ($15)
+      # - 1M monthly requests, Solver ($65)
+      # - 6M monthly requests, Gold ($200)
+      # - 120M+ monthly requests, Enterprise.
+      ipgeolocation:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Insert your key here.
+         # Don't delete this field!
+         key: ""
+         # URL.
+         url: "https://api.ipgeolocation.io/ipgeo?apiKey=%KEY%&ip=%IP%"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "security.is_tor"
+            - "security.is_proxy"
+            - "security.is_cloud_provider"
+            - "security.is_known_attacker"
+            - "security.is_anonymous"
+            # Type to determine.
+            type: boolean
+ 
 #     ___                    _
 #    / _ \_ __ ___ _ __ ___ (_)_   _ _ __ ___   __/\__
 #   / /_)/ '__/ _ \ '_ ` _ \| | | | | '_ ` _ \  \    /
 #  / ___/| | |  __/ | | | | | | |_| | | | | | | /_  _\
 #  \/    |_|  \___|_| |_| |_|_|\__,_|_| |_| |_|   \/
-
+#
 # Premium features, only available for paid users,
 # this is here in case you purchase the premium
-# version, so you avoid reset your currently config.yml
+# version, this is generated in first startup with the
+# premium edition.
+#
+# If you still has questions, you can join to the discord server in:
+# https://discord.com/invite/FTtVXfj or you can use the Discussion page in https://www.spigotmc.org/threads/646308/.
+#
+# You can get the Premium Edition in:
+# 💼 BuiltByBit: https://builtbybit.com/resources/61530
+# 🧰 Polymart: https://polymart.org/resource/7327/
+# 📢 SpigotMC: https://www.spigotmc.org/resources/123563/
 premium:
-
-    # Enable the option to hide any disconnection message
-    # when a player is detected for VPN, it's blocked for
-    # their Country or ASN.
-    # This probably doesn't go to work in some platforms or
-    # versions, because only support Apache Log4J and SLF4J.
-    consolefilter:
-        # Enable hide the message of disconnection if the next
-        # scenaries.
-        vpn: true
-        country: true
-        asn: true
 
     # Enable the detection for GeoBlocking when a player
     # join to the server. If you enable this feature, you can
@@ -1351,7 +1537,7 @@ premium:
         
         # Determine here the time to pass for update the
         # database of ASN and Country. This is for avoid
-        # downloading every time and is checked every 2 hours
+        # downloading every time and is checked every 12 hours
         # and when plugin starts or reload (with /foxgate reload).
         # Use in hours.
         update: 12
@@ -1486,7 +1672,7 @@ premium:
                 #     services of hosting, can prevent some bots and VPN.
                 list:
                 - '210644'
-                # More in the original list inside the plugin.
+                - '...' # Available the rest only in original .jar
                 # Add the connections to the database for prevent joining
                 # in X amount of type? This is useful if you want deny
                 # connections of bots in certain ASN's.
@@ -1774,3 +1960,243 @@ premium:
             footer:
               text: "Powered by FoxGate"
               icon: "https://i.imgur.com/86T0cIF.png"
+              
+    # Prevent bots from joining to your server if this
+    # has any type of attack. This blocks connections and prevent
+    # making new requests. Normal players can join when this occurrs.
+    #
+    # This is based for small servers, if you server is bigger, please,
+    # configure better if you can.
+    # [THIS STILL IN DEVELOPMENT, DOESN'T WORKING CURRENTLY]
+    antibot:
+        # Enable this feature?
+        enable: true
+        # Determine the maxium connections per second to start blocking these IP's.
+        max: 6
+        # Determine the time to continue blocking with this little shield that
+        # bots (in seconds).
+        timer: 10
+
+        # Buffer
+        # Configure here a little buffer to add more seconds if this continue.
+        # If you has disabled this feature, the antibot system is disabled only
+        # when timer ends. If you enable "buffer", this feature increase the time
+        # of the timer to still blocking.
+        buffer:
+            # Enable this feature?
+            enable: true
+        # Determine the maxium connections per second to
+        # increase more additional seconds to the timer.
+        max: 3
+        # Dertermine the time to add when "max" is reached
+        # and need to increase the timer. Remember, all in seconds.
+        add: 5
+        # Send to the console all details about the attacks?
+        log: true
+        # Add this IP's to the vpn list to avoid detection for X hours?
+        # (depend on your configuration)
+        blacklist: true
+        # Block that IP's from pinging the server?
+        # THIS FUNCTION REQUIRE PACKETEVENTS!
+        pinging: true
+
+        # Deny all.
+        # Configure here if you want block any join if still joining bots
+        # when reach X amount of joins (this has a count). This automatically
+        # blacklist connections for 1 hour, the count of connections is
+        # reseted when timer finish.
+        denyall:
+            # Enable this feature?
+            enable: true
+        # Determine the maxium connection to block any type of connection
+        # to the server (don't allow *ANY* connection from join).
+        maxium: 500
+
+        # List of urls with knowned proxies.
+        # Add list of proxies to save ips to the database, so this can be used
+        # to block connections of bots (the possible) and don't make requests.
+        list:
+        - "https://tcpshield.com/blocklist.txt"
+              
+    # Enable the usage of Telegram Webhooks to send any alert's or
+    # messages if the player is vpn/proxy or if is allowed to connect
+    # to the server.
+    #
+    # For using this, you need a bot token, for that, need to create
+    # a bot. See more in:
+    # https://core.telegram.org/bots#how-do-i-create-a-bot
+    telegram:
+        # Enter here the bot's token, set to empty to
+        # disable this feature, you need to add both
+        # credentials for enabling this feature.
+        #
+        # See https://core.telegram.org/bots/webhooks
+        # for how to use it.
+        bot_token: ""
+        
+        # Enter here the channel to send the alert. Set
+        # empty to disable this feature, you need to add both
+        # credentials for enabling this feature.
+        #
+        # Must be unique identifier for the target chat or
+        # username of the target channel (in the format @channelusername).
+        chat_id: ""
+
+        # Customize the messages.
+        # Here you can find some placeholders for use:
+        #
+        # {NAME} - Return name of the user.
+        # {IP} - Return IP of the user.
+        # {UUID} - Return IP of the user.
+        # {DETECTED} - Return only the services that detected that IP has VPN.
+        # {UNDETECTED} - Return only the services that doesn't detect that IP is VPN.
+        # {LIST} - Return both list, but this difference with color (customizable).
+        # {MAX} - Return the number of maximum flags to deny access to the player.
+        # {COUNT_DETECTED} - Return the count of services that the player has been detected.
+        # {COUNT_UNDETECTED} - Return the count of services that the player doesn't has been detected.
+        # {GEO_COUNTRY} - Return the country player (Only works enabling the feature).
+        # {GEO_ASN} - Return the ASN player (Only works enabling the feature).
+        # Use '%nl%', '\n' or '\nl' for new line.
+        text:
+
+          # Messages when the player is allowed to connect.
+          allowed:
+            # Enable this webhook?
+            enable: true
+
+            # Determine here the content in the message.
+            # (!) This is required to send the message.
+            text: "*FoxGate: High Quality AntiVPN*\n\nPlayer *{NAME}* `({IP})` has been verified by *FoxGate* with a result of `{COUNT_DETECTED}/{MAX}` detected services.\n\n- Detected in `({COUNT_DETECTED})`: `{DETECTED}`\n- Undetected in `({COUNT_UNDETECTED})`: `{UNDETECTED}`\n- Country: `{GEO_COUNTRY}`\n- ASN: `{GEO_ASN}`"
+            # Determine here the thread message ID to send.
+            # Set "" to disable this feature.
+            #
+            # (!) Use this in case you want send in different
+            #     channel-thread to separate. This must be
+            #     unique identifier for the target message thread
+            #     (topic) of the forum; for forum supergroups only.
+            thread_id: ""
+
+            # Protect the message for privacy?
+            # Protects the contents of the sent message from
+            # forwarding and saving.
+            protection: true
+            # Disable notification sound?
+            # Sends the message silently. Users will receive a
+            # notification with no sound.
+            nosound: false
+            # Determine the mode of parsing.
+            # Values can be:
+            # - MarkdownV2 (Recommended)
+            # - HTML
+            # - Markdown
+            #
+            # (!) Invalid value go to use "MarkdownV2".
+            # https://core.telegram.org/bots/api#formatting-options
+            parsemode: "MarkdownV2"
+            
+          # Messages when the player is denied to connect.
+          denied:
+            # Enable this webhook?
+            enable: true
+
+            # Determine here the content in the message.
+            # (!) This is required to send the message.
+            text: "*FoxGate: High Quality AntiVPN*\n\nPlayer *{NAME}* `({IP})` has been blocked by *FoxGate* for a result of `{COUNT_DETECTED}/{MAX}` detected services.\n\n- Detected in `({COUNT_DETECTED})`: `{DETECTED}`\n- Undetected in `({COUNT_UNDETECTED})`: `{UNDETECTED}`\n- Country: `{GEO_COUNTRY}`\n- ASN: `{GEO_ASN}`"
+            # Determine here the thread message ID to send.
+            # Set "" to disable this feature.
+            #
+            # (!) Use this in case you want send in different
+            #     channel-thread to separate. This must be
+            #     unique identifier for the target message thread
+            #     (topic) of the forum; for forum supergroups only.
+            thread_id: ""
+
+            # Protect the message for privacy?
+            # Protects the contents of the sent message from
+            # forwarding and saving.
+            protection: true
+            # Disable notification sound?
+            # Sends the message silently. Users will receive a
+            # notification with no sound.
+            nosound: false
+            # Determine the mode of parsing.
+            # Values can be:
+            # - MarkdownV2 (Recommended)
+            # - HTML
+            # - Markdown
+            #
+            # (!) Invalid value go to use "MarkdownV2".
+            # https://core.telegram.org/bots/api#formatting-options
+            parsemode: "MarkdownV2"
+              
+          # Messages when the player is blocked to connect
+          # because their country.
+          country:
+            # Enable this webhook?
+            enable: true
+
+            # Determine here the content in the message.
+            # (!) This is required to send the message.
+            text: "*FoxGate: High Quality AntiVPN*\n\nPlayer *{NAME}* `({IP})` has been blocked by *FoxGate* for their country.\n\n- Country: `{GEO_COUNTRY}`\n- ASN: `{GEO_ASN}`"
+            # Determine here the thread message ID to send.
+            # Set "" to disable this feature.
+            #
+            # (!) Use this in case you want send in different
+            #     channel-thread to separate. This must be
+            #     unique identifier for the target message thread
+            #     (topic) of the forum; for forum supergroups only.
+            thread_id: ""
+
+            # Protect the message for privacy?
+            # Protects the contents of the sent message from
+            # forwarding and saving.
+            protection: true
+            # Disable notification sound?
+            # Sends the message silently. Users will receive a
+            # notification with no sound.
+            nosound: true
+            # Determine the mode of parsing.
+            # Values can be:
+            # - MarkdownV2 (Recommended)
+            # - HTML
+            # - Markdown
+            #
+            # (!) Invalid value go to use "MarkdownV2".
+            # https://core.telegram.org/bots/api#formatting-options
+            parsemode: "MarkdownV2"
+              
+          # Messages when the player is blocked to connect
+          # because their ASN.
+          asn:
+            # Enable this webhook?
+            enable: true
+
+            # Determine here the content in the message.
+            # (!) This is required to send the message.
+            text: "*FoxGate: High Quality AntiVPN*\n\nPlayer *{NAME}* `({IP})` has been blocked by *FoxGate* for their ASN.\n\n- Country: `{GEO_COUNTRY}`\n- ASN: `{GEO_ASN}`"
+            # Determine here the thread message ID to send.
+            # Set "" to disable this feature.
+            #
+            # (!) Use this in case you want send in different
+            #     channel-thread to separate. This must be
+            #     unique identifier for the target message thread
+            #     (topic) of the forum; for forum supergroups only.
+            thread_id: ""
+
+            # Protect the message for privacy?
+            # Protects the contents of the sent message from
+            # forwarding and saving.
+            protection: true
+            # Disable notification sound?
+            # Sends the message silently. Users will receive a
+            # notification with no sound.
+            nosound: true
+            # Determine the mode of parsing.
+            # Values can be:
+            # - MarkdownV2 (Recommended)
+            # - HTML
+            # - Markdown
+            #
+            # (!) Invalid value, will use "MarkdownV2".
+            # https://core.telegram.org/bots/api#formatting-options
+            parsemode: "MarkdownV2"

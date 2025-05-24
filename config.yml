@@ -6,7 +6,7 @@
 #                           | | | (_) |>  < | |_\ \| (_| || |_|  __/                          #
 #                           \_|  \___//_/\_\ \____/ \__,_| \__|\___|                          #
 #                                                                                             #
-#                                          [v1.0.2]                                           #
+#                                          [v1.0.3]                                           #
 #                                                                                             #
 # ------------------------------------------------------------------------------------------- #
 # If you still has questions, you can join to the discord server in:
@@ -52,15 +52,32 @@ database:
     # - "vpn_cache"
     table: "foxgate"
     # You want to save the cache in the database in new table
-    # instead of use a file? Use this only if you want to use
-    # multi-proxy or you're sure you don't has problems with your
-    # database.
+    # instead of use a file?
+    # - Use this only if you want to use multi-proxy or you're sure
+    #   you don't has problems with your database.
     #
     # Name of this table it's '"table"_cache', so, if the "table"
     # it's "foxgate", the name will be: "foxgate_cache", or if
     # the "table" it's "vpn_cache", will be "vpn_cache_cache". Always
     # finish with "_cache".
     cache_database: false
+    # Do you want enable whitelist base in database?
+    # - Set this feature to enabled in case you want to save
+    #   whitelist IP's/names in a database instead of a file.
+    #   Recommended in case you use multi-proxy.
+    #
+    #   If you use this feature in a server equal, you can use
+    #   reason and timestamp feature. Otherwise, you can only save
+    #   IP and Names to a whitelist list in file (don't has this
+    #   options of reason and timestamp).
+    #
+    # (!) This feature only works in MySQL, MariaDB and PostgreSQL.
+    #
+    # Name of this table it's '"table"_whitelist", so, if the "table"
+    # it's "foxgate", the name will be: "foxgate_whitelist", or if
+    # the "table" it's "vpn_cache", will be "vpn_cache_whitelist". Always
+    # finish with "_whitelist".
+    whitelist_database: false
     
     # MariaDB/MySQL databases type. Edit here.
     remote:
@@ -429,19 +446,20 @@ configuration:
       # GeoLocation databases and seding Telegram (requests).
       actions: true
       
-    # Enable the option to hide any disconnection message
-    # when a player is detected for VPN, it's blocked for
-    # their Country or ASN.
-    # This probably doesn't go to work in some platforms or
-    # versions, because only support Apache Log4J and SLF4J.
-    consolefilter:
-        # Enable hide the message of disconnection if the next
-        # scenaries.
-        vpn: true
-        limiter: true
-        # Premium Edition features.
-        country: true
-        asn: true
+   # Enable the option to hide any disconnection message
+   # when a player is detected for VPN, it's blocked for
+   # their Country or ASN.
+   # This probably doesn't go to work in some platforms or
+   # versions, because only support Apache Log4J and SLF4J.
+   consolefilter:
+      # Enable hide the message of disconnection if the next
+      # scenaries.
+      vpn: true
+      limiter: true
+      isp: true
+      # Premium Edition features.
+      country: true
+      asn: true
 
 #                                            
 #    /\/\   ___ ___ ___  __ _  __ _  ___ ___ 
@@ -465,7 +483,7 @@ message:
 
    # Message to return when a player is kicked with the option of actions in 'kick', this
    # his useful if you want kick with the plugin and no with command. You can use the
-   # placeholders: %PLAYER%, %IP%, %UUID%, %COUNTRY% (Premium and only if function is enabled)
+   # placeholders: %PLAYER%, %IP%, %UUID%, %ISP%, %COUNTRY% (Premium and only if function is enabled)
    # and %ASN% (Premium and only if function is enabled).
    kick: "<red>You have been disconnected by FoxGate:\n<white>VPN or Proxy has been found in your connection!\n\n<gray>This is an error? <white>Join to our discord server.\n<aqua><underlined>discord.idcteam.xyz"
 
@@ -490,6 +508,7 @@ message:
       status: 'View information from a cached IP in the database.'
       verbose: 'Enable/disable verbose mode.'
       whitelist: 'Edit configuration via command whitelist user/IP.'
+      predebug: '(Premium) Send a discord webhook/telegram forward for test.'
    add-remove:
       invalidip: '{prefix} {IP}<red> is not a valid IP/Username!'
       already: '{prefix} {IP}<red> is already added/removed from the database!'
@@ -528,6 +547,7 @@ message:
       # {COUNT_DETECTED} - Return the count of services that the player has been detected.
       # {COUNT_UNDETECTED} - Return the count of services that the player doesn't has been detected.
       # {STATUS} - Return the status of the player.
+      # {ISP} - Return the ISP of the IP (in case it's cached/IP) from ISP module.
       # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
       # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
       detected: '<red>'
@@ -537,7 +557,7 @@ message:
       allow: '<green>Verified.'
       deny: '<red>Blocked.'
       saved: '<yellow>Scanned.'
-      info: " \n <green>Viewing status of <aqua>{IP}\n <dark_gray>▪ <white>Status: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Undetected: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Detected: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Services: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Country: <aqua>{GEO_COUNTRY} \n "
+      info: " \n <green>Viewing status of <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Status: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Undetected: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Detected: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Services: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Country: <aqua>{GEO_COUNTRY} \n "
    verbose:
       enable: '{prefix} <green>You enabled the verbose mode.'
       disable: '{prefix} <red>You disabled the verbose mode.'
@@ -545,13 +565,37 @@ message:
       malicious: '{prefix} <red>[VERBOSE] <aqua>{player} <gray>is marked a VPN in service: <green>{service} <dark_gray>({IP})'
       ignored: '{prefix} <yellow>[VERBOSE] <aqua>{player} <gray>has been ignored for whitelist in <green>{type} <dark_gray>({IP})'
    whitelist:
-      invalid_usage: '{prefix} Use the command <aqua>/foxgate whitelist <add/remove> <name/ip><reset>.'
+      invalid_usage: '{prefix} Use the command <dark_gray>''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[name/ip]</yellow> <aqua>[reason]</aqua> <light_purple>[time]</light_purple><dark_gray>''</dark_gray><reset>.'
       already: '{prefix} {IP}<red> is already whitelisted/unwhitelisted in the configuration!'
-      whitelisted: '{prefix} {IP}<green> was whitelisted in the configuration with type <white>{type}</white>. You can <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">click here for remove again</click></underlined></white>.'
+      whitelisted: '{prefix} {IP}<green> was whitelisted in the configuration with type <white>{type}</white> for <white>{time}</white>. You can <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">click here for remove again</click></underlined></white>.'
       unwhitelisted: '{prefix} {IP}<green> was unwhitelisted in the configuration with type <white>{type}</white>. You can <white><underlined><click:run_command:"/foxgate whitelist add {IP}">click here for add again</click></underlined></white>.' 
       type_ip: 'IP'
       type_name: 'Name'
       problem: '{prefix} <red>Error while trying to add/remove to the whitelist. Check the console.'
+      invalid_time: '{prefix} <red>The time format is invalid. Use epoch or formats like <white>1d</white>, <white>3h</white>, <white>15m</white>, <white>30s</white> or <white>permanent</white>.'
+      purging: '{prefix} <yellow>Trying to purging the whitelist...'
+      purging_correctly: '{prefix} <green>The whitelist has been purged/reseted.'
+      purging_problem: '{prefix} <red>Error while trying to purge the whitelist. Check the console.'      
+      # Here you can find new placeholders only for this message:
+      #
+      # {TYPE} - Return "IP"/"Name" value.
+      # {REASON} - Return the reason of the whitelist in this name/IP.
+      # {EXPIRATION} - Return the expiration time.
+      # {ISP} - Return the ISP of the IP (in case it's cached/IP) from ISP module.
+      # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
+      # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+      info: ' \n <green>Whitelist information of <aqua>{IP}\n <dark_gray>▪ <white>Type: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Reason: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Expire: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Country: <aqua>{GEO_COUNTRY} \n '
+      # View about the format date here:
+      # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+      format: 'yyyy-MM-dd HH:mm:ss'
+      permanent: "Permanent."
+      noreason: "No reason."
+      nowhitelist: '{prefix} {IP}<red> isn''t saved in the whitelist in type <white>{type}</white>.'
+   predebug:
+      invalid_usage: '{prefix} Use the command <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset>.'
+      sending: '{prefix} <yellow>Sending for testing your <white>{type}</white> in mode <white>{mode}</white>...</yellow>'
+      sended: '{prefix} <green>Sended!'
+      problem: '{prefix} <red>Error while trying to send debug of <white>{type}</white>!'
 
 #     _         _   _        ___    __ 
 #    /_\  _ __ | |_(_/\   /\/ _ \/\ \ \
@@ -585,6 +629,137 @@ antivpn:
      # function is enabled).
      kick: "<red>You have been disconnected by FoxGate:\n<white>Maximum accounts per IP in your connection.\n\n<gray>This is an error? <white>Join to our discord server.\n<aqua><underlined>discord.idcteam.xyz"
 
+   # ISP Provider Detection
+   # - Limit connections and/or allow bypass if a player is using
+   #   an allowed or disallowed ISP.
+   #   This feature works by downloading a file from Zowi Central/IPInfo
+   #   containing a list of ISPs based on their IP addresses.
+   #
+   # (!) This only works if the file is successfully downloaded from
+   #     Zowi Central/IPInfo. If the site goes down and the file is deleted
+   #     locally, the feature will stop working.
+   #     We always strive to keep the service stable and online.
+   #
+   # REMEMBER! This is a Lite "ASN" module, you could purchase our
+   # Premium Edition for a complete and perfect alternative of this.
+   # The complete module, works with MaxMind DB, which works faster,
+   # more optimized, complete list of IP's, extensive support, etc.
+   isp:
+     # You want to download in Zowi's Central the database
+     # files? If you has enabled this, this will be downloading
+     # in Zowi's Central instead of IPInfo. (this update every
+     # 12 hours and has ratelimit of 10 downloads per 10
+     # minutes)
+     #
+     # (!) This could be unstable, it's only recommended
+     #     use this option in case you need fast, first
+     #     startup or you already received ratelimit in
+     #     IPInfo.
+     zowi_database: false
+     
+     # Enter here your key of IPInfo for enabling this
+     # feature, if you leave this empty, this disable
+     # this feature. This is used to download
+     # the database.
+     #
+     # Get a key from: https://ipinfo.io/login
+     key: ""
+     
+     # Determine here the time to pass for update the
+     # database of ISp list. This is for avoid
+     # downloading every time and is checked every 2 hours
+     # and when plugin starts or reload (with /foxgate reload).
+     # Use in hours.
+     update: 12
+
+     # How to find the ISP name to allow or block it?
+     # Use the following service: https://ipinfo.io/{IP}
+     # For example, visit https://ipinfo.io/1.1.1.1 and look for the "ASN"
+     # field in the response. You’ll see something like:
+     #
+     # ASN:  AS13335 - Cloudflare, Inc.
+     #
+     # Use the part after the dash ("-") — in this case, "Cloudflare, Inc." — 
+     # as the ISP name to configure in your allow/block list.
+     
+     # Bypass detections of FoxGate.
+     bypass:
+        # Add the list of ISP name allowed for bypass detections
+        # of VPN in FoxGate. Use the value "[]" to disable, like:
+        #
+        # list: []
+        list: []
+        # - 'Cloudflare, Inc.'
+        # - 'Google LLC'
+        # Blacklist the bypass to this name's.
+        # Works like the configuration of the antivpn system.
+        blacklist-name:
+          - 'ImZowi' # It's me! :3
+        # Blacklist the bypass to this IP's.
+        # Works like the configuration of the antivpn system.
+        blacklist-ip:
+          - '127.0.0.1'
+     # Whitelist/blacklist connections from X ISPs.
+     # The player is blocked from joining but the IP doesn't get verified!
+     blocker:
+        # Define the type of usage to this list.
+        # 'whitelist': Allow the access to certain ISPs.
+        # 'blacklist': Deny the access in certain ISPs.
+        type: 'blacklist'
+        # Add the list of ISP names for block/allow connections
+        # to the server. Use the value "[]" to disable, like:
+        #
+        # list: []
+        list:
+        - 'InMotion Hosting, Inc.'
+        - 'root SA'
+        - 'Datacamp Limited'
+        - 'M247 Europe SRL'
+        # Add the connections to the database for prevent joining
+        # in X amount of type? This is useful if you want deny
+        # connections of bots in certain countries.
+        #
+        # "The player is blocked from joining but the IP doesn't get verified!"
+        # In this case, the plugin add the player to the database like
+        # "Blocked", but doesn't save services detected, because the player
+        # isn't scanned for VPN/Proxy.
+        database:
+            # Enable this feature?
+            enable: true
+            # Determine here the time to add the player to
+            # the database in case their ISP isn't allowed to
+            # join in hours.
+            time: 2
+        # Message to return when a player isn't from a ISP that isn't allowed
+        # to join, this is useful for kick the player fast without commands. You can
+        # use the placeholders: %PLAYER%, %IP%, %UUID% and %ISP%.
+        kick: "<red>You have been disconnected by FoxGate:\n<white>Your ISP isn't allowed from joining! (%ISP%)\n\n<gray>This is an error? <white>Join to our discord server.\n<aqua><underlined>discord.idcteam.xyz"
+        # Notification when a player is kicked. You can suppress this with only
+        # leave in blank.
+        notify: '{prefix} <aqua>{player} <gray>has been removed for joining in blacklisted ISP: <aqua>{ISP}</aqua>! <green>({IP})'
+        # Whitelist the detection to this name's.
+        # Works like the configuration of the antivpn system.
+        whitelist-name:
+          - 'ImZowi' # It's me! :3
+        # Whitelist the detection to this IP's.
+        # Works like the configuration of the antivpn system.
+        whitelist-ip:
+          - '127.0.0.1'
+        # Actions to make when is detected.
+        # - Use this to kick with the plugin instantly:
+        #
+        # - 'kick'
+        #
+        #   Or add your custom command. Disable this feature
+        #   with only adding 'actions: {}'.
+        actions:
+          - 'kick'
+        # Change here the status name in the command '/foxgate status'
+        # to show when a player is detected in the database has been blocked
+        # for their ISP. This is in the case, the player was blocked
+        # for the option 'database' enabled.
+        status: '<gold>Blocked by their ISP.'
+   
    # Specify the minimum number of services
    # required to flag a player's IP as a VPN/proxy.
    # - This value must be equal to or less than the
@@ -815,29 +990,6 @@ antivpn:
             # Type to determine.
             type: boolean
             
-      # ⛽ IPdb-Amelia
-      # 🔗 https://ipdb.amelia.fun/
-      #
-      # 🛒 Details:
-      # - Unlimited requests, no key.
-      amelia:
-         # Enable this service?
-         enabled: true
-         # Model request to use.
-         model: "JSON"
-         # URL.
-         url: "https://ipdb.amelia.fun/query?address=%IP%"
-         # Values to check.
-         values:
-            # Fields to check.
-            fields:
-            - "result.types"
-            # Type to determine.
-            #
-            # Amelia provide list of types:
-            # https://ipdb.amelia.fun/types
-            type: ["3", "4", "6", "10"]
-            
       # ⛽ IP2LOCATION
       # 🔗 https://ip2location.io/
       #
@@ -943,7 +1095,7 @@ antivpn:
             type: boolean
             
       # ⛽ IPAPI IS
-      # 🔗 https://ipaphttps://ipapi.is/i.is/
+      # 🔗 https://ipapi.is/
       #
       # 🛒 Details:
       # 💼 https://ipapi.is/app/signup
@@ -974,6 +1126,29 @@ antivpn:
             - "is_vpn"
             - "is_abuser"
             - "is_bogon" # Read more about this in https://ipgeolocation.io/blog/bogon-ip-addresses
+            # Type to determine.
+            type: boolean
+           
+      # ⛽ IPQuery
+      # 🔗 https://ipquery.io/
+      #
+      # 🛒 Details:
+      # - Unlimited requests, no key.
+      ipquery:
+         # Enable this service?
+         enabled: true
+         # Model request to use.
+         model: "JSON"
+         # URL.
+         url: "https://api.ipquery.io/%IP%?format=json"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "risk.is_vpn"
+            - "risk.is_tor"
+            - "risk.is_datacenter"
+            - "risk.is_proxy"
             # Type to determine.
             type: boolean
             
@@ -1122,43 +1297,6 @@ antivpn:
             - "tor"
             - "bot_status"
             - "recent_abuse"
-            # Type to determine.
-            type: boolean
-   
-      # ⛽ IDCTeam-API (👑 own API)
-      # 🔗 https://www.idcteam.xyz/discord
-      #
-      # 🛒 Details:
-      # 💼 https://www.idcteam.xyz/profile
-      #
-      # - 250 hours requests, free account.
-      # - Infinite hours requests, paid account.
-      idcteam:
-         # Enable this service?
-         enabled: false
-         # Model request to use.
-         model: "JSON"
-         # URL.
-         url: "https://api.idcteam.xyz/utils/checkip?ip=%IP%&key=%KEY%"
-         # Insert your key here.
-         # Don't delete this field!
-         key: ""
-         # Values to check.
-         values:
-            # Fields to check.
-            #
-            # 👑 Premium feature, in the future, read:
-            # (Future plan, for the moment, this can detect bot's and
-            # vpn's)
-            # This also can prevent some types of bots, if you use
-            # a legitimated copy of the plugin (paid), you can join
-            # to our discord server and get a key that detects
-            # bot's ips, also can unlock a completely feature that
-            # prevents requests when an attack on your server
-            # occurs.
-            fields:
-            - "proxy"
-            - "bot"
             # Type to determine.
             type: boolean
       
@@ -1466,6 +1604,35 @@ antivpn:
             # Type to determine.
             type: boolean
             
+      # ⛽ ProxyRadar
+      # 🔗 https://proxyradar.io/
+      #
+      # 🛒 Details:
+      # 💼 https://proxyradar.io/login
+      #
+      # - 1k daily requests, free account.
+      # - 10k daily requests, "Personal" plan.
+      # - 50k daily requests, "Pro" plan.
+      # - 100k daily requests, "Business" plan.
+      # - 200k daily requests, "Enterprise" plan.
+      proxyradar:
+         # Enable this service?
+         enabled: false
+         # Model request to use.
+         model: "JSON"
+         # Insert your key here.
+         # Don't delete this field!
+         key: ""
+         # URL.
+         url: "https://proxyradar.io/v1/check?key=%KEY%&ip=%IP%&format=json"
+         # Values to check.
+         values:
+            # Fields to check.
+            fields:
+            - "proxy"
+            # Type to determine.
+            type: boolean
+            
       # ⛽ IPGeolocation (PAID SERVICE)
       # 🔗 https://ipgeolocation.io/
       #
@@ -1529,6 +1696,18 @@ premium:
     # This uses MaxMind for working this feature.
     # https://www.maxmind.com/en/home
     geo:
+        # You want to download in Zowi's Central the database
+        # files? If you has enabled this, this will be downloading
+        # in Zowi's Central instead of MaxMind. (this update every
+        # 12 hours and has ratelimit of 10 downloads per 10
+        # minutes)
+        #
+        # (!) This could be unstable, it's only recommended
+        #     use this option in case you need fast, first
+        #     startup or you already received ratelimit in
+        #     MaxMind.
+        zowi_database: true
+    
         # Enter here your key of maxmind for enabling this
         # feature, if you leave this empty, this disable
         # this feature. This is used to download
@@ -1537,7 +1716,7 @@ premium:
         
         # Determine here the time to pass for update the
         # database of ASN and Country. This is for avoid
-        # downloading every time and is checked every 12 hours
+        # downloading every time and is checked every 2 hours
         # and when plugin starts or reload (with /foxgate reload).
         # Use in hours.
         update: 12
@@ -1671,8 +1850,7 @@ premium:
                 # (!) In this list, we are blocking ASN from knowed
                 #     services of hosting, can prevent some bots and VPN.
                 list:
-                - '210644'
-                - '...' # Available the rest only in original .jar
+                - '210644' # More in the original Premium .jar
                 # Add the connections to the database for prevent joining
                 # in X amount of type? This is useful if you want deny
                 # connections of bots in certain ASN's.
@@ -1742,6 +1920,7 @@ premium:
         # {MAX} - Return the number of maximum flags to deny access to the player.
         # {COUNT_DETECTED} - Return the count of services that the player has been detected.
         # {COUNT_UNDETECTED} - Return the count of services that the player doesn't has been detected.
+        # {ISP} - Return the ISP of the IP (in case it's cached/IP) from ISP module.
         # {GEO_COUNTRY} - Return the country player (Only works enabling the feature).
         # {GEO_ASN} - Return the ASN player (Only works enabling the feature).
         # Use '%nl%', '\n' or '\nl' for new line.
@@ -1960,6 +2139,54 @@ premium:
             footer:
               text: "Powered by FoxGate"
               icon: "https://i.imgur.com/86T0cIF.png"
+             
+          # Messages when the player is blocked to connect
+          # because their ISP.
+          isp:
+            # Enable this webhook?
+            enable: true
+            # Username to show.
+            # - Determine here a custom username for the webhook.
+            username: "FoxGate: High Quality AntiVPN"
+            # Avatar to show.
+            # - Determine here a custom avatar for the webhook.
+            avatar: "https://i.imgur.com/86T0cIF.png"
+            
+            # Determine here the content in the message.
+            # Set "" to disable the content.
+            content: ""
+            # Determine here the title of the embed.
+            # Set "" to disable the title or url.
+            title:
+              text: "An IP was blocked by FoxGate."
+              url: "https://www.spigotmc.org/resources/116596/"
+            # Determine here the description of the embed.
+            # Set "" to disable the description.
+            description: "A player tried to join from banned ISP."
+            # Show thumbnail in the embed.
+            # Set "" to disable the content.
+            thumbnail: "https://api.creepernation.net/avatar/{UUID}"
+            # Add fields.
+            # Delete "fields" for disable anything about it.
+            fields:
+              '1':
+                name: "User"
+                description: "`{NAME}`"
+                inline: true
+              '2':
+                name: "IP"
+                description: "`{IP}`"
+                inline: true
+              '3':
+                name: "ISP"
+                description: "`{ISP}`"
+                inline: true
+            # Determine here the color in decimal.
+            color: 16741120
+            # Determine the footer to use.
+            footer:
+              text: "Powered by FoxGate"
+              icon: "https://i.imgur.com/86T0cIF.png"
               
     # Prevent bots from joining to your server if this
     # has any type of attack. This blocks connections and prevent
@@ -1985,9 +2212,9 @@ premium:
         buffer:
             # Enable this feature?
             enable: true
-        # Determine the maxium connections per second to
-        # increase more additional seconds to the timer.
-        max: 3
+            # Determine the maxium connections per second to
+            # increase more additional seconds to the timer.
+            max: 3
         # Dertermine the time to add when "max" is reached
         # and need to increase the timer. Remember, all in seconds.
         add: 5
@@ -2054,6 +2281,7 @@ premium:
         # {MAX} - Return the number of maximum flags to deny access to the player.
         # {COUNT_DETECTED} - Return the count of services that the player has been detected.
         # {COUNT_UNDETECTED} - Return the count of services that the player doesn't has been detected.
+        # {ISP} - Return the ISP of the IP (in case it's cached/IP) from ISP module.
         # {GEO_COUNTRY} - Return the country player (Only works enabling the feature).
         # {GEO_ASN} - Return the ASN player (Only works enabling the feature).
         # Use '%nl%', '\n' or '\nl' for new line.
@@ -2174,6 +2402,42 @@ premium:
             # Determine here the content in the message.
             # (!) This is required to send the message.
             text: "*FoxGate: High Quality AntiVPN*\n\nPlayer *{NAME}* `({IP})` has been blocked by *FoxGate* for their ASN.\n\n- Country: `{GEO_COUNTRY}`\n- ASN: `{GEO_ASN}`"
+            # Determine here the thread message ID to send.
+            # Set "" to disable this feature.
+            #
+            # (!) Use this in case you want send in different
+            #     channel-thread to separate. This must be
+            #     unique identifier for the target message thread
+            #     (topic) of the forum; for forum supergroups only.
+            thread_id: ""
+
+            # Protect the message for privacy?
+            # Protects the contents of the sent message from
+            # forwarding and saving.
+            protection: true
+            # Disable notification sound?
+            # Sends the message silently. Users will receive a
+            # notification with no sound.
+            nosound: true
+            # Determine the mode of parsing.
+            # Values can be:
+            # - MarkdownV2 (Recommended)
+            # - HTML
+            # - Markdown
+            #
+            # (!) Invalid value, will use "MarkdownV2".
+            # https://core.telegram.org/bots/api#formatting-options
+            parsemode: "MarkdownV2"
+            
+          # Messages when the player is blocked to connect
+          # because their ISP.
+          isp:
+            # Enable this webhook?
+            enable: true
+
+            # Determine here the content in the message.
+            # (!) This is required to send the message.
+            text: "*FoxGate: High Quality AntiVPN*\n\nPlayer *{NAME}* `({IP})` has been blocked by *FoxGate* for their ISP.\n\n- ISP: `{ISP}`"
             # Determine here the thread message ID to send.
             # Set "" to disable this feature.
             #

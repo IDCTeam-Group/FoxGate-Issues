@@ -5,10 +5,10 @@
 #  \/    \/\___|___|___/\__,_|\__, |\___|___/
 #                             |___/          
 
-# 🔨 Configure here the messages to show.
+# 🔨 Configure the plugins messages.
 # You can use MiniMessage in this section. This also works with
-# legacy bukkit colors, but isn't recommended, because this
-# has incompatibility!
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
 # Also, PlaceholderAPI is supported.
 #
 # 📷 Viewer:
@@ -18,31 +18,29 @@
 # https://docs.advntr.dev/minimessage/format.html
 message:
 
-   # Kick message when a player is blocked.
+   # Kick message when the plugin blocks a player.
    #
-   # {PLAYER} - Return the player's name.
+   # {PLAYER} - Returns the player's name.
    # {IP} - Returns the player's IP.
    # {UUID} - Returns the player's UUID. (BungeeCord doesn't support this)
-   # {ISP} - Return the ISP of the IP (in case it's cached/IP) from ISP module.
-   # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
-   # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+   # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+   # {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
+   # {GEO_ASN} - Return the player's ASN (Only works with premium version).
    kick:
       vpn: '<red>Has sido desconectado por FoxGate:\n<white>¡Se ha detectado VPN o Proxy en tu conexión!\n\n<gray>¿Esto es un error? <white>Únete a nuestro servidor de discord.\n<aqua><underlined>discord.idcteam.xyz'
       iplimiter: '<red>Has sido desconectado por FoxGate:\n<white>Se ha alcanzado el máximo de cuentas por IP.\n\n<gray>¿Esto es un error? <white>Únete a nuestro servidor de discord.\n<aqua><underlined>discord.idcteam.xyz'
       isp: '<red>Has sido desconectado por FoxGate:\n<white>¡Tu proveedor de internet no está permitido! ({ISP})\n\n<gray>¿Esto es un error? <white>Únete a nuestro servidor de discord.\n<aqua><underlined>discord.idcteam.xyz'
       country: '<red>Has sido desconectado por FoxGate:\n<white>¡Tu país se encuentra bloqueado! ({COUNTRY})\n\n<gray>¿Esto es un error? <white>Únete a nuestro servidor de discord.\n<aqua><underlined>discord.idcteam.xyz'
       asn: '<red>Has sido desconectado por FoxGate:\n<white>¡Tu ASN se encuentra bloqueado! ({ASN})\n\n<gray>¿Esto es un error? <white>Únete a nuestro servidor de discord.\n<aqua><underlined>discord.idcteam.xyz'
-   # Notification when a player is kicked. You can suppress this with only
-   # leave in blank.
+   # Notification when a player is kicked. You can prevent this message by leaving it blank.
    notify:
       vpn: '{prefix} <aqua>{player} <gray>se ha conectado con VPN y ha sido removido: <green>({IP})'
       isp: '{prefix} <aqua>{player} <gray>ha sido removido por lista negra de su ISP: <aqua>{ISP}</aqua>! <green>({IP})'
       country: '{prefix} <aqua>{player} <gray>ha sido removido por lista negra de su país: <aqua>{COUNTRY}</aqua>! <green>({IP})'
       asn: '{prefix} <aqua>{player} <gray>ha sido removido por lista negra de su ASN: <aqua>{ASN}</aqua>! <green>({IP})'
-   # This only show in console.
-   # This can help in debug in case a service is not working correctly.
-   # On the end, the plugin already send the message of error. You can
-   # suppress this with only leave in blank.
+   # This will only show up in the console.
+   # This can help with debug in case a service is not working correctly.
+   # You can prevent this message by leaving it blank.
    error: '{prefix} Error al verificar VPN en el servicio <aqua>"{service}"</aqua> para <yellow>{player}</yellow>: {error}'
    # Determine the prefix to use when a player use a command.
    prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
@@ -89,16 +87,16 @@ message:
       invalidip: '{prefix} {IP}<red> ¡No es una IP válida!'
       # Here you can find new placeholders only for this message:
       #
-      # {DETECTED} - Return only the services that detected that IP has VPN.
-      # {UNDETECTED} - Return only the services that doesn't detect that IP is VPN.
-      # {LIST} - Return both list, but this difference with color (customizable).
-      # {MAX} - Return the number of maximum flags to deny access to the player.
-      # {COUNT_DETECTED} - Return the count of services that the player has been detected.
-      # {COUNT_UNDETECTED} - Return the count of services that the player doesn't has been detected.
+      # {DETECTED} - Return only the services that detected a VPN with an IP.
+      # {UNDETECTED} - Return only the services that didn't detect a VPN with an IP.
+      # {LIST} - Return both lists, but with different colors (customizable).
+      # {MAX} - Return the maximum number of flags required to deny access to a player.
+      # {COUNT_DETECTED} - Return the number of services that a player's IP has been detected with.
+      # {COUNT_UNDETECTED} - Return the number of services that a player's IP hasn't been detected with.
       # {STATUS} - Return the status of the player.
-      # {ISP} - Return the ISP of the IP (in case it's cached/IP) from ISP module.
-      # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
-      # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+      # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+      # {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
+      # {GEO_ASN} - Return the player's ASN (Only works with premium version).
       detected: '<red>'
       undetected: '<green>'
       none: '<red>Ninguno.'
@@ -127,10 +125,10 @@ message:
       purging_problem: '{prefix} <red>Error al intentar purgar la lista blanca. Revisa la consola.'
       # Here you can find new placeholders only for this message:
       #
-      # {TYPE} - Return "IP"/"Name" value.
-      # {REASON} - Return the reason of the whitelist in this name/IP.
+      # {TYPE} - Return "IP"/"Name".
+      # {REASON} - Return the reason why this name/IP is whitelisted.
       # {EXPIRATION} - Return the expiration time.
-      # {ISP} - Return the ISP of the IP (in case it's cached/IP) from ISP module.
+      # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
       # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
       # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
       info: ' \n <green>Información de lista blanca de <aqua>{IP}\n <dark_gray>▪ <white>Tipo: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Razón: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Expira: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>País: <aqua>{GEO_COUNTRY} \n '

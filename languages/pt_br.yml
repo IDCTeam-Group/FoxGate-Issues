@@ -56,7 +56,7 @@ message:
       verbose: 'Ativar/desativar modo detalhado.'
       whitelist: 'Editar lista branca de usuários/IPs.'
       predebug: '(Premium) Testar webhook de Discord/Telegram.'
-   add-remove:
+   add_remove:
       invalidip: '{prefix} {IP}<red> não é um IP/nome válido!'
       already: '{prefix} {IP}<red> já está adicionado/removido do banco de dados!'
       add: '{prefix} {IP}<green> foi adicionado ao banco de dados!'

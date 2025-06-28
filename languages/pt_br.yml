@@ -38,6 +38,11 @@ message:
       isp: '{prefix} <aqua>{player} <gray>foi removido por ISP na lista negra: <aqua>{ISP}</aqua>! <green>({IP})'
       country: '{prefix} <aqua>{player} <gray>foi removido por país na lista negra: <aqua>{COUNTRY}</aqua>! <green>({IP})'
       asn: '{prefix} <aqua>{player} <gray>foi removido por ASN na lista negra: <aqua>{ASN}</aqua>! <green>({IP})'
+   # Message to show when a player it's blocked by a module. (For status command)
+   blocked:
+      isp: '<gold>Bloqueado pelo ISP.'
+      country: '<gold>Bloqueado pelo País.'
+      asn: '<gold>Bloqueado pelo ASN.'
    # This will only show up in the console.
    # This can help with debug in case a service is not working correctly.
    # You can prevent this message by leaving it blank.

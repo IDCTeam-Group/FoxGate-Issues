@@ -38,6 +38,11 @@ message:
       isp: '{prefix} <aqua>{player} <gray>was kicked for joining with a blacklisted ISP: <aqua>{ISP}</aqua>! <green>({IP})'
       country: '{prefix} <aqua>{player} <gray>was kicked for joining with a blacklisted country: <aqua>{COUNTRY}</aqua>! <green>({IP})'
       asn: '{prefix} <aqua>{player} <gray>was kicked for joining with a blacklisted ASN: <aqua>{ASN}</aqua>! <green>({IP})'
+   # Message to show when a player it's blocked by a module. (For status command)
+   blocked:
+      isp: '<gold>Blocked by their ISP.'
+      country: '<gold>Blocked by their Country.'
+      asn: '<gold>Blocked by their ASN.'
    # This will only show up in the console.
    # This can help with debug in case a service is not working correctly.
    # You can prevent this message by leaving it blank.

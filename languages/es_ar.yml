@@ -56,7 +56,7 @@ message:
       verbose: 'Activar/desactivar modo detallado.'
       whitelist: 'Editar configuración de lista blanca para usuario/IP.'
       predebug: '(Premium) Enviar un webhook de discord/mensaje de Telegram para prueba.'
-   add-remove:
+   add_remove:
       invalidip: '{prefix} {IP}<red> ¡No es una IP/nombre de usuario válido!'
       already: '{prefix} {IP}<red> ¡Ya está añadido/eliminado de la base de datos!'
       add: '{prefix} {IP}<green> ¡Ha sido añadido a la base de datos!'

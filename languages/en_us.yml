@@ -29,9 +29,9 @@ message:
    kick:
       vpn: '<red>You were kicked by FoxGate:\n<white>VPN or Proxy has been found in your connection!\n\n<gray>Is this an error? <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz'
       iplimiter: '<red>You were kicked by FoxGate:\n<white>Maximum accounts per IP in your connection.\n\n<gray>Is this an error? <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz'
-      isp: '<red>You were kicked by FoxGate:\n<white>Your ISP isn't allowed to join! ({ISP})\n\n<gray>Is this an error? <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz'
-      country: '<red>You were kicked by FoxGate:\n<white>Your country isn't allowed to join! ({COUNTRY})\n\n<gray>Is this an error? <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz'
-      asn: '<red>You were kicked by FoxGate:\n<white>Your ASN isn't allowed to join! ({ASN})\n\n<gray>Is this an error? <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz'
+      isp: '<red>You were kicked by FoxGate:\n<white>Your ISP isn''t allowed to join! ({ISP})\n\n<gray>Is this an error? <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz'
+      country: '<red>You were kicked by FoxGate:\n<white>Your country isn''t allowed to join! ({COUNTRY})\n\n<gray>Is this an error? <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz'
+      asn: '<red>You were kicked by FoxGate:\n<white>Your ASN isn''t allowed to join! ({ASN})\n\n<gray>Is this an error? <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz'
    # Notification when a player is kicked. You can prevent this message by leaving it blank.
    notify:
       vpn: '{prefix} <aqua>{player} <gray>was detected using a VPN and was kicked! <green>({IP})'

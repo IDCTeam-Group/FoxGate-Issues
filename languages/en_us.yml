@@ -50,13 +50,13 @@ message:
       clearcache: 'Clear the cache file of saved usernames.'
       db: 'Purge or reconnect the database.'
       debug: 'Debug FoxGate in the console.'
-      reload: 'Reload configuration file'
+      reload: 'Reload configuration file.'
       remove: 'Remove an IP from the database.'
       status: 'View information about a cached IP in the database.'
       verbose: 'Enable/disable verbose mode.'
       whitelist: 'Whitelist a user or IP.'
       predebug: '(Premium) Send a discord webhook or telegram forward to test how they look.'
-   add-remove:
+   add_remove:
       invalidip: '{prefix} {IP}<red> is not a valid IP/Username!'
       already: '{prefix} {IP}<red> is already added/removed from the database!'
       add: '{prefix} {IP}<green> has been added to the dabatase!'

@@ -26,7 +26,7 @@ message:
    # {ISP} - Провайдер (если закеширован/IP), модуль ISP.
    # {GEO_COUNTRY} - Страна игрока. (Только в премиум-версии)
    # {GEO_ASN} - ASN игрока (только в премиум-версии)
-kick:
+   kick:
       vpn: '<red>Вы были кикнуты FoxGate:\n<white>Обнаружено подключение через VPN или прокси!\n\n<gray>Ошибка? <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz'
       iplimiter: '<red>Вы были кикнуты FoxGate:\n<white>Превышено максимальное количество аккаунтов с одного IP.\n\n<gray>Ошибка? <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz'
       isp: '<red>Вы были кикнуты FoxGate:\n<white>Ваш провайдер запрещён! ({ISP})\n\n<gray>Ошибка? <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz'

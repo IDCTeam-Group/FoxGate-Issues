@@ -59,7 +59,7 @@ message:
       remove: 'Удалить IP из базы данных.'
       status: 'Просмотреть информацию о сохранённом IP.'
       verbose: 'Включить/выключить подробный режим.'
-      whitelist: 'Добавить пользователя/IP в белый список.'
+      whitelist: 'Добавить пользователя/IP в вайтлист.'
       predebug: '(Премиум) Отправить тестовое сообщение в Discord/Telegram.'
    add_remove:
       invalidip: '{prefix} {IP}<red> — это невалидный IP/никнейм!'
@@ -119,19 +119,19 @@ message:
    whitelist:
       invalid_usage: '{prefix} Использование: <dark_gray>''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[ник/ip]</yellow> <aqua>[причина]</aqua> <light_purple>[время]</light_purple><dark_gray>''</dark_gray><reset>.'
       already: '{prefix} {IP}<red> уже в белом списке/удалён из него!'
-      whitelisted: '{prefix} {IP}<green> добавлен в белый список как <white>{type}</white> на срок <white>{time}</white>. <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">Нажмите здесь, чтобы удалить</click></underlined></white>.'
+      whitelisted: '{prefix} {IP}<green> добавлен в вайтлист как <white>{type}</white> на срок <white>{time}</white>. <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">Нажмите здесь, чтобы удалить</click></underlined></white>.'
       unwhitelisted: '{prefix} {IP}<green> удалён из белого списка типа <white>{type}</white>. <white><underlined><click:run_command:"/foxgate whitelist add {IP}">Нажмите здесь, чтобы добавить снова</click></underlined></white>' 
       type_ip: 'IP'
       type_name: 'Имя'
       problem: '{prefix} <red>Ошибка при добавлении/удалении из белого списка. Проверьте консоль.'
       invalid_time: '{prefix} <red>Неверный формат времени. Используйте epoch или такие форматы: <white>1d</white>, <white>3h</white>, <white>15m</white>, <white>30s</white> или <white>permanent</white>.'
-      purging: '{prefix} <yellow>Очищаем белый список...'
-      purging_correctly: '{prefix} <green>Белый список очищен.'
+      purging: '{prefix} <yellow>Очищаем вайтлист...'
+      purging_correctly: '{prefix} <green>вайтлист очищен.'
       purging_problem: '{prefix} <red>Ошибка при очистке белого списка. Проверьте консоль.'     
       # Ниже доступны новые плейсхолдеры только для этого сообщения:
       #
       # {TYPE} - Возвращает "IP"/"Имя".
-      # {REASON} - Возвращает причину, по которой IP/имя добавлено в белый список.
+      # {REASON} - Возвращает причину, по которой IP/имя добавлено в вайтлист.
       # {EXPIRATION} - Возвращает срок действия.
       # {ISP} - Возвращает провайдера IP (если кэширован/IP), из модуля ISP.
       # {GEO_COUNTRY} - Возвращает страну игрока (только премиум и при включении функции).

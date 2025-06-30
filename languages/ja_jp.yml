@@ -1,0 +1,150 @@
+#                                            
+#    /\/\   ___ ___ ___  __ _  __ _  ___ ___ 
+#   /    \ / _ / __/ __|/ _` |/ _` |/ _ / __|
+#  / /\/\ |  __\__ \__ | (_| | (_| |  __\__ \
+#  \/    \/\___|___|___/\__,_|\__, |\___|___/
+#                             |___/          
+
+# 🔨 プラグインのメッセージの設定
+# このセクションではMiniMessageを使用できます。
+# これはレガシーな bukkit カラーでも動作しますが、
+# 互換性がないため推奨されません!
+# また、PlaceholderAPIもサポートされています。
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.advntr.dev/minimessage/format.html
+message:
+
+   # プラグインがプレイヤーをブロックしたときの追放メッセージ。
+   #
+   # {PLAYER} - プレイヤー名を返します
+   # {IP} - プレイヤーのIPを返します
+   # {UUID} - プレイヤーのUUIDを返します (BungeeCordはサポートしていません)
+   # {ISP} - IPSモジュールからのIPのインターネットサービスプロバイダーを返します (cached/IP の場合)
+   # {GEO_COUNTRY} - プレイヤーの国籍を返します (プレミアムバージョンでしか動作しません).
+   # {GEO_ASN} - プレイヤーのASN(自律システム番号)を返します (プレミアムバージョンでしか動作しません).
+   kick:
+      vpn: '<red>あなたはFoxGateによってキックされました:\n<white>接続にVPNやプロキシが検知されました!\n\n<gray>これはエラーですか? <white>私たちのDiscordサーバーに参加してください。\n<aqua><underlined>discord.idcteam.xyz'
+      iplimiter: '<red>あなたはFoxGateによってキックされました:\n<white>あなたの接続がIPごとの最大アカウント数を超えました。\n\n<gray>これはエラーですか? <white>私たちのDiscordサーバーに参加してください。\n<aqua><underlined>discord.idcteam.xyz'
+      isp: '<red>あなたはFoxGateによってキックされました:\n<white>あなたのインターネットプロバイダは参加する許可がありません! ({ISP})\n\n<gray>これはエラーですか? <white>私たちのDiscordサーバーに参加してください。\n<aqua><underlined>discord.idcteam.xyz'
+      country: '<red>あなたはFoxGateによってキックされました:\n<white>あなたの国からの参加は許可されていません! ({COUNTRY})\n\n<gray>これはエラーですか? <white>私たちのDiscordサーバーに参加してください。\n<aqua><underlined>discord.idcteam.xyz'
+      asn: '<red>あなたはFoxGateによってキックされました:\n<white>あなたのASNは参加する許可がありません! ({ASN})\n\n<gray>これはエラーですか? <white>私たちのDiscordサーバーに参加してください。\n<aqua><underlined>discord.idcteam.xyz'
+   # プレイヤーがキックされたときの通知。 空白にすることで、このメッセージを防ぐことができます。
+   notify:
+      vpn: '{prefix} <aqua>{player} <gray>はVPNの使用が検知されたためキックされました! <green>({IP})'
+      isp: '{prefix} <aqua>{player} <gray>はブラックリストにある次のインターネットプロバイダで参加していたため、キックされました!: <aqua>{ISP}</aqua> <green>({IP})'
+      country: '{prefix} <aqua>{player} <gray>はブラックリストにある次の国から接続していたため、キックされました!: <aqua>{COUNTRY}</aqua> <green>({IP})'
+      asn: '{prefix} <aqua>{player} <gray>はブラックリストにある次のASNで接続していたため、キックされました。: <aqua>{ASN}</aqua>! <green>({IP})'
+   # プレイヤーがモジュールによってブロックされたときに表示されるメッセージ。 (ステータスコマンドの場合)
+   blocked:
+      isp: '<gold>それらのインターネットプロバイダによってブロックされています。'
+      country: '<gold>それらの国によってブロックされています。'
+      asn: '<gold>それらのASNによってブロックされています。'
+   # これはコンソールにのみ表示されます。
+   # これは、サービスが正しく動作していない場合のデバッグに役立ちます。
+   # このメッセージは空白にすることで防ぐことができます。
+   error: '{prefix} <aqua>"{service}"</aqua> と <yellow>{player}</yellow> でVPNを検証中にエラーが発生しました: {error}'
+   # プラグインのメッセージプレフィックスを決定します。
+   prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+   help:
+      add: 'データベースにIPを追加。'
+      check: '外部IPをチェックし、データベースに保存する。'
+      clearcache: '保存されたユーザー名のキャッシュファイルをクリアする。'
+      db: 'データベースをパージまたは再接続します。'
+      debug: 'コンソールでFoxGateをデバッグする。'
+      reload: 'コンフィグファイルを再読み込みする。'
+      remove: 'データベースからIPを削除する。'
+      status: 'データベースにキャッシュされたIPに関する情報を表示する。'
+      verbose: '冗長モードの有効／無効。'
+      whitelist: 'ユーザーかIPのホワイトリスト。'
+      predebug: '(Premium) discord webhookまたはtelegram forwardを送信して、どのように見えるかをテストする。'
+   add_remove:
+      invalidip: '{prefix} {IP}<red> は無効な IP/ユーザーネーム です!'
+      already: '{prefix} {IP}<red> は既にデータベースに追加/削除しています!'
+      add: '{prefix} {IP}<green> がデータベースに追加されました!'
+      remove: '{prefix} {IP}<green> がデータベースから削除されました!'
+   check:
+      invalidip: '{prefix} {IP}<red> は無効なIPです!'
+      cached: '{prefix} {IP}<yellow> は既にデータベースにキャッシュされています。 <white><underlined><click:run_command:"/foxgate status {IP}">ここをクリックしてデータベース内に保存された情報を見ることができます</click></underlined></white>。'
+      checking: '{prefix} <white>{IP}<yellow> を確認中...'
+      checked: '{prefix} {IP}<green> が確認されました, データベースで得られた情報を表示するには、<gray>(/foxgate status)</gray><green> というコマンド、もしくは<white><underlined><click:run_command:"/foxgate status {IP}">ここをクリック</click></underlined></white><green>してください。'
+   clearcache:
+      purging: '{prefix} <white>キャッシュファイルを<yellow>削除しています</yellow>...'
+      purging_correctly: '{prefix} <green>キャッシュファイルが削除されました。'
+      purging_problem: '{prefix} <red>キャッシュファイルを削除しようとしてエラーが発生しました。コンソールを確認してください。'
+   db:
+      invalid_usage: '{prefix} <aqua>/foxgate db <purge/reconnect><reset> コマンドを使用してください。'
+      reconnecting: '{prefix} <yellow>データベースに再接続しようとしています...'
+      reconnect_correctly: '{prefix} <green>データベースに再接続しました。'
+      reconnect_problem: '{prefix} <red>データベースへの再接続中にエラーが発生しました。コンソールを確認してください。'
+      purging: '{prefix} <yellow>データベースを削除しようとしています...'
+      purging_correctly: '{prefix} <green>データベースは削除されました。'
+      purging_problem: '{prefix} <red>データベースを削除しようとしてエラーが発生しました。コンソールを確認してください。'
+   debug:
+      enable: '{prefix} <green>デバッグモードが有効になりました。コンソールを確認してください。'
+      disable: '{prefix} <red>デバッグモードが無効になりました。'
+   reload:
+      message: '{prefix} <green>コンフィグファイルが再読み込みされました。'
+   status:
+      invalidip: '{prefix} {IP}<red> は無効なIPです!'
+      # ここでは、このメッセージ専用の新しいプレースホルダーを見つけることができます：
+      #
+      # {DETECTED} - IPを持つVPNを検出したサービスのみを返します。
+      # {UNDETECTED} - IPを持つVPNを検出しなかったサービスのみを返します。
+      # {LIST} - 両方のリストを、異なる色（カスタマイズ可能）で返します。
+      # {MAX} - プレイヤーへのアクセスを拒否するために必要なフラグの最大数を返します。
+      # {COUNT_DETECTED} - プレーヤーのIPが検出されたサービスの数を返します。
+      # {COUNT_UNDETECTED} - プレーヤーのIPが検出されていないサービスの数を返します。
+      # {STATUS} - プレイヤーのステータスを返します。
+      # {ISP} - IPSモジュールからのIPのインターネットサービスプロバイダーを返します (cached/IP の場合)
+      # {GEO_COUNTRY} - プレイヤーの国籍を返します (プレミアムバージョンでしか動作しません).
+      # {GEO_ASN} - プレイヤーのASN(自律システム番号)を返します (プレミアムバージョンでしか動作しません).
+      detected: '<red>'
+      undetected: '<green>'
+      none: '<red>なし'
+      no_cached: '<red>データベースにキャッシュされていません。'
+      allow: '<green>検証済み'
+      deny: '<red>ブロック'
+      saved: '<yellow>スキャン済み'
+      info: ' \n <aqua>{IP} <green>のステータス表示\n <dark_gray>▪ <white>インターネットプロバイダ: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>ステータス: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>未検知: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>検知: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>サービス: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>国: <aqua>{GEO_COUNTRY} \n '
+   verbose:
+      enable: '{prefix} <green>冗長モードを有効にしました。'
+      disable: '{prefix} <red>冗長モードを無効にしました。'
+      no_malicious: '{prefix} <green>[冗長] <aqua>{player} <gray>の次のサービスはVPNではありません: <green>{service} <dark_gray>({IP})'
+      malicious: '{prefix} <red>[冗長] <aqua>{player} <gray>の次のサービスはVPNとしてマークされました: <green>{service} <dark_gray>({IP})'
+      ignored: '{prefix} <yellow>[冗長] <aqua>{player} <gray>は <green>{type} <gray>がホワイトリストに登録されているため、無視されました。 <dark_gray>({IP})'
+   whitelist:
+      invalid_usage: '{prefix} <dark_gray>''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[name/ip]</yellow> <aqua>[reason]</aqua> <light_purple>[time]</light_purple><dark_gray>''</dark_gray> コマンドを使用してください。<reset>.'
+      already: '{prefix} {IP}<red> は既にコンフィグ内のホワイトリストに追加/削除されています!'
+      whitelisted: '{prefix} {IP}<green> は <white>{type}</white> を <white>{time}</white> の期間でコンフィグ内のホワイトリストに追加されました。<white><underlined><click:run_command:"/foxgate whitelist remove {IP}">もう一度削除するにはここをクリック</click></underlined></white>してください。'
+      unwhitelisted: '{prefix} {IP}<green> の <white>{type}</white> をコンフィグ内のホワイトリストから削除されました。<white><underlined><click:run_command:"/foxgate whitelist add {IP}">もう一度追加するにはここをクリック</click></underlined></white>。' 
+      type_ip: 'IP'
+      type_name: 'Name'
+      problem: '{prefix} <red>ホワイトリストに追加/削除しようとしましたが、エラーが発生しました。コンソールを確認してください。'
+      invalid_time: '{prefix} <red>時間フォーマットが無効です。epochを使うか、<white>1d</white>, <white>3h</white>, <white>15m</white>, <white>30s</white> もしくは <white>permanent</white>のようなフォーマットを使用してください。'
+      purging: '{prefix} <yellow>ホワイトリストの削除をしています...'
+      purging_correctly: '{prefix} <green>ホワイトリストは削除されました。'
+      purging_problem: '{prefix} <red>ホワイトリストを削除しようとしてエラーが発生しました。コンソールを確認してください。'      
+      # ここでは、このメッセージ専用の新しいプレースホルダーを見つけることができます。:
+      #
+      # {TYPE} - "IP"/"Name"を返します。
+      # {REASON} - その 名前/IP がホワイトリストに追加された理由を返します。
+      # {EXPIRATION} - 有効期限を返します。
+      # {ISP} - IPSモジュールからのIPのインターネットサービスプロバイダーを返します (cached/IP の場合)
+      # {GEO_COUNTRY} - プレイヤーの国籍を返します (プレミアムバージョンでしか動作しません).
+      # {GEO_ASN} - プレイヤーのASN(自律システム番号)を返します (プレミアムバージョンでしか動作しません).
+      info: ' \n <aqua>{IP}<green> のホワイトリスト情報\n <dark_gray>▪ <white>Type: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>理由: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>期限: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>国: <aqua>{GEO_COUNTRY} \n '
+      # フォーマットの日付についてはこちら:
+      # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+      format: 'yyyy-MM-dd HH:mm:ss'
+      permanent: '無期限'
+      noreason: '理由なし'
+      nowhitelist: '{prefix} {IP}<red> の <white>{type}</white> はホワイトリストに保存されていません。'
+   predebug:
+      invalid_usage: '{prefix} <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset> コマンドを使用してください。'
+      sending: '{prefix} <yellow>モード <white>{mode}</white> であなたの <white>{type}</white> をテストするために送信中...</yellow>'
+      sended: '{prefix} <green>送信しました!'
+      problem: '{prefix} <red><white>{type}</white>のデバッグを送信しようとしましたがエラーが発生しました!'

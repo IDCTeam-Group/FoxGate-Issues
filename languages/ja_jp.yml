@@ -48,7 +48,7 @@ message:
    # このメッセージは空白にすることで防ぐことができます。
    error: '{prefix} <aqua>"{service}"</aqua> と <yellow>{player}</yellow> でVPNを検証中にエラーが発生しました: {error}'
    # プラグインのメッセージプレフィックスを決定します。
-   prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+   prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►</dark_gray>'
    help:
       add: 'データベースにIPを追加。'
       check: '外部IPをチェックし、データベースに保存する。'

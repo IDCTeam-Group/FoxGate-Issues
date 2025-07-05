@@ -316,11 +316,11 @@ database:
 > **Do the services in the config works correctly?**
 > The list of services in the default config have all been tested at least once. You can still configure each services values as well as edit or add more services (like in the example above). Services may not always function due to issues on their end or because of how they where added to the config. 
 
-Some services are **disabled by default** because **they require an API key to function**. However, **ten of these services** work without a key and are enabled by default, providing basic **VPN** and **proxy** detection right away. To maximize protection against **VPNs**, **proxies**, and **other threats**, it is recommended to obtain API keys for the remaining services. Doing so will enhance the accuracy and effectiveness of the detection.
+Some services are **disabled by default** because **they require an API key to function**. However, **ten of these services** work without a key and are enabled by default, providing basic **VPN** and **proxy** detection right away. To maximize protection against **VPNs**, **proxies**, and **other threats**, it is recommended to obtain API keys for the remaining services. Doing so will enhance the accuracy and effectiveness of detection.
 
-✅is free service, no key require for work.
+✅is a free service, no key required for work.
 <br />
-⭕is paid/key require service, key require for work.
+⭕is a paid/key required service, key required for work.
 <br />
 <br />
 ✅ **IP-API**
@@ -370,20 +370,20 @@ Some services are **disabled by default** because **they require an API key to f
 <br />
 **Want to know how to configure these services?** Check the configuration section below for examples and templates. When a player is detected using a **VPN** or **proxy**, the plugin automatically stores this information in a **database**. This prevents repeated **API requests** for the same **IP address** for a configurable number of hours, **reducing unnecessary API calls** and **improving efficiency**.
 
-By using both enabled-by-default services and those that require API keys, you can create a robust detection system that effectively identifies and blocks **VPN**, **proxy**, and **other undesired connections**. See more information in the [**documentation section**](https://www.spigotmc.org/resources/116596/field?field=documentation).
+By using both services that are enabled-by-default and those that require API keys, you can create a robust detection system that effectively identifies and blocks **VPN**, **proxy**, and **other undesired connections**. See more information in the [**documentation section**](https://www.spigotmc.org/resources/116596/field?field=documentation).
 <br />
 <br />
 ### Commands.
-- **/foxgate <add/remove> <IP> [allow/deny]:** Add or remove a IP from the database, this is used to restringe access and don't make request for certain hours.
-- **/foxgate verbose:** Enable/Disable the verbose output.
-- **/foxgate reload:** Reload the configuration file.
-- **/foxgate db <purge/reconnect>:** Reconnect the database or purge the information of the database.
-- **/foxgate status <ip>:** View information from an IP registered in the database.
+- **/foxgate <add/remove> <IP> [allow/deny]:** Add or remove an IP from the database, this is used to restrict or allow access by an IP.
+- **/foxgate verbose:** Enable/Disable verbose output.
+- **/foxgate reload:** Reload the config files.
+- **/foxgate db <purge/reconnect>:** Reconnect to the database or purge information from it.
+- **/foxgate status <ip>:** View information about an IP registered in the database.
 
 ### Permissions.
-- **foxav.notifications** - See the notify message when a user is detected with **VPN**.
-- **foxav.command** - Permission used to use any commands of **FoxGate**.
-- **foxav.bypass** - Permission used to bypass the detection of **FoxGate**.
+- **foxav.notifications** - Get notified when a user is detected with **VPN**.
+- **foxav.command** - Access all **FoxGate** commands.
+- **foxav.bypass** -  Bypass detection by **FoxGate**.
 <br />
 
 - [SpigotMC](https://www.spigotmc.org/resources/116596/)

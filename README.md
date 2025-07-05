@@ -1,12 +1,12 @@
 <center>
 
-[![Join to the discord server.](https://cdn.modrinth.com/data/cached_images/b00caabc5d76ec659ca50db9f17f0866de5f1b83.png)](http://discord.idcteam.xyz/)</center>
+[![Join the discord server.](https://cdn.modrinth.com/data/cached_images/b00caabc5d76ec659ca50db9f17f0866de5f1b83.png)](http://discord.idcteam.xyz/)</center>
 
-**FoxGate** `(formerly, FoxAntiVPN)` is a **powerful tool designed to protect your Minecraft server from unwanted visitors using VPNs** to bypass bans or for another reason, this allows server owners to detect and block **VPN**, **Proxy** and **more** in users quickly and efficiently. This use a lot of services that **can detect VPN too much fast and efficiently**, also you can add your custom service to detect. **Extremely hard to bypass? Probably**, with numerous APIs working together, **bypassing this AntiVPN becomes increasingly difficult**. The more services you enable, the harder it becomes for users to evade detection. Currently supporting **BungeeCord** `+ Forks`, **Velocity** `+ Forks` and **FOLIA**.
+**FoxGate** `(formerly, FoxAntiVPN)` is a **powerful tool designed to protect your Minecraft server from unwanted visitors using VPNs.** This plugin prevents players from bypass ip bans by allowing server owners to detect and block **VPN's**, **Proxy's** and **more**. This plugin connects to a configerable list of services which detect VPN's without any hassel. **This plugin is extremely hard to bypass.** With numerous APIs working together, **bypassing this AntiVPN is very difficult**. The more services you enable, the harder it becomes for users to evade detection. Currently supporting **BungeeCord** `+ Forks`, **Velocity** `+ Forks` and **FOLIA**.
 <br />
 <br />
 ### Features:
-- Support different types of databases: **H2**, **SQLite**, **PostgreSQL**, **MySQL** and **MariaDB** with **HikariCP** connection.
+- Supports different types of databases: **H2**, **SQLite**, **PostgreSQL**, **MySQL** and **MariaDB** with **HikariCP** connection.
   
 <details>
 <summary>Reference: Configuration of database.</summary>
@@ -306,15 +306,15 @@ database:
 ```
 </details>
 
-- Using **Asynchronous** for **better performance** without blocking **main thread** for any problem while this scan in **multiple services** to determine if the IP is malicious; without **affect the performance of the server**.
-- Customize the messages how you want! This support **MiniMessage** and **Legacy** colors in all versions.
-- Configuration **extensive and perfect for beginners** using this plugin, a lot of services already available for using in detection. You can **[add your custom service](https://www.spigotmc.org/resources/116596/field?field=documentation)** or **modify services that exists** in the default configuration.
-- Download **their libraries automatically** when starting for adding more options available for you, in every update, these get updated and **automatically updates** it.
+- This plugin has minimal performance impact due to it running **asynchronously**.
+- Customize the messages how you want! This plugins supports **MiniMessage** and **Legacy** colors in all versions.
+- The default config is setup to block most VPN's, although you can **[add a custom service](https://www.spigotmc.org/resources/116596/field?field=documentation)** or **modify existing services in the config**.
+- This plugin will automatically download lists of VPN's from services that don't have an API.
 
 
-### Services available in default configuration.
-> **All services in the configuration works correctly?**
-> I added some list of services that I finded, but I test if that works to add in the default configuration. You can still configure it values, edit or add more services (like the above example of configuration). Hey! I can't confirm if that services works correctly all the time, I recommend you enable the best options in case has problems.
+### Services available in the default config.
+> **Do the services in the config works correctly?**
+> The list of services in the default config have all been tested at least once. You can still configure each services values as well as edit or add more services (like in the example above). Services may not always function due to issues on their end or because of how they where added to the config. 
 
 Some services are **disabled by default** because **they require an API key to function**. However, **ten of these services** work without a key and are enabled by default, providing basic **VPN** and **proxy** detection right away. To maximize protection against **VPNs**, **proxies**, and **other threats**, it is recommended to obtain API keys for the remaining services. Doing so will enhance the accuracy and effectiveness of the detection.
 

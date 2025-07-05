@@ -48,7 +48,7 @@ message:
    # You can prevent this message by leaving it blank.
    error: '{prefix} Erro ao verificar VPN no serviço <aqua>"{service}"</aqua> para <yellow>{player}</yellow>: {error}'
    # Determine the message prefix for the plugin.
-   prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+   prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►</dark_gray>'
    help:
       add: 'Adicionar um IP ao banco de dados.'
       check: 'Verificar um IP externo e salvar no banco de dados.'

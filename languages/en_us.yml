@@ -48,7 +48,7 @@ message:
    # You can prevent this message by leaving it blank.
    error: '{prefix} Error while verifying VPN with <aqua>"{service}"</aqua> and <yellow>{player}</yellow>: {error}'
    # Determine the message prefix for the plugin.
-   prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+   prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►</dark_gray>'
    help:
       add: 'Add a IP to the database.'
       check: 'Check an external IP and save it to the database.'

@@ -48,7 +48,7 @@ message:
    # Вы можете отключить это сообщение, оставив строку пустой.
    error: '{prefix} Ошибка при проверке VPN через <aqua>"{service}"</aqua> для <yellow>{player}</yellow>: {error}'
    # Определяет префикс сообщений плагина.
-   prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+   prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►</dark_gray>'
    help:
       add: 'Добавить IP в базу данных.'
       check: 'Проверить внешний IP и сохранить его в базу данных.'

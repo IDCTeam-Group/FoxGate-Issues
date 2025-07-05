@@ -374,11 +374,15 @@ By using both services that are enabled-by-default and those that require API ke
 <br />
 <br />
 ### Commands.
-- **/foxgate <add/remove> <IP> [allow/deny]:** Add or remove an IP from the database, this is used to restrict or allow access by an IP.
-- **/foxgate verbose:** Enable/Disable verbose output.
-- **/foxgate reload:** Reload the config files.
-- **/foxgate db <purge/reconnect>:** Reconnect to the database or purge information from it.
-- **/foxgate status <ip>:** View information about an IP registered in the database.
+- **/foxgate <add/remove> <name/IP> [allow/deny]:** Add or remove a IP from the database to restrict access for it.
+- **/foxgate check <name/IP>:** Check if an IP is a **VPN**/**Proxy**.
+- **/foxgate clearcache:** Clear the list of cached IP's.
+- **/foxgate db <purge/reconnect>:** Reconnect the database or purge all information from it.
+- **/foxgate debug:** Enable the messages of debug for checking what are the plugin doing.
+- **/foxgate reload:** Reload all plugin files.
+- **/foxgate status <name/IP>:** View information about an **IP registered in the database**.
+- **/foxgate verbose:** Enable/disable verbose output.
+- **/foxgate whitelist <add/remove/info/purge> [name/ip] [reason] [time]:** Add, remove, purge or view information about **a user in the white-list**. Useful for **allowing users to bypass the detection**.
 
 ### Permissions.
 - **foxav.notifications** - Get notified when a user is detected with **VPN**.

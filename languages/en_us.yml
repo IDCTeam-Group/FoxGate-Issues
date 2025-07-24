@@ -32,6 +32,11 @@ message:
       isp: '<red>You were kicked by FoxGate:\n<white>Your ISP isn''t allowed to join! ({ISP})\n\n<gray>Is this an error? <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz'
       country: '<red>You were kicked by FoxGate:\n<white>Your country isn''t allowed to join! ({COUNTRY})\n\n<gray>Is this an error? <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz'
       asn: '<red>You were kicked by FoxGate:\n<white>Your ASN isn''t allowed to join! ({ASN})\n\n<gray>Is this an error? <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz'
+      # Some placeholders don't work in this message because it's used to kick
+      # the player when they try to join and their IP is still being verified in
+      # a pre-check. This prevents duplicate verification until the previous
+      # one is complete.
+      checking: '<red>You were kicked by FoxGate:\n<white>We''re checking your connection, please wait a few seconds.\n\n<gray>Is this an error? <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz'
    # Notification when a player is kicked. You can prevent this message by leaving it blank.
    notify:
       vpn: '{prefix} <aqua>{player} <gray>was detected using a VPN and was kicked! <green>({IP})'

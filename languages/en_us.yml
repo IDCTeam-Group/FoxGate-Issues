@@ -76,6 +76,7 @@ message:
       cached: '{prefix} {IP}<yellow> is already cached in the database. You can <white><underlined><click:run_command:"/foxgate status {IP}">click here to view information saved in the database</click></underlined></white>.'
       checking: '{prefix} <yellow>Checking <white>{IP}<yellow>...'
       checked: '{prefix} {IP}<green> was successfully checked, view the information obtained in the database with the command <gray>(/foxgate status)</gray> or <white><underlined><click:run_command:"/foxgate status {IP}">click here</click></underlined></white>.'
+      pre-checking: '{prefix} {IP}<yellow> {IP} is being scanned for a previous check, wait for the results first before running another in this same IP.'
    clearcache:
       purging: '{prefix} <white>We are <yellow>purging</yellow> the cache file...'
       purging_correctly: '{prefix} <green>The cache file has been purged.'

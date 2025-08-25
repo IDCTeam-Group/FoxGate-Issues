@@ -1,0 +1,128 @@
+#                                            
+#    /\/\   ___ ___ ___  __ _  __ _  ___ ___ 
+#   /    \ / _ / __/ __|/ _` |/ _` |/ _ / __|
+#  / /\/\ |  __\__ \__ | (_| | (_| |  __\__ \
+#  \/    \/\___|___|___/\__,_|\__, |\___|___/
+#                             |___/          
+
+# 🔨 Configura i messaggi del plugin.
+# Puoi usare MiniMessage in questa sezione. Funzionano anche
+# i vecchi colori Bukkit, ma non è raccomandato a causa di
+# incompatibilità!
+# Inoltre, PlaceholderAPI è supportato.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Formato:
+# https://docs.advntr.dev/minimessage/format.html
+message:
+
+   # Messaggio di kick quando il plugin blocca un giocatore.
+   #
+   # {PLAYER} - Restituisce il nome del giocatore.
+   # {IP} - Restituisce l’IP del giocatore.
+   # {UUID} - Restituisce l’UUID del giocatore. (BungeeCord non lo supporta)
+   # {ISP} - Restituisce l’ISP dell’IP, (se è in cache/IP), dal modulo ISP.
+   # {GEO_COUNTRY} - Restituisce il Paese del giocatore. (Funziona solo con la versione premium).
+   # {GEO_ASN} - Restituisce l’ASN del giocatore (Funziona solo con la versione premium).
+   kick:
+      vpn: '<red>Sei stato espulso da FoxGate:\n<white>È stato rilevato un VPN o Proxy nella tua connessione!\n\n<gray>È un errore? <white>Entra nel nostro server discord.\n<aqua><underlined>discord.idcteam.xyz'
+      iplimiter: '<red>Sei stato espulso da FoxGate:\n<white>Numero massimo di account per IP raggiunto nella tua connessione.\n\n<gray>È un errore? <white>Entra nel nostro server discord.\n<aqua><underlined>discord.idcteam.xyz'
+      isp: '<red>Sei stato espulso da FoxGate:\n<white>Il tuo ISP non è autorizzato a connettersi! ({ISP})\n\n<gray>È un errore? <white>Entra nel nostro server discord.\n<aqua><underlined>discord.idcteam.xyz'
+      country: '<red>Sei stato espulso da FoxGate:\n<white>Il tuo Paese non è autorizzato a connettersi! ({COUNTRY})\n\n<gray>È un errore? <white>Entra nel nostro server discord.\n<aqua><underlined>discord.idcteam.xyz'
+      asn: '<red>Sei stato espulso da FoxGate:\n<white>Il tuo ASN non è autorizzato a connettersi! ({ASN})\n\n<gray>È un errore? <white>Entra nel nostro server discord.\n<aqua><underlined>discord.idcteam.xyz'
+      checking: '<red>Sei stato espulso da FoxGate:\n<white>Stiamo controllando la tua connessione, attendi qualche secondo.\n\n<gray>È un errore? <white>Entra nel nostro server discord.\n<aqua><underlined>discord.idcteam.xyz'
+   # Notifica quando un giocatore viene espulso. Puoi disattivare il messaggio lasciandolo vuoto.
+   notify:
+      vpn: '{prefix} <aqua>{player} <gray>è stato rilevato con un VPN ed è stato espulso! <green>({IP})'
+      isp: '{prefix} <aqua>{player} <gray>è stato espulso per essersi connesso con un ISP in blacklist: <aqua>{ISP}</aqua>! <green>({IP})'
+      country: '{prefix} <aqua>{player} <gray>è stato espulso per essersi connesso da un Paese in blacklist: <aqua>{COUNTRY}</aqua>! <green>({IP})'
+      asn: '{prefix} <aqua>{player} <gray>è stato espulso per essersi connesso con un ASN in blacklist: <aqua>{ASN}</aqua>! <green>({IP})'
+   # Messaggio mostrato quando un giocatore è bloccato da un modulo. (Per il comando status)
+   blocked:
+      isp: '<gold>Bloccato dal suo ISP.'
+      country: '<gold>Bloccato dal suo Paese.'
+      asn: '<gold>Bloccato dal suo ASN.'
+   # Questo comparirà solo in console (utile per debug).
+   error: '{prefix} Errore durante la verifica VPN con <aqua>"{service}"</aqua> e <yellow>{player}</yellow>: {error}'
+   # Prefisso dei messaggi del plugin.
+   prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►</dark_gray>'
+   help:
+      add: 'Aggiungi un IP al database.'
+      check: 'Controlla un IP esterno e salvalo nel database.'
+      clearcache: 'Svuota la cache dei nomi salvati.'
+      db: 'Pulisci o riconnetti il database.'
+      debug: 'Esegui debug di FoxGate nella console.'
+      reload: 'Ricarica il file di configurazione.'
+      remove: 'Rimuovi un IP dal database.'
+      status: 'Visualizza informazioni su un IP salvato nel database.'
+      verbose: 'Abilita/disabilita la modalità verbosa.'
+      whitelist: 'Metti in whitelist un utente o IP.'
+      predebug: '(Premium) Invia un webhook Discord o inoltro Telegram di test.'
+   add_remove:
+      invalidip: '{prefix} {IP}<red> non è un IP/Nome valido!'
+      already: '{prefix} {IP}<red> è già stato aggiunto/rimosso dal database!'
+      add: '{prefix} {IP}<green> è stato aggiunto al database!'
+      remove: '{prefix} {IP}<green> è stato rimosso dal database!'
+   check:
+      invalidip: '{prefix} {IP}<red> non è un IP valido!'
+      cached: '{prefix} {IP}<yellow> è già in cache nel database. Puoi <white><underlined><click:run_command:"/foxgate status {IP}">cliccare qui per vedere le informazioni salvate</click></underlined></white>.'
+      checking: '{prefix} <yellow>Controllo <white>{IP}<yellow>...'
+      checked: '{prefix} {IP}<green> è stato verificato con successo, visualizza le informazioni con <gray>(/foxgate status)</gray> o <white><underlined><click:run_command:"/foxgate status {IP}">clicca qui</click></underlined></white>.'
+      pre-checking: '{prefix} {IP}<yellow> è già in fase di scansione, attendi il risultato prima di rieseguire il controllo.'
+   clearcache:
+      purging: '{prefix} <white>Stiamo <yellow>svuotando</yellow> la cache...'
+      purging_correctly: '{prefix} <green>La cache è stata svuotata.'
+      purging_problem: '{prefix} <red>Errore durante la pulizia della cache. Controlla la console.'
+   db:
+      invalid_usage: '{prefix} Usa il comando <aqua>/foxgate db <purge/reconnect><reset>.'
+      reconnecting: '{prefix} <yellow>Tentativo di riconnessione al database...'
+      reconnect_correctly: '{prefix} <green>Il database è stato riconnesso.'
+      reconnect_problem: '{prefix} <red>Errore durante la riconnessione al database. Controlla la console.'
+      purging: '{prefix} <yellow>Tentativo di pulizia del database...'
+      purging_correctly: '{prefix} <green>Il database è stato svuotato.'
+      purging_problem: '{prefix} <red>Errore durante la pulizia del database. Controlla la console.'
+   debug:
+      enable: '{prefix} <green>Modalità debug attivata. Controlla la console.'
+      disable: '{prefix} <red>Modalità debug disattivata.'
+   reload:
+      message: '{prefix} <green>Il file di configurazione è stato ricaricato.'
+   status:
+      invalidip: '{prefix} {IP}<red> non è un IP valido!'
+      detected: '<red>'
+      undetected: '<green>'
+      none: '<red>Nessuno.'
+      no_cached: '<red>Non in cache nel database.'
+      allow: '<green>Verificato.'
+      deny: '<red>Bloccato.'
+      saved: '<yellow>Scansionato.'
+      info: ' \n <green>Stato di <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Stato: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Non rilevato: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Rilevato: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Servizi: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Paese: <aqua>{GEO_COUNTRY} \n '
+   verbose:
+      enable: '{prefix} <green>Hai attivato la modalità verbosa.'
+      disable: '{prefix} <red>Hai disattivato la modalità verbosa.'
+      no_malicious: '{prefix} <green>[VERBOSE] <aqua>{player} <gray>non è un VPN con il servizio: <green>{service} <dark_gray>({IP})'
+      malicious: '{prefix} <red>[VERBOSE] <aqua>{player} <gray>è stato segnalato come VPN con il servizio: <green>{service} <dark_gray>({IP})'
+      ignored: '{prefix} <yellow>[VERBOSE] <aqua>{player} <gray>è stato ignorato perché in whitelist in <green>{type} <dark_gray>({IP})'
+   whitelist:
+      invalid_usage: '{prefix} Usa il comando <dark_gray>''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[nome/ip]</yellow> <aqua>[motivo]</aqua> <light_purple>[tempo]</light_purple><dark_gray>''</dark_gray><reset>.'
+      already: '{prefix} {IP}<red> è già in whitelist/non in whitelist nella config!'
+      whitelisted: '{prefix} {IP}<green> è stato aggiunto in whitelist nella config con tipo <white>{type}</white> per <white>{time}</white>. Puoi <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">cliccare qui per rimuoverlo</click></underlined></white>.'
+      unwhitelisted: '{prefix} {IP}<green> è stato rimosso dalla whitelist nella config con tipo <white>{type}</white>. Puoi <white><underlined><click:run_command:"/foxgate whitelist add {IP}">cliccare qui per aggiungerlo di nuovo</click></underlined></white>.' 
+      type_ip: 'IP'
+      type_name: 'Nome'
+      problem: '{prefix} <red>Errore durante l’aggiunta/rimozione dalla whitelist. Controlla la console.'
+      invalid_time: '{prefix} <red>Formato tempo non valido. Usa epoch o formati come <white>1d</white>, <white>3h</white>, <white>15m</white>, <white>30s</white> o <white>permanent</white>.'
+      purging: '{prefix} <yellow>Tentativo di svuotamento della whitelist...'
+      purging_correctly: '{prefix} <green>La whitelist è stata svuotata.'
+      purging_problem: '{prefix} <red>Errore durante lo svuotamento della whitelist. Controlla la console.'      
+      info: ' \n <green>Informazioni whitelist di <aqua>{IP}\n <dark_gray>▪ <white>Tipo: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Motivo: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Scadenza: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Paese: <aqua>{GEO_COUNTRY} \n '
+      format: 'yyyy-MM-dd HH:mm:ss'
+      permanent: 'Permanente.'
+      noreason: 'Nessun motivo.'
+      nowhitelist: '{prefix} {IP}<red> non è salvato in whitelist con tipo <white>{type}</white>.'
+   predebug:
+      invalid_usage: '{prefix} Usa il comando <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset>.'
+      sending: '{prefix} <yellow>Invio test per <white>{type}</white> in modalità <white>{mode}</white>...</yellow>'
+      sended: '{prefix} <green>Inviato!'
+      problem: '{prefix} <red>Errore durante l’invio del debug di <white>{type}</white>!'

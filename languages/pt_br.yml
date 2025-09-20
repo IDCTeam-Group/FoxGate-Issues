@@ -32,6 +32,11 @@ message:
       isp: '<red>Você foi desconectado pelo FoxGate:\n<white>Seu provedor de internet não é permitido! ({ISP})\n\n<gray>Isso é um erro? <white>Entre no nosso Discord.\n<aqua><underlined>discord.idcteam.xyz'
       country: '<red>Você foi desconectado pelo FoxGate:\n<white>Seu país está bloqueado! ({COUNTRY})\n\n<gray>Isso é um erro? <white>Entre no nosso Discord.\n<aqua><underlined>discord.idcteam.xyz'
       asn: '<red>Você foi desconectado pelo FoxGate:\n<white>Seu ASN está bloqueado! ({ASN})\n\n<gray>Isso é um erro? <white>Entre no nosso Discord.\n<aqua><underlined>discord.idcteam.xyz'
+      # Some placeholders don't work in this message because it's used to kick
+      # the player when they try to join and their IP is still being verified in
+      # a pre-check. This prevents duplicate verification until the previous
+      # one is complete.
+      checking: '<red>Você foi desconectado pelo FoxGate:\n<white>Estamos analisando sua conexão, aguarde alguns segundos.\n\n<gray>Isso é um erro? <white>Entre no nosso Discord.\n<aqua><underlined>discord.idcteam.xyz'
    # Notification when a player is kicked. You can prevent this message by leaving it blank.
    notify:
       vpn: '{prefix} <aqua>{player} <gray>conectou-se com VPN e foi removido: <green>({IP})'
@@ -71,6 +76,7 @@ message:
       cached: '{prefix} {IP}<yellow> já está em cache. <white><underlined><click:run_command:"/foxgate status {IP}">Clique aqui para ver</click></underlined></white>.'
       checking: '{prefix} <yellow>Verificando <white>{IP}<yellow>...'
       checked: '{prefix} {IP}<green> verificado! Use <gray>(/foxgate status)</gray> ou <white><underlined><click:run_command:"/foxgate status {IP}">clique aqui</click></underlined></white>.'
+      pre-checking: '{prefix} {IP}<yellow> está sendo verificado por uma verificação iniciada anteriormente, aguarde os resultados anteriores antes de verificar novamente.'
    clearcache:
       purging: '{prefix} <white>Limpando <yellow>cache</yellow>...'
       purging_correctly: '{prefix} <green>Cache limpo com sucesso!'

@@ -32,6 +32,11 @@ message:
       isp: '<red>Has sido desconectado por FoxGate:\n<white>¡Tu proveedor de internet no está permitido! ({ISP})\n\n<gray>¿Esto es un error? <white>Únete a nuestro servidor de discord.\n<aqua><underlined>discord.idcteam.xyz'
       country: '<red>Has sido desconectado por FoxGate:\n<white>¡Tu país se encuentra bloqueado! ({COUNTRY})\n\n<gray>¿Esto es un error? <white>Únete a nuestro servidor de discord.\n<aqua><underlined>discord.idcteam.xyz'
       asn: '<red>Has sido desconectado por FoxGate:\n<white>¡Tu ASN se encuentra bloqueado! ({ASN})\n\n<gray>¿Esto es un error? <white>Únete a nuestro servidor de discord.\n<aqua><underlined>discord.idcteam.xyz'
+      # Some placeholders don't work in this message because it's used to kick
+      # the player when they try to join and their IP is still being verified in
+      # a pre-check. This prevents duplicate verification until the previous
+      # one is complete.
+      checking: '<red>Has sido desconectado por FoxGate\n<white>Estamos analizando tu conexión, espera unos segundos.\n\n<gray>¿Esto es un error? <white>Únete a nuestro servidor de discord.\n<aqua><underlined>discord.idcteam.xyz'
    # Notification when a player is kicked. You can prevent this message by leaving it blank.
    notify:
       vpn: '{prefix} <aqua>{player} <gray>se ha conectado con VPN y ha sido removido: <green>({IP})'
@@ -71,6 +76,7 @@ message:
       cached: '{prefix} {IP}<yellow> ya está en la base de datos. Puedes <white><underlined><click:run_command:"/foxgate status {IP}">hacer clic aquí para ver la información guardada</click></underlined></white>.'
       checking: '{prefix} <yellow>Verificando <white>{IP}<yellow>...'
       checked: '{prefix} {IP}<green> fue verificado exitosamente, ve la información obtenida con el comando <gray>(/foxgate status)</gray> o <white><underlined><click:run_command:"/foxgate status {IP}">haz clic aquí</click></underlined></white>.'
+      pre-checking: '{prefix} {IP}<yellow> está siendo analizado por una verificación iniciada anteriormente, espera por los resultados previos antes de analizar nuevamente.'
    clearcache:
       purging: '{prefix} <white>Estamos <yellow>purgando</yellow> el archivo de caché...'
       purging_correctly: '{prefix} <green>¡El archivo de caché ha sido purgado/reiniciado!'

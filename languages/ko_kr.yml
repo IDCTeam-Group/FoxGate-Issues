@@ -1,0 +1,154 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                       |___/
+
+# 🔨 플러그인 메시지 설정
+# MiniMessage를 사용할 수 있습니다.
+# 기존 Bukkit 색상도 사용 가능하지만 권장되지 않습니다.
+# PlaceholderAPI도 지원됩니다.
+#
+# 📷 뷰어:
+# https://webui.advntr.dev/
+#
+# 📚 형식:
+# https://docs.advntr.dev/minimessage/format.html
+message:
+
+   # 플러그인이 플레이어를 차단할 때 표시되는 킥 메시지
+   #
+   # {PLAYER} - 플레이어 이름 반환
+   # {IP} - 플레이어 IP 반환
+   # {UUID} - 플레이어 UUID 반환 (BungeeCord에서는 지원되지 않음)
+   # {ISP} - ISP 모듈에서 IP의 ISP 반환 (캐시된 IP인 경우)
+   # {GEO_COUNTRY} - 플레이어 국가 반환 (Premium 버전에서만 작동)
+   # {GEO_ASN} - 플레이어 ASN 반환 (Premium 버전에서만 작동)
+   kick:
+      vpn: <red>FoxGate에 의해 차단되었습니다:\n<white>VPN 또는 프록시가 감지되었습니다!\n\n<gray>오류인가요? <white>디스코드 서버에 참여하세요.\n<aqua><underlined>discord.idcteam.xyz
+      iplimiter: <red>FoxGate에 의해 차단되었습니다:\n<white>이 IP의 최대 계정 수를 초과했습니다.\n\n<gray>오류인가요? <white>디스코드 서버에 참여하세요.\n<aqua><underlined>discord.idcteam.xyz
+      isp: <red>FoxGate에 의해 차단되었습니다:\n<white>허용되지 않은 ISP입니다 ({ISP})\n\n<gray>오류인가요? <white>디스코드 서버에 참여하세요.\n<aqua><underlined>discord.idcteam.xyz
+      country: <red>FoxGate에 의해 차단되었습니다:\n<white>허용되지 않은 국가입니다 ({COUNTRY})\n\n<gray>오류인가요? <white>디스코드 서버에 참여하세요.\n<aqua><underlined>discord.idcteam.xyz
+      asn: <red>FoxGate에 의해 차단되었습니다:\n<white>허용되지 않은 ASN입니다 ({ASN})\n\n<gray>오류인가요? <white>디스코드 서버에 참여하세요.\n<aqua><underlined>discord.idcteam.xyz
+      # 일부 플레이스홀더는 이 메시지에서 작동하지 않습니다. 
+      # 플레이어가 접속을 시도하고 IP가 사전 확인 중일 때 사용되며,
+      # 이전 확인이 완료될 때까지 중복 확인을 방지합니다.
+      checking: <red>FoxGate에 의해 차단되었습니다:\n<white>연결을 확인 중입니다. 잠시 기다려 주세요.\n\n<gray>오류인가요? <white>디스코드 서버에 참여하세요.\n<aqua><underlined>discord.idcteam.xyz
+   # 플레이어 킥 시 알림 메시지
+   notify:
+      vpn: '{prefix} <aqua>{player} <gray>가 VPN 사용으로 차단되었습니다! <green>({IP})'
+      isp: '{prefix} <aqua>{player} <gray>가 블랙리스트 ISP 사용으로 차단되었습니다: <aqua>{ISP}</aqua>! <green>({IP})'
+      country: '{prefix} <aqua>{player} <gray>가 블랙리스트 국가로 차단되었습니다: <aqua>{COUNTRY}</aqua>! <green>({IP})'
+      asn: '{prefix} <aqua>{player} <gray>가 블랙리스트 ASN으로 차단되었습니다: <aqua>{ASN}</aqua>! <green>({IP})'
+   # 모듈에 의해 차단된 플레이어 표시 메시지 (상태 명령어용)
+   blocked:
+      isp: <gold>ISP에 의해 차단됨.
+      country: <gold>국가에 의해 차단됨.
+      asn: <gold>ASN에 의해 차단됨.
+   # 콘솔에서만 표시되는 에러 메시지
+   # 서비스가 제대로 작동하지 않을 때 디버그에 도움이 될 수 있습니다.
+   # 비워두면 이 메시지를 표시하지 않습니다.
+   error: '{prefix} {player}의 VPN 확인 중 <aqua>"{service}"</aqua>에서 오류 발생: {error}'
+   # 플러그인 메시지 접두사
+   prefix: <yellow><bold>FGT</bold></yellow><dark_gray> ►</dark_gray>
+   help:
+      add: IP를 데이터베이스에 추가합니다.
+      check: 외부 IP를 확인하고 데이터베이스에 저장합니다.
+      clearcache: 저장된 사용자 이름 캐시를 삭제합니다.
+      db: 데이터베이스 초기화 또는 재연결
+      debug: 콘솔에서 FoxGate 디버깅
+      reload: 설정 파일 다시 불러오기
+      remove: IP를 데이터베이스에서 제거
+      status: 데이터베이스에 저장된 IP 정보 보기
+      verbose: 상세 모드 활성화/비활성화
+      whitelist: 사용자 또는 IP 화이트리스트 등록
+      predebug: (Premium) Discord/Webhook/Telegram 테스트
+   add_remove:
+      invalidip: '{prefix} {IP}<red> 유효하지 않은 IP/사용자 이름입니다!'
+      already: '{prefix} {IP}<red> 이미 데이터베이스에 추가/제거됨!'
+      add: '{prefix} {IP}<green> 데이터베이스에 추가됨!'
+      remove: '{prefix} {IP}<green> 데이터베이스에서 제거됨!'
+   check:
+      invalidip: '{prefix} {IP}<red> 유효하지 않은 IP입니다!'
+      cached: '{prefix} {IP}<yellow> 이미 데이터베이스에 캐시됨. <white><underlined><click:run_command:"/foxgate status {IP}">여기 클릭</click></underlined></white>하여 정보 확인 가능.'
+      checking: '{prefix} <yellow>{IP} 확인 중...'
+      checked: '{prefix} {IP}<green> 확인 완료. /foxgate status 명령어 또는 <white><underlined><click:run_command:"/foxgate status {IP}">클릭</click></underlined></white>하여 정보 확인 가능.'
+      pre-checking: '{prefix} {IP}<yellow> 이전 스캔 진행 중, 결과 완료 후 다시 시도하세요.'
+   clearcache:
+      purging: '{prefix} <white>캐시 파일 삭제 중...'
+      purging_correctly: '{prefix} <green>캐시 파일 삭제 완료.'
+      purging_problem: '{prefix} <red>캐시 파일 삭제 중 오류 발생. 콘솔 확인 필요.'
+   db:
+      invalid_usage: '{prefix} 명령어 사용법: /foxgate db <purge/reconnect>'
+      reconnecting: '{prefix} <yellow>데이터베이스 재연결 중...'
+      reconnect_correctly: '{prefix} <green>데이터베이스 재연결 성공.'
+      reconnect_problem: '{prefix} <red>데이터베이스 재연결 중 오류 발생. 콘솔 확인 필요.'
+      purging: '{prefix} <yellow>데이터베이스 삭제 중...'
+      purging_correctly: '{prefix} <green>데이터베이스 삭제 완료.'
+      purging_problem: '{prefix} <red>데이터베이스 삭제 중 오류 발생. 콘솔 확인 필요.'
+   debug:
+      enable: '{prefix} <green>디버그 모드 활성화.'
+      disable: '{prefix} <red>디버그 모드 비활성화.'
+   reload:
+      message: '{prefix} <green>설정 파일 재로드 완료.'
+   status:
+      invalidip: '{prefix} {IP}<red> 유효하지 않은 IP입니다!'
+      # 이 메시지에서만 사용 가능한 새로운 플레이스홀더:
+      #
+      # {DETECTED} - IP로 VPN을 감지한 서비스만 반환
+      # {UNDETECTED} - IP로 VPN을 감지하지 않은 서비스만 반환
+      # {LIST} - 다른 색상으로 두 목록 모두 반환 (사용자 정의 가능)
+      # {MAX} - 플레이어 접속을 거부하는 데 필요한 최대 플래그 수 반환
+      # {COUNT_DETECTED} - 플레이어 IP가 감지된 서비스 수 반환
+      # {COUNT_UNDETECTED} - 플레이어 IP가 감지되지 않은 서비스 수 반환
+      # {STATUS} - 플레이어 상태 반환
+      # {ISP} - ISP 모듈에서 IP의 ISP 반환 (캐시된 IP인 경우)
+      # {GEO_COUNTRY} - 플레이어 국가 반환 (Premium 버전에서만 작동)
+      # {GEO_ASN} - 플레이어 ASN 반환 (Premium 버전에서만 작동)
+      detected: <red>
+      undetected: <green>
+      none: <red>없음.
+      no_cached: <red>데이터베이스에 없음.
+      allow: <green>확인 완료.
+      deny: <red>차단됨.
+      saved: <yellow>스캔됨.
+      info: ' \n <green>{IP} 상태 확인\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>상태: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>미감지: <green>{COUNT_UNDETECTED} <dark_gray>❙ 감지: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>서비스: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>국가: <aqua>{GEO_COUNTRY} \n '
+   verbose:
+      enable: '{prefix} <green>상세 모드가 활성화되었습니다.'
+      disable: '{prefix} <red>상세 모드가 비활성화되었습니다.'
+      no_malicious: '{prefix} <green>[상세] <aqua>{player} <gray>는 VPN이 아닙니다: <green>{service} <dark_gray>({IP})'
+      malicious: '{prefix} <red>[상세] <aqua>{player} <gray>가 VPN으로 감지됨: <green>{service} <dark_gray>({IP})'
+      ignored: '{prefix} <yellow>[상세] <aqua>{player} <gray>는 화이트리스트에 등록되어 무시됨: <green>{type} <dark_gray>({IP})'
+   whitelist:
+      invalid_usage: '{prefix} 명령어 사용법: <dark_gray>''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[이름/IP]</yellow> <aqua>[사유]</aqua> <light_purple>[시간]</light_purple><dark_gray>''</dark_gray>'
+      already: '{prefix} {IP}<red> 이미 화이트리스트에 등록/해제됨!'
+      whitelisted: '{prefix} {IP}<green> 화이트리스트에 등록됨: 타입 <white>{type}</white>, 기간 <white>{time}</white>. <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">여기 클릭</click></underlined></white>하여 제거 가능.'
+      unwhitelisted: '{prefix} {IP}<green> 화이트리스트에서 제거됨: 타입 <white>{type}</white>. <white><underlined><click:run_command:"/foxgate whitelist add {IP}">여기 클릭</click></underlined></white>하여 다시 추가 가능.' 
+      type_ip: 'IP'
+      type_name: '이름'
+      problem: '{prefix} <red>화이트리스트 작업 중 오류 발생. 콘솔 확인 필요.'
+      invalid_time: '{prefix} <red>시간 형식이 잘못되었습니다. <white>1d</white>, <white>3h</white>, <white>15m</white>, <white>30s</white> 또는 <white>영구</white> 형식을 사용하세요.'
+      purging: '{prefix} <yellow>화이트리스트 삭제 중...'
+      purging_correctly: '{prefix} <green>화이트리스트 삭제 완료.'
+      purging_problem: '{prefix} <red>화이트리스트 삭제 중 오류 발생. 콘솔 확인 필요.'
+      # 이 메시지에서만 사용 가능한 새로운 플레이스홀더:
+      #
+      # {TYPE} - "IP"/"이름" 반환
+      # {REASON} - 이 이름/IP가 화이트리스트된 이유 반환
+      # {EXPIRATION} - 만료 시간 반환
+      # {ISP} - ISP 모듈에서 IP의 ISP 반환 (캐시된 IP인 경우)
+      # {GEO_COUNTRY} - 플레이어 국가 반환 (Premium 및 기능 활성화 시만 작동)
+      # {GEO_ASN} - 플레이어 ASN 반환 (Premium 및 기능 활성화 시만 작동)      
+      info: ' \n <green>{IP} 화이트리스트 정보\n <dark_gray>▪ <white>타입: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>사유: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>만료: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>국가: <aqua>{GEO_COUNTRY} \n '
+      # 날짜 형식 보기:
+      # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+      format: 'yyyy-MM-dd HH:mm:ss'
+      permanent: '영구.'
+      noreason: '사유 없음.'
+      nowhitelist: '{prefix} {IP}<red> 화이트리스트에 등록되지 않음: 타입 <white>{type}</white>.'
+   predebug:
+      invalid_usage: '{prefix} 명령어 사용법: <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green>'
+      sending: '{prefix} <yellow><white>{type}</white>의 <white>{mode}</white> 모드 테스트 전송 중...</yellow>'
+      sended: '{prefix} <green>전송 완료!'
+      problem: '{prefix} <red><white>{type}</white> 디버그 전송 중 오류 발생!'

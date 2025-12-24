@@ -2,7 +2,7 @@
 
 [![Join the discord server.](https://cdn.modrinth.com/data/cached_images/b00caabc5d76ec659ca50db9f17f0866de5f1b83.png)](http://discord.idcteam.xyz/)</center>
 
-**FoxGate** `(formerly, FoxAntiVPN)` is a **powerful tool designed to protect your Minecraft server from unwanted visitors using VPNs.** This plugin prevents players from bypass ip bans by allowing server owners to detect and block **VPN's**, **Proxy's** and **more**. This plugin connects to a configerable list of services which detect VPN's without any hassel. **This plugin is extremely hard to bypass.** With numerous APIs working together, **bypassing this AntiVPN is very difficult**. The more services you enable, the harder it becomes for users to evade detection. Currently supporting **BungeeCord** `+ Forks`, **Velocity** `+ Forks` and **FOLIA**.
+**FoxGate** `(formerly, FoxAntiVPN)` is a **powerful tool designed to protect your Minecraft server from unwanted visitors using VPNs.** This plugin prevents players from bypass ip bans by allowing server owners to detect and block **VPN's**, **Proxy's** and **more**. This plugin connects to a configerable list of services which detect VPN's without any hassel. **This plugin is extremely hard to bypass.** With numerous APIs working together, **bypassing this AntiVPN is very difficult**. The more services you enable, the harder it becomes for users to evade detection. Currently supporting **Spigot** `+ Forks`, **BungeeCord** `+ Forks`, **Velocity** `+ Forks`, **FOLIA** `+ Forks`, **Nukkit**/**PowerNukkitX** `+ Forks` and **WaterdogPE**.
 <br />
 <br />
 ### Features:

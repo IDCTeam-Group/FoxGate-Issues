@@ -1,0 +1,218 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___ 
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/           
+#
+# 🔨 Eklenti mesajlarını yapılandırın.
+# Bu bölümde MiniMessage kullanabilirsiniz. Bu ayrıca
+# eski bukkit renkleri ile çalışır, ancak uyumsuzluklar
+# nedeniyle önerilmez!
+# Ayrıca PlaceholderAPI desteklenir.
+#
+# 📷 Görüntüleyici:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+
+    # Eklenti bir oyuncuyu bloke ettiğinde atma mesajı.
+    #
+    # {PLAYER} - Oyuncunun adını döndürür.
+    # {IP} - Oyuncunun IP'sini döndürür.
+    # {UUID} - Oyuncunun UUID'sini döndürür. (BungeeCord bunu desteklemez)
+    # {ISP} - IP'nin ISP'sini döndürür (önbellekte ise), ISP modülünden.
+    # {HOSTNAME} - IP'nin Hostname'ini döndürür (önbellekte ise), ISP Modülünden.
+    # {COUNTRY} - Oyuncunun ülkesini döndürür. (Sadece premium sürüm).
+    # {ASN} - Oyuncunun ASN'sini döndürür. (Sadece premium sürüm).
+    kick:
+        vpn: '<red><bold>✘</bold> <bold>FoxGate AntiVPN</bold> tarafından engellendiniz:\n\n<white>Bağlantınız VPN veya Proxy olduğu için reddedildi.\n<gray>Katılmadan önce önce VPN/proxy\'nizi devre dışı bırakmayı deneyin.</gray>\n\n<gold>Bu bir hata mı?</gold> <white>Discord sunucumuza katılın.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modül: Hizmetler</dark_gray>'
+        iplimiter: '<red><bold>✘</bold> <bold>FoxGate AntiVPN</bold> tarafından engellendiniz:\n\n<white>Katılmak için bağlantınız reddedildi.\n<gray>Aynı IP\'nizde çok fazla bağlantı bulduk.</gray>\n\n<gold>Bu bir hata mı?</gold> <white>Discord sunucumuza katılın.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modül: IPLimiter</dark_gray>'
+        isp: '<red><bold>✘</bold> <bold>FoxGate AntiVPN</bold> tarafından engellendiniz:\n\n<white>Bağlantınız kötü niyetli olduğu için reddedildi.\n<gray>Kullandığınız İnternet Servis Sağlayıcısı "<light_purple>{ISP}</light_purple>" bu sunucuda yasaktır.</gray>\n\n<gold>Bu bir hata mı?</gold> <white>Discord sunucumuza katılın.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modül: ISPFilter</dark_gray>'
+        iprange: '<red><bold>✘</bold> <bold>FoxGate AntiVPN</bold> tarafından engellendiniz:\n\n<white>Bağlantınız kötü niyetli olduğu için reddedildi.\n<gray>IP, kötü niyetli bir aralıkta olduğu için veritabanımızda kara listede.</gray>\n\n<gold>Bu bir hata mı?</gold> <white>Discord sunucumuza katılın.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modül: IPRange</dark_gray>'
+        bogon: '<red><bold>✘</bold> <bold>FoxGate AntiVPN</bold> tarafından engellendiniz:\n\n<white>Bağlantınız bogon olduğu için reddedildi.\n<gray>IP, bogon (özel ağ) olarak kabul ediliyor.</gray>\n\n<gold>Bu bir hata mı?</gold> <white>Discord sunucumuza katılın.\n<aqua><underlined>discord.idcteam.xyz'
+        country: '<red><bold>✘</bold> <bold>FoxGate AntiVPN</bold> tarafından engellendiniz:\n\n<white>Bağlantınız kötü niyetli olduğu için reddedildi.\n<gray>Bağlandığınız ülke "<light_purple>{COUNTRY}</light_purple>" bu sunucuda yasaktır.</gray>\n\n<gold>Bu bir hata mı?</gold> <white>Discord sunucumuza katılın.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modül: Ülke</dark_gray>'
+        asn: '<red><bold>✘</bold> <bold>FoxGate AntiVPN</bold> tarafından engellendiniz:\n\n<white>Bağlantınız VPN veya Proxy olduğu için reddedildi.\n<gray>İnternet Servis Sağlayıcısı ASN "<light_purple>{ASN}</light_purple>" bilinen bir VPN veya Tor sağlayıcısıdır.</gray>\n\n<gold>Bu bir hata mı?</gold> <white>Discord sunucumuza katılın.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modül: ASN</dark_gray>'
+        # Bazı yer tutucular bu mesajda çalışmaz çünkü oyuncu katılmaya çalıştığında
+        # ve IP'si hala bir ön kontrolde doğrulanıyorken oyuncuyu atmak için kullanılır.
+        # Bu, bir önceki tamamlanana kadar yinelenen doğrulamaları önler.
+        checking: <red><bold>✘</bold> <bold>FoxGate AntiVPN</bold> tarafından engellendiniz:\n\n<white>Bağlantınızı kontrol ediyoruz.\n<gray>FoxGate bağlantınızı tarıyor, lütfen birkaç saniye bekleyin.</gray>\n\n<gold>Bu bir hata mı?</gold> <white>Discord sunucumuza katılın.\n<aqua><underlined>discord.idcteam.xyz
+    # Bir oyuncu atıldığında bildirim. Bu mesajı boş bırakarak önleyebilirsiniz.
+    notify:
+        vpn: '{prefix} <aqua>{player} <gray>VPN kullanırken tespit edildi ve atıldı! <green>({IP})'
+        isp: '{prefix} <aqua>{player} <gray>kara listeye alınmış bir ISP ile katıldığı için atıldı: <aqua>{ISP}</aqua>! <green>({IP})'
+        iprange: '{prefix} <aqua>{player} <gray>kara listeye alınmış bir IPRange ile katıldığı için atıldı! <green>({IP})'
+        bogon: '{prefix} <aqua>{player} <gray>bogon IP\'den katılmaya çalıştı: <green>{IP}</green>!'
+        country: '{prefix} <aqua>{player} <gray>kara listeye alınmış bir ülke ile katıldığı için atıldı: <aqua>{COUNTRY}</aqua>! <green>({IP})'
+        asn: '{prefix} <aqua>{player} <gray>kara listeye alınmış bir ASN ile katıldığı için atıldı: <aqua>{ASN}</aqua>! <green>({IP})'
+    # Bir oyuncu bir modül tarafından engellendiğinde gösterilecek mesaj. (status komutu için)
+    blocked:
+        isp: <gold>ISP'si tarafından engellendi.
+        iprange: <gold>IPRange'i tarafından engellendi.
+        bogon: <gold>Bogon IP için engellendi.
+        country: <gold>Ülkesi tarafından engellendi.
+        asn: <gold>ASN'i tarafından engellendi.
+    # Bu sadece konsolda görünecektir.
+    # Bir hizmet doğru çalışmıyorsa hata ayıklamaya yardımcı olabilir.
+    # Bu mesajı boş bırakarak önleyebilirsiniz.
+    error: '{prefix} VPN <aqua>"{service}"</aqua> ve <yellow>{player}</yellow> ile doğrulanırken hata: {error}'
+    # Eklenti için mesaj önekini belirler.
+    prefix: <yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>
+    help:
+        add: Veritabanına bir IP ekle.
+        alts: Bir IP'deki tüm kullanıcıları kontrol et.
+        check: Harici bir IP'yi kontrol et ve veritabanına kaydet.
+        clearcache: Kaydedilmiş kullanıcı adlarının önbellek dosyasını temizle.
+        db: Veritabanını temizle veya yeniden bağlan.
+        debug: Konsolda FoxGate'de hata ayıkla.
+        reload: Yapılandırma dosyasını yeniden yükle.
+        remove: Veritabanından bir IP kaldır.
+        status: Veritabanında önbelleğe alınmış bir IP hakkında bilgi görüntüle.
+        update: Eklenti bileşenlerini otomatik olarak güncelle.
+        verbose: Ayrıntılı modu etkinleştir/devre dışı bırak.
+        whitelist: Bir kullanıcıyı veya IP'yi beyaz listeye al.
+        predebug: (Premium) Discord webhook veya telegram forward göndererek nasıl göründüklerini test et.
+    alts:
+        invalidip: '{prefix} {IP}<red> geçerli bir IP/Kullanıcı adı değil!'
+        invalidcheck: '{prefix} {IP}<red> önbellekten istenen IP/kullanıcı bulunamadı!'
+        checking: '{prefix} {IP}<yellow> alts kontrol ediliyor...'
+        # Burada bu yer tutucuları bulabilirsiniz:
+        #
+        # {NAME} - Oyuncu adlarını döndürür. (sadece 'output' için)
+        # {IP} - Oyuncunun IP'sini döndürür.
+        # {ISP} - IP'nin ISP'sini döndürür (önbellekte ise), ISP modülünden.
+        # {ALTS} - Kullanıcı/IP'nin alts'larını döndürür.
+        # {OUTPUT} - 'output' formatını döndürür.
+        # {TIME} - Son zamanı döndürür. (sadece 'output' için)
+        # {TIME_AGO} - Geçen zamanı döndürür. (sadece 'output' için)
+        # {COUNTRY} - IP'nin ülkesini döndürür. (Sadece premium sürüm).
+        # {ASN} - IP'nin ASN'sini döndürür. (Sadece premium sürüm).
+        # {SIMILAR} - Dinamik IP ile bulunduysa benzer göster, aksi takdirde boş.
+        output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - Son bağlantı: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
+        info: ' \n <aqua>{IP}<green> Alts\'larını görüntülüyor\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Alts:\n {ALTS}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Ülke: <aqua>{GEO_COUNTRY} \n '
+        # Tarih formatı hakkında bilgi için buraya bakın:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: dd-MM-yyyy HH:mm:ss
+        day: gün
+        hour: saat
+        minute: dakika
+        second: saniye
+        plural_day: gün
+        plural_hour: saat
+        plural_minute: dakika
+        plural_second: saniye
+        similar: <click:run_command:"/foxgate alts {IP}"><hover:show_text:"Alts'ları görmek için tıkla."><gold>[Benzer]</gold></hover></click>
+        online: <click:run_command:"/foxgate status {IP}"><hover:show_text:"Durumu kontrol etmek için tıkla."><green>Çevrimiçi</green></hover></click>
+    add_remove:
+        invalidip: '{prefix} {IP}<red> geçerli bir IP/Kullanıcı adı değil!'
+        already: '{prefix} {IP}<red> zaten veritabanına eklenmiş/kaldırılmış!'
+        add: '{prefix} {IP}<green> veritabanına eklendi!'
+        remove: '{prefix} {IP}<green> veritabanından kaldırıldı!'
+    check:
+        invalidip: '{prefix} {IP}<red> geçerli bir IP/Kullanıcı adı değil!'
+        cached: '{prefix} {IP}<yellow> zaten veritabanı önbelleğinde. Veritabanında kaydedilen bilgileri görüntülemek için <white><underlined><click:run_command:"/foxgate status {IP}">buraya tıklayabilirsiniz</click></underlined></white>.'
+        checking: '{prefix} <yellow><white>{IP}<yellow> kontrol ediliyor...'
+        checked: '{prefix} {IP}<green> başarıyla kontrol edildi, alınan bilgileri veritabanında <gray>(/foxgate status)</gray> komutuyla veya <white><underlined><click:run_command:"/foxgate status {IP}">buraya tıklayarak</click></underlined></white> görüntüleyin.'
+        pre-checking: '{prefix} {IP}<yellow> önceki bir kontrol için taranıyor, aynı IP\'de başka bir tane çalıştırmadan önce önce sonuçları bekleyin.'
+    clearcache:
+        purging: '{prefix} <white>Önbellek dosyasını <yellow>temizliyoruz</yellow>...'
+        purging_correctly: '{prefix} <green>Önbellek dosyası temizlendi.'
+        purging_problem: '{prefix} <red>Önbellek dosyasını temizlemeye çalışırken hata. Konsolu kontrol edin.'
+    db:
+        invalid_usage: '{prefix} <aqua>/foxgate db <purge/reconnect><reset> komutunu kullanın.'
+        reconnecting: '{prefix} <yellow>Veritabanına yeniden bağlanmaya çalışılıyor...'
+        reconnect_correctly: '{prefix} <green>Veritabanına yeniden bağlanıldı.'
+        reconnect_problem: '{prefix} <red>Veritabanına yeniden bağlanmaya çalışırken hata. Konsolu kontrol edin.'
+        purging: '{prefix} <yellow>Veritabanı temizlenmeye çalışılıyor...'
+        purging_correctly: '{prefix} <green>Veritabanı temizlendi.'
+        purging_problem: '{prefix} <red>Veritabanını temizlemeye çalışırken hata. Konsolu kontrol edin.'
+    debug:
+        enable: '{prefix} <green>Hata ayıklama modu etkinleştirildi. Konsolu kontrol edin.'
+        disable: '{prefix} <red>Hata ayıklama modu devre dışı bırakıldı.'
+    reload:
+        message: '{prefix} <green>Yapılandırma dosyası yeniden yüklendi.'
+    status:
+        invalidip: '{prefix} {IP}<red> geçerli bir IP değil!'
+        # Burada sadece bu mesaj için yeni yer tutucular bulabilirsiniz:
+        #
+        # {DETECTED} - Sadece VPN tespit eden hizmetleri döndürür.
+        # {UNDETECTED} - Sadece VPN tespit etmeyen hizmetleri döndürür.
+        # {LIST} - Her iki listeyi de döndürür, ancak farklı renklerle (özelleştirilebilir).
+        # {MAX} - Bir oyuncunun erişimini reddetmek için gereken maksimum bayrak sayısını döndürür.
+        # {COUNT_DETECTED} - Bir oyuncunun IP'sinin tespit edildiği hizmet sayısını döndürür.
+        # {COUNT_UNDETECTED} - Bir oyuncunun IP'sinin tespit edilmediği hizmet sayısını döndürür.
+        # {STATUS} - Oyuncunun durumunu döndürür.
+        # {ISP} - IP'nin ISP'sini döndürür (önbellekte ise), ISP modülünden.
+        # {HOSTNAME} - IP'nin Hostname'ini döndürür (önbellekte ise), ISP Modülünden.
+        # {GEO_COUNTRY} - Oyuncunun ülkesini döndürür. (Sadece premium sürüm).
+        # {GEO_ASN} - Oyuncunun ASN'sini döndürür. (Sadece premium sürüm).
+        detected: <red>
+        undetected: <green>
+        none: <red>Hiçbiri.
+        no_cached: <red>Veritabanı önbelleğinde değil.
+        allow: <green>Doğrulandı.
+        deny: <red>Engellendi.
+        saved: <yellow>Taranmış.
+        info: ' \n <aqua>{IP}<green> durumunu görüntülüyor\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Hostname: <yellow>{HOSTNAME}</yellow>\n <dark_gray>▪ <white>Durum: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Tespit edilmeyen: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Tespit edilen: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Hizmetler: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Ülke: <aqua>{GEO_COUNTRY} \n '
+    update:
+        invalid_usage: '{prefix} <dark_gray>''</dark_gray>/fg update <green><asn/plugin/ranges/hostnames></green><dark_gray>''</dark_gray><reset> komutunu kullanın.'
+        already_downloading: '{prefix} <red>Zaten bir dosya indiriyoruz...'
+        backend_down: '{prefix} <red>Arka ucumuz çökmuş veya kararsız görünüyor. İsteği güncelleyip tamamlayamıyoruz.'
+        invalid_license: '{prefix} <red>Lisansınız geçerli değil, bu işlem için geçerli bir anahtar girin.'
+        downloading_asn: '{prefix} <yellow>ASN indiriliyor...'
+        downloading_ranges: '{prefix} <yellow>Ranges indiriliyor...'
+        downloading_hostnames: '{prefix} <yellow>Hostnames indiriliyor...'
+        downloading_jar: '{prefix} <yellow>Eklenti indiriliyor...'
+        downloaded_asn: '{prefix} <green>Arka ucumuz/merkezimizden en son ASN indirildi. Değişiklikler zaten uygulandı.'
+        downloaded_ranges: '{prefix} <green>Arka ucumuz/merkezimizden en son Ranges indirildi. Değişiklikler zaten uygulandı.'
+        downloaded_hostnames: '{prefix} <green>Arka ucumuz/merkezimizden en son Hostnames indirildi. Değişiklikler zaten uygulandı.'
+        downloaded_jar: '{prefix} <green>Arka ucumuz/merkezimizden en son JAR indirildi. Değişiklikleri uygulamak için sunucunuzu yeniden başlatın.'
+    verbose:
+        enable: '{prefix} <green>Ayrıntılı modu etkinleştirdiniz.'
+        disable: '{prefix} <red>Ayrıntılı modu devre dışı bıraktınız.'
+        # Burada sadece bu mesaj için yeni yer tutucular bulabilirsiniz:
+        #
+        # {PLAYER} - Oyuncunun adını döndürür.
+        # {IP} - Oyuncunun IP'sini döndürür.
+        # {SERVICE} - Hizmet adını döndürür.
+        # {FLAGS} - Mevcut bayrak sayısını döndürür.
+        # {FLAGS_ADDED} - Eklenen bayrak sayısını döndürür.
+        # {MAXFLAGS} - Tespit edilmek için gereken bayrak sayısını döndürür.
+        no_malicious: '{prefix} <green>[VERBOSE] <aqua>{PLAYER} <gray>hizmetle VPN değil: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>bayraklar:</gray><red>{FLAGS}</red><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        malicious: '{prefix} <red>[VERBOSE] <aqua>{PLAYER} <gray>hizmetle VPN olarak işaretlendi: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>bayraklar:</gray><red>{FLAGS}</red><green>(+{FLAGS_ADDED})</green><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        ignored: '{prefix} <yellow>[VERBOSE] <aqua>{PLAYER} <gray>beyaz listeye alındığı için yok sayıldı <green>{type} <dark_gray>({IP})'
+    whitelist:
+        invalid_usage: '{prefix} <dark_gray>''''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[ad/ip]</yellow> <aqua>[sebep]</aqua> <light_purple>[zaman]</light_purple><dark_gray>''''</dark_gray><reset> komutunu kullanın.'
+        already: '{prefix} {IP}<red> zaten yapılandırmada beyaz listeye alınmış/kaldırılmış!'
+        whitelisted: '{prefix} {IP}<green> <white>{type}</white> türü ile <white>{time}</white> süresince yapılandırmada beyaz listeye alındı. Tekrar kaldırmak için <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">buraya tıklayabilirsiniz</click></underlined></white>.'
+        unwhitelisted: '{prefix} {IP}<green> <white>{type}</white> türü ile yapılandırmadan kaldırıldı. Tekrar eklemek için <white><underlined><click:run_command:"/foxgate whitelist add {IP}">buraya tıklayabilirsiniz</click></underlined></white>.'
+        type_ip: IP
+        type_name: Ad
+        problem: '{prefix} <red>Beyaz listeye eklemeye/kaldırmaya çalışırken hata. Konsolu kontrol edin.'
+        invalid_time: '{prefix} <red>Zaman formatı geçersiz. Epoch veya <white>1g</white>, <white>3s</white>, <white>15d</white>, <white>30s</white> veya <white>kalıcı</white> gibi formatlar kullanın.'
+        purging: '{prefix} <yellow>Beyaz liste temizlenmeye çalışılıyor...'
+        purging_correctly: '{prefix} <green>Beyaz liste temizlendi.'
+        purging_problem: '{prefix} <red>Beyaz listeyi temizlemeye çalışırken hata. Konsolu kontrol edin.'
+        # Burada sadece bu mesaj için yeni yer tutucular bulabilirsiniz:
+        #
+        # {TYPE} - "IP"/"Ad" döndürür.
+        # {REASON} - Bu ad/IP'nin neden beyaz listeye alındığını döndürür.
+        # {EXPIRATION} - Bitiş zamanını döndürür.
+        # {ISP} - IP'nin ISP'sini döndürür (önbellekte ise), ISP modülünden.
+        # {HOSTNAME} - IP'nin Hostname'ini döndürür (önbellekte ise), ISP Modülünden.
+        # {GEO_COUNTRY} - Oyuncunun ülkesini döndürür (Premium ve sadece özellik etkinleştirilirse çalışır).
+        # {GEO_ASN} - Oyuncunun ASN'sini döndürür (Premium ve sadece özellik etkinleştirilirse çalışır).
+        info: ' \n <aqua>{IP}<green> beyaz liste bilgilerini görüntülüyor\n <dark_gray>▪ <white>Tür: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Sebep: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Bitiş: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Ülke: <aqua>{GEO_COUNTRY} \n '
+        # Tarih formatı hakkında bilgi için buraya bakın:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: dd-MM-yyyy HH:mm:ss
+        permanent: Kalıcı.
+        noreason: Sebep yok.
+        nowhitelist: '{prefix} {IP}<red> <white>{type}</white> türünde beyaz listede kayıtlı değil.'
+    predebug:
+        invalid_usage: '{prefix} <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset> komutunu kullanın.'
+        sending: '{prefix} <yellow><white>{type}</white> mod <white>{mode}</white> test etmek için gönderiliyor...</yellow>'
+        sended: '{prefix} <green>Gönderildi!'
+        problem: '{prefix} <red><white>{type}</white> hata ayıklama göndermeye çalışırken hata!'

@@ -24,23 +24,35 @@ message:
    # {IP} - IP игрока.
    # {UUID} - UUID игрока. (BungeeCord не поддерживает это)
    # {ISP} - Провайдер (если закеширован/IP), модуль ISP.
+   # {HOSTNAME} - Имя хоста IP (если закеширован/IP), модуль ISP.
    # {GEO_COUNTRY} - Страна игрока. (Только в премиум-версии)
    # {GEO_ASN} - ASN игрока (только в премиум-версии)
    kick:
-      vpn: '<red>Вы были кикнуты FoxGate:\n<white>Обнаружено подключение через VPN или прокси!\n\n<gray>Ошибка? <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz'
-      iplimiter: '<red>Вы были кикнуты FoxGate:\n<white>Превышено максимальное количество аккаунтов с одного IP.\n\n<gray>Ошибка? <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz'
-      isp: '<red>Вы были кикнуты FoxGate:\n<white>Ваш провайдер запрещён! ({ISP})\n\n<gray>Ошибка? <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz'
-      country: '<red>Вы были кикнуты FoxGate:\n<white>Ваша страна не допускается! ({COUNTRY})\n\n<gray>Ошибка? <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz'
-      asn: '<red>Вы были кикнуты FoxGate:\n<white>Ваш ASN не допускается! ({ASN})\n\n<gray>Ошибка? <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz'
+      vpn: '<red><bold>✘</bold> Вы были заблокированы <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше подключение было отклонено, так как является VPN или прокси.\n<gray>Попробуйте отключить VPN/прокси перед подключением.</gray>\n\n<gold>Это ошибка?</gold> <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Модуль: Сервисы</dark_gray>'
+      iplimiter: '<red><bold>✘</bold> Вы были заблокированы <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше подключение было отклонено.\n<gray>Мы обнаружили слишком много подключений с вашего IP.</gray>\n\n<gold>Это ошибка?</gold> <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Модуль: IPLimiter</dark_gray>'
+      isp: '<red><bold>✘</bold> Вы были заблокированы <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше подключение было отклонено как вредоносное.\n<gray>Провайдер "<light_purple>{ISP}</light_purple>", который вы используете, запрещён на этом сервере.</gray>\n\n<gold>Это ошибка?</gold> <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Модуль: ISPFilter</dark_gray>'
+      iprange: '<red><bold>✘</bold> Вы были заблокированы <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше подключение было отклонено как вредоносное.\n<gray>IP находится в чёрном списке нашей базы данных из-за вредоносного диапазона.</gray>\n\n<gold>Это ошибка?</gold> <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Модуль: IPRange</dark_gray>'
+      bogon: '<red><bold>✘</bold> Вы были заблокированы <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше подключение было отклонено как bogon.\n<gray>IP считается bogon (частная сеть).</gray>\n\n<gold>Это ошибка?</gold> <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz'
+      country: '<red><bold>✘</bold> Вы были заблокированы <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше подключение было отклонено как вредоносное.\n<gray>Страна, с которой вы подключаетесь "<light_purple>{GEO_COUNTRY}</light_purple>", запрещена на этом сервере.</gray>\n\n<gold>Это ошибка?</gold> <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Модуль: Страна</dark_gray>'
+      asn: '<red><bold>✘</bold> Вы были заблокированы <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше подключение было отклонено как VPN или прокси.\n<gray>Провайдер ASN "<light_purple>{GEO_ASN}</light_purple>" является известным поставщиком VPN или Tor.</gray>\n\n<gold>Это ошибка?</gold> <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Модуль: ASN</dark_gray>'
+      # Некоторые плейсхолдеры не работают в этом сообщении, так как оно используется для кика
+      # игрока, когда он пытается подключиться, а его IP ещё проверяется в
+      # предварительной проверке. Это предотвращает дублирование проверок, пока
+      # предыдущая не будет завершена.
+      checking: '<red><bold>✘</bold> Вы были заблокированы <bold>FoxGate AntiVPN</bold>:\n\n<white>Мы проверяем ваше подключение.\n<gray>FoxGate сканирует ваше подключение, подождите несколько секунд.</gray>\n\n<gold>Это ошибка?</gold> <white>Присоединяйтесь к нашему Discord.\n<aqua><underlined>discord.idcteam.xyz'
    # Уведомление при кике игрока. Чтобы отключить — оставьте строку пустой.
    notify:
       vpn: '{prefix} <aqua>{player} <gray>был кикнут за использование VPN! <green>({IP})'
       isp: '{prefix} <aqua>{player} <gray>был кикнут из-за запрещённого провайдера: <aqua>{ISP}</aqua>! <green>({IP})'
-      country: '{prefix} <aqua>{player} <gray>был кикнут за страну из чёрного списка: <aqua>{COUNTRY}</aqua>! <green>({IP})'
-      asn: '{prefix} <aqua>{player} <gray>был кикнут за ASN из чёрного списка: <aqua>{ASN}</aqua>! <green>({IP})'
+      iprange: '{prefix} <aqua>{player} <gray>был кикнут за использование чёрного списка IPRange! <green>({IP})'
+      bogon: '{prefix} <aqua>{player} <gray>пытался подключиться с bogon IP: <green>{IP}</green>!'
+      country: '{prefix} <aqua>{player} <gray>был кикнут за страну из чёрного списка: <aqua>{GEO_COUNTRY}</aqua>! <green>({IP})'
+      asn: '{prefix} <aqua>{player} <gray>был кикнут за ASN из чёрного списка: <aqua>{GEO_ASN}</aqua>! <green>({IP})'
    # Сообщение, отображаемое, когда игрок заблокирован модулем. (Для команды статуса)
    blocked:
         isp: '<gold>Заблокировано на уровне ISP.'
+        iprange: '<gold>Заблокировано на уровне IPRange.'
+        bogon: '<gold>Заблокировано как Bogon IP.'
         country: '<gold>Заблокировано на уровне страны.'
         asn: '<gold>Заблокировано на уровне ASN.'
    # Это будет отображаться только в консоли.
@@ -51,6 +63,7 @@ message:
    prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►</dark_gray>'
    help:
       add: 'Добавить IP в базу данных.'
+      alts: 'Проверить всех пользователей на одном IP.'
       check: 'Проверить внешний IP и сохранить его в базу данных.'
       clearcache: 'Очистить кэш с именами пользователей.'
       db: 'Очистить или переподключить базу данных.'
@@ -58,19 +71,52 @@ message:
       reload: 'Перезагрузить конфигурацию.'
       remove: 'Удалить IP из базы данных.'
       status: 'Просмотреть информацию о сохранённом IP.'
+      update: 'Автоматическое обновление компонентов плагина.'
       verbose: 'Включить/выключить подробный режим.'
       whitelist: 'Добавить пользователя/IP в вайтлист.'
       predebug: '(Премиум) Отправить тестовое сообщение в Discord/Telegram.'
+   alts:
+      invalidip: '{prefix} {IP}<red> — это невалидный IP/никнейм!'
+      invalidcheck: '{prefix} {IP}<red> не можем найти запрошенный IP/пользователя из кэша!'
+      checking: '{prefix} {IP}<yellow> проверка альтернативных аккаунтов...'
+      # Здесь вы можете найти эти плейсхолдеры:
+      #
+      # {NAME} - Возвращает имена игрока. (только для 'output')
+      # {IP} - Возвращает IP игрока.
+      # {ISP} - Возвращает провайдера IP (если закеширован), из модуля ISP.
+      # {ALTS} - Возвращает альтернативные аккаунты Пользователя/IP.
+      # {OUTPUT} - Возвращает формат 'output'.
+      # {TIME} - Возвращает последнее время. (только для 'output')
+      # {TIME_AGO} - Возвращает прошедшее время. (только для 'output')
+      # {GEO_COUNTRY} - Возвращает страну IP. (Только премиум-версия).
+      # {GEO_ASN} - Возвращает ASN IP. (Только премиум-версия).
+      # {SIMILAR} - Показывает похожие, если найдено с динамическим IP, иначе будет пусто.
+      output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - Последнее подключение: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
+      info: ' \n <green>Просмотр альтернативных аккаунтов <aqua>{IP}\n <dark_gray>▪ <white>Провайдер: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Альтернативные аккаунты:\n {ALTS}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Страна: <aqua>{GEO_COUNTRY} \n '
+      # Подробнее о форматах даты:
+      # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+      format: 'yyyy-MM-dd HH:mm:ss'
+      day: 'день'
+      hour: 'час'
+      minute: 'минута'
+      second: 'секунда'
+      plural_day: 'дней'
+      plural_hour: 'часов'
+      plural_minute: 'минут'
+      plural_second: 'секунд'
+      similar: '<click:run_command:"/foxgate alts {IP}"><hover:show_text:"Нажмите, чтобы увидеть альтернативные аккаунты."><gold>[Похожий]</gold></hover></click>'
+      online: '<click:run_command:"/foxgate status {IP}"><hover:show_text:"Нажмите, чтобы проверить статус."><green>Онлайн</green></hover></click>'
    add_remove:
       invalidip: '{prefix} {IP}<red> — это невалидный IP/никнейм!'
       already: '{prefix} {IP}<red> уже есть в базе данных!'
       add: '{prefix} {IP}<green> добавлен в базу данных!'
       remove: '{prefix} {IP}<green> удалён из базы данных!'
    check:
-      invalidip: '{prefix} {IP}<red> — это невалидный IP!'
+      invalidip: '{prefix} {IP}<red> — это невалидный IP/никнейм!'
       cached: '{prefix} {IP}<yellow> уже сохранён в базе. Вы можете <white><underlined><click:run_command:"/foxgate status {IP}">нажать здесь, чтобы просмотреть информацию</click></underlined></white>.'
       checking: '{prefix} <yellow>Проверка <white>{IP}<yellow>...'
       checked: '{prefix} {IP}<green> успешно проверен. Просмотрите результат через <gray>(/foxgate status)</gray> или <white><underlined><click:run_command:"/foxgate status {IP}">нажмите здесь</click></underlined></white>.'
+      pre-checking: '{prefix} {IP}<yellow> сканируется из предыдущей проверки, дождитесь результатов, прежде чем запускать другую на том же IP.'
    clearcache:
       purging: '{prefix} <white>Очищаем <yellow>кэш</yellow>...'
       purging_correctly: '{prefix} <green>Файл кэша очищен.'
@@ -100,6 +146,7 @@ message:
       # {COUNT_UNDETECTED} - Количество сервисов, не обнаруживших VPN на IP игрока.
       # {STATUS} - Статус игрока.
       # {ISP} - Провайдер IP-адреса (если кэширован/IP), из модуля ISP.
+      # {HOSTNAME} - Имя хоста IP (если кэширован/IP), из модуля ISP.
       # {GEO_COUNTRY} - Страна игрока (работает только в премиум-версии).
       # {GEO_ASN} - ASN игрока (работает только в премиум-версии).
       detected: '<red>'
@@ -109,24 +156,45 @@ message:
       allow: '<green>Разрешено.'
       deny: '<red>Заблокировано.'
       saved: '<yellow>Просканировано.'
-      info: ' \n <green>Статус IP <aqua>{IP}\n <dark_gray>▪ <white>Провайдер: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Статус: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Не обнаружено: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Обнаружено: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Сервисы: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Страна: <aqua>{GEO_COUNTRY} \n '
+      info: ' \n <green>Статус IP <aqua>{IP}\n <dark_gray>▪ <white>Провайдер: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Имя хоста: <yellow>{HOSTNAME}</yellow>\n <dark_gray>▪ <white>Статус: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Не обнаружено: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Обнаружено: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Сервисы: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Страна: <aqua>{GEO_COUNTRY} \n '
+   update:
+      invalid_usage: '{prefix} Использование: <dark_gray>''</dark_gray>/fg update <green><asn/plugin/ranges/hostnames></green><dark_gray>''</dark_gray><reset>.'
+      already_downloading: '{prefix} <red>Мы уже скачиваем файл...'
+      backend_down: '{prefix} <red>Наш бэкенд, похоже, не работает или нестабилен. Мы не можем обновить и завершить запрос.'
+      invalid_license: '{prefix} <red>Ваша лицензия недействительна, введите действительный ключ для этого действия.'
+      downloading_asn: '{prefix} <yellow>Скачиваем ASN...'
+      downloading_ranges: '{prefix} <yellow>Скачиваем диапазоны...'
+      downloading_hostnames: '{prefix} <yellow>Скачиваем имена хостов...'
+      downloading_jar: '{prefix} <yellow>Скачиваем плагин...'
+      downloaded_asn: '{prefix} <green>Скачан последний ASN с нашего бэкенда/центра. Изменения уже применены.'
+      downloaded_ranges: '{prefix} <green>Скачаны последние диапазоны с нашего бэкенда/центра. Изменения уже применены.'
+      downloaded_hostnames: '{prefix} <green>Скачаны последние имена хостов с нашего бэкенда/центра. Изменения уже применены.'
+      downloaded_jar: '{prefix} <green>Скачан последний JAR с нашего бэкенда/центра. Перезапустите сервер для применения изменений.'
    verbose:
       enable: '{prefix} <green>Вы включили подробный режим.'
       disable: '{prefix} <red>Вы выключили подробный режим.'
-      no_malicious: '{prefix} <green>[ПОДРОБНО] <aqua>{player} <gray>не является VPN по версии: <green>{service} <dark_gray>({IP})'
-      malicious: '{prefix} <red>[ПОДРОБНО] <aqua>{player} <gray>обнаружен как VPN по версии: <green>{service} <dark_gray>({IP})'
+      # Здесь вы можете найти новые плейсхолдеры только для этого сообщения:
+      #
+      # {PLAYER} - Возвращает имя игрока.
+      # {IP} - Возвращает IP игрока.
+      # {SERVICE} - Возвращает название сервиса.
+      # {FLAGS} - Возвращает текущее количество флагов.
+      # {FLAGS_ADDED} - Возвращает количество добавленных флагов.
+      # {MAXFLAGS} - Возвращает количество флагов для обнаружения.
+      no_malicious: '{prefix} <green>[ПОДРОБНО] <aqua>{player} <gray>не является VPN с сервисом: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>флаги:</gray><red>{FLAGS}</red><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+      malicious: '{prefix} <red>[ПОДРОБНО] <aqua>{player} <gray>обнаружен как VPN с сервисом: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>флаги:</gray><red>{FLAGS}</red><green>(+{FLAGS_ADDED})</green><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
       ignored: '{prefix} <yellow>[ПОДРОБНО] <aqua>{player} <gray>игнорируется, т.к. в белом списке <green>{type} <dark_gray>({IP})'
    whitelist:
-      invalid_usage: '{prefix} Использование: <dark_gray>''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[ник/ip]</yellow> <aqua>[причина]</aqua> <light_purple>[время]</light_purple><dark_gray>''</dark_gray><reset>.'
+      invalid_usage: '{prefix} Использование: <dark_gray>''''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[ник/ip]</yellow> <aqua>[причина]</aqua> <light_purple>[время]</light_purple><dark_gray>''''</dark_gray><reset>.'
       already: '{prefix} {IP}<red> уже в белом списке/удалён из него!'
       whitelisted: '{prefix} {IP}<green> добавлен в вайтлист как <white>{type}</white> на срок <white>{time}</white>. <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">Нажмите здесь, чтобы удалить</click></underlined></white>.'
       unwhitelisted: '{prefix} {IP}<green> удалён из белого списка типа <white>{type}</white>. <white><underlined><click:run_command:"/foxgate whitelist add {IP}">Нажмите здесь, чтобы добавить снова</click></underlined></white>' 
       type_ip: 'IP'
       type_name: 'Имя'
       problem: '{prefix} <red>Ошибка при добавлении/удалении из белого списка. Проверьте консоль.'
-      invalid_time: '{prefix} <red>Неверный формат времени. Используйте epoch или такие форматы: <white>1d</white>, <white>3h</white>, <white>15m</white>, <white>30s</white> или <white>permanent</white>.'
+      invalid_time: '{prefix} <red>Неверный формат времени. Используйте epoch или такие форматы: <white>1d</white>, <white>3h</white>, <white>15m</white>, <white>30s</white> или <white>постоянно</white>.'
       purging: '{prefix} <yellow>Очищаем вайтлист...'
-      purging_correctly: '{prefix} <green>вайтлист очищен.'
+      purging_correctly: '{prefix} <green>Вайтлист очищен.'
       purging_problem: '{prefix} <red>Ошибка при очистке белого списка. Проверьте консоль.'     
       # Ниже доступны новые плейсхолдеры только для этого сообщения:
       #
@@ -134,6 +202,7 @@ message:
       # {REASON} - Возвращает причину, по которой IP/имя добавлено в вайтлист.
       # {EXPIRATION} - Возвращает срок действия.
       # {ISP} - Возвращает провайдера IP (если кэширован/IP), из модуля ISP.
+      # {HOSTNAME} - Возвращает имя хоста IP (если кэширован/IP), из модуля ISP.
       # {GEO_COUNTRY} - Возвращает страну игрока (только премиум и при включении функции).
       # {GEO_ASN} - Возвращает ASN игрока (только премиум и при включении функции).
       info: ' \n <green>Информация о белом списке для <aqua>{IP}\n <dark_gray>▪ <white>Тип: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Причина: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Истекает: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Страна: <aqua>{GEO_COUNTRY} \n '

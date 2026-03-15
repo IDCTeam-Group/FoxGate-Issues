@@ -1,0 +1,123 @@
+#  __                 _              
+# / _\ ___ _ ____   _(_) ___ ___ ___ 
+# \ \ / _ | '__\ \ / | |/ __/ _ / __|
+# _\ |  __| |   \ V /| | (_|  __\__ \
+# \__/\___|_|    \_/ |_|\___\___|___/
+#
+# The configuration is generated with our File Manager,
+# which overrides the real comments. See the description of
+# every available services in our GitHub repository of
+# issues and wiki.
+#
+# 💼 GitHub:
+# https://github.com/IDCTeam-Group/FoxGate-Issues/wiki/Services
+#
+# 📚 Note: Use 'Ctrl+F' to search the service, and put the file
+# name for search more easy. ^^
+
+# 🔩 Enable this service?
+enabled: true
+# 🔑 Add this field in case require key.
+# - This is used for '{KEY}' variable in the
+#   headers or URL fields.
+key: ''
+# 🔗 The plugin should output errors though
+#    the console?
+# - Enable this option if you want get output
+#   in case a service give errors in the console.
+#   Useful for debug responses while debugging it's
+#   disabled.
+#
+# 📚 Note: This only works in certain scenearies, like
+# an API returning 'nullable' value or another.
+output_errors: true
+
+# 📚 Model of the response.
+# - Add the model to handle the response of
+#   the API. Check the response type and set one
+#   correctly for making this works properly.
+#
+# 📁 Supported values:
+# - HTML
+# - JSON
+# - CONTAINS
+model: JSON
+# 🚩 Flags to add when it's detected in this service.
+# - Option for add more VLs to reach the maxFlags
+#   in each services. Useful if you trust in a service
+#   and want make it count more VLs.
+vls: '1'
+# 🔗 URL of the API.
+# - This field is important, insert the URL of
+#   the service for response.
+#
+# 📁 Supported placeholders:
+# - {IP} - Return the player's IP.
+# - {KEY} - Return 'key' field value.
+url: https://pav.merakistudios.dev/api/{IP}
+# ⛓ Headers to use.
+# - Set custom headers in case it's required.
+#   The values can be in List or Map.
+#
+# 📚 Note: Set to '[]' or '{}' to disable.
+headers: {
+    }
+
+# 💡 Values to check.
+values:
+
+    # 🧩 Fields to check.
+    # - Disable the fields to check with using
+    #   the value '{}'. If you exclude this value,
+    #   field 'type' will check if the final
+    #   response contains that value.
+    fields:
+    - types
+    # 🚩 Type to determine.
+    # - Determine which value needs to determine
+    #   if the connection it's a VPN/Proxy or another,
+    #   this will check for a String.
+    #
+    # 📚 Note: Use 'boolean' for check for any boolean
+    # boolean, like: 'true'/'false' or '0'/'1'.
+    type:
+    - hosting
+    - vpn
+
+    # 📚 Custom conditions to determine bypass or detection logic.
+    # - These conditions allow advanced control based on fields from the
+    #   API response.
+    #
+    # 📁 Structure:
+    # - Each key (e.g. '1', '2', etc.) holds a list of conditions.
+    # - Each list works with AND logic (all conditions must match).
+    # - Multiple keys result in OR logic (at least one group must match).
+    #
+    # 🧩 Syntax:
+    # - Use {field} to refer to response fields (e.g. {score}).
+    # - Supported operators: '=', '!=', '>', '>=', '<', '<='.
+    # - Values can be strings (true/false) or numbers.
+    #
+    # 📚 Note: This feature only works in 'JSON' and 'HTML' type,
+    # and for make this works in HTML, always use '{foxgate_check}' for
+    # use field (only exists this in HTML).
+    conditions:
+
+        # 💼 Conditions for Bypass
+        # - If any group of conditions here matches, the player will be
+        #   ignored (not flagged). Use this for trusted connections like mobile
+        #   users or low score in risk/fraud.
+        #
+        # 📚 Note: Disable this condition with 'bypass: {}'.
+        bypass: {
+            }
+
+        # 🚩 Conditions for Flag.
+        # - If any group of conditions here matches, the player will
+        #   be flagged (detected). Useful for detecting based on high
+        #   risk/fraud score, known abuse, etc.
+        #
+        # 📚 Note: Disable this condition with 'flag: {}'.
+        flag:
+            '1':
+            - '{suspiciousLevel}=2'

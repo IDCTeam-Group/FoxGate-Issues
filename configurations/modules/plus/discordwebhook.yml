@@ -1,0 +1,379 @@
+#     ___ _                       _          
+#    /   (_)___  ___ ___  _ __ __| |         
+#   / /\ / / __|/ __/ _ \| '__/ _` |         
+#  / /_//| \__ \ (_| (_) | | | (_| |         
+# /___,' __|___/____\___/|_|  \__,_|    _    
+# / / /\ \ \___| |__ | |__   ___   ___ | | __
+# \ \/  \/ / _ \ '_ \| '_ \ / _ \ / _ \| |/ /
+#  \  /\  /  __/ |_) | | | | (_) | (_) |   < 
+#   \/  \/ \___|_.__/|_| |_|\___/ \___/|_|\_\
+#
+# Manage the usage of Discord Webhooks for sending
+# notifications to discord.
+# If the player get scanned, the result will be sended
+# to a private channel using Webhooks in Discord. Useful
+# for monitoring.
+#
+#  📚 Learn more about Discord Webhooks:
+#  🔗 https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+#
+# 🚩 Supported placeholders for this section:
+#  - {NAME} - Returns the player's name.
+#  - {IP} - Returns the player's IP.
+#  - {UUID} - Returns the player's UUID. (BungeeCord doesn't support this)
+#  - {DETECTED} - Return only the services that detected a VPN with an IP.
+#  - {UNDETECTED} - Return only the services that didn't detect a VPN with an IP.
+#  - {LIST} - Return both lists.
+#  - {MAX} - Return the maximum number of flags required to deny access to a player.
+#  - {COUNT_DETECTED} - Return the number of services that a player's IP has been detected with.
+#  - {COUNT_UNDETECTED} - Return the number of services that a player's IP hasn't been detected with.
+#  - {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+#  - {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+#  - {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
+#  - {GEO_ASN} - Return the player's ASN (Only works with premium version).
+#
+# ❓ Has questions? Join to the discord server:
+# - https://discord.zowi.gay/
+# - https://discord.idcteam.xyz/
+
+# Message when the player was allowed to connect.
+allowed:
+    # Enable this webhook?
+    enable: true
+    # Determine the URL of webhook to send.
+    # - See the documentation of Discord in how create a
+    #   webhook.
+    webhook: ''
+
+    # Username to show.
+    # - Determine here a custom username for the webhook.
+    username: 'FoxGate: High Quality AntiVPN'
+    # Username to show.
+    # - Determine here a custom avatar for the webhook.
+    avatar: https://i.imgur.com/86T0cIF.png
+
+    # Determine here the content in the message.
+    # Set "" to disable the content.
+    content: ''
+    # Determine here the title of the embed.
+    # Set "" to disable the title or url.
+    title:
+        text: An IP was verified by FoxGate.
+        url: https://modrinth.com/plugin/foxgate
+    # Determine here the description of the embed.
+    # Set "" to disable the description.
+    description: ''
+    # Show thumbnail in the embed.
+    # Set "" to disable the content.
+    thumbnail: https://api.creepernation.net/avatar/{UUID}
+    # Add fields.
+    # Use {} or remove to disable.
+    fields:
+        '1':
+            name: User
+            description: '`{NAME}`'
+            inline: true
+        '2':
+            name: IP
+            description: '`{IP}`'
+            inline: true
+        '3':
+            name: Count
+            description: '`{COUNT_DETECTED}`/`{MAX}`'
+            inline: true
+        '4':
+            name: Detected ({COUNT_DETECTED})
+            description: '`{DETECTED}`'
+            inline: true
+        '5':
+            name: Undetected ({COUNT_UNDETECTED})
+            description: '`{UNDETECTED}`'
+            inline: true
+        '6':
+            name: Country & ASN
+            description: '`{GEO_COUNTRY}`/`{GEO_ASN}`'
+            inline: true
+
+    # Determine here the color in decimal.
+    color: 5793266
+    # Determine the footer to use.
+    footer:
+        text: Powered by FoxGate
+        icon: https://i.imgur.com/86T0cIF.png
+
+# Message when the player was denied to connect.
+denied:
+    # Enable this webhook?
+    enable: true
+    # Determine the URL of webhook to send.
+    # - See the documentation of Discord in how create a
+    #   webhook.
+    webhook: ''
+
+    # Username to show.
+    # - Determine here a custom username for the webhook.
+    username: 'FoxGate: High Quality AntiVPN'
+    # Username to show.
+    # - Determine here a custom avatar for the webhook.
+    avatar: https://i.imgur.com/86T0cIF.png
+
+    # Determine here the content in the message.
+    # Set "" to disable the content.
+    content: ''
+    # Determine here the title of the embed.
+    # Set "" to disable the title or url.
+    title:
+        text: An IP was blocked by FoxGate.
+        url: https://modrinth.com/plugin/foxgate
+    # Determine here the description of the embed.
+    # Set "" to disable the description.
+    description: ''
+    # Show thumbnail in the embed.
+    # Set "" to disable the content.
+    thumbnail: https://api.creepernation.net/avatar/{UUID}
+    # Add fields.
+    # Use {} or remove to disable.
+    fields:
+        '1':
+            name: User
+            description: '`{NAME}`'
+            inline: true
+        '2':
+            name: IP
+            description: '`{IP}`'
+            inline: true
+        '3':
+            name: Count
+            description: '`{COUNT_DETECTED}`/`{MAX}`'
+            inline: true
+        '4':
+            name: Detected ({COUNT_DETECTED})
+            description: '`{DETECTED}`'
+            inline: true
+        '5':
+            name: Undetected ({COUNT_UNDETECTED})
+            description: '`{UNDETECTED}`'
+            inline: true
+        '6':
+            name: Country & ASN
+            description: '`{GEO_COUNTRY}`/`{GEO_ASN}`'
+            inline: true
+
+    # Determine here the color in decimal.
+    color: 15548997
+    # Determine the footer to use.
+    footer:
+        text: Powered by FoxGate
+        icon: https://i.imgur.com/86T0cIF.png
+
+# Message when the player was denied to connect
+# by their Country.
+country:
+    # Enable this webhook?
+    enable: true
+    # Determine the URL of webhook to send.
+    # - See the documentation of Discord in how create a
+    #   webhook.
+    webhook: ''
+
+    # Username to show.
+    # - Determine here a custom username for the webhook.
+    username: 'FoxGate: High Quality AntiVPN'
+    # Username to show.
+    # - Determine here a custom avatar for the webhook.
+    avatar: https://i.imgur.com/86T0cIF.png
+
+    # Determine here the content in the message.
+    # Set "" to disable the content.
+    content: ''
+    # Determine here the title of the embed.
+    # Set "" to disable the title or url.
+    title:
+        text: An IP was blocked by FoxGate.
+        url: https://modrinth.com/plugin/foxgate
+    # Determine here the description of the embed.
+    # Set "" to disable the description.
+    description: A player tried to join from banned country.
+    # Show thumbnail in the embed.
+    # Set "" to disable the content.
+    thumbnail: https://api.creepernation.net/avatar/{UUID}
+    # Add fields.
+    # Use {} or remove to disable.
+    fields:
+        '1':
+            name: User
+            description: '`{NAME}`'
+            inline: true
+        '2':
+            name: IP
+            description: '`{IP}`'
+            inline: true
+        '3':
+            name: Country & ASN
+            description: '`{GEO_COUNTRY}`/`{GEO_ASN}`'
+            inline: true
+
+    # Determine here the color in decimal.
+    color: 16741120
+    # Determine the footer to use.
+    footer:
+        text: Powered by FoxGate
+        icon: https://i.imgur.com/86T0cIF.png
+
+# Message when the player was denied to connect
+# by their ASN.
+asn:
+    # Enable this webhook?
+    enable: true
+    # Determine the URL of webhook to send.
+    # - See the documentation of Discord in how create a
+    #   webhook.
+    webhook: ''
+
+    # Username to show.
+    # - Determine here a custom username for the webhook.
+    username: 'FoxGate: High Quality AntiVPN'
+    # Username to show.
+    # - Determine here a custom avatar for the webhook.
+    avatar: https://i.imgur.com/86T0cIF.png
+
+    # Determine here the content in the message.
+    # Set "" to disable the content.
+    content: ''
+    # Determine here the title of the embed.
+    # Set "" to disable the title or url.
+    title:
+        text: An IP was blocked by FoxGate.
+        url: https://modrinth.com/plugin/foxgate
+    # Determine here the description of the embed.
+    # Set "" to disable the description.
+    description: A player tried to join from banned ASN.
+    # Show thumbnail in the embed.
+    # Set "" to disable the content.
+    thumbnail: https://api.creepernation.net/avatar/{UUID}
+    # Add fields.
+    # Use {} or remove to disable.
+    fields:
+        '1':
+            name: User
+            description: '`{NAME}`'
+            inline: true
+        '2':
+            name: IP
+            description: '`{IP}`'
+            inline: true
+        '3':
+            name: Country & ASN
+            description: '`{GEO_COUNTRY}`/`{GEO_ASN}`'
+            inline: true
+
+    # Determine here the color in decimal.
+    color: 16741120
+    # Determine the footer to use.
+    footer:
+        text: Powered by FoxGate
+        icon: https://i.imgur.com/86T0cIF.png
+
+# Message when the player was denied to connect
+# by their ISP.
+isp:
+    # Enable this webhook?
+    enable: true
+    # Determine the URL of webhook to send.
+    # - See the documentation of Discord in how create a
+    #   webhook.
+    webhook: ''
+
+    # Username to show.
+    # - Determine here a custom username for the webhook.
+    username: 'FoxGate: High Quality AntiVPN'
+    # Username to show.
+    # - Determine here a custom avatar for the webhook.
+    avatar: https://i.imgur.com/86T0cIF.png
+
+    # Determine here the content in the message.
+    # Set "" to disable the content.
+    content: ''
+    # Determine here the title of the embed.
+    # Set "" to disable the title or url.
+    title:
+        text: An IP was blocked by FoxGate.
+        url: https://modrinth.com/plugin/foxgate
+    # Determine here the description of the embed.
+    # Set "" to disable the description.
+    description: A player tried to join from banned ISP.
+    # Show thumbnail in the embed.
+    # Set "" to disable the content.
+    thumbnail: https://api.creepernation.net/avatar/{UUID}
+    # Add fields.
+    # Use {} or remove to disable.
+    fields:
+        '1':
+            name: User
+            description: '`{NAME}`'
+            inline: true
+        '2':
+            name: IP
+            description: '`{IP}`'
+            inline: true
+        '3':
+            name: ISP
+            description: '`{ISP}`'
+            inline: true
+
+    # Determine here the color in decimal.
+    color: 16741120
+    # Determine the footer to use.
+    footer:
+        text: Powered by FoxGate
+        icon: https://i.imgur.com/86T0cIF.png
+
+# Message when the player was denied to connect
+# by IPRange module.
+ipr:
+    # Enable this webhook?
+    enable: true
+    # Determine the URL of webhook to send.
+    # - See the documentation of Discord in how create a
+    #   webhook.
+    webhook: ''
+
+    # Username to show.
+    # - Determine here a custom username for the webhook.
+    username: 'FoxGate: High Quality AntiVPN'
+    # Username to show.
+    # - Determine here a custom avatar for the webhook.
+    avatar: https://i.imgur.com/86T0cIF.png
+
+    # Determine here the content in the message.
+    # Set "" to disable the content.
+    content: ''
+    # Determine here the title of the embed.
+    # Set "" to disable the title or url.
+    title:
+        text: An IP was blocked by FoxGate.
+        url: https://modrinth.com/plugin/foxgate
+    # Determine here the description of the embed.
+    # Set "" to disable the description.
+    description: A player tried to join but their IP was banned by IPRanges.
+    # Show thumbnail in the embed.
+    # Set "" to disable the content.
+    thumbnail: https://api.creepernation.net/avatar/{UUID}
+    # Add fields.
+    # Use {} or remove to disable.
+    fields:
+        '1':
+            name: User
+            description: '`{NAME}`'
+            inline: true
+        '2':
+            name: IP
+            description: '`{IP}`'
+            inline: true
+
+    # Determine here the color in decimal.
+    color: 16741120
+    # Determine the footer to use.
+    footer:
+        text: Powered by FoxGate
+        icon: https://i.imgur.com/86T0cIF.png

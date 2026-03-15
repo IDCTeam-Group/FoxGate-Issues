@@ -1,0 +1,402 @@
+#     ___             __ _                       _   _             
+#    / __\___  _ __  / _(_) __ _ _   _ _ __ __ _| |_(_) ___  _ __  
+#   / /  / _ \| '_ \| |_| |/ _` | | | | '__/ _` | __| |/ _ \| '_ \ 
+#  / /__| (_) | | | |  _| | (_| | |_| | | | (_| | |_| | (_) | | | |
+#  \____/\___/|_| |_|_| |_|\__, |\__,_|_|  \__,_|\__|_|\___/|_| |_|
+#                          |___/                                   
+#
+# Main configuration section.
+#
+# ❓ Has questions? Join to the discord server:
+# - https://discord.zowi.gay/
+# - https://discord.idcteam.xyz/
+
+# 🔑 Activate your FoxGate plugin in case you bought Plus (formerly, Premium).
+# - For enable some essentials features, like auto-updating in
+#   Plus .jar, auto-updating and download our known asn list,
+#   and other stuffs, you need put a valid key.
+#
+# 📚 Note: The plugin still can works without a key, but it's
+# extremely essentials put one for unlock every feature of the
+# plugin.
+#
+# 💼 WARNING! To get a key, you need to join to our discord server
+# and verify, after that, DM to 'Zowi' for a key. If you share your
+# key, your key will be deleted and your license terminated. In case
+# was an error and your key was leaked, you can ask for reset.
+key: ''
+
+configuration:
+
+    # 🌎 Plugin language setting
+    # - Available options:
+    #   • cz_cz - čeština (Česká republika)
+    #   • de_de - Deutsch (Deutschland) [❤ Thanks to ich_lou]
+    #   • en_us - English (United States) [❤ Thanks to Goinging]
+    #   • es_ar - Español (Argentina)
+    #   • es_es - Español (España) [❤ Thanks to VonVisha]
+    #   • it_it - Italiano (Italy) [❤ Thanks to MircoAPPP]
+    #   • ja_jp - 日本語 (Japan) [❤ Thanks to YOMA8338]
+    #   • ko_kr - 한국 (Korean) [❤ Thanks to metaph0]
+    #   • pt_br - Português (Brasil)
+    #   • ru_ru - Русский (Russia) [❤ Thanks to mikheilkozlovi & AMGewka]
+    #   • tr_tr - Türkçe (Turkey)
+    #   • vi_vn - Tiếng Việt (Vietnam) [❤ Thanks to hieudieu393]
+    #
+    # 📚 Note: Language files are automatically downloaded from the official
+    # GitHub repository into the 'languages' folder. This value can't be empty.
+    language: en_us
+
+    # 📈 Allow the usage of Metrics (bStats) in your server?
+    # - This is for statistical purposes only.
+    #
+    #   ❝ What data is collected?
+    #   We use bStats (https://bstats.org/), which does not collect
+    #   any personal data. Most of the collected data consists of information about
+    #   the server, such as player count, online mode, Minecraft version,
+    #   Java version, and more. All data is sent and stored completely
+    #   anonymously. For more information about this, see "bStats: Getting Started"
+    #   at https://bstats.org/getting-started
+    #
+    # 📚 Note: Since versions 1.0.2 (plus) and 1.1.0 (free), FoxGate uses
+    # its own code base for Metrics, while still following bStats
+    # guidelines. This implementation uses asynchronous methods to send data and
+    # replaces Gson for better stability, saving overall performance.
+    # You can safely enable this to help the creator without affecting performance.
+    # ⚠️ Warning! The plugin has a separated file for using Metrics (from bStats),
+    # check the file 'bStats.yml' (in the same folder of FoxGate) to configure it.
+    metrics: true
+
+    # 💼 Enable automatic update checking?
+    # - Checks for new updates on our Backend during server startup.
+    #   Requires an active internet connection to verify updates.
+    #
+    # 📚 Note: Since versions 1.0.0 (plus) and 1.0.6 (free), FoxGate uses
+    # its own update checking system. This implementation uses asynchronous
+    # methods to scan for updates, save performance. You can safely enable
+    # this to check for updates without affecting performance.
+    updates:
+
+        # 🚩 Enable checking of updates?
+        # - The plugin will check for updates when the
+        #   server starts only, this will send a message
+        #   in the console and the link to download by
+        #   default.
+        #
+        # ⭐ Recommended: true
+        # 📚 Note: Your hosting needs to whitelist or allow
+        # connections to 'central.zowi.gay', our backend.
+        enable: true
+
+        # ⌛ Automatic actions for updates.
+        automatic:
+
+            # 🪄 Enable automatic updating for the .jar?
+            # - Toggle this feature for always mantain the latest
+            #   version. This updates through our backend and
+            #   works for both editions: Free and Plus.
+            #
+            # ⭐ Recommended: true
+            # ⚠️ Warning! Always keep this feature enabled, so if an
+            # important fix occurs, you will always keep the plugin
+            # up-to-date.
+            updater: true
+
+            # ⏳ Enable periodically checking?
+            # - Enabling this will make the plugin check in silent
+            #   for a new update. This makes the plugin check every
+            #   1 hour.
+            #
+            # ⭐ Recommended: true
+            # 📚 Note: This feature requires to keep enabled the
+            # option 'auto_update'.
+            periodically: true
+
+    # 📢 Notification permission
+    # - Set the permission required to receive threat detection alerts
+    #   when the plugin denies a connection. Default permission used:
+    #   ➡ foxav.notifications
+    #
+    # 📚 Note: This value can't be empty.
+    permission: foxav.notifications
+
+    # 🔬 Enable FoxGate debug messages?
+    # - Configure which debug messages to display when debug mode is
+    #   activated via '/fg debug' command. Messages appear only in console.
+    debug:
+
+        # Player event messages?
+        events: true
+        # Service response messages (for development/depuration)
+        # Not recommended for production - may flood your console
+        # with excessive output.
+        services: true
+        # FoxGate action messages:
+        # Includes Discord webhook responses, GeoLocation database
+        # downloads, and Telegram/VK request tracking.
+        actions: true
+
+    # 🔨 Hide disconnection messages for blocked players?
+    # - Suppresses disconnect messages when players are blocked due to:
+    #   VPN detection, Country/ASN/ISP/IPRange/Bogon restrictions, etc.
+    #
+    # 📚 Note: Only works with Apache Log4J and SLF4J - may not function
+    # on all platforms or versions. (FoxGate tries to always wrapper)
+    consolefilter:
+
+        # 🔍 Print to console any Threats?
+        # - Enable this to send the same notification to the console when
+        #   a player is flagged for any threats detected by the plugin,
+        #
+        # 📚 Note: Use this feature to mantain control when it's required.
+        show_threats: true
+
+        # 📁 Show logs about modules?
+        # - The plugin will output decent details
+        #   about modules. Useful to show the activity
+        #   of those and show stadistics.
+        #
+        # 📚 Note: This can prevent the checking of
+        # all modules that make every 2 hours, will prevent
+        # the flood in console if you has too much
+        # module checking their data.
+        show_module: true
+
+        # 🚩 Hide disconnect messages for these scenarios:
+        vpn: true
+        limiter: true
+        isp: true
+        ipr: true
+        bogon: true
+        # ⭐ Plus Edition features:
+        country: true
+        asn: true
+
+    # 🧲 Scanner settings.
+    # - Actions when a player get detected or verified:
+    #   Bypass and block time.
+    scanner:
+
+        # 💼 Toggle scanning through services?
+        # - Make the plugin to toggle the checking through
+        #   services. Useful if you want avoid using external APIs
+        #   and use local checking (means, through modules).
+        toggle_services: true
+
+        # 🔍 Enable the Passive mode?
+        # - FoxGate will stop checking when a player join to the server.
+        #   Useful in case you want to use FoxGate with other AntiVPN or
+        #   for only checking with our command.
+        passive_mode: false
+
+        # 📣 When an IP isn't detected a vpn or proxy, this need to get saved
+        # in cache to don't make more requests for a little time for save
+        # performance and requests, customizable here.
+        bypass:
+
+            # Enable this feature?
+            enable: true
+            # Determine the time in hours to save the IP in cache and avoid
+            # make more requests to this IP. Useful to save performance and
+            # verify only one time for certain time.
+            #
+            # ⭐ Recommended: 2
+            # 📚 Note: Type 'permanent' for bypass permanent.
+            time: '2'
+            # Determine the time in hours to determine make bypass for X IP,
+            # in case you need. Useful in case you trust in your users and
+            # want avoid false flags.
+            #
+            # ⭐ Recommended: 72
+            # 🚩 Use 'DISABLE' for disable this.
+            playtime: DISABLE
+
+        # ⌛ When a player get denied for joining with VPN.
+        block:
+
+            # Enable save in cache the results of block?
+            # Useful for save performance and avoid database calls
+            # while a player tries to join repeated or in a bot
+            # attack.
+            #
+            # ⭐ Recommended: true
+            # 📚 Note: Disable this feature If you need to edit
+            # your kick messages, because the plugin cache's the block
+            # message in an attempt to save performance.
+            cache: true
+            # Determine the time in hours to mantain the block when a
+            # player get detected for VPN. This avoid to the user from
+            # joining until the expiration time ends and, saving the server
+            # resources for not scanning through modules and services.
+            #
+            # ⭐ Recommended: 36
+            # 📚 Note: Type 'permanent' for blocking permanent.
+            time: '36'
+
+#     _         _   _        ___    __ 
+#    /_\  _ __ | |_(_/\   /\/ _ \/\ \ \
+#   //_\\| '_ \| __| \ \ / / /_)/  \/ /
+#  /  _  | | | | |_| |\ V / ___/ /\  / 
+#  \_/ \_|_| |_|\__|_| \_/\/   \_\ \/  
+#
+#
+# 🪓 Configure and customize VPN detection.
+# The plugin checks each player’s connection in real-time by using multiple
+# verification services to spot VPNs, proxies, or suspicious networks.
+#
+#  - Services moved to the folder 'services'. :D (with Love, Zowi)
+antivpn:
+
+    # 🔎 Ignore detection for bedrock players?
+    # - Toggle to ignore any connections from a bedrock player,
+    #   making great the usage of the plugin in case *YOUR* (yes,
+    #   isn't our fault) server doesn't do correctly the IPForwarding.
+    #
+    # 📚 Note: Use this feature only when it's necessary and your
+    # server does wrongly the IP-Forwarding. The plugin checks for
+    # GeyserAPI, Floodgate or external methods for detect bedrock
+    # connections. Enabling this without a reason, will allow bedrock
+    # users bypass always the AntiVPN for non-sense.
+    # ⚠️ Warning! This feature was made for Minecraft: Java Edition
+    # softwares.
+    geyser:
+
+        # 🚩 Enable the bypass/ignore to bedrock users?
+        enable: false
+
+        # 🧩 Custom prefixes.
+        # - Put a value in case you use a prefix for identify
+        #   a bedrock user if you doesn't has Geyser or Floodgate
+        #   in the server/proxy.
+        #
+        # 📚 Note: Disable prefix value with leaving empty.
+        prefix: ''
+        # 💡 Standalone IP's for Geyser.
+        # - Custom IP's in case you requires to detect
+        #   a bedrock user when you can't put Floodgate
+        #   in the server/proxy and you're running a
+        #   Geyser Standalone proxy.
+        #
+        # 📚 Note: Leave empty for disable with '[]'.
+        standalone_ips: [
+            ]
+
+    # 🚩 How many services need to agree before we flag a VPN?
+    # - If this number is set too high, genuine VPNs might go
+    #   unnoticed, otherwise, there's a risk of catching legitimate
+    #   users by mistake.
+    #
+    # ⭐ Recommended: Usually, the best approach is to require 5 or
+    # 6 matching services for the flag to be triggered.
+    maxFlags: 5
+
+    # 🔍 Keep checking other services after detection?
+    # - Enable to check all services even after finding a VPN;
+    #   this uses more resources but gives to you complete information
+    #   for determine better a decision.
+    #
+    # ⭐ Recommended: true
+    # 📚 Note: This doesn't affect manual '/foxgate check' command.
+    continuation: true
+
+    # 🧰 Headers to send in every requests to services.
+    # - Some services are quite strict and expect requests to look like
+    #   they're coming from a regular browser. The default emulates a normal
+    #   browser, otherwise, you can use any other generic value.
+    #
+    # ⭐ Recommended:
+    # - Default: "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11"
+    # - Alternatively: "FoxGate/plugin"
+    # 📚 Note: This value can't be empty.
+    userAgent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11
+
+    # ⌛ Determine here the timeout in case the API is down.
+    # - Typically, waiting around 1.75 seconds (or 1750 milliseconds) before
+    #   giving up on slow services works well. It's usually enough time for most
+    #   reliable services to respond. This can help in close connections to
+    #   those API's where are down or with high delay.
+    #
+    # ⭐ Recommended: 2000
+    # 📚 Note: The value can be from the range of 1000 to 5000.
+    timeout: 2000
+
+    # 📍 Custom order for load services.
+    # - Use this function for chooise an order for load
+    #   in case it's required. The listed services will load
+    #   in order while non-listed will load after and
+    #   dinamically.
+    #
+    # 📚 Note: When checking, this will affect the order
+    # of services. Useful if you want to provide priority for
+    # non-key services.
+    order:
+    - zowicentral
+    - blackbox
+    - ip-api
+    - ipapi-is
+    - ip-check
+    - iplocate
+    - ipquery
+    - iprisk
+    - marvinmc
+    - merakistudios
+    - rayzsde
+    - funkemunky
+    - negativity-api
+    - fastasfuck
+    - tcpshield
+    - blocklistde
+    - greensnow
+    - cinsscore
+
+    # 🛰️ Block any type of bogon connection?
+    #
+    # When enabled, we will block any connection considered a bogon.
+    # This protects you from players where tries to do any 'bypass' method.
+    #
+    # The plugin will block IP's considered:
+    # - Local Address
+    # - Loopback
+    # - Link Local
+    # - Site Local
+    # - Multicast
+    #
+    # 📚 Note: This feature it's always recommended having enabled. If
+    # you get disconnected for this configuration, please, consider to
+    # re-check your forwarding method, because can allow people from doing
+    # malicious stuff.
+    bogon:
+
+        # 🚩 Enable the blocking of bogon IP's?
+        enable: true
+
+        # 🦊 Block connections from denied IP using the database?
+        # - This is useful if you want deny connections from future
+        #   issuers that connects using bogon IPs.
+        #
+        #   "The player is blocked from joining but the IP doesn't get checked!"
+        #    FoxGate add's the player to the database like it's "Blocked", but
+        #    doesn't save services detected, because the player isn't scanned for
+        #    VPN/Proxy or by another module.
+        database:
+
+            # 🚩 Block future connections using the database?
+            enable: true
+            # Determine the time in hours to mantain the block when a
+            # player get detected for this module. This avoid to the user from
+            # joining until the expiration time ends and, saving the server
+            # resources for not scanning through modules and services.
+            #
+            # ⭐ Recommended: permanent
+            # 📚 Note: Type 'permanent' for blocking permanent.
+            time: permanent
+
+    # 💼 Actions to make when is detected.
+    # - Use this to kick with the plugin instantly:
+    #     - 'kick'
+    # - Or add your custom command:
+    #     - 'ipban {IP} Trying to access with {PLAYER} using a VPN.'
+    #
+    # Disable this feature by leaving the list empty.
+    actions:
+    - kick

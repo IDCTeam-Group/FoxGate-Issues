@@ -1,0 +1,37 @@
+#  __    __ _     _ _         __ _     _   
+# / / /\ \ | |__ (_| |_ ___  / /(_)___| |_ 
+# \ \/  \/ | '_ \| | __/ _ \/ / | / __| __|
+#  \  /\  /| | | | | ||  __/ /__| \__ | |_ 
+#   \/  \/ |_| |_|_|\__\___\____|_|___/\__|
+#
+# Make certain users/IPs to bypass the AntiVPN.
+#
+# ❓ Has questions? Join to the discord server:
+# - https://discord.zowi.gay/
+# - https://discord.idcteam.xyz/
+
+# 📚 Whitelist the detection to these names.
+# - Add usernames here to allow bypassing the AntiVPN check.
+# - Case sensitive!
+#
+# 🚩 Example:
+#
+# names:
+# - subject: ImZowi
+#   reason: Developer
+#   timestamp: 9999999999999
+names: [
+    ]
+
+# 🌎 Whitelist the detection to these IPs.
+# - Add IPs here to allow bypassing the AntiVPN check.
+# - Supports wildcard entries like 192.168.*.*
+#
+# 🚩 Example:
+#
+# ips:
+# - subject: "127.0.0.1"
+#   reason: LocalHost
+#   timestamp: 9999999999999
+ips: [
+    ]

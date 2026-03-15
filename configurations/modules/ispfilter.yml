@@ -1,0 +1,422 @@
+#   _____ __   ___  ___ _ _ _            
+#   \_   / _\ / _ \/ __(_| | |_ ___ _ __ 
+#    / /\\ \ / /_)/ _\ | | | __/ _ | '__|
+# /\/ /_ _\ / ___/ /   | | | ||  __| |   
+# \____/ \__\/   \/    |_|_|\__\___|_|   
+#
+# Limit connections and/or allow bypass if a player is using
+# an allowed or disallowed ISP.
+# This feature works by downloading a file from Zowi Central/IPInfo/
+# IPLocate containing a list of ISPs based on their IP addresses.
+#
+# 📚 Note: This is a Lite "ASN" module, you could purchase our
+# Plus Edition for a complete and perfect alternative of this.
+# The complete module, works with MaxMind DB, which works faster,
+# more optimized, complete list of IP's, extensive support, etc.
+#
+# ❓ Still questions? Join to the discord server:
+# - https://discord.zowi.gay/
+# - https://discord.idcteam.xyz/
+#
+# 💼 GitHub:
+# https://github.com/IDCTeam-Group/FoxGate-Issues/wiki/Configuration#2-how-to-configure-the-module-isp-provider-detection-lite-asn-module
+
+# 🔗 Select the site for downloading the file.
+# - Use your favorite provider for downloading the
+#   database 'for ISP Module'. Follow and see the
+#   instructions of every provider in case it's
+#   required.
+provider:
+
+    #
+    #  🚩 DISABLE
+    #     Use this value for disable ISP Module in case
+    #     you don't need this feature.
+    #
+    #  💼 ZC (Zowi's Central)
+    #  🧩 ZCL (IPLocate alternative)
+    #     Download the database from 'Zowi Central', this
+    #     option could be unstable sometimes, for their
+    #     web-hosting. The database it's updated every 12
+    #     hours automatically.
+    #     ⭐ Recommended in case it's first setup or you
+    #       reached ratelimit from 'IPInfo'.
+    #     🔗 https://central.zowi.gay/
+    #
+    #  💼 IPInfo
+    #     Download the database from IPInfo, this is
+    #     the real provider, which offers stable download
+    #     of the database. A key it's required for this.
+    #     ⭐ Recommended in case you want stability and
+    #       has a key.
+    #     🔗 https://ipinfo.io/
+    #
+    #  💼 IPLocate
+    #     Download the database from IPLocate, this is
+    #     the alternative provider, which offers other type
+    #     of the database. A key it's required for this.
+    #     ⭐ Recommended in case you want alternative and
+    #       has a key.
+    #     🔗 https://iplocate.io/
+    #
+    #  💼 Custom
+    #     You can make your own hosting for downloading the
+    #     database? Put a custom URL for making it downloading,
+    #     but, needs to follow some requeriments.
+    #     ⚠ Requeriments:
+    #        - Needs to be a '.mmdb' file.
+    #        - Needs to be descompressed.
+    #        - Needs to follow IPInfo format.
+    #        - Needs to return file size in header (avoid issues).
+    #        - Needs to be HTTPS always.
+    #        - Needs to return status 200.
+    #
+    # If you has questions about this selection, please,
+    # join to our discord server.
+    # ➡ https://discord.zowi.gay/
+    use: ZC
+
+    # 🚩 Fallback API in case the primary fails.
+    fallback:
+    - IPInfo
+    - ZCL
+    - IPLocate
+
+    # Configuration in case it's being using IPInfo.
+    # 🔗 https://ipinfo.io/
+    ipinfo:
+
+        # 🔑 Enter here your key of IPInfo.
+        # - Insert your key from IPInfo (https://ipinfo.io/) in case you
+        #   don't want to use Zowi's Central for downloading the database.
+        #   This option it's extremely recommended.
+        #
+        # 💼 GitHub:
+        # https://github.com/IDCTeam-Group/FoxGate-Issues/wiki/Configuration#-how-to-setup-it
+        key: ''
+
+    # Configuration in case it's being using IPLocate.
+    # 🔗 https://iplocate.io/
+    iplocate:
+
+        # 🔑 Enter here your key of IPLocate.
+        # - Insert your key from IPLocate (https://iplocate.io/) in case you
+        #   don't want to use IPInfo for the database.
+        key: ''
+
+    # Configuration in case you're sure to use one Custom.
+    # 📚 Note: Follow the requeriments from the description.
+    custom:
+
+        # 🔗 Put the URL from were download this database.
+        url: ''
+
+# ⏳ How often to update the database (in hours)?
+# - Determine the time for downloading a new version
+#   of the database for always use up-to-date infomration
+#   and for avoid ratelimit.
+#
+#   ➡ Use 'DISABLE' for disable the update.
+#
+# 📚 Note: FoxGate checks the file every 2 hours
+# automatically or when the command '/fg reload' it's
+# used. If the file it's older than this value,
+# this will be updated.
+update: '12'
+
+# 📚 Configure the method to obtain hostnames.
+hostnames:
+    # 🚩 Enable detection with hostnames?
+    enable: true
+
+    # 📁 Check hostname using Reverse DNS?
+    # - Could has delay for checking, but with a perfect
+    #   resolver could reduce a lot the delay. It's perfect
+    #   use this to has efficient and accurate detection
+    #   of the hostnames.
+    #
+    # 📚 Note: Not using this method, will go to use
+    # InetAddress#getCanonicalHostName which it's faster
+    # but could fail in obtaining hostnames.
+    reverse_dns: false
+    # 🌎 Resolver to use.
+    # - Setting a correctly resolver, will increase
+    #   the speed of obtaining the hostname. Chooise
+    #   one and test with multiple IP's to determine
+    #   the last decision.
+    #
+    # 🦊 Zowi gives to you: some DNS for using like reverse,
+    # YAY! (IPv4, better found IPv6 DNS if you're using it)
+    # - 8.8.8.8 (Google Primary DNS)
+    # - 8.8.4.4 (Google Secondary DNS)
+    # - 1.1.1.1 (Cloudflare Primary DNS)
+    # - 1.0.0.1 (Cloudflare Secondary DNS)
+    # - 9.9.9.9 (Quad9 Primary DNS)
+    # - 149.112.112.112 (Quad9 Secondary DNS)
+    # - 208.67.222.222 (OpenDNS Primary DNS)
+    # - 208.67.220.220 (OpenDNS Secondary DNS)
+    #
+    #  For russian people:
+    # - 77.88.8.8 (Yandex Primary DNS)
+    # - 77.88.8.1 (Yandex Secondary DNS)
+    resolver: 1.1.1.1
+    # ⌛ Timeout for resolver.
+    # - Determine a timeout for a resolver,
+    #   useful to prevent stuck in a checking for
+    #   detect the hostname. Increase for allow
+    #   more opportunity to the plugin in obtain
+    #   with ReverseDNS. Use milliseconds.
+    #
+    # ⭐ Recommended: 2000
+    timeout: 300
+
+# Bypass detections of FoxGate.
+bypass:
+
+    # 🚩 Add the list of ISP(s) allowed for bypass detections
+    # of VPN in FoxGate. Use the value "[]" to disable, like:
+    #
+    #  list: []
+    #
+    # 📚 Example of this configuration.
+    #
+    # list:
+    # - "Cloudflare, Inc."
+    # - "Google LLC"
+    list: [
+        ]
+    # 📁 Works like the option from above, but using hostname.
+    # Use list format to put a hostname or disabling feature.
+    hostnames:
+    - one.one.one.one
+
+    # 👤 Blacklist the bypass to these name's.
+    blacklist_name:
+    - ImZowi
+    - ImLowiii
+    # 👤 Blacklist the bypass to these IP's.
+    blacklist_ip:
+    - 127.0.0.1
+
+# Whitelist/blacklist connections from X ISPs.
+# The player is blocked from joining but the IP doesn't get verified!
+blocker:
+
+    # 🧰 Define the type of usage to this list.
+    # - 'whitelist': Allow the access to certain ISPs.
+    # - 'blacklist': Deny the access in certain ISPs.
+    type: blacklist
+
+    # 📁 Add the list of ISP names for block/allow connections
+    # to the server. Use the value "[]" to disable, like:
+    #
+    #  list: []
+    #
+    # 📚 Note: The latest version contains a list of blocked
+    # ISPs where are used for crawler/portscanner bots; if you
+    # has less than 90 ISPs blocked by default, we recommend
+    # to you reset this configuration for receive latest ISPs.
+    # Otherwise, join to our discord server and ask for latest
+    # blocked ISPs list.
+    list:
+    - InMotion Hosting, Inc.
+    - root SA
+    - Datacamp Limited
+    - M247 Europe SRL
+    - Sentris Network LLC
+    - Total Server Solutions L.L.C.
+    - Performive LLC
+    - Todas LAS Redes SA
+    - Hostingforex S.A
+    - LeaseWeb Netherlands B.V.
+    - EGIHosting
+    - IP- Accelerated IT Services GmbH
+    - WorldStream B.V.
+    - Packet Host, Inc.
+    - OVH SAS
+    - IONOS SE
+    - Microsoft Corporation
+    - Google LLC
+    - Crown Castle Fiber LLC
+    - Church of Cyberology
+    - ReliableSite.Net LLC
+    - Layer7 Networks GmbH
+    - Go Host Ltd
+    - GTHost
+    - Flyservers S.A.
+    - Censys, Inc.
+    - Private Layer INC
+    - Netiface
+    - MAXKO d.o.o.
+    - DigitalOcean, LLC
+    - UCLOUD INFORMATION TECHNOLOGY (HK) LIMITED
+    - Pfcloud UG
+    - ALEXHOST SRL
+    - HostPapa
+    - IP Volume inc
+    - UNMANAGED LTD
+    - The Constant Company, LLC
+    - Akamai Connected Cloud
+    - Tamatiya EOOD
+    - TECHOFF SRV LIMITED
+    - tzulo, inc.
+    - Zenlayer Inc
+    - ONYPHE SAS
+    - Colocation America Corporation
+    - UK-2 Limited
+    - Proton AG
+    - LogicWeb Inc.
+    - Internet Utilities Europe and Asia Limited
+    - Clouvider
+    - DMIT Cloud Services
+    - LIBERTY NETWORKS DE COLOMBIA S.A.S
+    - VpsQuan L.L.C.
+    - FirstDigital Communications, LLC
+    - Respina Networks & Beyond PJSC
+    - Media Commerce Partners S.A
+    - PT Aplikanusa Lintasarta
+    - Cloud Services Kazakhstan LLP
+    - Petersburg Internet Network ltd.
+    - Tech Tide Portugal Unipessoal LDA
+    - Danny Nieuwenhuis trading as DedicatedNodes
+    - AirRabbit, LLC
+    - UDomain Web Hosting Company Ltd
+    - Datacenta Hosting Ltd
+    - Baffin Bay Networks AB
+    - Beijing Baidu Netcom Science and Technology Co., Ltd.
+    - Biterika Group LLC
+    - TEAM-HOST AS RU
+    - Chernyshov Aleksandr Aleksandrovich
+    - EANCENTER TELECOM LLC
+    - Ippon Hosting SARL
+    - Unitas Global
+    - InfoObjects Inc.
+    - DataBank Holdings, Ltd.
+    - PlanetHoster
+    - White Sands Hosting
+    - NetEnterprise Inc.
+    - ULTRA ONE
+    - TierPoint, LLC
+    - Synergy Dynamics Ltd
+    - GCI Network Solutions Limited
+    - GHOSTnet GmbH
+    - Atom Hosting SRL
+    - Core-Backbone GmbH
+    - Brongus
+    - Zone Networks Pty Ltd, Managed Hosting Solutions
+    - Suqian Pugongying Network Service Co.,Ltd
+    - DEVCHAND TELESOFT
+    - Naki Host Limited
+    - Medihost Solutions Pty Ltd
+    - Conscia Danmark A/S
+    - PeaceWeb
+    - ASN dedicated to HostUnited network services
+    - Neutral Data Centers Corp.
+    - Cyber Sainik
+    # 📁 Works like the option from above, but using hostname.
+    # Use list format to put a hostname or disabling feature.
+    hostnames:
+    - 23-94-28-163-host.colocrossing.com
+
+    # ✨ Download known malicious Hostname's list.
+    # - Uses Zowi's Central for download a list of known
+    #   malicious Hostname's for blocking, available for
+    #   everyone that uses our plugin.
+    #
+    # 📚 Note: You can report for add a malicious or removing
+    # a false flagged hostname. Some Hostnames blocked in this
+    # feature, are for bad reputation or for providing
+    # hosting/VPN/Tor.
+    known:
+
+        # 🚩 Enable this feature?
+        enable: true
+        # ⌛ Time (in hours) to scanning for downloading new
+        # information about known Hostname's list.
+        # - People can help in report known malicious Hostname's and
+        #   save in a list, which everyone with the plugin can
+        #   download and prevent more VPN's, Bot's, and others stuff.
+        #
+        #   ➡ Use 'DISABLE' for disable the update.
+        time: '8'
+
+        # 🧰 External provider.
+        # - Use this option in case you want use another external
+        #   list of Hostnames. The plugin tries to handle it and update
+        #   it.
+        #   ⚠ Requeriments:
+        #     - Needs to be a JSON(5) format.
+        #     - Needs to be HTTPS always.
+        #     - Needs to return file size in header (avoid issues, If isn't raw).
+        #     - Needs to return status 200.
+        #     - Needs to be a dowloadable file in output (If isn't raw).
+        #     - Needs to be a array-json format only.
+        #
+        # 📚 Note: Supports JSON5, but requires to be a JSON format,
+        # without a JSON5 feature (plugin uses Gson for load and cache).
+        # ➡ https://discord.zowi.gay/
+        provider:
+
+            # 📁 Enable this feature?
+            #
+            # ⚠ Warning: FoxGate will try to remove important data from the
+            # headers while using this option for prevent malicious actors,
+            # it's always recommended use original provider. USE THIS AT YOUR
+            # RISK WHILE USING THIS IN UNTRUSTED SOURCES!
+            enabled: false
+            # 🔗 URL to get the downloadable/raw file.
+            # - Follow all requeriments attached above first
+            #   for enabling provider. Leaving this empty will
+            #   make the feature non-functional.
+            url: ''
+
+        # 💼 Exclude Hostnames from the known list in case one
+        # give's false flags to you. Normally the list are
+        # attached like:
+        #
+        #  - one.one.one.one
+        #  - *0xem.ma ('123.oxem.ma', '125.oxem.ma', ...)
+        #
+        # 📚 Note: You can request for removing in case it's
+        # a false flag.
+        excluded: [
+            ]
+
+    # 🦊 Block connections from denied IP using the database?
+    # - This is useful if you want deny connections from future
+    #   issuers that connects in denied ISPs and IPs.
+    #
+    #   "The player is blocked from joining but the IP doesn't get checked!"
+    #    FoxGate add's the player to the database like it's "Blocked", but
+    #    doesn't save services detected, because the player isn't scanned for
+    #    VPN/Proxy or by another module.
+    database:
+
+        # 🚩 Block future connections using the database?
+        enable: true
+        # Determine the time in hours to mantain the block when a
+        # player get detected for this module. This avoid to the user from
+        # joining until the expiration time ends and, saving the server
+        # resources for not scanning through modules and services.
+        #
+        # ⭐ Recommended: 2
+        # 📚 Note: Type 'permanent' for blocking permanent.
+        time: '2'
+
+    # 👤 Whitelist the detection to this name's.
+    whitelist_name:
+    - ImZowi
+    - ImLowiii
+    # 👤 Whitelist the detection to this IP's.
+    whitelist_ip:
+    - 127.0.0.1
+
+    # 🚩 Actions to make when is detected.
+    # - Use this to kick with the plugin instantly:
+    #     - 'kick'
+    # - Or add your custom command:
+    #     - 'ipban {IP} The ISP (Internet Service Provider) is currently banned.'
+    #
+    # Disable this feature by leaving the list empty.
+    actions:
+    - kick

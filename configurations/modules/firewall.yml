@@ -1,0 +1,56 @@
+#    ___ _                        _ _ 
+#   / __(_)_ __ _____      ____ _| | |
+#  / _\ | | '__/ _ \ \ /\ / / _` | | |
+# / /   | | | |  __/\ V  V / (_| | | |
+# \/    |_|_|  \___| \_/\_/ \__,_|_|_|
+#
+# Block connections using your system firewall instead
+# using events.
+# When a player is blocked, instead of blocking them through
+# the events the server sends, they can be blocked through
+# the machine's firewall. This is useful when bots are connecting
+# via a proxy/VPN and reduces resource overload when a bot
+# attack occurs.
+#
+#  ➡ This adds action 'firewall', use it in 'actions' section
+#     for block in every module that you need.
+#
+# 📚 Note: The downside to this is that the detected player may see
+# the server as down or offline (depending on your firewall configuration).
+# Using this feature in special cases or with a good configuration where
+# avoid false flags is recommended.
+#
+# ❓ Has questions? Join to the discord server:
+# - https://discord.zowi.gay/
+# - https://discord.idcteam.xyz/
+
+# 🚩 Determine the mode to use for firewall.
+# - Available options in type.
+#
+#  |=> SOFTWARE
+#  |=> ROOT (Unavailable)
+#  |=> DISABLE
+#
+# ➡ Use 'DISABLE' for disable this feature.
+type: DISABLE
+
+# 📁 Configuration for supported softwares.
+software:
+
+    # 🚩 Determine here the type to use.
+    #
+    #  Supported softwares:
+    #  ➡ VeloFlame
+    #  ➡ FlameCord
+    type: VeloFlame
+
+    # 📁 Determine a customizable reason for
+    # firewall in case the software requires one.
+    # - Useful to make difference about your software
+    #   and FoxGate, only will be used if your software
+    #   supports it; otherwise, will be unusable.
+    #
+    # 📚 Note: Currently we know that 'FlameCord'
+    # supports a custom reason, try to not set a
+    # nullable value to avoid issues.
+    reason: '[FoxGate] The connection was denied!'

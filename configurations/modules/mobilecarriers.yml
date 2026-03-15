@@ -1,0 +1,74 @@
+#               _     _ _                     
+#   /\/\   ___ | |__ (_) | ___                
+#  /    \ / _ \| '_ \| | |/ _ \               
+# / /\/\ \ (_) | |_) | | |  __/               
+# \/ ___\/\___/|_.__/|_|_|\___|               
+#   / _ \_ __ _____   _(_) __| | ___ _ __ ___ 
+#  / /_)/ '__/ _ \ \ / / |/ _` |/ _ \ '__/ __|
+# / ___/| | | (_) \ V /| | (_| |  __/ |  \__ \
+# \/    |_|  \___/ \_/ |_|\__,_|\___|_|  |___/
+#
+# Block connections based on whether the IP belongs to a specific
+# mobile carrier or not.
+# The plugin will use an ISP detection method to block connections
+# according to your needs. Blocking mobile providers will prevent
+# players from joining, but it helps protect your server from
+# malicious users who rely on mobile carriers and dynamic IPs.
+#
+# 📚 Note: This feature it's a soon function, please, wait
+# until this it's finished. This configuration works like a sketch.
+#
+# ❓ Has questions? Join to the discord server:
+# - https://discord.zowi.gay/
+# - https://discord.idcteam.xyz/
+
+# 🚩 Determine the model to use for prevent
+#    or allow a mobile provider.
+#
+#  |=> AUTO
+#  |=> ISPFILTER
+#  |=> ASN (Premium)
+#  |=> DISABLE
+#
+# ➡ Use 'DISABLE' for disable this feature.
+# ⭐ Use 'AUTO' for select automatically the method.
+type: AUTO
+
+# 📁 Configuration for providers in each country.
+# - This function will block any mobile carrier where
+#   has 'block' value in 'true'.
+providers:
+
+    # 🇦🇷 Argentina (AR)
+    # 📚 Known providers: 'Movistar', 'Claro' and 'Personal'.
+    argentina:
+        # 📍 Movistar
+        movistar:
+            # 🚩 Deny connections from this mobile carrier?
+            block: false
+
+            # [Ignore] Values for the plugin make in mind. This value can't change.
+            isp:
+            - Telefonica de Argentina
+            asns:
+            - '22927'
+        # 📍 Claro
+        claro:
+            # 🚩 Deny connections from this mobile carrier?
+            block: false
+
+            # [Ignore] Values for the plugin make in mind. This value can't change.
+            isp:
+            - Techtel LMDS Comunicaciones Interactivas S.A.
+            asns:
+            - '11664'
+        # 📍 Personal
+        personal:
+            # 🚩 Deny connections from this mobile carrier?
+            block: false
+
+            # [Ignore] Values for the plugin make in mind. This value can't change.
+            isp:
+            - Telecom Argentina S.A.
+            asns:
+            - '7303'

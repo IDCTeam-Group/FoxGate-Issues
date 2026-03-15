@@ -1,0 +1,52 @@
+#   _____  ___  __ _           _ _            
+#   \_   \/ _ \/ /(_)_ __ ___ (_| |_ ___ _ __ 
+#    / /\/ /_)/ / | | '_ ` _ \| | __/ _ | '__|
+# /\/ /_/ ___/ /__| | | | | | | | ||  __| |   
+# \____/\/   \____|_|_| |_| |_|_|\__\___|_|   
+#
+# Limit maximum connections per IP to avoid multi-accounts
+# or bots.
+# When a player join, this start a count in their IP, where
+# a new connection in the IP it's 1 point more, and if
+# that IP reachs a certain amount of points, the connection
+# will be denied. But, if the player leave the server, the IP
+# discount 1 point.
+#
+# 📚 Note: This feature it's experimental and could be unstable
+# in some cases, try using this with precaution. Every update,
+# this tries to be more stable while tries to be optimized.
+#
+# ❓ Has questions? Join to the discord server:
+# - https://discord.zowi.gay/
+# - https://discord.idcteam.xyz/
+
+# 📁 Enable this feature?
+enable: true
+
+# 👤 Determine the maximum limit of points per
+# IP to start blocking coming new connections
+# from that IP.
+# - Avoid using a low value, because exists rare
+#   cases where an user joins with a duplicate IP
+#   in the same city from same provider of ISP.
+#
+# ⭐ Recommended: 3
+maximum: 3
+# ⏳ Base in time.
+# - When enabled, the IP counter will automatically reset
+#   after the specified time period. This prevents permanent
+#   IP blocks and allows users from the same network
+#   (like family, school, or workplace) to join again
+#   after the time expires.
+#
+#   With '30m' and maximum=3: If 3 players from the same
+#   IP join within 30 minutes, the 4th will be blocked.
+#   After 30 minutes, the counter resets to 0.
+#   If the module it's disabled, the counter never resets
+#   automatically, only will allow if one player leaves the
+#   server, this discount 1 from the counter and the 4th
+#   can enter.
+#
+# ⭐ Recommended: 30m
+# 📚 Note: Use 'DISABLE' for disable this feature.
+time: DISABLE

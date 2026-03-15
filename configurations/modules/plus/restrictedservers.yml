@@ -1,0 +1,52 @@
+#    __          _        _      _           _ 
+#   /__\ ___ ___| |_ _ __(_) ___| |_ ___  __| |
+#  / \/// _ / __| __| '__| |/ __| __/ _ \/ _` |
+# / _  |  __\__ | |_| |  | | (__| ||  __| (_| |
+# \__\_/\___|___/\__|_|  |_|\___|\__\___|\__,_|
+# / _\ ___ _ ____   _____ _ __ ___             
+# \ \ / _ | '__\ \ / / _ | '__/ __|            
+# _\ |  __| |   \ V |  __| |  \__ \            
+# \__/\___|_|    \_/ \___|_|  |___/            
+#
+# Limit which subservers from your proxy, blocked users can
+# join or not.
+# When a player get detected but this feature it's enabled,
+# the player can log-in correctly without getting denied,
+# allowing the connection to certains subservers/backends in
+# your Proxy. This is useful in case you want players can
+# join to your hub but no in games-mode.
+#
+#    🚩 This is feature it's available only for:
+#    ➡ BungeeCord
+#    ➡ Velocity
+#    ➡ WaterdogPE
+#
+# 📚 Note: If you enable this feature but the server isn't
+# in the list, the player probably can join without getting
+# denined in certain scenaries.
+# 🚩 Warning! This feature requires option 'scanner.block.cache'
+# from 'config.yml' enabled. Why? We aiming in reducing
+# database calls to prevent bot-attacks and saving performance,
+# this it's a better way.
+#
+# ❓ Has questions? Join to the discord server:
+# - https://discord.zowi.gay/
+# - https://discord.idcteam.xyz/
+
+# 📁 Enable this feature?
+enable: false
+
+# 🧰 Define the type of usage to this list.
+# - 'whitelist': Allow the access to certain servers.
+# - 'blacklist': Deny the access in certain servers.
+type: whitelist
+# 📍 Add the list of servers names for block/allow connections.
+# - Uses RegEx if you needs. The list of under, only was
+#   examples using RegEx, you can change with your servers
+#   names (the name used for connect the proxy to backends).
+#
+# 📚 Note: If you leave whitelist/blacklist type and this is
+# empty, will disable the feature.
+list:
+- auth.*
+- lobby.*

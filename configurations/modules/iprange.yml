@@ -1,0 +1,188 @@
+#   _____  ___  __                        
+#   \_   \/ _ \/__\ __ _ _ __   __ _  ___ 
+#    / /\/ /_)/ \/// _` | '_ \ / _` |/ _ \
+# /\/ /_/ ___/ _  \ (_| | | | | (_| |  __/
+# \____/\/   \/ \_/\__,_|_| |_|\__, |\___|
+#                              |___/      
+#
+# Limit the access to certain IP ranges.
+# This feature will blocks to certain ranges of an ISP.
+# If you find an ISP but you can't block it because legit
+# connection but has hosting services, this feature it's
+# for you. Block only the IP's that you want or make
+# bypass If neccessary.
+#
+# 📚 Note: This feature supports CIDR.
+# ⏳ Previously (for nostalgic): Pattern model.
+# The format for this model it's 'X.X.X.X/b', where 'b' means
+# the bits of the LAN. Here some examples of this model:
+#
+#  🧩 'X.X.X.X' or 'X.X.X.X/32'
+#  Thisformat allows to block one exactly IP.
+#
+#  🧩 'X.X.X.X/24'
+#  This will blocks an entirely range from an IP,
+#  in this case, will block from: 'X.X.X.0' to 'X.X.X.255'
+#
+#  🧩 'X.X.X.X/21'
+#  This example of bits in 21, will block all ranges in the
+#  next way: '217.26.208.0' it's the range where you want to
+#  start blocking and this will end in '217.26.215.0'.
+#
+# 📍 See more of about CIDR in:
+# https://www.ipxo.com/blog/what-is-cidr/
+#
+# ⚠️ Warning! The plugin will convert the old format in CIDR
+# just for migration, you has time for migrate to CIDR before
+# removing this system.
+#
+# ❓ Has questions? Join to the discord server:
+# - https://discord.zowi.gay/
+# - https://discord.idcteam.xyz/
+
+# 📁 Enable this feature?
+enable: true
+
+# Bypass detections of FoxGate.
+bypass:
+
+    # 🚩 Add the list of Ranges allowed for bypass detections
+    # of VPN in FoxGate. Use the value "[]" to disable, like:
+    #
+    #  list: []
+    #
+    # 📚 Example of this configuration.
+    #
+    # list:
+    # - "162.159.193.0/24"
+    # - "1.1.1.0/24"
+    list: [
+        ]
+    # 👤 Blacklist the bypass to these name's.
+    blacklist_name:
+    - ImZowi
+    - ImLowiii
+    # 👤 Blacklist the bypass to these IP's.
+    blacklist_ip:
+    - 127.0.0.1
+
+# Whitelist/blacklist connections from X IPRange.
+# The player is blocked from joining but the IP doesn't get verified!
+blocker:
+
+    # 🧰 Define the type of usage to this list.
+    # - 'whitelist': Allow the access to certain Ranges.
+    # - 'blacklist': Deny the access in certain Ranges.
+    type: blacklist
+
+    # 📁 Add the list of Ranges for block/allow connections
+    # to the server. Use the value "[]" to disable, like:
+    #
+    #  list: []
+    list:
+    - 130.185.255.0/24
+    - 145.14.133.0/24
+    - 171.22.254.0/24
+
+    # ✨ Download known malicious Range's list.
+    # - Uses Zowi's Central for download a list of known
+    #   malicious Range's for blocking, available for
+    #   everyone that uses our plugin.
+    #
+    # 📚 Note: You can report for add a malicious or removing
+    # a false flagged Range. Some Ranges blocked in this
+    # feature, are for bad reputation or for providing
+    # hosting/VPN.
+    known:
+
+        # 🚩 Enable this feature?
+        enable: true
+        # ⌛ Time (in hours) to scanning for downloading new
+        # information about known Range's list.
+        # - People can help in report known malicious Range's and
+        #   save in a list, which everyone with the plugin can
+        #   download and prevent more VPN's, Bot's, and others stuff.
+        #
+        #   ➡ Use 'DISABLE' for disable the update.
+        time: '8'
+
+        # 🧰 External provider.
+        # - Use this option in case you want use another external
+        #   list of Ranges. The plugin tries to handle it and update
+        #   it.
+        #   ⚠ Requeriments:
+        #     - Needs to be a JSON(5) format.
+        #     - Needs to be HTTPS always.
+        #     - Needs to return file size in header (avoid issues, If isn't raw).
+        #     - Needs to return status 200.
+        #     - Needs to be a dowloadable file in output (If isn't raw).
+        #     - Needs to be a array-json format only.
+        #
+        # 📚 Note: Supports JSON5, but requires to be a JSON format,
+        # without a JSON5 feature (plugin uses Gson for load and cache).
+        # ➡ https://discord.zowi.gay/
+        provider:
+
+            # 📁 Enable this feature?
+            #
+            # ⚠ Warning: FoxGate will try to remove important data from the
+            # headers while using this option for prevent malicious actors,
+            # it's always recommended use original provider. USE THIS AT YOUR
+            # RISK WHILE USING THIS IN UNTRUSTED SOURCES!
+            enabled: false
+            # 🔗 URL to get the downloadable/raw file.
+            # - Follow all requeriments attached above first
+            #   for enabling provider. Leaving this empty will
+            #   make the feature non-functional.
+            url: ''
+
+        # 💼 Exclude Ranges from the known list in case one
+        # give's false flags to you. Normally the list are
+        # attached like:
+        #
+        #  - 1.1.1.0/24
+        #  - 1.1.0.0/23
+        #
+        # 📚 Note: You can request for removing in case it's
+        # a false flag.
+        excluded: [
+            ]
+
+    # 🦊 Block connections from denied IP using the database?
+    # - This is useful if you want deny connections from future
+    #   issuers that connects in denied ranges of IPs.
+    #
+    #   "The player is blocked from joining but the IP doesn't get checked!"
+    #    FoxGate add's the player to the database like it's "Blocked", but
+    #    doesn't save services detected, because the player isn't scanned for
+    #    VPN/Proxy or by another module.
+    database:
+
+        # 🚩 Block future connections using the database?
+        enable: true
+        # Determine the time in hours to mantain the block when a
+        # player get detected for this module. This avoid to the user from
+        # joining until the expiration time ends and, saving the server
+        # resources for not scanning through modules and services.
+        #
+        # ⭐ Recommended: 2
+        # 📚 Note: Type 'permanent' for blocking permanent.
+        time: '2'
+
+    # 👤 Whitelist the detection to this name's.
+    whitelist_name:
+    - ImZowi
+    - ImLowiii
+    # 👤 Whitelist the detection to this IP's.
+    whitelist_ip:
+    - 127.0.0.1
+
+    # 🚩 Actions to make when is detected.
+    # - Use this to kick with the plugin instantly:
+    #     - 'kick'
+    # - Or add your custom command:
+    #     - 'ipban {IP} The IP it's in a malicious range.
+    #
+    # Disable this feature by leaving the list empty.
+    actions:
+    - kick

@@ -1,0 +1,391 @@
+#    ___             __                 _   _             
+#   / _ \___  ___   / /  ___   ___ __ _| |_(_) ___  _ __  
+#  / /_\/ _ \/ _ \ / /  / _ \ / __/ _` | __| |/ _ \| '_ \ 
+# / /_\|  __| (_) / /__| (_) | (_| (_| | |_| | (_) | | | |
+# \____/\___|\___/\____/\___/ \___\__,_|\__|_|\___/|_| |_|
+#
+# Manage which countries and ASNs are allowed or blocked
+# from accessing your server.
+# When a player joins, their connection is scanned
+# for their country and ASN using 'MaxMind', 'IPInfo' or
+# 'IPLocate'.
+# Based on this, you can:
+#
+# ➡ Whitelist/blacklist specific countries or ASNs
+# ➡ Bypass AntiVPN checks for trusted networks.
+#
+# ❓ Has questions? Join to the discord server:
+# - https://discord.zowi.gay/
+# - https://discord.idcteam.xyz/
+
+# 🔗 Select the site for downloading the file.
+# - Use your favorite provider for downloading the
+#   database for 'Geo Module'. Follow and see the
+#   instructions of every provider in case it's
+#   required.
+provider:
+
+    #
+    #  🚩 DISABLE
+    #     Use this value for disable Geo Module in case
+    #     you don't need this feature.
+    #
+    #  💼 ZC (Zowi's Central)
+    #  🧩 ZCI (IPInfo alternative)
+    #  🧩 ZCL (IPLocate alternative)
+    #     Download the database from 'Zowi Central', this
+    #     option could be unstable sometimes, for their
+    #     web-hosting. The database it's updated every 12
+    #     hours automatically.
+    #     ⭐ Recommended in case it's first setup or you
+    #       reached ratelimit from 'MaxMind'.
+    #     🔗 https://central.zowi.gay/
+    #
+    #  💼 MaxMind
+    #     Download the database from MaxMind, this is
+    #     the real provider, which offers stable download
+    #     of the database. A key it's required for this.
+    #     ⭐ Recommended in case you want stability and
+    #       has a key.
+    #     🔗 https://maxmind.com/
+    #
+    #  💼 IPInfo
+    #     Download the database from IPInfo, this is
+    #     the alternative provider, which offers other type
+    #     of the database. A key it's required for this.
+    #     ⭐ Recommended in case you want alternative and
+    #       has a key.
+    #     🔗 https://ipinfo.io/
+    #
+    #  💼 IPLocate
+    #     Download the database from IPLocate, this is
+    #     the alternative provider, which offers other type
+    #     of the database. A key it's required for this.
+    #     ⭐ Recommended in case you want alternative and
+    #       has a key.
+    #     🔗 https://iplocate.io/
+    #
+    #  💼 Custom
+    #     You can make your own hosting for downloading the
+    #     database? Put a custom URL for making it downloading,
+    #     but, needs to follow some requeriments.
+    #     ⚠ Requeriments:
+    #        - Needs to be a '.tar.gz' file.
+    #        - Needs to be descompressed.
+    #        - Needs to follow MaxMind format.
+    #        - Needs to return file size in header (avoid issues).
+    #        - Needs to be HTTPS always.
+    #        - Needs to has the '.mmdb' file inside.
+    #
+    # If you has questions about this selection, please,
+    # join to our discord server.
+    # ➡ https://discord.zowi.gay/
+    use: ZC
+
+    # 🚩 Fallback API in case the primary fails.
+    fallback:
+    - MaxMind
+    - ZCI
+    - IPInfo
+    - ZCL
+    - IPLocate
+
+    # Configuration in case it's being using MaxMind.
+    # 🔗 https://maxmind.com/
+    maxmind:
+
+        # 🔑 Enter here your key of MaxMind.
+        # - Insert your key from MaxMind (https://maxmind.com/) in case you
+        #   don't want to use Zowi's Central for downloading the database.
+        #   This option it's extremely recommended.
+        key: ''
+
+    # Configuration in case it's being using IPInfo.
+    # 🔗 https://ipinfo.io/
+    ipinfo:
+
+        # 🔑 Enter here your key of IPInfo.
+        # - Insert your key from IPInfo (https://ipinfo.io/) in case you
+        #   don't want to use MaxMind for the database.
+        #   This option it's extremely recommended.
+        key: ''
+
+    # Configuration in case it's being using IPLocate.
+    # 🔗 https://iplocate.io/
+    iplocate:
+
+        # 🔑 Enter here your key of IPLocate.
+        # - Insert your key from IPLocate (https://iplocate.io/) in case you
+        #   don't want to use MaxMind and IPInfo for the database.
+        key: ''
+
+    # Configuration in case you're sure to use one Custom.
+    # 📚 Note: Follow the requeriments from the description.
+    custom:
+
+        # 🔗 Put the URL from were download country:
+        country: ''
+
+        # 🔗 Put the URL from were download ASN:
+        asn: ''
+
+# ⏳ How often to update the database (in hours)?
+# - Determine the time for downloading a new version
+#   of the database for always use up-to-date infomration
+#   and for avoid ratelimit.
+#
+#   ➡ Use 'DISABLE' for disable the update.
+#
+# 📚 Note: FoxGate checks the file every 2 hours
+# automatically or when the command '/fg reload' it's
+# used. If the file it's older than this value,
+# this will be updated.
+update: '12'
+
+# 🌎 Manage the access for Countries.
+# - Use ISO code for this system, view all ISO codes in
+#   the list: [A-2]
+#   https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
+country:
+
+    # Bypass detections of FoxGate.
+    bypass:
+
+        # 🚩 Add the list of ISO codes allowed for bypass detections
+        # of VPN in FoxGate. Use the value "[]" to disable, like:
+        #
+        #  list: []
+        #
+        # 📚 Example of this configuration.
+        #
+        # list:
+        # - AR
+        # - BR
+        # - MX
+        # - ES
+        # - VE
+        list: [
+            ]
+        # 👤 Blacklist the bypass to these name's.
+        blacklist_name:
+        - ImZowi
+        - ImLowiii
+        # 👤 Blacklist the bypass to these IP's.
+        blacklist_ip:
+        - 127.0.0.1
+
+    # Whitelist/blacklist connections from X countries.
+    # The player is blocked from joining but the IP doesn't get verified!
+    blocker:
+
+        # 🧰 Define the type of usage to this list.
+        # - 'whitelist': Allow the access to certain countries.
+        # - 'blacklist': Deny the access in certain countries.
+        type: blacklist
+        # 📁 Add the list of ISO codes for block/allow connections
+        # to the server. Use the value "[]" to disable, like:
+        #
+        #  list: []
+        list:
+        - PK
+        - IR
+        - DZ
+
+        # 🦊 Block connections from denied IP using the database?
+        # - This is useful if you want deny connections from future
+        #   issuers that connects in denied countries and IPs.
+        #
+        #   "The player is blocked from joining but the IP doesn't get checked!"
+        #    FoxGate add's the player to the database like it's "Blocked", but
+        #    doesn't save services detected, because the player isn't scanned for
+        #    VPN/Proxy or by another module.
+        database:
+
+            # 🚩 Block future connections using the database?
+            enable: true
+            # Determine the time in hours to mantain the block when a
+            # player get detected for this module. This avoid to the user from
+            # joining until the expiration time ends and, saving the server
+            # resources for not scanning through modules and services.
+            #
+            # ⭐ Recommended: 2
+            # 📚 Note: Type 'permanent' for blocking permanent.
+            time: '2'
+
+        # 👤 Whitelist the detection to this name's.
+        whitelist_name:
+        - ImZowi
+        - ImLowiii
+        # 👤 Whitelist the detection to this IP's.
+        whitelist_ip:
+        - 127.0.0.1
+        # 🚩 Actions to make when is detected.
+        # - Use this to kick with the plugin instantly:
+        #     - 'kick'
+        # - Or add your custom command:
+        #     - 'ipban {IP} The country is currently banned.'
+        #
+        # Disable this feature by leaving the list empty.
+        actions:
+        - kick
+
+# 📡 Manage the access for ASN's.
+# - Use ASN system for this part, you can get ASN from an
+#   IP with the link:
+#   https://www.ipvoid.com/ip-to-asn/
+#
+# 🧩 Example:
+# '1.1.1.1' (Cloudflare) is: 'AS13335'
+# Use the number for this list: '13335'
+asn:
+
+    # Bypass detections of FoxGate.
+    bypass:
+
+        # 🚩 Add the list of ASN's allowed for bypass detections
+        # of VPN in FoxGate. Use the value "[]" to disable, like:
+        #
+        #  list: []
+        #
+        # 📚 Example of this configuration.
+        #
+        # list:
+        # - 13335
+        # - 15169
+        list:
+        - '000000'
+        # 👤 Blacklist the bypass to these name's.
+        blacklist_name:
+        - ImZowi
+        - ImLowiii
+        # 👤 Blacklist the bypass to these IP's.
+        blacklist_ip:
+        - 127.0.0.1
+
+    # Whitelist/blacklist connections from X countries.
+    # The player is blocked from joining but the IP doesn't get verified!
+    blocker:
+
+        # 🧰 Define the type of usage to this list.
+        # - 'whitelist': Allow the access to certain ASN's.
+        # - 'blacklist': Deny the access in certain ASN's.
+        type: blacklist
+        # 📁 Add the list of ASN's for block/allow connections
+        # to the server. Use the value "[]" to disable, like:
+        #
+        #  list: []
+        list: [
+            ]
+
+        # ✨ Download known malicious ASN's list.
+        # - Uses Zowi's Central for download a list of known
+        #   malicious ASN's for blocking, available only for
+        #   buyers and original plugin.
+        #
+        # 📚 Note: You can report for add a malicious or removing
+        # a false flagged ASN. Some ISP's blocked in this
+        # feature, are for bad reputation or for providing
+        # hosting/VPN.
+        known:
+
+            # 🚩 Enable this feature?
+            enable: true
+            # ⌛ Time (in hours) to scanning for downloading new
+            # information about known ASN's list.
+            # - Buyers can help in report known malicious ASN's and
+            #   save in a list, which everyone with Plus Edition can
+            #   download and prevent more VPN's, Bot's, and others stuff.
+            #
+            #   ➡ Use 'DISABLE' for disable the update.
+            time: '2'
+            # 🌎 Include all suspecious ISPs?
+            # - This option will includes some suspecious ISPs for
+            #   VPNs, Tor, Proxies and others, useful for making strict
+            #   detections but can make false flags. This feature
+            #   works with 'excluded' option.
+            #
+            # 📚 Note: Ask to our discord server for the list in case
+            # you want only block specifies.
+            suspecious_isps: false
+
+            # 🧰 External provider.
+            # - Use this option in case you want use another external
+            #   list of ASNs. The plugin tries to handle it and update
+            #   it.
+            #   ⚠ Requeriments:
+            #     - Needs to be a JSON(5) format.
+            #     - Needs to be HTTPS always.
+            #     - Needs to return file size in header (avoid issues, If isn't raw).
+            #     - Needs to return status 200.
+            #     - Needs to be a dowloadable file in output (If isn't raw).
+            #     - Needs to be a array-json format only.
+            #
+            # 📚 Note: Supports JSON5, but requires to be a JSON format,
+            # without a JSON5 feature (plugin uses Gson for load and cache).
+            # ➡ https://discord.zowi.gay/
+            provider:
+
+                # 📁 Enable this feature?
+                # - This feature will break options like 'suspeciois_isps'
+                #   and in case you bought Extended ASN List, this doesn't
+                #   will be applied. All options mentioned before, are only
+                #   available in the original provider, using another provider
+                #   only will be used their content of ASN List.
+                #
+                # ⚠ Warning: FoxGate will try to remove important data from the
+                # headers while using this option for prevent malicious actors,
+                # it's always recommended use original provider. USE THIS AT YOUR
+                # RISK WHILE USING THIS IN UNTRUSTED SOURCES!
+                enabled: false
+                # 🔗 URL to get the downloadable/raw file.
+                # - Follow all requeriments attached above first
+                #   for enabling provider. Leaving this empty will
+                #   make the feature non-functional.
+                url: ''
+
+            # 💼 Exclude ASN's from the known list in case one
+            # give's false flags to you.
+            #
+            # 📚 Note: You can request for removing in case it's
+            # a false flag.
+            excluded: [
+                ]
+
+        # 🦊 Block connections from denied IP using the database?
+        # - This is useful if you want deny connections from future
+        #   issuers that connects in denied ASNs and IPs.
+        #
+        #   "The player is blocked from joining but the IP doesn't get checked!"
+        #    FoxGate add's the player to the database like it's "Blocked", but
+        #    doesn't save services detected, because the player isn't scanned for
+        #    VPN/Proxy or by another module.
+        database:
+
+            # 🚩 Block future connections using the database?
+            enable: true
+            # Determine the time in hours to mantain the block when a
+            # player get detected for this module. This avoid to the user from
+            # joining until the expiration time ends and, saving the server
+            # resources for not scanning through modules and services.
+            #
+            # ⭐ Recommended: 2
+            # 📚 Note: Type 'permanent' for blocking permanent.
+            time: '2'
+
+        # 👤 Whitelist the detection to this name's.
+        whitelist_name:
+        - ImZowi
+        - ImLowiii
+        # 👤 Whitelist the detection to this IP's.
+        whitelist_ip:
+        - 127.0.0.1
+
+        # 🚩 Actions to make when is detected.
+        # - Use this to kick with the plugin instantly:
+        #     - 'kick'
+        # - Or add your custom command:
+        #     - 'ipban {IP} The ASN is currently banned.'
+        #
+        # Disable this feature by leaving the list empty.
+        actions:
+        - kick

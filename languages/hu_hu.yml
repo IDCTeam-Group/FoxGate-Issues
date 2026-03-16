@@ -1,0 +1,226 @@
+ #
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___ 
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/           
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+
+    # 🦊 Kick message when the plugin blocks a player.
+    #
+    # {PLAYER} - Returns the player's name.
+    # {IP} - Returns the player's IP.
+    # {UUID} - Returns the player's UUID. (BungeeCord doesn't support this)
+    # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+    # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+    # {COUNTRY} - Returns the player's country. (Only works with premium version).
+    # {ASN} - Return the player's ASN (Only works with premium version).
+    kick:
+        vpn: '<red><bold>✘</bold> A <bold>FoxGate AntiVPN</bold> blokkolta a csatlakozásod:\n\n<white>A kapcsolatod elutasításra került, mert VPN-t vagy Proxyt használsz.\n<gray>Kapcsold ki a VPN-ed/proxyd, mielőtt csatlakoznál.</gray>\n\n<gold>Hiba történt?</gold> <white>Csatlakozz a Discord szerverünkre.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: Services</dark_gray>'
+        iplimiter: '<red><bold>✘</bold> A <bold>FoxGate AntiVPN</bold> blokkolta a csatlakozásod:\n\n<white>A kapcsolatod elutasításra került.\n<gray>Túl sok kapcsolatot észleltünk ugyanarról az IP-címről.</gray>\n\n<gold>Hiba történt?</gold> <white>Csatlakozz a Discord szerverünkre.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: IPLimiter</dark_gray>'
+        isp: '<red><bold>✘</bold> A <bold>FoxGate AntiVPN</bold> blokkolta a csatlakozásod:\n\n<white>A kapcsolatod elutasításra került, mert rosszindulatúnak minősült.\n<gray>A "<light_purple>{ISP}</light_purple>" internetszolgáltató, amelyet használsz, tiltott ezen a szerveren.</gray>\n\n<gold>Hiba történt?</gold> <white>Csatlakozz a Discord szerverünkre.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: ISPFilter</dark_gray>'
+        iprange: '<red><bold>✘</bold> A <bold>FoxGate AntiVPN</bold> blokkolta a csatlakozásod:\n\n<white>A kapcsolatod elutasításra került, mert rosszindulatúnak minősült.\n<gray>Az IP-cím feketelistán van az adatbázisunkban, mert rosszindulatú tartományban található.</gray>\n\n<gold>Hiba történt?</gold> <white>Csatlakozz a Discord szerverünkre.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: IPRange</dark_gray>'
+        bogon: '<red><bold>✘</bold> A <bold>FoxGate AntiVPN</bold> blokkolta a csatlakozásod:\n\n<white>A kapcsolatod elutasításra került, mert bogon címről érkezett.\n<gray>Az IP bogon címnek minősül (privát/fenntartott hálózat).</gray>\n\n<gold>Hiba történt?</gold> <white>Csatlakozz a Discord szerverünkre.\n<aqua><underlined>discord.idcteam.xyz'
+        country: '<red><bold>✘</bold> A <bold>FoxGate AntiVPN</bold> blokkolta a csatlakozásod:\n\n<white>A kapcsolatod elutasításra került, mert rosszindulatúnak minősült.\n<gray>Az ország, ahonnan csatlakozol "<light_purple>{COUNTRY}</light_purple>", tiltott ezen a szerveren.</gray>\n\n<gold>Hiba történt?</gold> <white>Csatlakozz a Discord szerverünkre.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: Country</dark_gray>'
+        asn: '<red><bold>✘</bold> A <bold>FoxGate AntiVPN</bold> blokkolta a csatlakozásod:\n\n<white>A kapcsolatod elutasításra került, mert VPN-t vagy Proxyt használsz.\n<gray>Az internetszolgáltatód (ASN) "<light_purple>{ASN}</light_purple>" ismert VPN- vagy Tor-szolgáltató.</gray>\n\n<gold>Hiba történt?</gold> <white>Csatlakozz a Discord szerverünkre.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: ASN</dark_gray>'
+        # Some placeholders don't work in this message because it's used to kick
+        # the player when they try to join and their IP is still being verified in
+        # a pre-check. This prevents duplicate verification until the previous
+        # one is complete.
+        checking: '<red><bold>✘</bold> Várakozás a <bold>FoxGate AntiVPN</bold> ellenőrzésére:\n\n<white>Ellenőrizzük a kapcsolatod.\n<gray>A FoxGate vizsgálja a kapcsolatod, kérlek várj néhány másodpercet.</gray>\n\n<gold>Hiba történt?</gold> <white>Csatlakozz a Discord szerverünkre.\n<aqua><underlined>discord.idcteam.xyz'
+    # 📍 Notification when a player is kicked. You can prevent this message by leaving it blank.
+    notify:
+        vpn: '{prefix} <aqua>{player} <gray>VPN-t használt, ezért kirúgtuk! <green>({IP})'
+        isp: '{prefix} <aqua>{player} <gray>kitiltásra került, mert tiltott ISP-ről csatlakozott: <aqua>{ISP}</aqua>! <green>({IP})'
+        iprange: '{prefix} <aqua>{player} <gray>kitiltásra került, mert tiltott IP-tartományról csatlakozott! <green>({IP})'
+        bogon: '{prefix} <aqua>{player} <gray>megpróbált csatlakozni egy bogon IP-ről: <green>{IP}</green>!'
+        country: '{prefix} <aqua>{player} <gray>kitiltásra került, mert tiltott országból csatlakozott: <aqua>{COUNTRY}</aqua>! <green>({IP})'
+        asn: '{prefix} <aqua>{player} <gray>kitiltásra került, mert tiltott ASN-ről csatlakozott: <aqua>{ASN}</aqua>! <green>({IP})'
+        #
+        # Message to send when player tries to join but it's blocked.
+        # Leave empty to disable this thing. Just works {PLAYER} and {IP} placeholders.
+        blocked: '{prefix} <aqua>{player} <gray>megpróbált csatlakozni, de korábban már blokkolva volt. <green>({IP})'
+    # 🔎 Message to show when a player it's blocked by a module. (For status command)
+    blocked:
+        isp: '<gold>Blokkolva az ISP miatt.'
+        iprange: '<gold>Blokkolva az IP-tartomány miatt.'
+        bogon: '<gold>Blokkolva bogon IP miatt.'
+        country: '<gold>Blokkolva az ország miatt.'
+        asn: '<gold>Blokkolva az ASN miatt.'
+    # 🧩 This will only show up in the console.
+    # This can help with debug in case a service is not working correctly.
+    # You can prevent this message by leaving it blank.
+    error: '{prefix} Hiba a VPN ellenőrzésekor a következővel: <aqua>"{service}"</aqua> a következő játékosnál: <yellow>{player}</yellow>: {error}'
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+    help:
+        add: IP hozzáadása az adatbázishoz.
+        alts: Az összes felhasználó ellenőrzése egy IP-n.
+        check: Külső IP ellenőrzése és mentése az adatbázisba.
+        clearcache: A mentett felhasználónevek gyorsítótár-fájljának törlése.
+        db: Adatbázis kiürítése (purge) vagy újracsatlakozás.
+        debug: FoxGate hibakeresés a konzolban.
+        reload: Konfigurációs fájl újratöltése.
+        remove: IP eltávolítása az adatbázisból.
+        status: Egy gyorsítótárazott IP információinak megtekintése az adatbázisban.
+        update: Automatikusan frissíti a plugin összetevőit.
+        verbose: Részletes (verbose) mód be-/kikapcsolása.
+        whitelist: Felhasználó vagy IP hozzáadása a fehérlistához.
+        predebug: (Prémium) Discord webhook vagy Telegram továbbítás küldése annak tesztelésére, hogyan néznek ki.
+    alts:
+        invalidip: '{prefix} {IP}<red> nem érvényes IP/felhasználónév!'
+        invalidcheck: '{prefix} {IP}<red> nem találjuk az IP/felhasználó kérést a gyorsítótárban!'
+        checking: '{prefix} {IP}<yellow> alternatív fiókok keresése...'
+        # Here you can find these placeholders:
+        #
+        # {NAME} - Returns the player's names. (only for 'output')
+        # {IP} - Returns the player's IP.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {ALTS} - Returns the alts from the User/IP.
+        # {OUTPUT} - Returns the format of 'output'.
+        # {TIME} - Returns the last time. (only for 'output')
+        # {TIME_AGO} - Returns the last time ago. (only for 'output')
+        # {COUNTRY} - Returns the IP's country. (Only works with premium version).
+        # {ASN} - Return the IP's ASN (Only works with premium version).
+        # {SIMILAR} - Display similar if was found with dynamic IP, otherwise will be blank.
+        output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - Utolsó kapcsolódás: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
+        info: ' \n <green><aqua>{IP}</aqua> alternatív fiókjainak megtekintése\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Alternatív fiókok:\n {ALTS}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Ország: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        day: nap
+        hour: óra
+        minute: perc
+        second: másodperc
+        plural_day: nap
+        plural_hour: óra
+        plural_minute: perc
+        plural_second: másodperc
+        similar: '<click:run_command:"/foxgate alts {IP}"><hover:show_text:"Kattints az alternatív fiókok megtekintéséhez."><gold>[Hasonló]</gold></hover></click>'
+        online: '<click:run_command:"/foxgate status {IP}"><hover:show_text:"Kattints az állapot ellenőrzéséhez."><green>Online</green></hover></click>'
+    add_remove:
+        invalidip: '{prefix} {IP}<red> nem érvényes IP/felhasználónév!'
+        already: '{prefix} {IP}<red> már hozzá van adva/eltávolítva az adatbázisból!'
+        add: '{prefix} {IP}<green> hozzáadva az adatbázishoz!'
+        remove: '{prefix} {IP}<green> eltávolítva az adatbázisból!'
+    check:
+        invalidip: '{prefix} {IP}<red> nem érvényes IP/felhasználónév!'
+        cached: '{prefix} {IP}<yellow> már gyorsítótárazva van az adatbázisban. <white><underlined><click:run_command:"/foxgate status {IP}">Kattints ide az adatbázisban tárolt információk megtekintéséhez</click></underlined></white>.'
+        checking: '{prefix} <yellow><white>{IP}</white> ellenőrzése...'
+        saving: '{prefix} <yellow><white>{IP}</white> ellenőrzése befejeződött, várakozás az adatbázisra az adatok mentése közben...'
+        checked: '{prefix} {IP}<green> sikeresen ellenőrizve, tekintsd meg a megszerzett információkat az adatbázisban a <gray>(/foxgate status)</gray> paranccsal vagy <white><underlined><click:run_command:"/foxgate status {IP}">kattints ide</click></underlined></white>.'
+        pre-checking: '{prefix} {IP}<yellow> egy előző ellenőrzésből szkennelés alatt áll, várj az eredményekre, mielőtt egy másikat futtatnál ezen az IP-n.'
+    clearcache:
+        purging: '{prefix} <white>A <yellow>gyorsítótár fájl</yellow> ürítése...'
+        purging_correctly: '{prefix} <green>A gyorsítótár fájl kiürítve.'
+        purging_problem: '{prefix} <red>Hiba a gyorsítótár fájl ürítésekor. Ellenőrizd a konzolt.'
+    db:
+        invalid_usage: '{prefix} Használd a <aqua>/foxgate db <purge/reconnect><reset> parancsot.'
+        reconnecting: '{prefix} <yellow>Újracsatlakozás az adatbázishoz...'
+        reconnect_correctly: '{prefix} <green>Az adatbázishoz való csatlakozás helyreállítva.'
+        reconnect_problem: '{prefix} <red>Hiba az adatbázishoz való újracsatlakozáskor. Ellenőrizd a konzolt.'
+        purging: '{prefix} <yellow>Az adatbázis ürítése (purge)...'
+        purging_correctly: '{prefix} <green>Az adatbázis kiürítve.'
+        purging_problem: '{prefix} <red>Hiba az adatbázis ürítésekor. Ellenőrizd a konzolt.'
+    debug:
+        enable: '{prefix} <green>Hibakeresési mód bekapcsolva. Ellenőrizd a konzolt.'
+        disable: '{prefix} <red>Hibakeresési mód kikapcsolva.'
+    reload:
+        message: '{prefix} <green>A konfigurációs fájl újratöltve.'
+    status:
+        invalidip: '{prefix} {IP}<red> nem érvényes IP!'
+        # Here you can find new placeholders only for this message:
+        #
+        # {DETECTED} - Return only the services that detected a VPN with an IP.
+        # {UNDETECTED} - Return only the services that didn't detect a VPN with an IP.
+        # {LIST} - Return both lists, but with different colors (customizable).
+        # {MAX} - Return the maximum number of flags required to deny access to a player.
+        # {COUNT_DETECTED} - Return the number of services that a player's IP has been detected with.
+        # {COUNT_UNDETECTED} - Return the number of services that a player's IP hasn't been detected with.
+        # {STATUS} - Return the status of the player.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
+        # {GEO_ASN} - Return the player's ASN (Only works with premium version).
+        detected: <red>
+        undetected: <green>
+        none: <red>Nincs.
+        no_cached: <red>Nincs gyorsítótárazva az adatbázisban.
+        allow: <green>Ellenőrizve.
+        deny: <red>Blokkolva.
+        saved: <yellow>Beolvasva.
+        info: ' \n <green><aqua>{IP}</aqua> állapotának megtekintése\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Hosztnév: <yellow>{HOSTNAME}</yellow>\n <dark_gray>▪ <white>Állapot: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Nem észlelve: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Észlelve: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Szolgáltatások: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Ország: <aqua>{GEO_COUNTRY} \n '
+    update:
+        invalid_usage: '{prefix} Használd a <dark_gray>''</dark_gray>/fg update <green><asn/plugin/ranges/hostnames></green><dark_gray>''</dark_gray><reset> parancsot.'
+        already_downloading: '{prefix} <red>Már letöltünk egy fájlt...'
+        backend_down: '{prefix} <red>A háttérrendszerünk elérhetetlennek vagy instabilnak tűnik. Nem tudjuk frissíteni és teljesíteni a kérést.'
+        invalid_license: '{prefix} <red>Az érvényesítési kulcsod nem érvényes, adj meg egy érvényes kulcsot ehhez a művelethez.'
+        downloading_asn: '{prefix} <yellow>ASN letöltése...'
+        downloading_ranges: '{prefix} <yellow>IP-tartományok letöltése...'
+        downloading_hostnames: '{prefix} <yellow>Hosztnevek letöltése...'
+        downloading_jar: '{prefix} <yellow>Plugin letöltése...'
+        downloaded_asn: '{prefix} <green>Legújabb ASN letöltve a háttérrendszerünkből/központból. A változtatások alkalmazva.'
+        downloaded_ranges: '{prefix} <green>Legújabb IP-tartományok letöltve a háttérrendszerünkből/központból. A változtatások alkalmazva.'
+        downloaded_hostnames: '{prefix} <green>Legújabb hosztnevek letöltve a háttérrendszerünkből/központból. A változtatások alkalmazva.'
+        downloaded_jar: '{prefix} <green>Legújabb JAR letöltve a háttérrendszerünkből/központból. Indítsd újra a szervert a változtatások alkalmazásához.'
+    verbose:
+        enable: '{prefix} <green>Bekapcsoltad a részletes (verbose) módot.'
+        disable: '{prefix} <red>Kikapcsoltad a részletes (verbose) módot.'
+        # Here you can find new placeholders only for this message:
+        #
+        # {PLAYER} - Returns the player's name.
+        # {IP} - Returns the player's IP.
+        # {SERVICE} - Return the service's name.
+        # {FLAGS} - Return the currently amount of Flags.
+        # {FLAGS_ADDED} - Return the amount of Flags added.
+        # {MAXFLAGS} - Return the amount of Flags for being detected.
+        no_malicious: '{prefix} <green>[VERBOSE] <aqua>{PLAYER} <gray>nem VPN a következő szolgáltatás szerint: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>jelzők:</gray><red>{FLAGS}</red><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        malicious: '{prefix} <red>[VERBOSE] <aqua>{PLAYER} <gray>VPN-ként van megjelölve a következő szolgáltatás szerint: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>jelzők:</gray><red>{FLAGS}</red><green>(+{FLAGS_ADDED})</green><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        ignored: '{prefix} <yellow>[VERBOSE] <aqua>{PLAYER} <gray>figyelmen kívül hagyva, mert fehérlistán van <green>{type} <dark_gray>({IP})'
+    whitelist:
+        invalid_usage: '{prefix} Használd a <dark_gray>''''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[név/ip]</yellow> <aqua>[indok]</aqua> <light_purple>[idő]</light_purple><dark_gray>''''</dark_gray><reset> parancsot.'
+        already: '{prefix} {IP}<red> már fehérlistán van / nincs a fehérlistán a konfigurációban!'
+        whitelisting: '{prefix} <yellow>Mentés a fehérlistára: <white>{IP}</white>, egy pillanat...'
+        whitelisted: '{prefix} {IP}<green> fehérlistára került a konfigurációban <white>{type}</white> típusként <white>{time}</white> időtartamra. <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">Kattints ide az eltávolításához</click></underlined></white>.'
+        unwhitelisting: '{prefix} <yellow>Eltávolítás a fehérlistáról: <white>{IP}</white>, egy pillanat...'
+        unwhitelisted: '{prefix} {IP}<green> eltávolításra került a fehérlistáról a konfigurációban (<white>{type}</white> típus). <white><underlined><click:run_command:"/foxgate whitelist add {IP}">Kattints ide az újbóli hozzáadásához</click></underlined></white>.'
+        type_ip: IP
+        type_name: Név
+        problem: '{prefix} <red>Hiba a fehérlistához adáskor/eltávolításkor. Ellenőrizd a konzolt.'
+        invalid_time: '{prefix} <red>Az időformátum érvénytelen. Használj epoch időbélyeget vagy formátumokat, mint <white>1d</white> (nap), <white>3h</white> (óra), <white>15m</white> (perc), <white>30s</white> (másodperc) vagy <white>permanent</white> (állandó).'
+        purging: '{prefix} <yellow>A fehérlista ürítése (purge)...'
+        purging_correctly: '{prefix} <green>A fehérlista kiürítve.'
+        purging_problem: '{prefix} <red>Hiba a fehérlista ürítésekor. Ellenőrizd a konzolt.'
+        # Here you can find new placeholders only for this message:
+        #
+        # {TYPE} - Return "IP"/"Name".
+        # {REASON} - Return the reason why this name/IP is whitelisted.
+        # {EXPIRATION} - Return the expiration time.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
+        # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+        info: ' \n <green><aqua>{IP}</aqua> fehérlista információi\n <dark_gray>▪ <white>Típus: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Indok: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Lejárat: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Ország: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        permanent: Állandó.
+        noreason: Nincs indok.
+        nowhitelist: '{prefix} {IP}<red> nincs elmentve a fehérlistán <white>{type}</white> típusként.'
+    predebug:
+        invalid_usage: '{prefix} Használd a <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset> parancsot.'
+        sending: '{prefix} <yellow>A <white>{type}</white> tesztelésének küldése <white>{mode}</white> módban...</yellow>'
+        sended: '{prefix} <green>Elküldve!'
+        problem: '{prefix} <red>Hiba a <white>{type}</white> hibakeresési információinak küldésekor!'

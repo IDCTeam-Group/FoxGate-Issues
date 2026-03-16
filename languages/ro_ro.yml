@@ -1,0 +1,226 @@
+ #
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___ 
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/           
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+
+    # 🦊 Kick message when the plugin blocks a player.
+    #
+    # {PLAYER} - Returns the player's name.
+    # {IP} - Returns the player's IP.
+    # {UUID} - Returns the player's UUID. (BungeeCord doesn't support this)
+    # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+    # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+    # {COUNTRY} - Returns the player's country. (Only works with premium version).
+    # {ASN} - Return the player's ASN (Only works with premium version).
+    kick:
+        vpn: '<red><bold>✘</bold> Ai fost blocat de <bold>FoxGate AntiVPN</bold>:\n\n<white>Conexiunea ta a fost refuzată pentru că folosești un VPN sau Proxy.\n<gray>Dezactivează mai întâi VPN-ul/proxy-ul înainte de a te conecta.</gray>\n\n<gold>Este o eroare?</gold> <white>Alătură-te serverului nostru de Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: Services</dark_gray>'
+        iplimiter: '<red><bold>✘</bold> Ai fost blocat de <bold>FoxGate AntiVPN</bold>:\n\n<white>Conexiunea ta a fost refuzată.\n<gray>Am găsit prea multe conexiuni de pe aceeași adresă IP.</gray>\n\n<gold>Este o eroare?</gold> <white>Alătură-te serverului nostru de Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: IPLimiter</dark_gray>'
+        isp: '<red><bold>✘</bold> Ai fost blocat de <bold>FoxGate AntiVPN</bold>:\n\n<white>Conexiunea ta a fost refuzată deoarece este considerată malițioasă.\n<gray>Furnizorul tău de servicii Internet "<light_purple>{ISP}</light_purple>" este interzis pe acest server.</gray>\n\n<gold>Este o eroare?</gold> <white>Alătură-te serverului nostru de Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: ISPFilter</dark_gray>'
+        iprange: '<red><bold>✘</bold> Ai fost blocat de <bold>FoxGate AntiVPN</bold>:\n\n<white>Conexiunea ta a fost refuzată deoarece este considerată malițioasă.\n<gray>Adresa ta IP este pe lista neagră în baza noastră de date pentru că se află într-un interval IP malițios.</gray>\n\n<gold>Este o eroare?</gold> <white>Alătură-te serverului nostru de Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: IPRange</dark_gray>'
+        bogon: '<red><bold>✘</bold> Ai fost blocat de <bold>FoxGate AntiVPN</bold>:\n\n<white>Conexiunea ta a fost refuzată deoarece provine de la o adresă bogon.\n<gray>IP-ul este considerat bogon (rețea privată/rezervată).</gray>\n\n<gold>Este o eroare?</gold> <white>Alătură-te serverului nostru de Discord.\n<aqua><underlined>discord.idcteam.xyz'
+        country: '<red><bold>✘</bold> Ai fost blocat de <bold>FoxGate AntiVPN</bold>:\n\n<white>Conexiunea ta a fost refuzată deoarece este considerată malițioasă.\n<gray>Țara "<light_purple>{COUNTRY}</light_purple>" din care te conectezi este interzisă pe acest server.</gray>\n\n<gold>Este o eroare?</gold> <white>Alătură-te serverului nostru de Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: Country</dark_gray>'
+        asn: '<red><bold>✘</bold> Ai fost blocat de <bold>FoxGate AntiVPN</bold>:\n\n<white>Conexiunea ta a fost refuzată pentru că folosești un VPN sau Proxy.\n<gray>Furnizorul tău de servicii Internet (ASN) "<light_purple>{ASN}</light_purple>" este un furnizor cunoscut de VPN sau Tor.</gray>\n\n<gold>Este o eroare?</gold> <white>Alătură-te serverului nostru de Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: ASN</dark_gray>'
+        # Some placeholders don't work in this message because it's used to kick
+        # the player when they try to join and their IP is still being verified in
+        # a pre-check. This prevents duplicate verification until the previous
+        # one is complete.
+        checking: '<red><bold>✘</bold> În așteptarea verificării de către <bold>FoxGate AntiVPN</bold>:\n\n<white>Verificăm conexiunea ta.\n<gray>FoxGate scanează conexiunea ta, te rugăm să aștepți câteva secunde.</gray>\n\n<gold>Este o eroare?</gold> <white>Alătură-te serverului nostru de Discord.\n<aqua><underlined>discord.idcteam.xyz'
+    # 📍 Notification when a player is kicked. You can prevent this message by leaving it blank.
+    notify:
+        vpn: '{prefix} <aqua>{player} <gray>folosea un VPN și a fost eliminat! <green>({IP})'
+        isp: '{prefix} <aqua>{player} <gray>a fost eliminat pentru conectare de pe un ISP interzis: <aqua>{ISP}</aqua>! <green>({IP})'
+        iprange: '{prefix} <aqua>{player} <gray>a fost eliminat pentru conectare dintr-un interval IP interzis! <green>({IP})'
+        bogon: '{prefix} <aqua>{player} <gray>a încercat să se conecteze de pe un IP Bogon: <green>{IP}</green>!'
+        country: '{prefix} <aqua>{player} <gray>a fost eliminat pentru conectare dintr-o țară interzisă: <aqua>{COUNTRY}</aqua>! <green>({IP})'
+        asn: '{prefix} <aqua>{player} <gray>a fost eliminat pentru conectare de pe un ASN interzis: <aqua>{ASN}</aqua>! <green>({IP})'
+        #
+        # Message to send when player tries to join but it's blocked.
+        # Leave empty to disable this thing. Just works {PLAYER} and {IP} placeholders.
+        blocked: '{prefix} <aqua>{player} <gray>a încercat să se conecteze dar fusese blocat anterior. <green>({IP})'
+    # 🔎 Message to show when a player it's blocked by a module. (For status command)
+    blocked:
+        isp: '<gold>Blocat din cauza ISP-ului lor.'
+        iprange: '<gold>Blocat din cauza intervalului lor IP.'
+        bogon: '<gold>Blocat pentru IP Bogon.'
+        country: '<gold>Blocat din cauza țării lor.'
+        asn: '<gold>Blocat din cauza ASN-ului lor.'
+    # 🧩 This will only show up in the console.
+    # This can help with debug in case a service is not working correctly.
+    # You can prevent this message by leaving it blank.
+    error: '{prefix} Eroare la verificarea VPN cu <aqua>"{service}"</aqua> pentru <yellow>{player}</yellow>: {error}'
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+    help:
+        add: Adaugă un IP în baza de date.
+        alts: Verifică toți utilizatorii de pe un IP.
+        check: Verifică un IP extern și salvează în baza de date.
+        clearcache: Șterge fișierul cache al numelor de utilizator salvate.
+        db: Curăță (purge) sau reconectează baza de date.
+        debug: Depanează FoxGate în consolă.
+        reload: Reîncarcă fișierul de configurare.
+        remove: Elimină un IP din baza de date.
+        status: Vizualizează informații despre un IP stocat în cache în baza de date.
+        update: Actualizează automat componentele pluginului pentru tine.
+        verbose: Activează/dezactivează modul detaliat (verbose).
+        whitelist: Adaugă un utilizator sau IP pe lista albă.
+        predebug: (Premium) Trimite un webhook Discord sau o redirecționare Telegram pentru a testa cum arată.
+    alts:
+        invalidip: '{prefix} {IP}<red> nu este un IP/nume de utilizator valid!'
+        invalidcheck: '{prefix} {IP}<red> nu putem găsi cererea IP/utilizator din cache!'
+        checking: '{prefix} {IP}<yellow> se verifică pentru conturi alternative...'
+        # Here you can find these placeholders:
+        #
+        # {NAME} - Returns the player's names. (only for 'output')
+        # {IP} - Returns the player's IP.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {ALTS} - Returns the alts from the User/IP.
+        # {OUTPUT} - Returns the format of 'output'.
+        # {TIME} - Returns the last time. (only for 'output')
+        # {TIME_AGO} - Returns the last time ago. (only for 'output')
+        # {COUNTRY} - Returns the IP's country. (Only works with premium version).
+        # {ASN} - Return the IP's ASN (Only works with premium version).
+        # {SIMILAR} - Display similar if was found with dynamic IP, otherwise will be blank.
+        output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - Ultima conectare: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
+        info: ' \n <green>Vizualizare conturi alternative pentru <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Conturi alternative:\n {ALTS}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Țară: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        day: zi
+        hour: oră
+        minute: minut
+        second: secundă
+        plural_day: zile
+        plural_hour: ore
+        plural_minute: minute
+        plural_second: secunde
+        similar: '<click:run_command:"/foxgate alts {IP}"><hover:show_text:"Click pentru a vedea conturile alternative."><gold>[Similar]</gold></hover></click>'
+        online: '<click:run_command:"/foxgate status {IP}"><hover:show_text:"Click pentru a verifica statusul."><green>Online</green></hover></click>'
+    add_remove:
+        invalidip: '{prefix} {IP}<red> nu este un IP/nume de utilizator valid!'
+        already: '{prefix} {IP}<red> este deja adăugat/eliminat din baza de date!'
+        add: '{prefix} {IP}<green> a fost adăugat în baza de date!'
+        remove: '{prefix} {IP}<green> a fost eliminat din baza de date!'
+    check:
+        invalidip: '{prefix} {IP}<red> nu este un IP/nume de utilizator valid!'
+        cached: '{prefix} {IP}<yellow> este deja în cache în baza de date. Poți <white><underlined><click:run_command:"/foxgate status {IP}">să dai click aici pentru a vedea informațiile salvate în baza de date</click></underlined></white>.'
+        checking: '{prefix} <yellow>Se verifică <white>{IP}<yellow>...'
+        saving: '{prefix} <yellow>Verificarea pentru <white>{IP}</white> s-a încheiat, se așteaptă salvarea datelor în baza de date...'
+        checked: '{prefix} {IP}<green> a fost verificat cu succes, vezi informațiile obținute în baza de date cu comanda <gray>(/foxgate status)</gray> sau <white><underlined><click:run_command:"/foxgate status {IP}">dă click aici</click></underlined></white>.'
+        pre-checking: '{prefix} {IP}<yellow> este scanat dintr-o verificare anterioară, așteaptă mai întâi rezultatele înainte de a rula o alta pe același IP.'
+    clearcache:
+        purging: '{prefix} <white>Se <yellow>șterge</yellow> fișierul cache...'
+        purging_correctly: '{prefix} <green>Fișierul cache a fost șters.'
+        purging_problem: '{prefix} <red>Eroare la încercarea de a șterge fișierul cache. Verifică consola.'
+    db:
+        invalid_usage: '{prefix} Folosește comanda <aqua>/foxgate db <purge/reconnect><reset>.'
+        reconnecting: '{prefix} <yellow>Se încearcă reconectarea la baza de date...'
+        reconnect_correctly: '{prefix} <green>Baza de date a fost reconectată.'
+        reconnect_problem: '{prefix} <red>Eroare la încercarea de a reconecta baza de date. Verifică consola.'
+        purging: '{prefix} <yellow>Se încearcă curățarea (purge) bazei de date...'
+        purging_correctly: '{prefix} <green>Baza de date a fost curățată.'
+        purging_problem: '{prefix} <red>Eroare la încercarea de a curăța baza de date. Verifică consola.'
+    debug:
+        enable: '{prefix} <green>Modul de depanare activat. Verifică consola.'
+        disable: '{prefix} <red>Modul de depanare dezactivat.'
+    reload:
+        message: '{prefix} <green>Fișierul de configurare a fost reîncărcat.'
+    status:
+        invalidip: '{prefix} {IP}<red> nu este un IP valid!'
+        # Here you can find new placeholders only for this message:
+        #
+        # {DETECTED} - Return only the services that detected a VPN with an IP.
+        # {UNDETECTED} - Return only the services that didn't detect a VPN with an IP.
+        # {LIST} - Return both lists, but with different colors (customizable).
+        # {MAX} - Return the maximum number of flags required to deny access to a player.
+        # {COUNT_DETECTED} - Return the number of services that a player's IP has been detected with.
+        # {COUNT_UNDETECTED} - Return the number of services that a player's IP hasn't been detected with.
+        # {STATUS} - Return the status of the player.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
+        # {GEO_ASN} - Return the player's ASN (Only works with premium version).
+        detected: <red>
+        undetected: <green>
+        none: <red>Niciunul.
+        no_cached: <red>Nu este în cache în baza de date.
+        allow: <green>Verificat.
+        deny: <red>Blocat.
+        saved: <yellow>Scanat.
+        info: ' \n <green>Vizualizare status pentru <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Nume gazdă: <yellow>{HOSTNAME}</yellow>\n <dark_gray>▪ <white>Status: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Nedetectat: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Detectat: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Servicii: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Țară: <aqua>{GEO_COUNTRY} \n '
+    update:
+        invalid_usage: '{prefix} Folosește comanda <dark_gray>''</dark_gray>/fg update <green><asn/plugin/ranges/hostnames></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>Descărcăm deja un fișier...'
+        backend_down: '{prefix} <red>Backend-ul nostru pare să fie căzut sau instabil. Nu putem actualiza și finaliza cererea.'
+        invalid_license: '{prefix} <red>Licența ta nu este validă, introdu o cheie validă pentru această acțiune.'
+        downloading_asn: '{prefix} <yellow>Se descarcă ASN...'
+        downloading_ranges: '{prefix} <yellow>Se descarcă intervalele IP...'
+        downloading_hostnames: '{prefix} <yellow>Se descarcă numele de gazdă...'
+        downloading_jar: '{prefix} <yellow>Se descarcă pluginul...'
+        downloaded_asn: '{prefix} <green>Cel mai recent ASN a fost descărcat de pe backend-ul/centrala noastră. Modificările au fost aplicate.'
+        downloaded_ranges: '{prefix} <green>Cele mai recente intervale IP au fost descărcate de pe backend-ul/centrala noastră. Modificările au fost aplicate.'
+        downloaded_hostnames: '{prefix} <green>Cele mai recente nume de gazdă au fost descărcate de pe backend-ul/centrala noastră. Modificările au fost aplicate.'
+        downloaded_jar: '{prefix} <green>Cel mai recent JAR a fost descărcat de pe backend-ul/centrala noastră. Repornește serverul pentru a aplica modificările.'
+    verbose:
+        enable: '{prefix} <green>Ai activat modul detaliat (verbose).'
+        disable: '{prefix} <red>Ai dezactivat modul detaliat (verbose).'
+        # Here you can find new placeholders only for this message:
+        #
+        # {PLAYER} - Returns the player's name.
+        # {IP} - Returns the player's IP.
+        # {SERVICE} - Return the service's name.
+        # {FLAGS} - Return the currently amount of Flags.
+        # {FLAGS_ADDED} - Return the amount of Flags added.
+        # {MAXFLAGS} - Return the amount of Flags for being detected.
+        no_malicious: '{prefix} <green>[VERBOSE] <aqua>{PLAYER} <gray>nu este VPN cu serviciul: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>steaguri:</gray><red>{FLAGS}</red><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        malicious: '{prefix} <red>[VERBOSE] <aqua>{PLAYER} <gray>este marcat ca VPN cu serviciul: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>steaguri:</gray><red>{FLAGS}</red><green>(+{FLAGS_ADDED})</green><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        ignored: '{prefix} <yellow>[VERBOSE] <aqua>{PLAYER} <gray>a fost ignorat deoarece este pe lista albă <green>{type} <dark_gray>({IP})'
+    whitelist:
+        invalid_usage: '{prefix} Folosește comanda <dark_gray>''''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[nume/ip]</yellow> <aqua>[motiv]</aqua> <light_purple>[timp]</light_purple><dark_gray>''''</dark_gray><reset>.'
+        already: '{prefix} {IP}<red> este deja pe lista albă/nu este pe lista albă în configurare!'
+        whitelisting: '{prefix} <yellow>Se salvează pe lista albă: <white>{IP}</white>, un moment...'
+        whitelisted: '{prefix} {IP}<green> a fost adăugat pe lista albă în configurare ca tip <white>{type}</white> pentru <white>{time}</white>. Poți <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">să dai click aici pentru a-l elimina din nou</click></underlined></white>.'
+        unwhitelisting: '{prefix} <yellow>Se elimină de pe lista albă: <white>{IP}</white>, un moment...'
+        unwhitelisted: '{prefix} {IP}<green> a fost eliminat de pe lista albă în configurare (tip <white>{type}</white>). Poți <white><underlined><click:run_command:"/foxgate whitelist add {IP}">să dai click aici pentru a-l adăuga din nou</click></underlined></white>.'
+        type_ip: IP
+        type_name: Nume
+        problem: '{prefix} <red>Eroare la încercarea de a adăuga/elimina de pe lista albă. Verifică consola.'
+        invalid_time: '{prefix} <red>Formatul timpului este invalid. Folosește epoch sau formate precum <white>1d</white> (zi), <white>3h</white> (ore), <white>15m</white> (minute), <white>30s</white> (secunde) sau <white>permanent</white> (permanent).'
+        purging: '{prefix} <yellow>Se încearcă curățarea (purge) listei albe...'
+        purging_correctly: '{prefix} <green>Lista albă a fost curățată.'
+        purging_problem: '{prefix} <red>Eroare la încercarea de a curăța lista albă. Verifică consola.'
+        # Here you can find new placeholders only for this message:
+        #
+        # {TYPE} - Return "IP"/"Name".
+        # {REASON} - Return the reason why this name/IP is whitelisted.
+        # {EXPIRATION} - Return the expiration time.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
+        # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+        info: ' \n <green>Informații lista albă pentru <aqua>{IP}\n <dark_gray>▪ <white>Tip: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Motiv: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Expiră: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Țară: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        permanent: Permanent.
+        noreason: Fără motiv.
+        nowhitelist: '{prefix} {IP}<red> nu este salvat pe lista albă ca tip <white>{type}</white>.'
+    predebug:
+        invalid_usage: '{prefix} Folosește comanda <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset>.'
+        sending: '{prefix} <yellow>Se trimite pentru a testa <white>{type}</white> în modul <white>{mode}</white>...</yellow>'
+        sended: '{prefix} <green>Trimis!'
+        problem: '{prefix} <red>Eroare la încercarea de a trimite o depanare pentru <white>{type}</white>!'

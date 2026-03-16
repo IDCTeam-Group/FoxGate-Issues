@@ -1,0 +1,226 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___ 
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/           
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+
+    # 🦊 Kick message when the plugin blocks a player.
+    #
+    # {PLAYER} - Returns the player's name.
+    # {IP} - Returns the player's IP.
+    # {UUID} - Returns the player's UUID. (BungeeCord doesn't support this)
+    # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+    # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+    # {COUNTRY} - Returns the player's country. (Only works with premium version).
+    # {ASN} - Return the player's ASN (Only works with premium version).
+    kick:
+        vpn: '<red><bold>✘</bold> Anda diblokir oleh <bold>FoxGate AntiVPN</bold>:\n\n<white>Koneksi Anda ditolak karena menggunakan VPN atau Proxy.\n<gray>Nonaktifkan VPN/proxy Anda terlebih dahulu sebelum bergabung.</gray>\n\n<gold>Apakah ini kesalahan?</gold> <white>Bergabunglah dengan server Discord kami.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: Services</dark_gray>'
+        iplimiter: '<red><bold>✘</bold> Anda diblokir oleh <bold>FoxGate AntiVPN</bold>:\n\n<white>Koneksi Anda ditolak.\n<gray>Kami menemukan terlalu banyak koneksi dari IP yang sama.</gray>\n\n<gold>Apakah ini kesalahan?</gold> <white>Bergabunglah dengan server Discord kami.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: IPLimiter</dark_gray>'
+        isp: '<red><bold>✘</bold> Anda diblokir oleh <bold>FoxGate AntiVPN</bold>:\n\n<white>Koneksi Anda ditolak karena terindikasi berbahaya.\n<gray>Penyedia Layanan Internet "<light_purple>{ISP}</light_purple>" yang Anda gunakan dilarang di server ini.</gray>\n\n<gold>Apakah ini kesalahan?</gold> <white>Bergabunglah dengan server Discord kami.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: ISPFilter</dark_gray>'
+        iprange: '<red><bold>✘</bold> Anda diblokir oleh <bold>FoxGate AntiVPN</bold>:\n\n<white>Koneksi Anda ditolak karena terindikasi berbahaya.\n<gray>IP Anda masuk dalam daftar hitam database kami karena berada dalam rentang alamat berbahaya.</gray>\n\n<gold>Apakah ini kesalahan?</gold> <white>Bergabunglah dengan server Discord kami.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: IPRange</dark_gray>'
+        bogon: '<red><bold>✘</bold> Anda diblokir oleh <bold>FoxGate AntiVPN</bold>:\n\n<white>Koneksi Anda ditolak karena berasal dari alamat bogon.\n<gray>IP ini dianggap bogon (jaringan pribadi/cadangan).</gray>\n\n<gold>Apakah ini kesalahan?</gold> <white>Bergabunglah dengan server Discord kami.\n<aqua><underlined>discord.idcteam.xyz'
+        country: '<red><bold>✘</bold> Anda diblokir oleh <bold>FoxGate AntiVPN</bold>:\n\n<white>Koneksi Anda ditolak karena terindikasi berbahaya.\n<gray>Negara asal koneksi Anda "<light_purple>{COUNTRY}</light_purple>" dilarang di server ini.</gray>\n\n<gold>Apakah ini kesalahan?</gold> <white>Bergabunglah dengan server Discord kami.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: Country</dark_gray>'
+        asn: '<red><bold>✘</bold> Anda diblokir oleh <bold>FoxGate AntiVPN</bold>:\n\n<white>Koneksi Anda ditolak karena menggunakan VPN atau Proxy.\n<gray>Penyedia Layanan Internet (ASN) "<light_purple>{ASN}</light_purple>" adalah penyedia VPN atau Tor yang dikenal.</gray>\n\n<gold>Apakah ini kesalahan?</gold> <white>Bergabunglah dengan server Discord kami.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: ASN</dark_gray>'
+        # Some placeholders don't work in this message because it's used to kick
+        # the player when they try to join and their IP is still being verified in
+        # a pre-check. This prevents duplicate verification until the previous
+        # one is complete.
+        checking: '<red><bold>✘</bold> Menunggu verifikasi oleh <bold>FoxGate AntiVPN</bold>:\n\n<white>Kami sedang memeriksa koneksi Anda.\n<gray>FoxGate sedang memindai koneksi Anda, harap tunggu beberapa detik.</gray>\n\n<gold>Apakah ini kesalahan?</gold> <white>Bergabunglah dengan server Discord kami.\n<aqua><underlined>discord.idcteam.xyz'
+    # 📍 Notification when a player is kicked. You can prevent this message by leaving it blank.
+    notify:
+        vpn: '{prefix} <aqua>{player} <gray>terdeteksi menggunakan VPN dan ditendang! <green>({IP})'
+        isp: '{prefix} <aqua>{player} <gray>ditendang karena bergabung dengan ISP yang dilarang: <aqua>{ISP}</aqua>! <green>({IP})'
+        iprange: '{prefix} <aqua>{player} <gray>ditendang karena bergabung dengan rentang IP yang dilarang! <green>({IP})'
+        bogon: '{prefix} <aqua>{player} <gray>mencoba bergabung dari IP bogon: <green>{IP}</green>!'
+        country: '{prefix} <aqua>{player} <gray>ditendang karena bergabung dari negara yang dilarang: <aqua>{COUNTRY}</aqua>! <green>({IP})'
+        asn: '{prefix} <aqua>{player} <gray>ditendang karena bergabung dengan ASN yang dilarang: <aqua>{ASN}</aqua>! <green>({IP})'
+        #
+        # Message to send when player tries to join but it's blocked.
+        # Leave empty to disable this thing. Just works {PLAYER} and {IP} placeholders.
+        blocked: '{prefix} <aqua>{player} <gray>mencoba terhubung tetapi sebelumnya sudah diblokir. <green>({IP})'
+    # 🔎 Message to show when a player it's blocked by a module. (For status command)
+    blocked:
+        isp: '<gold>Diblokir karena ISP mereka.'
+        iprange: '<gold>Diblokir karena rentang IP mereka.'
+        bogon: '<gold>Diblokir karena IP Bogon.'
+        country: '<gold>Diblokir karena negara mereka.'
+        asn: '<gold>Diblokir karena ASN mereka.'
+    # 🧩 This will only show up in the console.
+    # This can help with debug in case a service is not working correctly.
+    # You can prevent this message by leaving it blank.
+    error: '{prefix} Kesalahan saat memverifikasi VPN dengan <aqua>"{service}"</aqua> untuk <yellow>{player}</yellow>: {error}'
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+    help:
+        add: Tambahkan IP ke database.
+        alts: Periksa semua pengguna dalam satu IP.
+        check: Periksa IP eksternal dan simpan dalam database.
+        clearcache: Hapus file cache nama pengguna yang tersimpan.
+        db: Bersihkan (purge) atau sambungkan kembali database.
+        debug: Debug FoxGate di konsol.
+        reload: Muat ulang file konfigurasi.
+        remove: Hapus IP dari database.
+        status: Lihat informasi tentang IP yang di-cache dalam database.
+        update: Secara otomatis memperbarui komponen plugin untuk Anda.
+        verbose: Aktifkan/nonaktifkan mode verbose.
+        whitelist: Whitelist pengguna atau IP.
+        predebug: (Premium) Kirim webhook Discord atau forward Telegram untuk menguji tampilannya.
+    alts:
+        invalidip: '{prefix} {IP}<red> bukan IP/Username yang valid!'
+        invalidcheck: '{prefix} {IP}<red> kami tidak dapat menemukan permintaan IP/pengguna dari cache!'
+        checking: '{prefix} {IP}<yellow> memeriksa alt...'
+        # Here you can find these placeholders:
+        #
+        # {NAME} - Returns the player's names. (only for 'output')
+        # {IP} - Returns the player's IP.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {ALTS} - Returns the alts from the User/IP.
+        # {OUTPUT} - Returns the format of 'output'.
+        # {TIME} - Returns the last time. (only for 'output')
+        # {TIME_AGO} - Returns the last time ago. (only for 'output')
+        # {COUNTRY} - Returns the IP's country. (Only works with premium version).
+        # {ASN} - Return the IP's ASN (Only works with premium version).
+        # {SIMILAR} - Display similar if was found with dynamic IP, otherwise will be blank.
+        output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - Koneksi terakhir: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
+        info: ' \n <green>Melihat Alt dari <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Alt:\n {ALTS}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Negara: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        day: hari
+        hour: jam
+        minute: menit
+        second: detik
+        plural_day: hari
+        plural_hour: jam
+        plural_minute: menit
+        plural_second: detik
+        similar: '<click:run_command:"/foxgate alts {IP}"><hover:show_text:"Klik untuk melihat alt."><gold>[Serupa]</gold></hover></click>'
+        online: '<click:run_command:"/foxgate status {IP}"><hover:show_text:"Klik untuk memeriksa status."><green>Online</green></hover></click>'
+    add_remove:
+        invalidip: '{prefix} {IP}<red> bukan IP/Username yang valid!'
+        already: '{prefix} {IP}<red> sudah ditambahkan/dihapus dari database!'
+        add: '{prefix} {IP}<green> telah ditambahkan ke database!'
+        remove: '{prefix} {IP}<green> telah dihapus dari database!'
+    check:
+        invalidip: '{prefix} {IP}<red> bukan IP/Username yang valid!'
+        cached: '{prefix} {IP}<yellow> sudah di-cache dalam database. Anda dapat <white><underlined><click:run_command:"/foxgate status {IP}">klik di sini untuk melihat informasi yang disimpan dalam database</click></underlined></white>.'
+        checking: '{prefix} <yellow>Memeriksa <white>{IP}<yellow>...'
+        saving: '{prefix} <yellow>Pemeriksaan untuk <white>{IP}</white> selesai, menunggu database menyimpan data...'
+        checked: '{prefix} {IP}<green> berhasil diperiksa, lihat informasi yang diperoleh dalam database dengan perintah <gray>(/foxgate status)</gray> atau <white><underlined><click:run_command:"/foxgate status {IP}">klik di sini</click></underlined></white>.'
+        pre-checking: '{prefix} {IP}<yellow> sedang dipindai dari pemeriksaan sebelumnya, tunggu hasilnya terlebih dahulu sebelum menjalankan pemeriksaan lain pada IP yang sama.'
+    clearcache:
+        purging: '{prefix} <white>Kami sedang <yellow>membersihkan</yellow> file cache...'
+        purging_correctly: '{prefix} <green>File cache telah dibersihkan.'
+        purging_problem: '{prefix} <red>Kesalahan saat mencoba membersihkan file cache. Periksa konsol.'
+    db:
+        invalid_usage: '{prefix} Gunakan perintah <aqua>/foxgate db <purge/reconnect><reset>.'
+        reconnecting: '{prefix} <yellow>Mencoba menyambungkan kembali ke database...'
+        reconnect_correctly: '{prefix} <green>Database terhubung kembali.'
+        reconnect_problem: '{prefix} <red>Kesalahan saat mencoba menyambungkan kembali ke database. Periksa konsol.'
+        purging: '{prefix} <yellow>Mencoba membersihkan (purge) database...'
+        purging_correctly: '{prefix} <green>Database telah dibersihkan.'
+        purging_problem: '{prefix} <red>Kesalahan saat mencoba membersihkan database. Periksa konsol.'
+    debug:
+        enable: '{prefix} <green>Mode debug diaktifkan. Periksa konsol.'
+        disable: '{prefix} <red>Mode debug dinonaktifkan.'
+    reload:
+        message: '{prefix} <green>File konfigurasi telah dimuat ulang.'
+    status:
+        invalidip: '{prefix} {IP}<red> bukan IP yang valid!'
+        # Here you can find new placeholders only for this message:
+        #
+        # {DETECTED} - Return only the services that detected a VPN with an IP.
+        # {UNDETECTED} - Return only the services that didn't detect a VPN with an IP.
+        # {LIST} - Return both lists, but with different colors (customizable).
+        # {MAX} - Return the maximum number of flags required to deny access to a player.
+        # {COUNT_DETECTED} - Return the number of services that a player's IP has been detected with.
+        # {COUNT_UNDETECTED} - Return the number of services that a player's IP hasn't been detected with.
+        # {STATUS} - Return the status of the player.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
+        # {GEO_ASN} - Return the player's ASN (Only works with premium version).
+        detected: <red>
+        undetected: <green>
+        none: <red>Tidak ada.
+        no_cached: <red>Tidak di-cache dalam database.
+        allow: <green>Terverifikasi.
+        deny: <red>Diblokir.
+        saved: <yellow>Dipindai.
+        info: ' \n <green>Melihat status dari <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Hostname: <yellow>{HOSTNAME}</yellow>\n <dark_gray>▪ <white>Status: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Tidak terdeteksi: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Ter deteksi: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Layanan: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Negara: <aqua>{GEO_COUNTRY} \n '
+    update:
+        invalid_usage: '{prefix} Gunakan perintah <dark_gray>''</dark_gray>/fg update <green><asn/plugin/ranges/hostnames></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>Kami sedang mengunduh file...'
+        backend_down: '{prefix} <red>Backend kami tampaknya down atau tidak stabil. Kami tidak dapat memperbarui dan menyelesaikan permintaan.'
+        invalid_license: '{prefix} <red>Lisensi Anda tidak valid, berikan kunci yang valid untuk tindakan ini.'
+        downloading_asn: '{prefix} <yellow>Mengunduh ASN...'
+        downloading_ranges: '{prefix} <yellow>Mengunduh Rentang...'
+        downloading_hostnames: '{prefix} <yellow>Mengunduh Hostname...'
+        downloading_jar: '{prefix} <yellow>Mengunduh plugin...'
+        downloaded_asn: '{prefix} <green>ASN terbaru diunduh dari backend/pusat kami. Perubahan sudah diterapkan.'
+        downloaded_ranges: '{prefix} <green>Rentang terbaru diunduh dari backend/pusat kami. Perubahan sudah diterapkan.'
+        downloaded_hostnames: '{prefix} <green>Hostname terbaru diunduh dari backend/pusat kami. Perubahan sudah diterapkan.'
+        downloaded_jar: '{prefix} <green>JAR terbaru diunduh dari backend/pusat kami. Mulai ulang server Anda untuk menerapkan perubahan.'
+    verbose:
+        enable: '{prefix} <green>Anda mengaktifkan mode verbose.'
+        disable: '{prefix} <red>Anda menonaktifkan mode verbose.'
+        # Here you can find new placeholders only for this message:
+        #
+        # {PLAYER} - Returns the player's name.
+        # {IP} - Returns the player's IP.
+        # {SERVICE} - Return the service's name.
+        # {FLAGS} - Return the currently amount of Flags.
+        # {FLAGS_ADDED} - Return the amount of Flags added.
+        # {MAXFLAGS} - Return the amount of Flags for being detected.
+        no_malicious: '{prefix} <green>[VERBOSE] <aqua>{PLAYER} <gray>bukan VPN dengan layanan: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>bendera:</gray><red>{FLAGS}</red><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        malicious: '{prefix} <red>[VERBOSE] <aqua>{PLAYER} <gray>ditandai sebagai VPN dengan layanan: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>bendera:</gray><red>{FLAGS}</red><green>(+{FLAGS_ADDED})</green><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        ignored: '{prefix} <yellow>[VERBOSE] <aqua>{PLAYER} <gray>diabaikan karena masuk dalam whitelist <green>{type} <dark_gray>({IP})'
+    whitelist:
+        invalid_usage: '{prefix} Gunakan perintah <dark_gray>''''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[nama/ip]</yellow> <aqua>[alasan]</aqua> <light_purple>[waktu]</light_purple><dark_gray>''''</dark_gray><reset>.'
+        already: '{prefix} {IP}<red> sudah masuk whitelist/tidak masuk whitelist di konfigurasi!'
+        whitelisting: '{prefix} <yellow>Menyimpan ke whitelist: <white>{IP}</white>, tunggu sebentar...'
+        whitelisted: '{prefix} {IP}<green> masuk whitelist di konfigurasi dengan tipe <white>{type}</white> selama <white>{time}</white>. Anda dapat <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">klik di sini untuk menghapusnya lagi</click></underlined></white>.'
+        unwhitelisting: '{prefix} <yellow>Menghapus dari whitelist: <white>{IP}</white>, tunggu sebentar...'
+        unwhitelisted: '{prefix} {IP}<green> dihapus dari whitelist di konfigurasi dengan tipe <white>{type}</white>. Anda dapat <white><underlined><click:run_command:"/foxgate whitelist add {IP}">klik di sini untuk menambahkannya lagi</click></underlined></white>.'
+        type_ip: IP
+        type_name: Nama
+        problem: '{prefix} <red>Kesalahan saat mencoba menambah/menghapus ke whitelist. Periksa konsol.'
+        invalid_time: '{prefix} <red>Format waktu tidak valid. Gunakan format epoch atau format seperti <white>1d</white>, <white>3h</white>, <white>15m</white>, <white>30s</white> atau <white>permanent</white>.'
+        purging: '{prefix} <yellow>Mencoba membersihkan (purge) whitelist...'
+        purging_correctly: '{prefix} <green>Whitelist telah dibersihkan.'
+        purging_problem: '{prefix} <red>Kesalahan saat mencoba membersihkan whitelist. Periksa konsol.'
+        # Here you can find new placeholders only for this message:
+        #
+        # {TYPE} - Return "IP"/"Name".
+        # {REASON} - Return the reason why this name/IP is whitelisted.
+        # {EXPIRATION} - Return the expiration time.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
+        # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+        info: ' \n <green>Informasi whitelist dari <aqua>{IP}\n <dark_gray>▪ <white>Tipe: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Alasan: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Kadaluarsa: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Negara: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        permanent: Permanen.
+        noreason: Tanpa alasan.
+        nowhitelist: '{prefix} {IP}<red> tidak disimpan dalam whitelist dengan tipe <white>{type}</white>.'
+    predebug:
+        invalid_usage: '{prefix} Gunakan perintah <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset>.'
+        sending: '{prefix} <yellow>Mengirim untuk menguji <white>{type}</white> Anda dalam mode <white>{mode}</white>...</yellow>'
+        sended: '{prefix} <green>Terkirim!'
+        problem: '{prefix} <red>Kesalahan saat mencoba mengirim debug dari <white>{type}</white>!'

@@ -1,0 +1,227 @@
+ 
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___ 
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/           
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+
+    # 🦊 Kick message when the plugin blocks a player.
+    #
+    # {PLAYER} - Returns the player's name.
+    # {IP} - Returns the player's IP.
+    # {UUID} - Returns the player's UUID. (BungeeCord doesn't support this)
+    # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+    # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+    # {COUNTRY} - Returns the player's country. (Only works with premium version).
+    # {ASN} - Return the player's ASN (Only works with premium version).
+    kick:
+        vpn: '<red><bold>✘</bold> تم حظر اتصالك بواسطة <bold>FoxGate AntiVPN</bold>:\n\n<white>تم رفض اتصالك لاستخدامك شبكة VPN أو بروكسي.\n<gray>قم بتعطيل VPN/البروكسي أولاً ثم حاول الانضمام.</gray>\n\n<gold>هل هذا خطأ؟</gold> <white>انضم إلى خادم الديسكورد الخاص بنا.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>الوحدة: Services</dark_gray>'
+        iplimiter: '<red><bold>✘</bold> تم حظر اتصالك بواسطة <bold>FoxGate AntiVPN</bold>:\n\n<white>تم رفض اتصالك.\n<gray>وجدنا عددًا كبيرًا جدًا من الاتصالات من عنوان IP الخاص بك.</gray>\n\n<gold>هل هذا خطأ؟</gold> <white>انضم إلى خادم الديسكورد الخاص بنا.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>الوحدة: IPLimiter</dark_gray>'
+        isp: '<red><bold>✘</bold> تم حظر اتصالك بواسطة <bold>FoxGate AntiVPN</bold>:\n\n<white>تم رفض اتصالك لكونه ضارًا محتملاً.\n<gray>مزود خدمة الإنترنت "<light_purple>{ISP}</light_purple>" الذي تستخدمه محظور على هذا الخادم.</gray>\n\n<gold>هل هذا خطأ؟</gold> <white>انضم إلى خادم الديسكورد الخاص بنا.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>الوحدة: ISPFilter</dark_gray>'
+        iprange: '<red><bold>✘</bold> تم حظر اتصالك بواسطة <bold>FoxGate AntiVPN</bold>:\n\n<white>تم رفض اتصالك لكونه ضارًا محتملاً.\n<gray>عنوان IP الخاص بك موجود في قائمة سوداء في قاعدة بياناتنا لكونه ضمن نطاق عناوين ضار.</gray>\n\n<gold>هل هذا خطأ؟</gold> <white>انضم إلى خادم الديسكورد الخاص بنا.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>الوحدة: IPRange</dark_gray>'
+        bogon: '<red><bold>✘</bold> تم حظر اتصالك بواسطة <bold>FoxGate AntiVPN</bold>:\n\n<white>تم رفض اتصالك لكونه من عنوان bogon.\n<gray>عنوان IP يعتبر bogon (شبكة خاصة/محجوزة).</gray>\n\n<gold>هل هذا خطأ؟</gold> <white>انضم إلى خادم الديسكورد الخاص بنا.\n<aqua><underlined>discord.idcteam.xyz'
+        country: '<red><bold>✘</bold> تم حظر اتصالك بواسطة <bold>FoxGate AntiVPN</bold>:\n\n<white>تم رفض اتصالك لكونه ضارًا محتملاً.\n<gray>البلد الذي تتصل منه "<light_purple>{COUNTRY}</light_purple>" محظور على هذا الخادم.</gray>\n\n<gold>هل هذا خطأ؟</gold> <white>انضم إلى خادم الديسكورد الخاص بنا.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>الوحدة: Country</dark_gray>'
+        asn: '<red><bold>✘</bold> تم حظر اتصالك بواسطة <bold>FoxGate AntiVPN</bold>:\n\n<white>تم رفض اتصالك لاستخدامك شبكة VPN أو بروكسي.\n<gray>مزود خدمة الإنترنت (ASN) "<light_purple>{ASN}</light_purple>" هو مزود VPN أو Tor معروف.</gray>\n\n<gold>هل هذا خطأ؟</gold> <white>انضم إلى خادم الديسكورد الخاص بنا.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>الوحدة: ASN</dark_gray>'
+        # Some placeholders don't work in this message because it's used to kick
+        # the player when they try to join and their IP is still being verified in
+        # a pre-check. This prevents duplicate verification until the previous
+        # one is complete.
+        checking: '<red><bold>✘</bold> في انتظار التحقق من قبل <bold>FoxGate AntiVPN</bold>:\n\n<white>نحن نتحقق من اتصالك.\n<gray>يقوم FoxGate بفحص اتصالك، يرجى الانتظار لبضع ثوان.</gray>\n\n<gold>هل هذا خطأ؟</gold> <white>انضم إلى خادم الديسكورد الخاص بنا.\n<aqua><underlined>discord.idcteam.xyz'
+    # 📍 Notification when a player is kicked. You can prevent this message by leaving it blank.
+    notify:
+        vpn: '{prefix} <aqua>{player} <gray>كان يستخدم VPN وتم طرده! <green>({IP})'
+        isp: '{prefix} <aqua>{player} <gray>تم طرده للاتصال من مزود إنترنت محظور: <aqua>{ISP}</aqua>! <green>({IP})'
+        iprange: '{prefix} <aqua>{player} <gray>تم طرده للاتصال من نطاق عناوين IP محظور! <green>({IP})'
+        bogon: '{prefix} <aqua>{player} <gray>حاول الانضمام من عنوان Bogon: <green>{IP}</green>!'
+        country: '{prefix} <aqua>{player} <gray>تم طرده للاتصال من بلد محظور: <aqua>{COUNTRY}</aqua>! <green>({IP})'
+        asn: '{prefix} <aqua>{player} <gray>تم طرده للاتصال من ASN محظور: <aqua>{ASN}</aqua>! <green>({IP})'
+        #
+        # Message to send when player tries to join but it's blocked.
+        # Leave empty to disable this thing. Just works {PLAYER} and {IP} placeholders.
+        blocked: '{prefix} <aqua>{player} <gray>حاول الاتصال لكنه كان محظورًا سابقًا. <green>({IP})'
+    # 🔎 Message to show when a player it's blocked by a module. (For status command)
+    blocked:
+        isp: '<gold>محظور بسبب مزود الخدمة الخاص به.'
+        iprange: '<gold>محظور بسبب نطاق عنوان IP الخاص به.'
+        bogon: '<gold>محظور بسبب عنوان IP Bogon.'
+        country: '<gold>محظور بسبب بلده.'
+        asn: '<gold>محظور بسبب الـ ASN الخاص به.'
+    # 🧩 This will only show up in the console.
+    # This can help with debug in case a service is not working correctly.
+    # You can prevent this message by leaving it blank.
+    error: '{prefix} خطأ أثناء التحقق من VPN باستخدام <aqua>"{service}"</aqua> للاعب <yellow>{player}</yellow>: {error}'
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+    help:
+        add: إضافة عنوان IP إلى قاعدة البيانات.
+        alts: التحقق من جميع المستخدمين على عنوان IP واحد.
+        check: فحص عنوان IP خارجي وحفظه في قاعدة البيانات.
+        clearcache: مسح ملف ذاكرة التخزين المؤقت لأسماء المستخدمين المحفوظة.
+        db: تنظيف (purge) أو إعادة الاتصال بقاعدة البيانات.
+        debug: تفعيل وضع التصحيح (debug) لـ FoxGate في وحدة التحكم.
+        reload: إعادة تحميل ملف التكوين.
+        remove: إزالة عنوان IP من قاعدة البيانات.
+        status: عرض معلومات حول عنوان IP مخزن في قاعدة البيانات.
+        update: يقوم بتحديث مكونات الإضافة تلقائيًا.
+        verbose: تفعيل/تعطيل الوضع المفصل (verbose).
+        whitelist: إضافة مستخدم أو عنوان IP إلى القائمة البيضاء.
+        predebug: (الإصدار المدفوع) إرسال رسالة اختبار إلى webhook ديسكورد أو تيليغرام.
+    alts:
+        invalidip: '{prefix} {IP}<red> ليس عنوان IP/اسم مستخدم صالحًا!'
+        invalidcheck: '{prefix} {IP}<red> لم نتمكن من العثور على طلب IP/المستخدم في ذاكرة التخزين المؤقت!'
+        checking: '{prefix} {IP}<yellow> جارٍ التحقق من الحسابات البديلة...'
+        # Here you can find these placeholders:
+        #
+        # {NAME} - Returns the player's names. (only for 'output')
+        # {IP} - Returns the player's IP.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {ALTS} - Returns the alts from the User/IP.
+        # {OUTPUT} - Returns the format of 'output'.
+        # {TIME} - Returns the last time. (only for 'output')
+        # {TIME_AGO} - Returns the last time ago. (only for 'output')
+        # {COUNTRY} - Returns the IP's country. (Only works with premium version).
+        # {ASN} - Return the IP's ASN (Only works with premium version).
+        # {SIMILAR} - Display similar if was found with dynamic IP, otherwise will be blank.
+        output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - آخر اتصال: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
+        info: ' \n <green>عرض الحسابات البديلة لـ <aqua>{IP}\n <dark_gray>▪ <white>مزود الخدمة: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>الحسابات البديلة:\n {ALTS}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>البلد: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        day: يوم
+        hour: ساعة
+        minute: دقيقة
+        second: ثانية
+        plural_day: أيام
+        plural_hour: ساعات
+        plural_minute: دقائق
+        plural_second: ثوانٍ
+        similar: '<click:run_command:"/foxgate alts {IP}"><hover:show_text:"انقر لرؤية الحسابات البديلة."><gold>[مشابه]</gold></hover></click>'
+        online: '<click:run_command:"/foxgate status {IP}"><hover:show_text:"انقر لفحص الحالة."><green>متصل الآن</green></hover></click>'
+    add_remove:
+        invalidip: '{prefix} {IP}<red> ليس عنوان IP/اسم مستخدم صالحًا!'
+        already: '{prefix} {IP}<red> موجود بالفعل/تمت إزالته من قاعدة البيانات!'
+        add: '{prefix} {IP}<green> تمت إضافته إلى قاعدة البيانات!'
+        remove: '{prefix} {IP}<green> تمت إزالته من قاعدة البيانات!'
+    check:
+        invalidip: '{prefix} {IP}<red> ليس عنوان IP/اسم مستخدم صالحًا!'
+        cached: '{prefix} {IP}<yellow> موجود بالفعل في ذاكرة التخزين المؤقت بقاعدة البيانات. يمكنك <white><underlined><click:run_command:"/foxgate status {IP}">الضغط هنا لعرض المعلومات المحفوظة</click></underlined></white>.'
+        checking: '{prefix} <yellow>جارٍ فحص <white>{IP}<yellow>...'
+        saving: '{prefix} <yellow>انتهى فحص <white>{IP}</white>، في انتظار حفظ البيانات في قاعدة البيانات...'
+        checked: '{prefix} {IP}<green> تم فحصه بنجاح. عرض المعلومات التي تم الحصول عليها في قاعدة البيانات باستخدام الأمر <gray>(/foxgate status)</gray> أو <white><underlined><click:run_command:"/foxgate status {IP}">بالضغط هنا</click></underlined></white>.'
+        pre-checking: '{prefix} {IP}<yellow> يتم فحصه حاليًا من عملية سابقة، انتظر النتائج أولاً قبل تشغيل عملية أخرى على نفس عنوان IP.'
+    clearcache:
+        purging: '{prefix} <white>جارٍ <yellow>مسح</yellow> ملف ذاكرة التخزين المؤقت...'
+        purging_correctly: '{prefix} <green>تم مسح ملف ذاكرة التخزين المؤقت بنجاح.'
+        purging_problem: '{prefix} <red>خطأ أثناء محاولة مسح ملف ذاكرة التخزين المؤقت. تحقق من وحدة التحكم.'
+    db:
+        invalid_usage: '{prefix} استخدم الأمر <aqua>/foxgate db <purge/reconnect><reset>.'
+        reconnecting: '{prefix} <yellow>محاولة إعادة الاتصال بقاعدة البيانات...'
+        reconnect_correctly: '{prefix} <green>تمت إعادة الاتصال بقاعدة البيانات بنجاح.'
+        reconnect_problem: '{prefix} <red>خطأ أثناء محاولة إعادة الاتصال بقاعدة البيانات. تحقق من وحدة التحكم.'
+        purging: '{prefix} <yellow>محاولة تنظيف (purge) قاعدة البيانات...'
+        purging_correctly: '{prefix} <green>تم تنظيف قاعدة البيانات بنجاح.'
+        purging_problem: '{prefix} <red>خطأ أثناء محاولة تنظيف قاعدة البيانات. تحقق من وحدة التحكم.'
+    debug:
+        enable: '{prefix} <green>تم تفعيل وضع التصحيح. تحقق من وحدة التحكم.'
+        disable: '{prefix} <red>تم تعطيل وضع التصحيح.'
+    reload:
+        message: '{prefix} <green>تم إعادة تحميل ملف التكوين بنجاح.'
+    status:
+        invalidip: '{prefix} {IP}<red> ليس عنوان IP صالحًا!'
+        # Here you can find new placeholders only for this message:
+        #
+        # {DETECTED} - Return only the services that detected a VPN with an IP.
+        # {UNDETECTED} - Return only the services that didn't detect a VPN with an IP.
+        # {LIST} - Return both lists, but with different colors (customizable).
+        # {MAX} - Return the maximum number of flags required to deny access to a player.
+        # {COUNT_DETECTED} - Return the number of services that a player's IP has been detected with.
+        # {COUNT_UNDETECTED} - Return the number of services that a player's IP hasn't been detected with.
+        # {STATUS} - Return the status of the player.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
+        # {GEO_ASN} - Return the player's ASN (Only works with premium version).
+        detected: <red>
+        undetected: <green>
+        none: <red>لا شيء.
+        no_cached: <red>غير موجود في ذاكرة التخزين المؤقت.
+        allow: <green>تم التحقق.
+        deny: <red>محظور.
+        saved: <yellow>تم المسح.
+        info: ' \n <green>عرض حالة <aqua>{IP}\n <dark_gray>▪ <white>مزود الخدمة: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>اسم المضيف: <yellow>{HOSTNAME}</yellow>\n <dark_gray>▪ <white>الحالة: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>غير مكتشف: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>مكتشف: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>الخدمات: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>البلد: <aqua>{GEO_COUNTRY} \n '
+    update:
+        invalid_usage: '{prefix} استخدم الأمر <dark_gray>''</dark_gray>/fg update <green><asn/plugin/ranges/hostnames></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>يتم تنزيل ملف بالفعل...'
+        backend_down: '{prefix} <red>يبدو أن خادمنا الخلفي معطل أو غير مستقر. لا يمكن التحديث وإكمال الطلب.'
+        invalid_license: '{prefix} <red>رخصتك غير صالحة. ضع مفتاحًا صالحًا لهذا الإجراء.'
+        downloading_asn: '{prefix} <yellow>جارٍ تنزيل قواعد بيانات ASN...'
+        downloading_ranges: '{prefix} <yellow>جارٍ تنزيل نطاقات العناوين...'
+        downloading_hostnames: '{prefix} <yellow>جارٍ تنزيل أسماء المضيفين...'
+        downloading_jar: '{prefix} <yellow>جارٍ تنزيل الإضافة...'
+        downloaded_asn: '{prefix} <green>تم تنزيل أحدث قواعد بيانات ASN من خادمنا. تم تطبيق التغييرات.'
+        downloaded_ranges: '{prefix} <green>تم تنزيل أحدث نطاقات العناوين من خادمنا. تم تطبيق التغييرات.'
+        downloaded_hostnames: '{prefix} <green>تم تنزيل أحدث أسماء المضيفين من خادمنا. تم تطبيق التغييرات.'
+        downloaded_jar: '{prefix} <green>تم تنزيل أحدث ملف JAR للإضافة من خادمنا. أعد تشغيل الخادم لتطبيق التغييرات.'
+    verbose:
+        enable: '{prefix} <green>لقد قمت بتفعيل الوضع المفصل.'
+        disable: '{prefix} <red>لقد قمت بتعطيل الوضع المفصل.'
+        # Here you can find new placeholders only for this message:
+        #
+        # {PLAYER} - Returns the player's name.
+        # {IP} - Returns the player's IP.
+        # {SERVICE} - Return the service's name.
+        # {FLAGS} - Return the currently amount of Flags.
+        # {FLAGS_ADDED} - Return the amount of Flags added.
+        # {MAXFLAGS} - Return the amount of Flags for being detected.
+        no_malicious: '{prefix} <green>[مفصل] <aqua>{PLAYER} <gray>ليس VPN حسب الخدمة: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>العلامات:</gray><red>{FLAGS}</red><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        malicious: '{prefix} <red>[مفصل] <aqua>{PLAYER} <gray>تم وضع علامة عليه كVPN بواسطة الخدمة: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>العلامات:</gray><red>{FLAGS}</red><green>(+{FLAGS_ADDED})</green><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        ignored: '{prefix} <yellow>[مفصل] <aqua>{PLAYER} <gray>تم تجاهله لوجوده في القائمة البيضاء <green>{type} <dark_gray>({IP})'
+    whitelist:
+        invalid_usage: '{prefix} استخدم الأمر <dark_gray>''''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[الاسم/الآيبي]</yellow> <aqua>[السبب]</aqua> <light_purple>[المدة]</light_purple><dark_gray>''''</dark_gray><reset>.'
+        already: '{prefix} {IP}<red> موجود بالفعل/غير موجود في القائمة البيضاء في ملف التكوين!'
+        whitelisting: '{prefix} <yellow>جارٍ الحفظ في القائمة البيضاء: <white>{IP}</white>، لحظة...'
+        whitelisted: '{prefix} {IP}<green> تمت إضافته إلى القائمة البيضاء في ملف التكوين كنوع <white>{type}</white> لمدة <white>{time}</white>. يمكنك <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">الضغط هنا لإزالته مرة أخرى</click></underlined></white>.'
+        unwhitelisting: '{prefix} <yellow>جارٍ الإزالة من القائمة البيضاء: <white>{IP}</white>، لحظة...'
+        unwhitelisted: '{prefix} {IP}<green> تمت إزالته من القائمة البيضاء في ملف التكوين (النوع <white>{type}</white>). يمكنك <white><underlined><click:run_command:"/foxgate whitelist add {IP}">الضغط هنا لإضافته مرة أخرى</click></underlined></white>.'
+        type_ip: آيبي
+        type_name: اسم
+        problem: '{prefix} <red>خطأ أثناء محاولة الإضافة/الإزالة من القائمة البيضاء. تحقق من وحدة التحكم.'
+        invalid_time: '{prefix} <red>تنسيق الوقت غير صالح. استخدم صيغة التوقيت الرقمي (epoch) أو صيغًا مثل <white>1d</white> (يوم)، <white>3h</white> (ساعات)، <white>15m</white> (دقائق)، <white>30s</white> (ثوانٍ) أو <white>permanent</white> (دائم).'
+        purging: '{prefix} <yellow>محاولة تنظيف (purge) القائمة البيضاء...'
+        purging_correctly: '{prefix} <green>تم تنظيف القائمة البيضاء بنجاح.'
+        purging_problem: '{prefix} <red>خطأ أثناء محاولة تنظيف القائمة البيضاء. تحقق من وحدة التحكم.'
+        # Here you can find new placeholders only for this message:
+        #
+        # {TYPE} - Return "IP"/"Name".
+        # {REASON} - Return the reason why this name/IP is whitelisted.
+        # {EXPIRATION} - Return the expiration time.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
+        # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+        info: ' \n <green>معلومات القائمة البيضاء لـ <aqua>{IP}\n <dark_gray>▪ <white>النوع: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>السبب: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>ينتهي في: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>البلد: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        permanent: دائم.
+        noreason: بدون سبب.
+        nowhitelist: '{prefix} {IP}<red> غير محفوظ في القائمة البيضاء كنوع <white>{type}</white>.'
+    predebug:
+        invalid_usage: '{prefix} استخدم الأمر <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset>.'
+        sending: '{prefix} <yellow>جارٍ إرسال اختبار لـ <white>{type}</white> في وضع <white>{mode}</white>...</yellow>'
+        sended: '{prefix} <green>تم الإرسال!'
+        problem: '{prefix} <red>خطأ أثناء محاولة إرسال تصحيح لـ <white>{type}</white>!'

@@ -1,0 +1,226 @@
+ #
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___ 
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/           
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+
+    # 🦊 Kick message when the plugin blocks a player.
+    #
+    # {PLAYER} - Returns the player's name.
+    # {IP} - Returns the player's IP.
+    # {UUID} - Returns the player's UUID. (BungeeCord doesn't support this)
+    # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+    # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+    # {COUNTRY} - Returns the player's country. (Only works with premium version).
+    # {ASN} - Return the player's ASN (Only works with premium version).
+    kick:
+        vpn: '<red><bold>✘</bold> Boli ste zablokovaný pluginom <bold>FoxGate AntiVPN</bold>:\n\n<white>Vaše pripojenie bolo odmietnuté, pretože používate VPN alebo proxy.\n<gray>Najskôr vypnite VPN/proxy a potom sa skúste pripojiť.</gray>\n\n<gold>Je to chyba?</gold> <white>Pripojte sa na náš Discord server.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: Services</dark_gray>'
+        iplimiter: '<red><bold>✘</bold> Boli ste zablokovaný pluginom <bold>FoxGate AntiVPN</bold>:\n\n<white>Vaše pripojenie bolo odmietnuté.\n<gray>Zistili sme príliš veľa pripojení z rovnakej IP adresy.</gray>\n\n<gold>Je to chyba?</gold> <white>Pripojte sa na náš Discord server.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: IPLimiter</dark_gray>'
+        isp: '<red><bold>✘</bold> Boli ste zablokovaný pluginom <bold>FoxGate AntiVPN</bold>:\n\n<white>Vaše pripojenie bolo odmietnuté, pretože bolo považované za škodlivé.\n<gray>Váš poskytovateľ internetových služieb "<light_purple>{ISP}</light_purple>" je na tomto serveri zakázaný.</gray>\n\n<gold>Je to chyba?</gold> <white>Pripojte sa na náš Discord server.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: ISPFilter</dark_gray>'
+        iprange: '<red><bold>✘</bold> Boli ste zablokovaný pluginom <bold>FoxGate AntiVPN</bold>:\n\n<white>Vaše pripojenie bolo odmietnuté, pretože bolo považované za škodlivé.\n<gray>Vaša IP adresa je na čiernej listine v našej databáze, pretože sa nachádza v škodlivom rozsahu IP adries.</gray>\n\n<gold>Je to chyba?</gold> <white>Pripojte sa na náš Discord server.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: IPRange</dark_gray>'
+        bogon: '<red><bold>✘</bold> Boli ste zablokovaný pluginom <bold>FoxGate AntiVPN</bold>:\n\n<white>Vaše pripojenie bolo odmietnuté, pretože pochádza z bogon adresy.\n<gray>IP je považovaná za bogon (súkromná/vyhradená sieť).</gray>\n\n<gold>Je to chyba?</gold> <white>Pripojte sa na náš Discord server.\n<aqua><underlined>discord.idcteam.xyz'
+        country: '<red><bold>✘</bold> Boli ste zablokovaný pluginom <bold>FoxGate AntiVPN</bold>:\n\n<white>Vaše pripojenie bolo odmietnuté, pretože bolo považované za škodlivé.\n<gray>Krajina "<light_purple>{COUNTRY}</light_purple>", z ktorej sa pripájate, je na tomto serveri zakázaná.</gray>\n\n<gold>Je to chyba?</gold> <white>Pripojte sa na náš Discord server.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: Country</dark_gray>'
+        asn: '<red><bold>✘</bold> Boli ste zablokovaný pluginom <bold>FoxGate AntiVPN</bold>:\n\n<white>Vaše pripojenie bolo odmietnuté, pretože používate VPN alebo proxy.\n<gray>Váš poskytovateľ internetových služieb (ASN) "<light_purple>{ASN}</light_purple>" je známy poskytovateľ VPN alebo Tor.</gray>\n\n<gold>Je to chyba?</gold> <white>Pripojte sa na náš Discord server.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modul: ASN</dark_gray>'
+        # Some placeholders don't work in this message because it's used to kick
+        # the player when they try to join and their IP is still being verified in
+        # a pre-check. This prevents duplicate verification until the previous
+        # one is complete.
+        checking: '<red><bold>✘</bold> Čaká sa na overenie pluginom <bold>FoxGate AntiVPN</bold>:\n\n<white>Kontrolujeme vaše pripojenie.\n<gray>FoxGate skenuje vaše pripojenie, počkajte prosím niekoľko sekúnd.</gray>\n\n<gold>Je to chyba?</gold> <white>Pripojte sa na náš Discord server.\n<aqua><underlined>discord.idcteam.xyz'
+    # 📍 Notification when a player is kicked. You can prevent this message by leaving it blank.
+    notify:
+        vpn: '{prefix} <aqua>{player} <gray>používal VPN a bol vykopnutý! <green>({IP})'
+        isp: '{prefix} <aqua>{player} <gray>bol vykopnutý za pripojenie zo zakázaného ISP: <aqua>{ISP}</aqua>! <green>({IP})'
+        iprange: '{prefix} <aqua>{player} <gray>bol vykopnutý za pripojenie zo zakázaného rozsahu IP! <green>({IP})'
+        bogon: '{prefix} <aqua>{player} <gray>sa pokúsil pripojiť z bogon IP: <green>{IP}</green>!'
+        country: '{prefix} <aqua>{player} <gray>bol vykopnutý za pripojenie zo zakázanej krajiny: <aqua>{COUNTRY}</aqua>! <green>({IP})'
+        asn: '{prefix} <aqua>{player} <gray>bol vykopnutý za pripojenie zo zakázaného ASN: <aqua>{ASN}</aqua>! <green>({IP})'
+        #
+        # Message to send when player tries to join but it's blocked.
+        # Leave empty to disable this thing. Just works {PLAYER} and {IP} placeholders.
+        blocked: '{prefix} <aqua>{player} <gray>sa pokúsil pripojiť, ale už bol predtým zablokovaný. <green>({IP})'
+    # 🔎 Message to show when a player it's blocked by a module. (For status command)
+    blocked:
+        isp: '<gold>Zablokovaný kvôli ich ISP.'
+        iprange: '<gold>Zablokovaný kvôli ich rozsahu IP.'
+        bogon: '<gold>Zablokovaný pre Bogon IP.'
+        country: '<gold>Zablokovaný kvôli ich krajine.'
+        asn: '<gold>Zablokovaný kvôli ich ASN.'
+    # 🧩 This will only show up in the console.
+    # This can help with debug in case a service is not working correctly.
+    # You can prevent this message by leaving it blank.
+    error: '{prefix} Chyba pri overovaní VPN pomocou <aqua>"{service}"</aqua> pre hráča <yellow>{player}</yellow>: {error}'
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+    help:
+        add: Pridať IP do databázy.
+        alts: Skontrolovať všetkých používateľov na jednej IP.
+        check: Skontrolovať externú IP a uložiť do databázy.
+        clearcache: Vymazať vyrovnávaciu pamäť (cache) uložených mien používateľov.
+        db: Vyčistiť (purge) alebo znova pripojiť databázu.
+        debug: Ladenie FoxGate v konzole.
+        reload: Znovu načítať konfiguračný súbor.
+        remove: Odstrániť IP z databázy.
+        status: Zobraziť informácie o IP v medzipamäti (cache) databázy.
+        update: Automaticky aktualizuje komponenty pluginu za vás.
+        verbose: Zapnúť/vypnúť podrobný režim (verbose).
+        whitelist: Pridať používateľa alebo IP na bielu listinu.
+        predebug: (Premium) Odoslať Discord webhook alebo Telegram forward na testovanie ich vzhľadu.
+    alts:
+        invalidip: '{prefix} {IP}<red> nie je platná IP adresa/používateľské meno!'
+        invalidcheck: '{prefix} {IP}<red> nemôžeme nájsť požiadavku IP/používateľa z vyrovnávacej pamäte!'
+        checking: '{prefix} {IP}<yellow> kontrola alternatívnych účtov...'
+        # Here you can find these placeholders:
+        #
+        # {NAME} - Returns the player's names. (only for 'output')
+        # {IP} - Returns the player's IP.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {ALTS} - Returns the alts from the User/IP.
+        # {OUTPUT} - Returns the format of 'output'.
+        # {TIME} - Returns the last time. (only for 'output')
+        # {TIME_AGO} - Returns the last time ago. (only for 'output')
+        # {COUNTRY} - Returns the IP's country. (Only works with premium version).
+        # {ASN} - Return the IP's ASN (Only works with premium version).
+        # {SIMILAR} - Display similar if was found with dynamic IP, otherwise will be blank.
+        output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - Posledné pripojenie: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
+        info: ' \n <green>Zobrazenie alternatívnych účtov pre <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Alternatívne účty:\n {ALTS}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Krajina: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        day: deň
+        hour: hodina
+        minute: minúta
+        second: sekunda
+        plural_day: dni
+        plural_hour: hodín
+        plural_minute: minút
+        plural_second: sekúnd
+        similar: '<click:run_command:"/foxgate alts {IP}"><hover:show_text:"Kliknite pre zobrazenie alternatívnych účtov."><gold>[Podobné]</gold></hover></click>'
+        online: '<click:run_command:"/foxgate status {IP}"><hover:show_text:"Kliknite pre kontrolu stavu."><green>Online</green></hover></click>'
+    add_remove:
+        invalidip: '{prefix} {IP}<red> nie je platná IP adresa/používateľské meno!'
+        already: '{prefix} {IP}<red> je už pridaný/odstránený z databázy!'
+        add: '{prefix} {IP}<green> bol pridaný do databázy!'
+        remove: '{prefix} {IP}<green> bol odstránený z databázy!'
+    check:
+        invalidip: '{prefix} {IP}<red> nie je platná IP adresa/používateľské meno!'
+        cached: '{prefix} {IP}<yellow> je už vo vyrovnávacej pamäti databázy. Môžete <white><underlined><click:run_command:"/foxgate status {IP}">kliknúť sem pre zobrazenie informácií uložených v databáze</click></underlined></white>.'
+        checking: '{prefix} <yellow>Kontroluje sa <white>{IP}<yellow>...'
+        saving: '{prefix} <yellow>Kontrola pre <white>{IP}</white> je dokončená, čaká sa na databázu pri ukladaní údajov...'
+        checked: '{prefix} {IP}<green> bol úspešne skontrolovaný, zobrazte získané informácie v databáze pomocou príkazu <gray>(/foxgate status)</gray> alebo <white><underlined><click:run_command:"/foxgate status {IP}">kliknite sem</click></underlined></white>.'
+        pre-checking: '{prefix} {IP}<yellow> je skenovaný z predchádzajúcej kontroly, najskôr počkajte na výsledky pred spustením ďalšej na tej istej IP.'
+    clearcache:
+        purging: '{prefix} <white>Prebieha <yellow>čistenie</yellow> vyrovnávacej pamäte...'
+        purging_correctly: '{prefix} <green>Vyrovnávacia pamäť bola vyčistená.'
+        purging_problem: '{prefix} <red>Chyba pri pokuse o vyčistenie vyrovnávacej pamäte. Skontrolujte konzolu.'
+    db:
+        invalid_usage: '{prefix} Použite príkaz <aqua>/foxgate db <purge/reconnect><reset>.'
+        reconnecting: '{prefix} <yellow>Pokus o opätovné pripojenie k databáze...'
+        reconnect_correctly: '{prefix} <green>Databáza bola znova pripojená.'
+        reconnect_problem: '{prefix} <red>Chyba pri pokuse o opätovné pripojenie k databáze. Skontrolujte konzolu.'
+        purging: '{prefix} <yellow>Pokus o vyčistenie (purge) databázy...'
+        purging_correctly: '{prefix} <green>Databáza bola vyčistená.'
+        purging_problem: '{prefix} <red>Chyba pri pokuse o vyčistenie databázy. Skontrolujte konzolu.'
+    debug:
+        enable: '{prefix} <green>Režim ladenia je zapnutý. Skontrolujte konzolu.'
+        disable: '{prefix} <red>Režim ladenia je vypnutý.'
+    reload:
+        message: '{prefix} <green>Konfiguračný súbor bol znovu načítaný.'
+    status:
+        invalidip: '{prefix} {IP}<red> nie je platná IP adresa!'
+        # Here you can find new placeholders only for this message:
+        #
+        # {DETECTED} - Return only the services that detected a VPN with an IP.
+        # {UNDETECTED} - Return only the services that didn't detect a VPN with an IP.
+        # {LIST} - Return both lists, but with different colors (customizable).
+        # {MAX} - Return the maximum number of flags required to deny access to a player.
+        # {COUNT_DETECTED} - Return the number of services that a player's IP has been detected with.
+        # {COUNT_UNDETECTED} - Return the number of services that a player's IP hasn't been detected with.
+        # {STATUS} - Return the status of the player.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
+        # {GEO_ASN} - Return the player's ASN (Only works with premium version).
+        detected: <red>
+        undetected: <green>
+        none: <red>Žiadne.
+        no_cached: <red>Nie je vo vyrovnávacej pamäti databázy.
+        allow: <green>Overené.
+        deny: <red>Zablokované.
+        saved: <yellow>Skenované.
+        info: ' \n <green>Zobrazenie stavu pre <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Názov hostiteľa: <yellow>{HOSTNAME}</yellow>\n <dark_gray>▪ <white>Stav: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Nezistené: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Zistené: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Služby: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Krajina: <aqua>{GEO_COUNTRY} \n '
+    update:
+        invalid_usage: '{prefix} Použite príkaz <dark_gray>''</dark_gray>/fg update <green><asn/plugin/ranges/hostnames></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>Už sťahujeme súbor...'
+        backend_down: '{prefix} <red>Zdá sa, že náš backend je nefunkčný alebo nestabilný. Nemôžeme aktualizovať a dokončiť požiadavku.'
+        invalid_license: '{prefix} <red>Vaša licencia nie je platná, vložte platný kľúč pre túto akciu.'
+        downloading_asn: '{prefix} <yellow>Sťahuje sa ASN...'
+        downloading_ranges: '{prefix} <yellow>Sťahujú sa rozsahy IP...'
+        downloading_hostnames: '{prefix} <yellow>Sťahujú sa názvy hostiteľov...'
+        downloading_jar: '{prefix} <yellow>Sťahuje sa plugin...'
+        downloaded_asn: '{prefix} <green>Najnovší ASN bol stiahnutý z nášho backendu/centra. Zmeny boli aplikované.'
+        downloaded_ranges: '{prefix} <green>Najnovšie rozsahy IP boli stiahnuté z nášho backendu/centra. Zmeny boli aplikované.'
+        downloaded_hostnames: '{prefix} <green>Najnovšie názvy hostiteľov boli stiahnuté z nášho backendu/centra. Zmeny boli aplikované.'
+        downloaded_jar: '{prefix} <green>Najnovší JAR súbor bol stiahnutý z nášho backendu/centra. Reštartujte server pre aplikovanie zmien.'
+    verbose:
+        enable: '{prefix} <green>Zapli ste podrobný režim (verbose).'
+        disable: '{prefix} <red>Vypli ste podrobný režim (verbose).'
+        # Here you can find new placeholders only for this message:
+        #
+        # {PLAYER} - Returns the player's name.
+        # {IP} - Returns the player's IP.
+        # {SERVICE} - Return the service's name.
+        # {FLAGS} - Return the currently amount of Flags.
+        # {FLAGS_ADDED} - Return the amount of Flags added.
+        # {MAXFLAGS} - Return the amount of Flags for being detected.
+        no_malicious: '{prefix} <green>[VERBOSE] <aqua>{PLAYER} <gray>nie je VPN so službou: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>príznaky:</gray><red>{FLAGS}</red><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        malicious: '{prefix} <red>[VERBOSE] <aqua>{PLAYER} <gray>je označený ako VPN so službou: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>príznaky:</gray><red>{FLAGS}</red><green>(+{FLAGS_ADDED})</green><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        ignored: '{prefix} <yellow>[VERBOSE] <aqua>{PLAYER} <gray>bol ignorovaný, pretože je na bielej listine <green>{type} <dark_gray>({IP})'
+    whitelist:
+        invalid_usage: '{prefix} Použite príkaz <dark_gray>''''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[meno/ip]</yellow> <aqua>[dôvod]</aqua> <light_purple>[čas]</light_purple><dark_gray>''''</dark_gray><reset>.'
+        already: '{prefix} {IP}<red> je už na bielej listine/nie je na bielej listine v konfigurácii!'
+        whitelisting: '{prefix} <yellow>Ukladá sa na bielu listinu: <white>{IP}</white>, moment...'
+        whitelisted: '{prefix} {IP}<green> bol pridaný na bielu listinu v konfigurácii ako typ <white>{type}</white> na <white>{time}</white>. Môžete <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">kliknúť sem pre jeho opätovné odstránenie</click></underlined></white>.'
+        unwhitelisting: '{prefix} <yellow>Odstraňuje sa z bielej listiny: <white>{IP}</white>, moment...'
+        unwhitelisted: '{prefix} {IP}<green> bol odstránený z bielej listiny v konfigurácii (typ <white>{type}</white>). Môžete <white><underlined><click:run_command:"/foxgate whitelist add {IP}">kliknúť sem pre jeho opätovné pridanie</click></underlined></white>.'
+        type_ip: IP
+        type_name: Meno
+        problem: '{prefix} <red>Chyba pri pokuse o pridanie/odstránenie z bielej listiny. Skontrolujte konzolu.'
+        invalid_time: '{prefix} <red>Formát času je neplatný. Použite epoch čas alebo formáty ako <white>1d</white> (deň), <white>3h</white> (hodiny), <white>15m</white> (minúty), <white>30s</white> (sekundy) alebo <white>permanent</white> (trvalé).'
+        purging: '{prefix} <yellow>Pokus o vyčistenie (purge) bielej listiny...'
+        purging_correctly: '{prefix} <green>Biela listina bola vyčistená.'
+        purging_problem: '{prefix} <red>Chyba pri pokuse o vyčistenie bielej listiny. Skontrolujte konzolu.'
+        # Here you can find new placeholders only for this message:
+        #
+        # {TYPE} - Return "IP"/"Name".
+        # {REASON} - Return the reason why this name/IP is whitelisted.
+        # {EXPIRATION} - Return the expiration time.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
+        # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+        info: ' \n <green>Informácie o bielej listine pre <aqua>{IP}\n <dark_gray>▪ <white>Typ: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Dôvod: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Vyprší: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Krajina: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        permanent: Trvalé.
+        noreason: Bez dôvodu.
+        nowhitelist: '{prefix} {IP}<red> nie je uložený v bielej listine ako typ <white>{type}</white>.'
+    predebug:
+        invalid_usage: '{prefix} Použite príkaz <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset>.'
+        sending: '{prefix} <yellow>Odosiela sa test vášho <white>{type}</white> v režime <white>{mode}</white>...</yellow>'
+        sended: '{prefix} <green>Odoslané!'
+        problem: '{prefix} <red>Chyba pri pokuse o odoslanie ladenia pre <white>{type}</white>!'

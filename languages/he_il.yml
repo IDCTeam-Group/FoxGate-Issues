@@ -1,0 +1,226 @@
+ #
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___ 
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/           
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+
+    # 🦊 Kick message when the plugin blocks a player.
+    #
+    # {PLAYER} - Returns the player's name.
+    # {IP} - Returns the player's IP.
+    # {UUID} - Returns the player's UUID. (BungeeCord doesn't support this)
+    # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+    # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+    # {COUNTRY} - Returns the player's country. (Only works with premium version).
+    # {ASN} - Return the player's ASN (Only works with premium version).
+    kick:
+        vpn: '<red><bold>✘</bold> נחסמת על ידי <bold>FoxGate AntiVPN</bold>:\n\n<white>החיבור שלך נדחה מכיוון שאתה משתמש ב-VPN או פרוקסי.\n<gray>השבת תחילה את ה-VPN/פרוקסי שלך לפני הכניסה.</gray>\n\n<gold>זו טעות?</gold> <white>הצטרף לשרת הדיסקורד שלנו.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>מודול: Services</dark_gray>'
+        iplimiter: '<red><bold>✘</bold> נחסמת על ידי <bold>FoxGate AntiVPN</bold>:\n\n<white>החיבור שלך נדחה.\n<gray>מצאנו יותר מדי חיבורים מאותה כתובת IP.</gray>\n\n<gold>זו טעות?</gold> <white>הצטרף לשרת הדיסקורד שלנו.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>מודול: IPLimiter</dark_gray>'
+        isp: '<red><bold>✘</bold> נחסמת על ידי <bold>FoxGate AntiVPN</bold>:\n\n<white>החיבור שלך נדחה מכיוון שהוא נחשב זדוני.\n<gray>ספק שירותי האינטרנט שלך "<light_purple>{ISP}</light_purple>" אסור בשרת זה.</gray>\n\n<gold>זו טעות?</gold> <white>הצטרף לשרת הדיסקורד שלנו.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>מודול: ISPFilter</dark_gray>'
+        iprange: '<red><bold>✘</bold> נחסמת על ידי <bold>FoxGate AntiVPN</bold>:\n\n<white>החיבור שלך נדחה מכיוון שהוא נחשב זדוני.\n<gray>כתובת ה-IP שלך נמצאת ברשימה השחורה במסד הנתונים שלנו מכיוון שהיא נמצאת בטווח IP זדוני.</gray>\n\n<gold>זו טעות?</gold> <white>הצטרף לשרת הדיסקורד שלנו.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>מודול: IPRange</dark_gray>'
+        bogon: '<red><bold>✘</bold> נחסמת על ידי <bold>FoxGate AntiVPN</bold>:\n\n<white>החיבור שלך נדחה מכיוון שהוא מגיע מכתובת bogon.\n<gray>ה-IP נחשב ל-bogon (רשת פרטית/שמורה).</gray>\n\n<gold>זו טעות?</gold> <white>הצטרף לשרת הדיסקורד שלנו.\n<aqua><underlined>discord.idcteam.xyz'
+        country: '<red><bold>✘</bold> נחסמת על ידי <bold>FoxGate AntiVPN</bold>:\n\n<white>החיבור שלך נדחה מכיוון שהוא נחשב זדוני.\n<gray>המדינה "<light_purple>{COUNTRY}</light_purple>" ממנה אתה מתחבר אסורה בשרת זה.</gray>\n\n<gold>זו טעות?</gold> <white>הצטרף לשרת הדיסקורד שלנו.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>מודול: Country</dark_gray>'
+        asn: '<red><bold>✘</bold> נחסמת על ידי <bold>FoxGate AntiVPN</bold>:\n\n<white>החיבור שלך נדחה מכיוון שאתה משתמש ב-VPN או פרוקסי.\n<gray>ספק שירותי האינטרנט שלך (ASN) "<light_purple>{ASN}</light_purple>" הוא ספק ידוע של VPN או Tor.</gray>\n\n<gold>זו טעות?</gold> <white>הצטרף לשרת הדיסקורד שלנו.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>מודול: ASN</dark_gray>'
+        # Some placeholders don't work in this message because it's used to kick
+        # the player when they try to join and their IP is still being verified in
+        # a pre-check. This prevents duplicate verification until the previous
+        # one is complete.
+        checking: '<red><bold>✘</bold> ממתין לאימות על ידי <bold>FoxGate AntiVPN</bold>:\n\n<white>אנחנו בודקים את החיבור שלך.\n<gray>FoxGate סורק את החיבור שלך, אנא המתן מספר שניות.</gray>\n\n<gold>זו טעות?</gold> <white>הצטרף לשרת הדיסקורד שלנו.\n<aqua><underlined>discord.idcteam.xyz'
+    # 📍 Notification when a player is kicked. You can prevent this message by leaving it blank.
+    notify:
+        vpn: '{prefix} <aqua>{player} <gray>השתמש ב-VPN והורחק! <green>({IP})'
+        isp: '{prefix} <aqua>{player} <gray>הורחק בגלל חיבור מ-ISP אסור: <aqua>{ISP}</aqua>! <green>({IP})'
+        iprange: '{prefix} <aqua>{player} <gray>הורחק בגלל חיבור מטווח IP אסור! <green>({IP})'
+        bogon: '{prefix} <aqua>{player} <gray>ניסה להתחבר מ-IP Bogon: <green>{IP}</green>!'
+        country: '{prefix} <aqua>{player} <gray>הורחק בגלל חיבור ממדינה אסורה: <aqua>{COUNTRY}</aqua>! <green>({IP})'
+        asn: '{prefix} <aqua>{player} <gray>הורחק בגלל חיבור מ-ASN אסור: <aqua>{ASN}</aqua>! <green>({IP})'
+        #
+        # Message to send when player tries to join but it's blocked.
+        # Leave empty to disable this thing. Just works {PLAYER} and {IP} placeholders.
+        blocked: '{prefix} <aqua>{player} <gray>ניסה להתחבר אך נחסם בעבר. <green>({IP})'
+    # 🔎 Message to show when a player it's blocked by a module. (For status command)
+    blocked:
+        isp: '<gold>נחסם בגלל ה-ISP שלהם.'
+        iprange: '<gold>נחסם בגלל טווח ה-IP שלהם.'
+        bogon: '<gold>נחסם בגלל IP Bogon.'
+        country: '<gold>נחסם בגלל המדינה שלהם.'
+        asn: '<gold>נחסם בגלל ה-ASN שלהם.'
+    # 🧩 This will only show up in the console.
+    # This can help with debug in case a service is not working correctly.
+    # You can prevent this message by leaving it blank.
+    error: '{prefix} שגיאה באימות VPN עם <aqua>"{service}"</aqua> עבור <yellow>{player}</yellow>: {error}'
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+    help:
+        add: הוסף IP למסד הנתונים.
+        alts: בדוק את כל המשתמשים בכתובת IP אחת.
+        check: בדוק IP חיצוני ושמור במסד הנתונים.
+        clearcache: נקה את קובץ המטמון של שמות המשתמשים השמורים.
+        db: נקה (purge) או התחבר מחדש למסד הנתונים.
+        debug: נפה באגים ב-FoxGate במסוף.
+        reload: טען מחדש את קובץ התצורה.
+        remove: הסר IP ממסד הנתונים.
+        status: הצג מידע על IP במטמון במסד הנתונים.
+        update: מעדכן אוטומטית רכיבי תוסף עבורך.
+        verbose: הפעל/השבת מצב מפורט (verbose).
+        whitelist: הוסף משתמש או IP לרשימה הלבנה.
+        predebug: (פרימיום) שלח webhook של Discord או העברת Telegram כדי לבדוק איך הם נראים.
+    alts:
+        invalidip: '{prefix} {IP}<red> אינו IP/שם משתמש תקף!'
+        invalidcheck: '{prefix} {IP}<red> לא הצלחנו למצוא את בקשת ה-IP/המשתמש מהמטמון!'
+        checking: '{prefix} {IP}<yellow> בודק חשבונות חלופיים...'
+        # Here you can find these placeholders:
+        #
+        # {NAME} - Returns the player's names. (only for 'output')
+        # {IP} - Returns the player's IP.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {ALTS} - Returns the alts from the User/IP.
+        # {OUTPUT} - Returns the format of 'output'.
+        # {TIME} - Returns the last time. (only for 'output')
+        # {TIME_AGO} - Returns the last time ago. (only for 'output')
+        # {COUNTRY} - Returns the IP's country. (Only works with premium version).
+        # {ASN} - Return the IP's ASN (Only works with premium version).
+        # {SIMILAR} - Display similar if was found with dynamic IP, otherwise will be blank.
+        output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - חיבור אחרון: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
+        info: ' \n <green>צפייה בחשבונות חלופיים עבור <aqua>{IP}\n <dark_gray>▪ <white>ספק אינטרנט: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>חשבונות חלופיים:\n {ALTS}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>מדינה: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        day: יום
+        hour: שעה
+        minute: דקה
+        second: שנייה
+        plural_day: ימים
+        plural_hour: שעות
+        plural_minute: דקות
+        plural_second: שניות
+        similar: '<click:run_command:"/foxgate alts {IP}"><hover:show_text:"לחץ לצפייה בחשבונות חלופיים."><gold>[דומה]</gold></hover></click>'
+        online: '<click:run_command:"/foxgate status {IP}"><hover:show_text:"לחץ לבדיקת סטטוס."><green>אונליין</green></hover></click>'
+    add_remove:
+        invalidip: '{prefix} {IP}<red> אינו IP/שם משתמש תקף!'
+        already: '{prefix} {IP}<red> כבר נוסף/הוסר ממסד הנתונים!'
+        add: '{prefix} {IP}<green> נוסף למסד הנתונים!'
+        remove: '{prefix} {IP}<green> הוסר ממסד הנתונים!'
+    check:
+        invalidip: '{prefix} {IP}<red> אינו IP/שם משתמש תקף!'
+        cached: '{prefix} {IP}<yellow> כבר שמור במטמון במסד הנתונים. אתה יכול <white><underlined><click:run_command:"/foxgate status {IP}">לחץ כאן לצפייה במידע השמור במסד הנתונים</click></underlined></white>.'
+        checking: '{prefix} <yellow>בודק <white>{IP}<yellow>...'
+        saving: '{prefix} <yellow>הבדיקה עבור <white>{IP}</white> הסתיימה, ממתין למסד הנתונים בשמירת הנתונים...'
+        checked: '{prefix} {IP}<green> נבדק בהצלחה, צפה במידע שהתקבל במסד הנתונים עם הפקודה <gray>(/foxgate status)</gray> או <white><underlined><click:run_command:"/foxgate status {IP}">לחץ כאן</click></underlined></white>.'
+        pre-checking: '{prefix} {IP}<yellow> נסרק מבדיקה קודמת, המתן תחילה לתוצאות לפני הפעלת בדיקה נוספת באותו IP.'
+    clearcache:
+        purging: '{prefix} <white>אנחנו <yellow>מנקים</yellow> את קובץ המטמון...'
+        purging_correctly: '{prefix} <green>קובץ המטמון נוקה.'
+        purging_problem: '{prefix} <red>שגיאה בעת ניסיון לנקות את קובץ המטמון. בדוק את המסוף.'
+    db:
+        invalid_usage: '{prefix} השתמש בפקודה <aqua>/foxgate db <purge/reconnect><reset>.'
+        reconnecting: '{prefix} <yellow>מנסה להתחבר מחדש למסד הנתונים...'
+        reconnect_correctly: '{prefix} <green>מסד הנתונים התחבר מחדש.'
+        reconnect_problem: '{prefix} <red>שגיאה בעת ניסיון להתחבר מחדש למסד הנתונים. בדוק את המסוף.'
+        purging: '{prefix} <yellow>מנסה לנקות (purge) את מסד הנתונים...'
+        purging_correctly: '{prefix} <green>מסד הנתונים נוקה.'
+        purging_problem: '{prefix} <red>שגיאה בעת ניסיון לנקות את מסד הנתונים. בדוק את המסוף.'
+    debug:
+        enable: '{prefix} <green>מצב ניפוי באגים הופעל. בדוק את המסוף.'
+        disable: '{prefix} <red>מצב ניפוי באגים הושבת.'
+    reload:
+        message: '{prefix} <green>קובץ התצורה טען מחדש.'
+    status:
+        invalidip: '{prefix} {IP}<red> אינו IP תקף!'
+        # Here you can find new placeholders only for this message:
+        #
+        # {DETECTED} - Return only the services that detected a VPN with an IP.
+        # {UNDETECTED} - Return only the services that didn't detect a VPN with an IP.
+        # {LIST} - Return both lists, but with different colors (customizable).
+        # {MAX} - Return the maximum number of flags required to deny access to a player.
+        # {COUNT_DETECTED} - Return the number of services that a player's IP has been detected with.
+        # {COUNT_UNDETECTED} - Return the number of services that a player's IP hasn't been detected with.
+        # {STATUS} - Return the status of the player.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
+        # {GEO_ASN} - Return the player's ASN (Only works with premium version).
+        detected: <red>
+        undetected: <green>
+        none: <red>אין.
+        no_cached: <red>לא שמור במטמון במסד הנתונים.
+        allow: <green>מאומת.
+        deny: <red>חסום.
+        saved: <yellow>נסרק.
+        info: ' \n <green>צפייה בסטטוס של <aqua>{IP}\n <dark_gray>▪ <white>ספק אינטרנט: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>שם מארח: <yellow>{HOSTNAME}</yellow>\n <dark_gray>▪ <white>סטטוס: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>לא זוהה: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>זוהה: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>שירותים: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>מדינה: <aqua>{GEO_COUNTRY} \n '
+    update:
+        invalid_usage: '{prefix} השתמש בפקודה <dark_gray>''</dark_gray>/fg update <green><asn/plugin/ranges/hostnames></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>אנחנו כבר מורידים קובץ...'
+        backend_down: '{prefix} <red>נראה שהשרת האחורי שלנו למטה או לא יציב. אנחנו לא יכולים לעדכן ולהשלים את הבקשה.'
+        invalid_license: '{prefix} <red>הרישיון שלך אינו תקף, הכנס מפתח תקף לפעולה זו.'
+        downloading_asn: '{prefix} <yellow>מוריד ASN...'
+        downloading_ranges: '{prefix} <yellow>מוריד טווחי IP...'
+        downloading_hostnames: '{prefix} <yellow>מוריד שמות מארח...'
+        downloading_jar: '{prefix} <yellow>מוריד תוסף...'
+        downloaded_asn: '{prefix} <green>ה-ASN העדכני ביותר הורד מהשרת האחורי/המרכזי שלנו. השינויים יושמו.'
+        downloaded_ranges: '{prefix} <green>טווחי ה-IP העדכניים ביותר הורדו מהשרת האחורי/המרכזי שלנו. השינויים יושמו.'
+        downloaded_hostnames: '{prefix} <green>שמות המארח העדכניים ביותר הורדו מהשרת האחורי/המרכזי שלנו. השינויים יושמו.'
+        downloaded_jar: '{prefix} <green>קובץ ה-JAR העדכני ביותר הורד מהשרת האחורי/המרכזי שלנו. הפעל מחדש את השרת שלך כדי להחיל שינויים.'
+    verbose:
+        enable: '{prefix} <green>הפעלת מצב מפורט (verbose).'
+        disable: '{prefix} <red>כיבית מצב מפורט (verbose).'
+        # Here you can find new placeholders only for this message:
+        #
+        # {PLAYER} - Returns the player's name.
+        # {IP} - Returns the player's IP.
+        # {SERVICE} - Return the service's name.
+        # {FLAGS} - Return the currently amount of Flags.
+        # {FLAGS_ADDED} - Return the amount of Flags added.
+        # {MAXFLAGS} - Return the amount of Flags for being detected.
+        no_malicious: '{prefix} <green>[VERBOSE] <aqua>{PLAYER} <gray>אינו VPN עם שירות: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>דגלים:</gray><red>{FLAGS}</red><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        malicious: '{prefix} <red>[VERBOSE] <aqua>{PLAYER} <gray>מסומן כ-VPN עם שירות: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>דגלים:</gray><red>{FLAGS}</red><green>(+{FLAGS_ADDED})</green><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        ignored: '{prefix} <yellow>[VERBOSE] <aqua>{PLAYER} <gray>התעלמו מכיוון שהוא ברשימה הלבנה <green>{type} <dark_gray>({IP})'
+    whitelist:
+        invalid_usage: '{prefix} השתמש בפקודה <dark_gray>''''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[שם/ip]</yellow> <aqua>[סיבה]</aqua> <light_purple>[זמן]</light_purple><dark_gray>''''</dark_gray><reset>.'
+        already: '{prefix} {IP}<red> כבר ברשימה הלבנה/לא ברשימה הלבנה בתצורה!'
+        whitelisting: '{prefix} <yellow>שומר לרשימה הלבנה: <white>{IP}</white>, רגע...'
+        whitelisted: '{prefix} {IP}<green> נוסף לרשימה הלבנה בתצורה כסוג <white>{type}</white> למשך <white>{time}</white>. אתה יכול <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">לחץ כאן כדי להסיר אותו שוב</click></underlined></white>.'
+        unwhitelisting: '{prefix} <yellow>מסיר מהרשימה הלבנה: <white>{IP}</white>, רגע...'
+        unwhitelisted: '{prefix} {IP}<green> הוסר מהרשימה הלבנה בתצורה (סוג <white>{type}</white>). אתה יכול <white><underlined><click:run_command:"/foxgate whitelist add {IP}">לחץ כאן כדי להוסיף אותו שוב</click></underlined></white>.'
+        type_ip: IP
+        type_name: שם
+        problem: '{prefix} <red>שגיאה בעת ניסיון להוסיף/להסיר לרשימה הלבנה. בדוק את המסוף.'
+        invalid_time: '{prefix} <red>פורמט הזמן אינו חוקי. השתמש בזמן epoch או בפורמטים כמו <white>1d</white> (יום), <white>3h</white> (שעות), <white>15m</white> (דקות), <white>30s</white> (שניות) או <white>permanent</white> (קבוע).'
+        purging: '{prefix} <yellow>מנסה לנקות (purge) את הרשימה הלבנה...'
+        purging_correctly: '{prefix} <green>הרשימה הלבנה נוקתה.'
+        purging_problem: '{prefix} <red>שגיאה בעת ניסיון לנקות את הרשימה הלבנה. בדוק את המסוף.'
+        # Here you can find new placeholders only for this message:
+        #
+        # {TYPE} - Return "IP"/"Name".
+        # {REASON} - Return the reason why this name/IP is whitelisted.
+        # {EXPIRATION} - Return the expiration time.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
+        # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+        info: ' \n <green>מידע רשימה לבנה עבור <aqua>{IP}\n <dark_gray>▪ <white>סוג: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>סיבה: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>תפוגה: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>מדינה: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        permanent: קבוע.
+        noreason: ללא סיבה.
+        nowhitelist: '{prefix} {IP}<red> לא שמור ברשימה הלבנה כסוג <white>{type}</white>.'
+    predebug:
+        invalid_usage: '{prefix} השתמש בפקודה <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset>.'
+        sending: '{prefix} <yellow>שולח לבדיקת <white>{type}</white> שלך במצב <white>{mode}</white>...</yellow>'
+        sended: '{prefix} <green>נשלח!'
+        problem: '{prefix} <red>שגיאה בעת ניסיון לשלוח ניפוי באגים עבור <white>{type}</white>!'

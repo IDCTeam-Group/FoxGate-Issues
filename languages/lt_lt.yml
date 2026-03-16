@@ -1,0 +1,226 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___ 
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/           
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+
+    # 🦊 Kick message when the plugin blocks a player.
+    #
+    # {PLAYER} - Returns the player's name.
+    # {IP} - Returns the player's IP.
+    # {UUID} - Returns the player's UUID. (BungeeCord doesn't support this)
+    # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+    # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+    # {COUNTRY} - Returns the player's country. (Only works with premium version).
+    # {ASN} - Return the player's ASN (Only works with premium version).
+    kick:
+        vpn: '<red><bold>✘</bold> Jus užblokavo <bold>FoxGate AntiVPN</bold>:\n\n<white>Jūsų ryšys buvo atmestas, nes naudojate VPN arba proxy.\n<gray>Prieš prisijungdami išjunkite VPN/proxy.</gray>\n\n<gold>Ar tai klaida?</gold> <white>Prisijunkite prie mūsų Discord serverio.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modulis: Services</dark_gray>'
+        iplimiter: '<red><bold>✘</bold> Jus užblokavo <bold>FoxGate AntiVPN</bold>:\n\n<white>Jūsų ryšys buvo atmestas.\n<gray>Mes radome per daug jungčių iš to paties IP adreso.</gray>\n\n<gold>Ar tai klaida?</gold> <white>Prisijunkite prie mūsų Discord serverio.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modulis: IPLimiter</dark_gray>'
+        isp: '<red><bold>✘</bold> Jus užblokavo <bold>FoxGate AntiVPN</bold>:\n\n<white>Jūsų ryšys buvo atmestas, nes jis laikomas kenksmingu.\n<gray>Jūsų interneto paslaugų teikėjas "<light_purple>{ISP}</light_purple>" yra uždraustas šiame serveryje.</gray>\n\n<gold>Ar tai klaida?</gold> <white>Prisijunkite prie mūsų Discord serverio.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modulis: ISPFilter</dark_gray>'
+        iprange: '<red><bold>✘</bold> Jus užblokavo <bold>FoxGate AntiVPN</bold>:\n\n<white>Jūsų ryšys buvo atmestas, nes jis laikomas kenksmingu.\n<gray>Jūsų IP adresas yra mūsų duomenų bazės juodajame sąraše, nes jis yra kenksmingame IP diapazone.</gray>\n\n<gold>Ar tai klaida?</gold> <white>Prisijunkite prie mūsų Discord serverio.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modulis: IPRange</dark_gray>'
+        bogon: '<red><bold>✘</bold> Jus užblokavo <bold>FoxGate AntiVPN</bold>:\n\n<white>Jūsų ryšys buvo atmestas, nes jis ateina iš bogon adreso.\n<gray>IP laikomas bogon (privatus/rezervuotas tinklas).</gray>\n\n<gold>Ar tai klaida?</gold> <white>Prisijunkite prie mūsų Discord serverio.\n<aqua><underlined>discord.idcteam.xyz'
+        country: '<red><bold>✘</bold> Jus užblokavo <bold>FoxGate AntiVPN</bold>:\n\n<white>Jūsų ryšys buvo atmestas, nes jis laikomas kenksmingu.\n<gray>Šalis "<light_purple>{COUNTRY}</light_purple>", iš kurios jungiatės, yra uždrausta šiame serveryje.</gray>\n\n<gold>Ar tai klaida?</gold> <white>Prisijunkite prie mūsų Discord serverio.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modulis: Country</dark_gray>'
+        asn: '<red><bold>✘</bold> Jus užblokavo <bold>FoxGate AntiVPN</bold>:\n\n<white>Jūsų ryšys buvo atmestas, nes naudojate VPN arba proxy.\n<gray>Jūsų interneto paslaugų teikėjas (ASN) "<light_purple>{ASN}</light_purple>" yra žinomas VPN arba Tor teikėjas.</gray>\n\n<gold>Ar tai klaida?</gold> <white>Prisijunkite prie mūsų Discord serverio.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Modulis: ASN</dark_gray>'
+        # Some placeholders don't work in this message because it's used to kick
+        # the player when they try to join and their IP is still being verified in
+        # a pre-check. This prevents duplicate verification until the previous
+        # one is complete.
+        checking: '<red><bold>✘</bold> Laukiama, kol <bold>FoxGate AntiVPN</bold> patikrins:\n\n<white>Mes tikriname jūsų ryšį.\n<gray>FoxGate nuskaito jūsų ryšį, palaukite kelias sekundes.</gray>\n\n<gold>Ar tai klaida?</gold> <white>Prisijunkite prie mūsų Discord serverio.\n<aqua><underlined>discord.idcteam.xyz'
+    # 📍 Notification when a player is kicked. You can prevent this message by leaving it blank.
+    notify:
+        vpn: '{prefix} <aqua>{player} <gray>naudojo VPN ir buvo išmestas! <green>({IP})'
+        isp: '{prefix} <aqua>{player} <gray>buvo išmestas už prisijungimą iš uždrausto ISP: <aqua>{ISP}</aqua>! <green>({IP})'
+        iprange: '{prefix} <aqua>{player} <gray>buvo išmestas už prisijungimą iš uždrausto IP diapazono! <green>({IP})'
+        bogon: '{prefix} <aqua>{player} <gray>bandė prisijungti iš bogon IP: <green>{IP}</green>!'
+        country: '{prefix} <aqua>{player} <gray>buvo išmestas už prisijungimą iš uždraustos šalies: <aqua>{COUNTRY}</aqua>! <green>({IP})'
+        asn: '{prefix} <aqua>{player} <gray>buvo išmestas už prisijungimą iš uždrausto ASN: <aqua>{ASN}</aqua>! <green>({IP})'
+        #
+        # Message to send when player tries to join but it's blocked.
+        # Leave empty to disable this thing. Just works {PLAYER} and {IP} placeholders.
+        blocked: '{prefix} <aqua>{player} <gray>bandė prisijungti, bet anksčiau buvo užblokuotas. <green>({IP})'
+    # 🔎 Message to show when a player it's blocked by a module. (For status command)
+    blocked:
+        isp: '<gold>Užblokuotas dėl jų IPT.'
+        iprange: '<gold>Užblokuotas dėl jų IP diapazono.'
+        bogon: '<gold>Užblokuotas dėl Bogon IP.'
+        country: '<gold>Užblokuotas dėl jų šalies.'
+        asn: '<gold>Užblokuotas dėl jų ASN.'
+    # 🧩 This will only show up in the console.
+    # This can help with debug in case a service is not working correctly.
+    # You can prevent this message by leaving it blank.
+    error: '{prefix} Klaida tikrinant VPN su <aqua>"{service}"</aqua> žaidėjui <yellow>{player}</yellow>: {error}'
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+    help:
+        add: Pridėti IP į duomenų bazę.
+        alts: Patikrinti visus vartotojus viename IP.
+        check: Patikrinti išorinį IP ir išsaugoti duomenų bazėje.
+        clearcache: Išvalyti išsaugotų vartotojų vardų podėlio failą.
+        db: Išvalyti (purge) arba iš naujo prijungti duomenų bazę.
+        debug: Derinti FoxGate konsolėje.
+        reload: Iš naujo įkelti konfigūracijos failą.
+        remove: Pašalinti IP iš duomenų bazės.
+        status: Peržiūrėti informaciją apie podėlyje esantį IP duomenų bazėje.
+        update: Automatiškai atnaujina papildinio komponentus.
+        verbose: Įjungti/išjungti išsamųjį režimą (verbose).
+        whitelist: Įtraukti vartotoją arba IP į baltąjį sąrašą.
+        predebug: (Premium) Siųsti Discord webhook arba Telegram persiuntimą, norint išbandyti, kaip jie atrodo.
+    alts:
+        invalidip: '{prefix} {IP}<red> nėra galiojantis IP/vartotojo vardas!'
+        invalidcheck: '{prefix} {IP}<red> negalime rasti IP/vartotojo užklausos podėlyje!'
+        checking: '{prefix} {IP}<yellow> tikrinama, ar nėra alternatyvių paskyrų...'
+        # Here you can find these placeholders:
+        #
+        # {NAME} - Returns the player's names. (only for 'output')
+        # {IP} - Returns the player's IP.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {ALTS} - Returns the alts from the User/IP.
+        # {OUTPUT} - Returns the format of 'output'.
+        # {TIME} - Returns the last time. (only for 'output')
+        # {TIME_AGO} - Returns the last time ago. (only for 'output')
+        # {COUNTRY} - Returns the IP's country. (Only works with premium version).
+        # {ASN} - Return the IP's ASN (Only works with premium version).
+        # {SIMILAR} - Display similar if was found with dynamic IP, otherwise will be blank.
+        output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - Paskutinis prisijungimas: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
+        info: ' \n <green>Peržiūrimi alternatyvūs <aqua>{IP}\n <dark_gray>▪ <white>IPT: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Alternatyvios paskyros:\n {ALTS}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Šalis: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        day: diena
+        hour: valanda
+        minute: minutė
+        second: sekundė
+        plural_day: dienos
+        plural_hour: valandos
+        plural_minute: minutės
+        plural_second: sekundės
+        similar: '<click:run_command:"/foxgate alts {IP}"><hover:show_text:"Spustelėkite, norėdami pamatyti alternatyvias paskyras."><gold>[Panašūs]</gold></hover></click>'
+        online: '<click:run_command:"/foxgate status {IP}"><hover:show_text:"Spustelėkite, norėdami patikrinti būseną."><green>Prisijungęs</green></hover></click>'
+    add_remove:
+        invalidip: '{prefix} {IP}<red> nėra galiojantis IP/vartotojo vardas!'
+        already: '{prefix} {IP}<red> jau pridėtas/pašalintas iš duomenų bazės!'
+        add: '{prefix} {IP}<green> buvo pridėtas į duomenų bazę!'
+        remove: '{prefix} {IP}<green> buvo pašalintas iš duomenų bazės!'
+    check:
+        invalidip: '{prefix} {IP}<red> nėra galiojantis IP/vartotojo vardas!'
+        cached: '{prefix} {IP}<yellow> jau yra podėlyje duomenų bazėje. Galite <white><underlined><click:run_command:"/foxgate status {IP}">spustelėti čia, norėdami peržiūrėti duomenų bazėje išsaugotą informaciją</click></underlined></white>.'
+        checking: '{prefix} <yellow>Tikrinamas <white>{IP}<yellow>...'
+        saving: '{prefix} <yellow><white>{IP}</white> tikrinimas baigtas, laukiama, kol duomenų bazė išsaugos duomenis...'
+        checked: '{prefix} {IP}<green> buvo sėkmingai patikrintas, peržiūrėkite gautą informaciją duomenų bazėje naudodami komandą <gray>(/foxgate status)</gray> arba <white><underlined><click:run_command:"/foxgate status {IP}">spustelėkite čia</click></underlined></white>.'
+        pre-checking: '{prefix} {IP}<yellow> yra nuskaitomas iš ankstesnio patikrinimo, pirmiausia palaukite rezultatų prieš paleisdami kitą tame pačiame IP.'
+    clearcache:
+        purging: '{prefix} <white>Mes <yellow>valome</yellow> podėlio failą...'
+        purging_correctly: '{prefix} <green>Podėlio failas išvalytas.'
+        purging_problem: '{prefix} <red>Klaida bandant išvalyti podėlio failą. Patikrinkite konsolę.'
+    db:
+        invalid_usage: '{prefix} Naudokite komandą <aqua>/foxgate db <purge/reconnect><reset>.'
+        reconnecting: '{prefix} <yellow>Bandoma iš naujo prijungti prie duomenų bazės...'
+        reconnect_correctly: '{prefix} <green>Duomenų bazė iš naujo prijungta.'
+        reconnect_problem: '{prefix} <red>Klaida bandant iš naujo prijungti prie duomenų bazės. Patikrinkite konsolę.'
+        purging: '{prefix} <yellow>Bandoma išvalyti (purge) duomenų bazę...'
+        purging_correctly: '{prefix} <green>Duomenų bazė išvalyta.'
+        purging_problem: '{prefix} <red>Klaida bandant išvalyti duomenų bazę. Patikrinkite konsolę.'
+    debug:
+        enable: '{prefix} <green>Derinimo režimas įjungtas. Patikrinkite konsolę.'
+        disable: '{prefix} <red>Derinimo režimas išjungtas.'
+    reload:
+        message: '{prefix} <green>Konfigūracijos failas buvo iš naujo įkeltas.'
+    status:
+        invalidip: '{prefix} {IP}<red> nėra galiojantis IP adresas!'
+        # Here you can find new placeholders only for this message:
+        #
+        # {DETECTED} - Return only the services that detected a VPN with an IP.
+        # {UNDETECTED} - Return only the services that didn't detect a VPN with an IP.
+        # {LIST} - Return both lists, but with different colors (customizable).
+        # {MAX} - Return the maximum number of flags required to deny access to a player.
+        # {COUNT_DETECTED} - Return the number of services that a player's IP has been detected with.
+        # {COUNT_UNDETECTED} - Return the number of services that a player's IP hasn't been detected with.
+        # {STATUS} - Return the status of the player.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
+        # {GEO_ASN} - Return the player's ASN (Only works with premium version).
+        detected: <red>
+        undetected: <green>
+        none: <red>Nėra.
+        no_cached: <red>Nėra podėlyje duomenų bazėje.
+        allow: <green>Patvirtinta.
+        deny: <red>Užblokuota.
+        saved: <yellow>Nuskaityta.
+        info: ' \n <green>Peržiūrima <aqua>{IP} būsena\n <dark_gray>▪ <white>IPT: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Pagrindinio kompiuterio vardas: <yellow>{HOSTNAME}</yellow>\n <dark_gray>▪ <white>Būsena: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Neaptikta: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Aptikta: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Paslaugos: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Šalis: <aqua>{GEO_COUNTRY} \n '
+    update:
+        invalid_usage: '{prefix} Naudokite komandą <dark_gray>''</dark_gray>/fg update <green><asn/plugin/ranges/hostnames></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>Mes jau atsisiunčiame failą...'
+        backend_down: '{prefix} <red>Atrodo, kad mūsų backend neveikia arba yra nestabilus. Negalime atnaujinti ir užbaigti užklausos.'
+        invalid_license: '{prefix} <red>Jūsų licencija negalioja, įveskite galiojantį raktą šiam veiksmui.'
+        downloading_asn: '{prefix} <yellow>Atsisiunčiamas ASN...'
+        downloading_ranges: '{prefix} <yellow>Atsisiunčiami IP diapazonai...'
+        downloading_hostnames: '{prefix} <yellow>Atsisiunčiami pagrindinių kompiuterių vardai...'
+        downloading_jar: '{prefix} <yellow>Atsisiunčiamas papildinys...'
+        downloaded_asn: '{prefix} <green>Naujausias ASN atsiųstas iš mūsų backend/centro. Pakeitimai pritaikyti.'
+        downloaded_ranges: '{prefix} <green>Naujausi IP diapazonai atsiųsti iš mūsų backend/centro. Pakeitimai pritaikyti.'
+        downloaded_hostnames: '{prefix} <green>Naujausi pagrindinių kompiuterių vardai atsiųsti iš mūsų backend/centro. Pakeitimai pritaikyti.'
+        downloaded_jar: '{prefix} <green>Naujausias JAR failas atsiųstas iš mūsų backend/centro. Paleiskite serverį iš naujo, kad pritaikytumėte pakeitimus.'
+    verbose:
+        enable: '{prefix} <green>Jūs įjungėte išsamųjį režimą (verbose).'
+        disable: '{prefix} <red>Jūs išjungėte išsamųjį režimą (verbose).'
+        # Here you can find new placeholders only for this message:
+        #
+        # {PLAYER} - Returns the player's name.
+        # {IP} - Returns the player's IP.
+        # {SERVICE} - Return the service's name.
+        # {FLAGS} - Return the currently amount of Flags.
+        # {FLAGS_ADDED} - Return the amount of Flags added.
+        # {MAXFLAGS} - Return the amount of Flags for being detected.
+        no_malicious: '{prefix} <green>[VERBOSE] <aqua>{PLAYER} <gray>nėra VPN su paslauga: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>vėliavėlės:</gray><red>{FLAGS}</red><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        malicious: '{prefix} <red>[VERBOSE] <aqua>{PLAYER} <gray>pažymėtas kaip VPN su paslauga: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>vėliavėlės:</gray><red>{FLAGS}</red><green>(+{FLAGS_ADDED})</green><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        ignored: '{prefix} <yellow>[VERBOSE] <aqua>{PLAYER} <gray>buvo ignoruojamas, nes yra baltajame sąraše <green>{type} <dark_gray>({IP})'
+    whitelist:
+        invalid_usage: '{prefix} Naudokite komandą <dark_gray>''''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[vardas/ip]</yellow> <aqua>[priežastis]</aqua> <light_purple>[laikas]</light_purple><dark_gray>''''</dark_gray><reset>.'
+        already: '{prefix} {IP}<red> jau yra baltajame sąraše/ne baltajame sąraše konfigūracijoje!'
+        whitelisting: '{prefix} <yellow>Išsaugoma į baltąjį sąrašą: <white>{IP}</white>, akimirksnį...'
+        whitelisted: '{prefix} {IP}<green> buvo įtrauktas į baltąjį sąrašą konfigūracijoje kaip tipas <white>{type}</white> <white>{time}</white> laikui. Galite <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">spustelėti čia, kad vėl jį pašalintumėte</click></underlined></white>.'
+        unwhitelisting: '{prefix} <yellow>Šalinama iš baltojo sąrašo: <white>{IP}</white>, akimirksnį...'
+        unwhitelisted: '{prefix} {IP}<green> buvo pašalintas iš baltojo sąrašo konfigūracijoje (tipas <white>{type}</white>). Galite <white><underlined><click:run_command:"/foxgate whitelist add {IP}">spustelėti čia, kad vėl jį pridėtumėte</click></underlined></white>.'
+        type_ip: IP
+        type_name: Vardas
+        problem: '{prefix} <red>Klaida bandant pridėti/pašalinti į baltąjį sąrašą. Patikrinkite konsolę.'
+        invalid_time: '{prefix} <red>Laiko formatas neteisingas. Naudokite epoch laiką arba formatus, pvz., <white>1d</white> (diena), <white>3h</white> (valandos), <white>15m</white> (minutės), <white>30s</white> (sekundės) arba <white>permanent</white> (visam laikui).'
+        purging: '{prefix} <yellow>Bandoma išvalyti (purge) baltąjį sąrašą...'
+        purging_correctly: '{prefix} <green>Baltasis sąrašas išvalytas.'
+        purging_problem: '{prefix} <red>Klaida bandant išvalyti baltąjį sąrašą. Patikrinkite konsolę.'
+        # Here you can find new placeholders only for this message:
+        #
+        # {TYPE} - Return "IP"/"Name".
+        # {REASON} - Return the reason why this name/IP is whitelisted.
+        # {EXPIRATION} - Return the expiration time.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
+        # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+        info: ' \n <green>Baltojo sąrašo informacija apie <aqua>{IP}\n <dark_gray>▪ <white>Tipas: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Priežastis: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Galiojimo pabaiga: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Šalis: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        permanent: Visam laikui.
+        noreason: Nėra priežasties.
+        nowhitelist: '{prefix} {IP}<red> nėra išsaugotas baltajame sąraše kaip tipas <white>{type}</white>.'
+    predebug:
+        invalid_usage: '{prefix} Naudokite komandą <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset>.'
+        sending: '{prefix} <yellow>Siunčiamas <white>{type}</white> testas režimu <white>{mode}</white>...</yellow>'
+        sended: '{prefix} <green>Išsiųsta!'
+        problem: '{prefix} <red>Klaida bandant išsiųsti derinimo informaciją apie <white>{type}</white>!'

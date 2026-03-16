@@ -1,0 +1,226 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___ 
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/           
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+
+    # 🦊 Kick message when the plugin blocks a player.
+    #
+    # {PLAYER} - Returns the player's name.
+    # {IP} - Returns the player's IP.
+    # {UUID} - Returns the player's UUID. (BungeeCord doesn't support this)
+    # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+    # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+    # {COUNTRY} - Returns the player's country. (Only works with premium version).
+    # {ASN} - Return the player's ASN (Only works with premium version).
+    kick:
+        vpn: '<red><bold>✘</bold> Zostałeś zablokowany przez <bold>FoxGate AntiVPN</bold>:\n\n<white>Twoje połączenie zostało odrzucone, ponieważ używasz VPN lub proxy.\n<gray>Wyłącz najpierw swoje VPN/proxy, aby dołączyć.</gray>\n\n<gold>To pomyłka?</gold> <white>Dołącz na nasz serwer Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Moduł: Services</dark_gray>'
+        iplimiter: '<red><bold>✘</bold> Zostałeś zablokowany przez <bold>FoxGate AntiVPN</bold>:\n\n<white>Twoje połączenie zostało odrzucone.\n<gray>Wykryliśmy zbyt wiele połączeń z Twojego adresu IP.</gray>\n\n<gold>To pomyłka?</gold> <white>Dołącz na nasz serwer Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Moduł: IPLimiter</dark_gray>'
+        isp: '<red><bold>✘</bold> Zostałeś zablokowany przez <bold>FoxGate AntiVPN</bold>:\n\n<white>Twoje połączenie zostało odrzucone jako potencjalnie szkodliwe.\n<gray>Twój dostawca usług internetowych "<light_purple>{ISP}</light_purple>" jest zabroniony na tym serwerze.</gray>\n\n<gold>To pomyłka?</gold> <white>Dołącz na nasz serwer Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Moduł: ISPFilter</dark_gray>'
+        iprange: '<red><bold>✘</bold> Zostałeś zablokowany przez <bold>FoxGate AntiVPN</bold>:\n\n<white>Twoje połączenie zostało odrzucone jako potencjalnie szkodliwe.\n<gray>Twoje IP znajduje się na czarnej liście w naszej bazie danych jako część szkodliwego zakresu.</gray>\n\n<gold>To pomyłka?</gold> <white>Dołącz na nasz serwer Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Moduł: IPRange</dark_gray>'
+        bogon: '<red><bold>✘</bold> Zostałeś zablokowany przez <bold>FoxGate AntiVPN</bold>:\n\n<white>Twoje połączenie zostało odrzucone, ponieważ pochodzi z adresu bogon.\n<gray>IP jest uważane za bogon (prywatna/zarezerwowana sieć).</gray>\n\n<gold>To pomyłka?</gold> <white>Dołącz na nasz serwer Discord.\n<aqua><underlined>discord.idcteam.xyz'
+        country: '<red><bold>✘</bold> Zostałeś zablokowany przez <bold>FoxGate AntiVPN</bold>:\n\n<white>Twoje połączenie zostało odrzucone jako potencjalnie szkodliwe.\n<gray>Kraj, z którego się łączysz "<light_purple>{COUNTRY}</light_purple>" jest zabroniony na tym serwerze.</gray>\n\n<gold>To pomyłka?</gold> <white>Dołącz na nasz serwer Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Moduł: Country</dark_gray>'
+        asn: '<red><bold>✘</bold> Zostałeś zablokowany przez <bold>FoxGate AntiVPN</bold>:\n\n<white>Twoje połączenie zostało odrzucone, ponieważ używasz VPN lub proxy.\n<gray>Twój dostawca usług internetowych (ASN) "<light_purple>{ASN}</light_purple>" jest znanym dostawcą VPN lub Tora.</gray>\n\n<gold>To pomyłka?</gold> <white>Dołącz na nasz serwer Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Moduł: ASN</dark_gray>'
+        # Some placeholders don't work in this message because it's used to kick
+        # the player when they try to join and their IP is still being verified in
+        # a pre-check. This prevents duplicate verification until the previous
+        # one is complete.
+        checking: '<red><bold>✘</bold> Oczekiwanie na weryfikację przez <bold>FoxGate AntiVPN</bold>:\n\n<white>Sprawdzamy Twoje połączenie.\n<gray>FoxGate skanuje Twoje połączenie, proszę czekać kilka sekund.</gray>\n\n<gold>To pomyłka?</gold> <white>Dołącz na nasz serwer Discord.\n<aqua><underlined>discord.idcteam.xyz'
+    # 📍 Notification when a player is kicked. You can prevent this message by leaving it blank.
+    notify:
+        vpn: '{prefix} <aqua>{player} <gray>używał VPN i został wyrzucony! <green>({IP})'
+        isp: '{prefix} <aqua>{player} <gray>został wyrzucony za połączenie z zabronionego ISP: <aqua>{ISP}</aqua>! <green>({IP})'
+        iprange: '{prefix} <aqua>{player} <gray>został wyrzucony za połączenie z zabronionego zakresu IP! <green>({IP})'
+        bogon: '{prefix} <aqua>{player} <gray>próbował dołączyć z adresu bogon: <green>{IP}</green>!'
+        country: '{prefix} <aqua>{player} <gray>został wyrzucony za połączenie z zabronionego kraju: <aqua>{COUNTRY}</aqua>! <green>({IP})'
+        asn: '{prefix} <aqua>{player} <gray>został wyrzucony za połączenie z zabronionego ASN: <aqua>{ASN}</aqua>! <green>({IP})'
+        #
+        # Message to send when player tries to join but it's blocked.
+        # Leave empty to disable this thing. Just works {PLAYER} and {IP} placeholders.
+        blocked: '{prefix} <aqua>{player} <gray>próbował się połączyć, ale był już wcześniej zablokowany. <green>({IP})'
+    # 🔎 Message to show when a player it's blocked by a module. (For status command)
+    blocked:
+        isp: '<gold>Zablokowany z powodu swojego ISP.'
+        iprange: '<gold>Zablokowany z powodu swojego zakresu IP.'
+        bogon: '<gold>Zablokowany za adres Bogon.'
+        country: '<gold>Zablokowany z powodu swojego kraju.'
+        asn: '<gold>Zablokowany z powodu swojego ASN.'
+    # 🧩 This will only show up in the console.
+    # This can help with debug in case a service is not working correctly.
+    # You can prevent this message by leaving it blank.
+    error: '{prefix} Błąd podczas weryfikacji VPN za pomocą <aqua>"{service}"</aqua> dla <yellow>{player}</yellow>: {error}'
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+    help:
+        add: Dodaj IP do bazy danych.
+        alts: Sprawdź wszystkich użytkowników na jednym IP.
+        check: Sprawdź zewnętrzne IP i zapisz w bazie danych.
+        clearcache: Wyczyść plik cache zapisanych nazw użytkowników.
+        db: Wyczyść (purge) lub połącz ponownie bazę danych.
+        debug: Debuguj FoxGate w konsoli.
+        reload: Przeładuj plik konfiguracyjny.
+        remove: Usuń IP z bazy danych.
+        status: Wyświetl informacje o IP w cache/bazie danych.
+        update: Automatycznie aktualizuje komponenty wtyczki.
+        verbose: Włącz/wyłącz tryb szczegółowy (verbose).
+        whitelist: Dodaj użytkownika lub IP do białej listy.
+        predebug: (Premium) Wyślij testową wiadomość na webhook Discord lub Telegram.
+    alts:
+        invalidip: '{prefix} {IP}<red> nie jest prawidłowym adresem IP/nazwą użytkownika!'
+        invalidcheck: '{prefix} {IP}<red> nie możemy znaleźć żądania IP/użytkownika w cache!'
+        checking: '{prefix} {IP}<yellow> sprawdzanie alternatywnych kont (altów)...'
+        # Here you can find these placeholders:
+        #
+        # {NAME} - Returns the player's names. (only for 'output')
+        # {IP} - Returns the player's IP.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {ALTS} - Returns the alts from the User/IP.
+        # {OUTPUT} - Returns the format of 'output'.
+        # {TIME} - Returns the last time. (only for 'output')
+        # {TIME_AGO} - Returns the last time ago. (only for 'output')
+        # {COUNTRY} - Returns the IP's country. (Only works with premium version).
+        # {ASN} - Return the IP's ASN (Only works with premium version).
+        # {SIMILAR} - Display similar if was found with dynamic IP, otherwise will be blank.
+        output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - Ostatnie połączenie: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
+        info: ' \n <green>Wyświetlanie altów dla <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Alty:\n {ALTS}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Kraj: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        day: dzień
+        hour: godzina
+        minute: minuta
+        second: sekunda
+        plural_day: dni
+        plural_hour: godzin
+        plural_minute: minut
+        plural_second: sekund
+        similar: '<click:run_command:"/foxgate alts {IP}"><hover:show_text:"Kliknij, aby zobaczyć alty."><gold>[Podobne]</gold></hover></click>'
+        online: '<click:run_command:"/foxgate status {IP}"><hover:show_text:"Kliknij, aby sprawdzić status."><green>Online</green></hover></click>'
+    add_remove:
+        invalidip: '{prefix} {IP}<red> nie jest prawidłowym adresem IP/nazwą użytkownika!'
+        already: '{prefix} {IP}<red> jest już dodany/usunięty z bazy danych!'
+        add: '{prefix} {IP}<green> został dodany do bazy danych!'
+        remove: '{prefix} {IP}<green> został usunięty z bazy danych!'
+    check:
+        invalidip: '{prefix} {IP}<red> nie jest prawidłowym adresem IP/nazwą użytkownika!'
+        cached: '{prefix} {IP}<yellow> jest już w cache w bazie danych. Możesz <white><underlined><click:run_command:"/foxgate status {IP}">kliknąć tutaj, aby zobaczyć zapisane informacje</click></underlined></white>.'
+        checking: '{prefix} <yellow>Sprawdzanie <white>{IP}<yellow>...'
+        saving: '{prefix} <yellow>Sprawdzanie <white>{IP}</white> zakończone, oczekiwanie na zapisanie w bazie danych...'
+        checked: '{prefix} {IP}<green> został pomyślnie sprawdzony. Zobacz uzyskane informacje w bazie danych za pomocą komendy <gray>(/foxgate status)</gray> lub <white><underlined><click:run_command:"/foxgate status {IP}">klikając tutaj</click></underlined></white>.'
+        pre-checking: '{prefix} {IP}<yellow> jest już skanowany z poprzedniego sprawdzenia. Poczekaj na wyniki, zanim uruchomisz kolejne dla tego samego IP.'
+    clearcache:
+        purging: '{prefix} <white>Czyszczenie <yellow>pliku cache</yellow>...'
+        purging_correctly: '{prefix} <green>Plik cache został wyczyszczony pomyślnie.'
+        purging_problem: '{prefix} <red>Błąd podczas czyszczenia pliku cache. Sprawdź konsolę.'
+    db:
+        invalid_usage: '{prefix} Użyj komendy <aqua>/foxgate db <purge/reconnect><reset>.'
+        reconnecting: '{prefix} <yellow>Próba ponownego połączenia z bazą danych...'
+        reconnect_correctly: '{prefix} <green>Ponownie połączono z bazą danych.'
+        reconnect_problem: '{prefix} <red>Błąd podczas próby ponownego połączenia z bazą danych. Sprawdź konsolę.'
+        purging: '{prefix} <yellow>Próba czyszczenia (purge) bazy danych...'
+        purging_correctly: '{prefix} <green>Baza danych została wyczyszczona pomyślnie.'
+        purging_problem: '{prefix} <red>Błąd podczas próby czyszczenia bazy danych. Sprawdź konsolę.'
+    debug:
+        enable: '{prefix} <green>Włączono tryb debugowania. Sprawdź konsolę.'
+        disable: '{prefix} <red>Wyłączono tryb debugowania.'
+    reload:
+        message: '{prefix} <green>Plik konfiguracyjny został przeładowany pomyślnie.'
+    status:
+        invalidip: '{prefix} {IP}<red> nie jest prawidłowym adresem IP!'
+        # Here you can find new placeholders only for this message:
+        #
+        # {DETECTED} - Return only the services that detected a VPN with an IP.
+        # {UNDETECTED} - Return only the services that didn't detect a VPN with an IP.
+        # {LIST} - Return both lists, but with different colors (customizable).
+        # {MAX} - Return the maximum number of flags required to deny access to a player.
+        # {COUNT_DETECTED} - Return the number of services that a player's IP has been detected with.
+        # {COUNT_UNDETECTED} - Return the number of services that a player's IP hasn't been detected with.
+        # {STATUS} - Return the status of the player.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
+        # {GEO_ASN} - Return the player's ASN (Only works with premium version).
+        detected: <red>
+        undetected: <green>
+        none: <red>Brak.
+        no_cached: <red>Brak w cache bazy danych.
+        allow: <green>Zweryfikowany.
+        deny: <red>Zablokowany.
+        saved: <yellow>Zeskanowany.
+        info: ' \n <green>Wyświetlanie statusu dla <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Nazwa hosta: <yellow>{HOSTNAME}</yellow>\n <dark_gray>▪ <white>Status: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Niewykryty: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Wykryty: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Usługi: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Kraj: <aqua>{GEO_COUNTRY} \n '
+    update:
+        invalid_usage: '{prefix} Użyj komendy <dark_gray>''</dark_gray>/fg update <green><asn/plugin/ranges/hostnames></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>Plik jest już pobierany...'
+        backend_down: '{prefix} <red>Nasz backend wydaje się być niedostępny lub niestabilny. Nie można zaktualizować i ukończyć żądania.'
+        invalid_license: '{prefix} <red>Twoja licencja jest nieważna. Podaj prawidłowy klucz dla tej akcji.'
+        downloading_asn: '{prefix} <yellow>Pobieranie bazy ASN...'
+        downloading_ranges: '{prefix} <yellow>Pobieranie zakresów IP...'
+        downloading_hostnames: '{prefix} <yellow>Pobieranie nazw hostów...'
+        downloading_jar: '{prefix} <yellow>Pobieranie wtyczki...'
+        downloaded_asn: '{prefix} <green>Pobrano najnowszą bazę ASN z naszego backendu. Zmiany zostały zastosowane.'
+        downloaded_ranges: '{prefix} <green>Pobrano najnowsze zakresy IP z naszego backendu. Zmiany zostały zastosowane.'
+        downloaded_hostnames: '{prefix} <green>Pobrano najnowsze nazwy hostów z naszego backendu. Zmiany zostały zastosowane.'
+        downloaded_jar: '{prefix} <green>Pobrano najnowszy plik JAR wtyczki z naszego backendu. Uruchom ponownie serwer, aby zastosować zmiany.'
+    verbose:
+        enable: '{prefix} <green>Włączyłeś tryb szczegółowy (verbose).'
+        disable: '{prefix} <red>Wyłączyłeś tryb szczegółowy (verbose).'
+        # Here you can find new placeholders only for this message:
+        #
+        # {PLAYER} - Returns the player's name.
+        # {IP} - Returns the player's IP.
+        # {SERVICE} - Return the service's name.
+        # {FLAGS} - Return the currently amount of Flags.
+        # {FLAGS_ADDED} - Return the amount of Flags added.
+        # {MAXFLAGS} - Return the amount of Flags for being detected.
+        no_malicious: '{prefix} <green>[VERBOSE] <aqua>{PLAYER} <gray>nie jest VPN według usługi: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>flagi:</gray><red>{FLAGS}</red><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        malicious: '{prefix} <red>[VERBOSE] <aqua>{PLAYER} <gray>jest oznaczony jako VPN przez usługę: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>flagi:</gray><red>{FLAGS}</red><green>(+{FLAGS_ADDED})</green><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        ignored: '{prefix} <yellow>[VERBOSE] <aqua>{PLAYER} <gray>został zignorowany, ponieważ znajduje się na białej liście <green>{type} <dark_gray>({IP})'
+    whitelist:
+        invalid_usage: '{prefix} Użyj komendy <dark_gray>''''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[nazwa/ip]</yellow> <aqua>[powód]</aqua> <light_purple>[czas]</light_purple><dark_gray>''''</dark_gray><reset>.'
+        already: '{prefix} {IP}<red> jest już na białej liście / poza nią w konfiguracji!'
+        whitelisting: '{prefix} <yellow>Dodawanie do białej listy: <white>{IP}</white>, chwila...'
+        whitelisted: '{prefix} {IP}<green> został dodany do białej listy w konfiguracji jako <white>{type}</white> na <white>{time}</white>. Możesz <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">kliknąć tutaj, aby go ponownie usunąć</click></underlined></white>.'
+        unwhitelisting: '{prefix} <yellow>Usuwanie z białej listy: <white>{IP}</white>, chwila...'
+        unwhitelisted: '{prefix} {IP}<green> został usunięty z białej listy w konfiguracji (typ <white>{type}</white>). Możesz <white><underlined><click:run_command:"/foxgate whitelist add {IP}">kliknąć tutaj, aby dodać go ponownie</click></underlined></white>.'
+        type_ip: IP
+        type_name: Nazwa
+        problem: '{prefix} <red>Błąd podczas dodawania/usuwania z białej listy. Sprawdź konsolę.'
+        invalid_time: '{prefix} <red>Format czasu jest nieprawidłowy. Użyj formatu epoch lub formatów takich jak <white>1d</white> (dzień), <white>3h</white> (godziny), <white>15m</white> (minuty), <white>30s</white> (sekundy) lub <white>permanent</white> (stały).'
+        purging: '{prefix} <yellow>Próba czyszczenia (purge) białej listy...'
+        purging_correctly: '{prefix} <green>Biała lista została wyczyszczona pomyślnie.'
+        purging_problem: '{prefix} <red>Błąd podczas próby czyszczenia białej listy. Sprawdź konsolę.'
+        # Here you can find new placeholders only for this message:
+        #
+        # {TYPE} - Return "IP"/"Name".
+        # {REASON} - Return the reason why this name/IP is whitelisted.
+        # {EXPIRATION} - Return the expiration time.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
+        # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+        info: ' \n <green>Informacje z białej listy dla <aqua>{IP}\n <dark_gray>▪ <white>Typ: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Powód: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Wygasa: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Kraj: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: dd.MM.yyyy HH:mm:ss
+        permanent: Na stałe.
+        noreason: Brak powodu.
+        nowhitelist: '{prefix} {IP}<red> nie znajduje się na białej liście jako <white>{type}</white>.'
+    predebug:
+        invalid_usage: '{prefix} Użyj komendy <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset>.'
+        sending: '{prefix} <yellow>Wysyłanie testu dla <white>{type}</white> w trybie <white>{mode}</white>...</yellow>'
+        sended: '{prefix} <green>Wysłano!'
+        problem: '{prefix} <red>Błąd podczas próby wysłania debugu dla <white>{type}</white>!'

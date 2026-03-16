@@ -1,0 +1,226 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___ 
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/           
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+
+    # 🦊 Kick message when the plugin blocks a player.
+    #
+    # {PLAYER} - Returns the player's name.
+    # {IP} - Returns the player's IP.
+    # {UUID} - Returns the player's UUID. (BungeeCord doesn't support this)
+    # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+    # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+    # {COUNTRY} - Returns the player's country. (Only works with premium version).
+    # {ASN} - Return the player's ASN (Only works with premium version).
+    kick:
+        vpn: '<red><bold>✘</bold> Вас заблокував <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше з''єднання відхилено, оскільки ви використовуєте VPN або проксі.\n<gray>Спочатку вимкніть VPN/проксі, перш ніж приєднатися.</gray>\n\n<gold>Це помилка?</gold> <white>Приєднуйтесь до нашого сервера Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Модуль: Services</dark_gray>'
+        iplimiter: '<red><bold>✘</bold> Вас заблокував <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше з''єднання відхилено.\n<gray>Ми виявили занадто багато з''єднань з вашої IP-адреси.</gray>\n\n<gold>Це помилка?</gold> <white>Приєднуйтесь до нашого сервера Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Модуль: IPLimiter</dark_gray>'
+        isp: '<red><bold>✘</bold> Вас заблокував <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше з''єднання відхилено, оскільки воно вважається шкідливим.\n<gray>Ваш інтернет-провайдер "<light_purple>{ISP}</light_purple>" заборонений на цьому сервері.</gray>\n\n<gold>Це помилка?</gold> <white>Приєднуйтесь до нашого сервера Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Модуль: ISPFilter</dark_gray>'
+        iprange: '<red><bold>✘</bold> Вас заблокував <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше з''єднання відхилено, оскільки воно вважається шкідливим.\n<gray>Ваша IP-адреса знаходиться в чорному списку нашої бази даних, оскільки вона знаходиться в шкідливому діапазоні.</gray>\n\n<gold>Це помилка?</gold> <white>Приєднуйтесь до нашого сервера Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Модуль: IPRange</dark_gray>'
+        bogon: '<red><bold>✘</bold> Вас заблокував <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше з''єднання відхилено, оскільки воно надходить з bogon-адреси.\n<gray>IP вважається bogon (приватна/зарезервована мережа).</gray>\n\n<gold>Це помилка?</gold> <white>Приєднуйтесь до нашого сервера Discord.\n<aqua><underlined>discord.idcteam.xyz'
+        country: '<red><bold>✘</bold> Вас заблокував <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше з''єднання відхилено, оскільки воно вважається шкідливим.\n<gray>Країна "<light_purple>{COUNTRY}</light_purple>", з якої ви підключаєтесь, заборонена на цьому сервері.</gray>\n\n<gold>Це помилка?</gold> <white>Приєднуйтесь до нашого сервера Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Модуль: Country</dark_gray>'
+        asn: '<red><bold>✘</bold> Вас заблокував <bold>FoxGate AntiVPN</bold>:\n\n<white>Ваше з''єднання відхилено, оскільки ви використовуєте VPN або проксі.\n<gray>Ваш інтернет-провайдер (ASN) "<light_purple>{ASN}</light_purple>" є відомим постачальником VPN або Tor.</gray>\n\n<gold>Це помилка?</gold> <white>Приєднуйтесь до нашого сервера Discord.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Модуль: ASN</dark_gray>'
+        # Some placeholders don't work in this message because it's used to kick
+        # the player when they try to join and their IP is still being verified in
+        # a pre-check. This prevents duplicate verification until the previous
+        # one is complete.
+        checking: '<red><bold>✘</bold> Очікування перевірки <bold>FoxGate AntiVPN</bold>:\n\n<white>Ми перевіряємо ваше з''єднання.\n<gray>FoxGate сканує ваше з''єднання, зачекайте кілька секунд.</gray>\n\n<gold>Це помилка?</gold> <white>Приєднуйтесь до нашого сервера Discord.\n<aqua><underlined>discord.idcteam.xyz'
+    # 📍 Notification when a player is kicked. You can prevent this message by leaving it blank.
+    notify:
+        vpn: '{prefix} <aqua>{player} <gray>використовував VPN і був вигнаний! <green>({IP})'
+        isp: '{prefix} <aqua>{player} <gray>був вигнаний за підключення з забороненого ISP: <aqua>{ISP}</aqua>! <green>({IP})'
+        iprange: '{prefix} <aqua>{player} <gray>був вигнаний за підключення з забороненого діапазону IP! <green>({IP})'
+        bogon: '{prefix} <aqua>{player} <gray>намагався приєднатися з bogon IP: <green>{IP}</green>!'
+        country: '{prefix} <aqua>{player} <gray>був вигнаний за підключення з забороненої країни: <aqua>{COUNTRY}</aqua>! <green>({IP})'
+        asn: '{prefix} <aqua>{player} <gray>був вигнаний за підключення з забороненого ASN: <aqua>{ASN}</aqua>! <green>({IP})'
+        #
+        # Message to send when player tries to join but it's blocked.
+        # Leave empty to disable this thing. Just works {PLAYER} and {IP} placeholders.
+        blocked: '{prefix} <aqua>{player} <gray>намагався підключитися, але раніше був заблокований. <green>({IP})'
+    # 🔎 Message to show when a player it's blocked by a module. (For status command)
+    blocked:
+        isp: '<gold>Заблоковано через їхнього провайдера (ISP).'
+        iprange: '<gold>Заблоковано через їхній діапазон IP.'
+        bogon: '<gold>Заблоковано через Bogon IP.'
+        country: '<gold>Заблоковано через їхню країну.'
+        asn: '<gold>Заблоковано через їхній ASN.'
+    # 🧩 This will only show up in the console.
+    # This can help with debug in case a service is not working correctly.
+    # You can prevent this message by leaving it blank.
+    error: '{prefix} Помилка під час перевірки VPN за допомогою <aqua>"{service}"</aqua> для <yellow>{player}</yellow>: {error}'
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: '<yellow><bold>FGT</bold></yellow><dark_gray> ►<reset>'
+    help:
+        add: Додати IP до бази даних.
+        alts: Перевірити всіх користувачів на одній IP.
+        check: Перевірити зовнішню IP та зберегти в базі даних.
+        clearcache: Очистити файл кешу збережених імен користувачів.
+        db: Очистити (purge) або перепідключити базу даних.
+        debug: Налагодження FoxGate в консолі.
+        reload: Перезавантажити файл конфігурації.
+        remove: Видалити IP з бази даних.
+        status: Переглянути інформацію про закешовану IP в базі даних.
+        update: Автоматично оновлює компоненти плагіна для вас.
+        verbose: Увімкнути/вимкнути докладний режим (verbose).
+        whitelist: Додати користувача або IP до білого списку.
+        predebug: (Преміум) Надіслати webhook Discord або Telegram пересилання, щоб перевірити, як вони виглядають.
+    alts:
+        invalidip: '{prefix} {IP}<red> не є дійсною IP-адресою/іменем користувача!'
+        invalidcheck: '{prefix} {IP}<red> ми не можемо знайти запит IP/користувача з кешу!'
+        checking: '{prefix} {IP}<yellow> перевірка на альтернативні акаунти...'
+        # Here you can find these placeholders:
+        #
+        # {NAME} - Returns the player's names. (only for 'output')
+        # {IP} - Returns the player's IP.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {ALTS} - Returns the alts from the User/IP.
+        # {OUTPUT} - Returns the format of 'output'.
+        # {TIME} - Returns the last time. (only for 'output')
+        # {TIME_AGO} - Returns the last time ago. (only for 'output')
+        # {COUNTRY} - Returns the IP's country. (Only works with premium version).
+        # {ASN} - Return the IP's ASN (Only works with premium version).
+        # {SIMILAR} - Display similar if was found with dynamic IP, otherwise will be blank.
+        output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - Останнє підключення: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
+        info: ' \n <green>Перегляд альтернативних акаунтів для <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Альтернативні акаунти:\n {ALTS}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Країна: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        day: день
+        hour: година
+        minute: хвилина
+        second: секунда
+        plural_day: дні
+        plural_hour: години
+        plural_minute: хвилини
+        plural_second: секунди
+        similar: '<click:run_command:"/foxgate alts {IP}"><hover:show_text:"Натисніть, щоб побачити альтів."><gold>[Схожі]</gold></hover></click>'
+        online: '<click:run_command:"/foxgate status {IP}"><hover:show_text:"Натисніть для перевірки статусу."><green>Онлайн</green></hover></click>'
+    add_remove:
+        invalidip: '{prefix} {IP}<red> не є дійсною IP-адресою/іменем користувача!'
+        already: '{prefix} {IP}<red> вже додано/видалено з бази даних!'
+        add: '{prefix} {IP}<green> додано до бази даних!'
+        remove: '{prefix} {IP}<green> видалено з бази даних!'
+    check:
+        invalidip: '{prefix} {IP}<red> не є дійсною IP-адресою/іменем користувача!'
+        cached: '{prefix} {IP}<yellow> вже закешовано в базі даних. Ви можете <white><underlined><click:run_command:"/foxgate status {IP}">натиснути тут, щоб переглянути інформацію, збережену в базі даних</click></underlined></white>.'
+        checking: '{prefix} <yellow>Перевірка <white>{IP}<yellow>...'
+        saving: '{prefix} <yellow>Перевірку для <white>{IP}</white> завершено, очікування на базу даних для збереження даних...'
+        checked: '{prefix} {IP}<green> успішно перевірено, перегляньте отриману інформацію в базі даних за допомогою команди <gray>(/foxgate status)</gray> або <white><underlined><click:run_command:"/foxgate status {IP}">натисніть тут</click></underlined></white>.'
+        pre-checking: '{prefix} {IP}<yellow> сканується з попередньої перевірки, спочатку зачекайте на результати, перш ніж запускати іншу на цій же IP.'
+    clearcache:
+        purging: '{prefix} <white>Ми <yellow>очищаємо</yellow> файл кешу...'
+        purging_correctly: '{prefix} <green>Файл кешу очищено.'
+        purging_problem: '{prefix} <red>Помилка під час спроби очистити файл кешу. Перевірте консоль.'
+    db:
+        invalid_usage: '{prefix} Використовуйте команду <aqua>/foxgate db <purge/reconnect><reset>.'
+        reconnecting: '{prefix} <yellow>Спроба перепідключення до бази даних...'
+        reconnect_correctly: '{prefix} <green>Базу даних перепідключено.'
+        reconnect_problem: '{prefix} <red>Помилка під час спроби перепідключення до бази даних. Перевірте консоль.'
+        purging: '{prefix} <yellow>Спроба очищення (purge) бази даних...'
+        purging_correctly: '{prefix} <green>Базу даних очищено.'
+        purging_problem: '{prefix} <red>Помилка під час спроби очищення бази даних. Перевірте консоль.'
+    debug:
+        enable: '{prefix} <green>Режим налагодження увімкнено. Перевірте консоль.'
+        disable: '{prefix} <red>Режим налагодження вимкнено.'
+    reload:
+        message: '{prefix} <green>Файл конфігурації перезавантажено.'
+    status:
+        invalidip: '{prefix} {IP}<red> не є дійсною IP-адресою!'
+        # Here you can find new placeholders only for this message:
+        #
+        # {DETECTED} - Return only the services that detected a VPN with an IP.
+        # {UNDETECTED} - Return only the services that didn't detect a VPN with an IP.
+        # {LIST} - Return both lists, but with different colors (customizable).
+        # {MAX} - Return the maximum number of flags required to deny access to a player.
+        # {COUNT_DETECTED} - Return the number of services that a player's IP has been detected with.
+        # {COUNT_UNDETECTED} - Return the number of services that a player's IP hasn't been detected with.
+        # {STATUS} - Return the status of the player.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
+        # {GEO_ASN} - Return the player's ASN (Only works with premium version).
+        detected: <red>
+        undetected: <green>
+        none: <red>Немає.
+        no_cached: <red>Не закешовано в базі даних.
+        allow: <green>Перевірено.
+        deny: <red>Заблоковано.
+        saved: <yellow>Відскановано.
+        info: ' \n <green>Перегляд статусу <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Ім''я хоста: <yellow>{HOSTNAME}</yellow>\n <dark_gray>▪ <white>Статус: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Не виявлено: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Виявлено: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Сервіси: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Країна: <aqua>{GEO_COUNTRY} \n '
+    update:
+        invalid_usage: '{prefix} Використовуйте команду <dark_gray>''</dark_gray>/fg update <green><asn/plugin/ranges/hostnames></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>Ми вже завантажуємо файл...'
+        backend_down: '{prefix} <red>Наш бекенд, здається, не працює або нестабільний. Ми не можемо оновити та виконати запит.'
+        invalid_license: '{prefix} <red>Ваша ліцензія недійсна, введіть дійсний ключ для цієї дії.'
+        downloading_asn: '{prefix} <yellow>Завантаження ASN...'
+        downloading_ranges: '{prefix} <yellow>Завантаження діапазонів...'
+        downloading_hostnames: '{prefix} <yellow>Завантаження імен хостів...'
+        downloading_jar: '{prefix} <yellow>Завантаження плагіна...'
+        downloaded_asn: '{prefix} <green>Завантажено останній ASN з нашого бекенду/центру. Зміни застосовано.'
+        downloaded_ranges: '{prefix} <green>Завантажено останні діапазони з нашого бекенду/центру. Зміни застосовано.'
+        downloaded_hostnames: '{prefix} <green>Завантажено останні імена хостів з нашого бекенду/центру. Зміни застосовано.'
+        downloaded_jar: '{prefix} <green>Завантажено останній JAR з нашого бекенду/центру. Перезапустіть сервер, щоб застосувати зміни.'
+    verbose:
+        enable: '{prefix} <green>Ви увімкнули докладний режим (verbose).'
+        disable: '{prefix} <red>Ви вимкнули докладний режим (verbose).'
+        # Here you can find new placeholders only for this message:
+        #
+        # {PLAYER} - Returns the player's name.
+        # {IP} - Returns the player's IP.
+        # {SERVICE} - Return the service's name.
+        # {FLAGS} - Return the currently amount of Flags.
+        # {FLAGS_ADDED} - Return the amount of Flags added.
+        # {MAXFLAGS} - Return the amount of Flags for being detected.
+        no_malicious: '{prefix} <green>[VERBOSE] <aqua>{PLAYER} <gray>не є VPN з сервісом: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>прапорці:</gray><red>{FLAGS}</red><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        malicious: '{prefix} <red>[VERBOSE] <aqua>{PLAYER} <gray>позначений як VPN з сервісом: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>прапорці:</gray><red>{FLAGS}</red><green>(+{FLAGS_ADDED})</green><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        ignored: '{prefix} <yellow>[VERBOSE] <aqua>{PLAYER} <gray>проігноровано, оскільки він у білому списку <green>{type} <dark_gray>({IP})'
+    whitelist:
+        invalid_usage: '{prefix} Використовуйте команду <dark_gray>''''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[ім''я/ip]</yellow> <aqua>[причина]</aqua> <light_purple>[час]</light_purple><dark_gray>''''</dark_gray><reset>.'
+        already: '{prefix} {IP}<red> вже є в білому списку/не в білому списку в конфігурації!'
+        whitelisting: '{prefix} <yellow>Збереження до білого списку: <white>{IP}</white>, момент...'
+        whitelisted: '{prefix} {IP}<green> додано до білого списку в конфігурації з типом <white>{type}</white> на <white>{time}</white>. Ви можете <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">натиснути тут, щоб знову видалити його</click></underlined></white>.'
+        unwhitelisting: '{prefix} <yellow>Видалення з білого списку: <white>{IP}</white>, момент...'
+        unwhitelisted: '{prefix} {IP}<green> видалено з білого списку в конфігурації з типом <white>{type}</white>. Ви можете <white><underlined><click:run_command:"/foxgate whitelist add {IP}">натиснути тут, щоб додати його знову</click></underlined></white>.'
+        type_ip: IP
+        type_name: Ім'я
+        problem: '{prefix} <red>Помилка під час спроби додати/видалити до білого списку. Перевірте консоль.'
+        invalid_time: '{prefix} <red>Неправильний формат часу. Використовуйте epoch або формати, як-от <white>1d</white> (день), <white>3h</white> (години), <white>15m</white> (хвилини), <white>30s</white> (секунди) або <white>permanent</white> (постійно).'
+        purging: '{prefix} <yellow>Спроба очищення (purge) білого списку...'
+        purging_correctly: '{prefix} <green>Білий список очищено.'
+        purging_problem: '{prefix} <red>Помилка під час спроби очищення білого списку. Перевірте консоль.'
+        # Here you can find new placeholders only for this message:
+        #
+        # {TYPE} - Return "IP"/"Name".
+        # {REASON} - Return the reason why this name/IP is whitelisted.
+        # {EXPIRATION} - Return the expiration time.
+        # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
+        # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
+        # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
+        # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+        info: ' \n <green>Інформація білого списку для <aqua>{IP}\n <dark_gray>▪ <white>Тип: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Причина: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Термін дії: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Країна: <aqua>{GEO_COUNTRY} \n '
+        # View about the format date here:
+        # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+        format: yyyy-MM-dd HH:mm:ss
+        permanent: Постійно.
+        noreason: Без причини.
+        nowhitelist: '{prefix} {IP}<red> не збережено в білому списку з типом <white>{type}</white>.'
+    predebug:
+        invalid_usage: '{prefix} Використовуйте команду <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset>.'
+        sending: '{prefix} <yellow>Надсилання для тестування вашого <white>{type}</white> в режимі <white>{mode}</white>...</yellow>'
+        sended: '{prefix} <green>Надіслано!'
+        problem: '{prefix} <red>Помилка під час спроби надіслати налагодження для <white>{type}</white>!'

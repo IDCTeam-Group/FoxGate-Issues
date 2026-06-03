@@ -21,6 +21,7 @@ database:
     #  |=> SQLite (COULD CAUSE ISSUES IN OLDER VERSIONS!)
     #  |=> H2
     #  |=> JayBird
+    #  |=> MEMORY (SEE WARNING)
     #  |=> Custom
     #
     #  -----------------------------------------------------------------------------
@@ -37,6 +38,11 @@ database:
     # already started, use the command "/foxgate db reconnect" to restart
     # your database without restarting plugin or server. Always remember do
     # "/foxgate reload" before using this command to apply.
+    # ⚠️ Warning! Using the option 'MEMORY' will make the plugin just works with
+    # cache only. This can cause some excepted issues like "/fg status" just show
+    # for 3-5 minutes only the scanned services and others, will requires always
+    # keep the feature 'cache' in the 'config.yml' (disabling this and using 'MEMORY',
+    # will make the plugin enable it automatically to prevent issues).
     type: H2
 
     # 🔩 Set the table's name inside the DataBase.
@@ -81,7 +87,7 @@ database:
         sqlite:
             file: sqlite.db
 
-        # H2.
+        # H2. Better type in case you want local database.
         h2:
             file: h2db
 

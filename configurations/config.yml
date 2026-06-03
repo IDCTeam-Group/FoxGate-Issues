@@ -28,23 +28,44 @@ key: ''
 
 configuration:
 
-    # 🌎 Plugin language setting
-    # - Available options:
+    # 🌎 Plugin language setting.
+    # - Available options below. You can help in contribute to maintain
+    #   one translation up-to-date or publish one through our GitHub Issues
+    #   page!
+    #
+    #   • ar_sa - العربية (السعودية)
     #   • cz_cz - čeština (Česká republika)
+    #   • da_dk - Dansk (Danmark)
     #   • de_de - Deutsch (Deutschland) [❤ Thanks to ich_lou]
     #   • en_us - English (United States) [❤ Thanks to Goinging]
     #   • es_ar - Español (Argentina)
     #   • es_es - Español (España) [❤ Thanks to VonVisha]
-    #   • it_it - Italiano (Italy) [❤ Thanks to MircoAPPP]
+    #   • fr_fr - Français (France)
+    #   • he_il - עברית (ישראל)
+    #   • hu_hu - Magyar (Magyarország)
+    #   • id_id - Bahasa Indonesia (Indonesia)
+    #   • it_it - Italiano (Italy) [❤ Thanks to ScalaMobile]
     #   • ja_jp - 日本語 (Japan) [❤ Thanks to YOMA8338]
     #   • ko_kr - 한국 (Korean) [❤ Thanks to metaph0]
+    #   • lt_lt - Lietuvių (Lietuva)
+    #   • nl_nl - Nederlands (Nederland)
+    #   • pl_pl - Polski (Poland)
     #   • pt_br - Português (Brasil)
+    #   • ro_ro - Română (România)
     #   • ru_ru - Русский (Russia) [❤ Thanks to mikheilkozlovi & AMGewka]
+    #   • sk_sk - Slovenčina (Slovensko)
+    #   • sv_se - Svenska (Sverige)
+    #   • th_th - ภาษาไทย (ประเทศไทย)
     #   • tr_tr - Türkçe (Turkey)
+    #   • uk_ua - Українська (Україна)
     #   • vi_vn - Tiếng Việt (Vietnam) [❤ Thanks to hieudieu393]
+    #   • zh_cn - 中文 (中国)
     #
     # 📚 Note: Language files are automatically downloaded from the official
     # GitHub repository into the 'languages' folder. This value can't be empty.
+    # 🔎 How to edit the messages? Go into the folder 'languages', and edit the
+    # currently file in selected language: If this option it's 'en_us', edit
+    # the file with the name 'messages_en_us.yml'.
     language: en_us
 
     # 📈 Allow the usage of Metrics (bStats) in your server?
@@ -55,8 +76,8 @@ configuration:
     #   any personal data. Most of the collected data consists of information about
     #   the server, such as player count, online mode, Minecraft version,
     #   Java version, and more. All data is sent and stored completely
-    #   anonymously. For more information about this, see "bStats: Getting Started"
-    #   at https://bstats.org/getting-started
+    #   anonymously. For more information about this, see "bStats: For server Owners"
+    #   at https://bstats.org/docs/server-owners
     #
     # 📚 Note: Since versions 1.0.2 (plus) and 1.1.0 (free), FoxGate uses
     # its own code base for Metrics, while still following bStats
@@ -100,7 +121,7 @@ configuration:
             # ⚠️ Warning! Always keep this feature enabled, so if an
             # important fix occurs, you will always keep the plugin
             # up-to-date.
-            updater: true
+            updater: false
 
             # ⏳ Enable periodically checking?
             # - Enabling this will make the plugin check in silent
@@ -167,10 +188,13 @@ configuration:
         limiter: true
         isp: true
         ipr: true
+        ipr_tor: true
+        ipr_proxy: true
         bogon: true
         # ⭐ Plus Edition features:
         country: true
         asn: true
+        ipr_residential: true
 
     # 🧲 Scanner settings.
     # - Actions when a player get detected or verified:
@@ -390,6 +414,16 @@ antivpn:
             # ⭐ Recommended: permanent
             # 📚 Note: Type 'permanent' for blocking permanent.
             time: permanent
+
+        # 🚩 Actions to make when is detected.
+        # - Use this to kick with the plugin instantly:
+        #     - 'kick'
+        # - Or add your custom command:
+        #     - 'ipban {IP} The IP it's a bogon.'
+        #
+        # Disable this feature by leaving the list empty.
+        actions:
+        - kick
 
     # 💼 Actions to make when is detected.
     # - Use this to kick with the plugin instantly:

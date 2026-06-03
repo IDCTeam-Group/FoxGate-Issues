@@ -237,7 +237,6 @@ blocker:
     - IONOS SE
     - Microsoft Corporation
     - Google LLC
-    - Crown Castle Fiber LLC
     - Church of Cyberology
     - ReliableSite.Net LLC
     - Layer7 Networks GmbH
@@ -271,9 +270,7 @@ blocker:
     - DMIT Cloud Services
     - LIBERTY NETWORKS DE COLOMBIA S.A.S
     - VpsQuan L.L.C.
-    - FirstDigital Communications, LLC
     - Respina Networks & Beyond PJSC
-    - Media Commerce Partners S.A
     - PT Aplikanusa Lintasarta
     - Cloud Services Kazakhstan LLP
     - Petersburg Internet Network ltd.
@@ -313,6 +310,17 @@ blocker:
     - ASN dedicated to HostUnited network services
     - Neutral Data Centers Corp.
     - Cyber Sainik
+    - Driftnet Ltd
+    - VPSVAULT.HOST LTD
+    - Kraken Network ISP LTD
+    - Emerald Onion
+    - QuxLabs AB
+    - Stiftung Erneuerbare Freiheit
+    - LLC APPLIED COMPUTATIONAL TECHNOLOGIES
+    - F3 Netze e.V.
+    - The Infrastructure Group B.V.
+    - HOSTKEY B.V.
+    - SERVERS TECH FZCO
     # 📁 Works like the option from above, but using hostname.
     # Use list format to put a hostname or disabling feature.
     hostnames:

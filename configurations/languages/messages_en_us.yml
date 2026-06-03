@@ -25,12 +25,14 @@ message:
     # {UUID} - Returns the player's UUID. (BungeeCord doesn't support this)
     # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
     # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
-    # {COUNTRY} - Returns the player's country. (Only works with premium version).
-    # {ASN} - Return the player's ASN (Only works with premium version).
+    # {COUNTRY} - Returns the player's country. (Only works with Plus Edition).
+    # {ASN} - Return the player's ASN (Only works with Plus Edition).
     kick:
         vpn: '<red><bold>✘</bold> You were blocked by <bold>FoxGate AntiVPN</bold>:\n\n<white>Your connection was denied for being VPN or Proxy.\n<gray>Try disabling first your VPN/proxy before joining.</gray>\n\n<gold>Is this an error?</gold> <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Module: Services</dark_gray>'
         iplimiter: '<red><bold>✘</bold> You were blocked by <bold>FoxGate AntiVPN</bold>:\n\n<white>Your connection was denied for joining.\n<gray>We found too much connections in your same IP.</gray>\n\n<gold>Is this an error?</gold> <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Module: IPLimiter</dark_gray>'
         isp: '<red><bold>✘</bold> You were blocked by <bold>FoxGate AntiVPN</bold>:\n\n<white>Your connection was denied for being malicious.\n<gray>The Internet Service Provider "<light_purple>{ISP}</light_purple>" that you use it''s forbidden in this server.</gray>\n\n<gold>Is this an error?</gold> <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Module: ISPFilter</dark_gray>'
+        # Use {IPRANGE_MODULE} for convert automatically in the submodule detected.
+        # Example: IPRange, IPRange (Tor), IPRange (Proxy) and IPRange (Residential Proxy)
         iprange: '<red><bold>✘</bold> You were blocked by <bold>FoxGate AntiVPN</bold>:\n\n<white>Your connection was denied for being malicious.\n<gray>The IP are in a blacklist in our database for being in a malicious range.</gray>\n\n<gold>Is this an error?</gold> <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Module: IPRange</dark_gray>'
         bogon: <red><bold>✘</bold> You were blocked by <bold>FoxGate AntiVPN</bold>:\n\n<white>Your connection was denied for being bogon.\n<gray>The IP are considered a bogon, private network.</gray>\n\n<gold>Is this an error?</gold> <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz
         country: '<red><bold>✘</bold> You were blocked by <bold>FoxGate AntiVPN</bold>:\n\n<white>Your connection was denied for being malicious.\n<gray>The country that you are "<light_purple>{COUNTRY}</light_purple>" it''s forbidden in this server.</gray>\n\n<gold>Is this an error?</gold> <white>Join our discord server.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({ASN})</gray>\n<dark_gray>Module: Country</dark_gray>'
@@ -45,6 +47,9 @@ message:
         vpn: '{prefix} <aqua>{player} <gray>was detected using a VPN and was kicked! <green>({IP})'
         isp: '{prefix} <aqua>{player} <gray>was kicked for joining with a blacklisted ISP: <aqua>{ISP}</aqua>! <green>({IP})'
         iprange: '{prefix} <aqua>{player} <gray>was kicked for joining with a blacklisted IPRange! <green>({IP})'
+        iprange_tors: '{prefix} <aqua>{player} <gray>was kicked for joining with a blacklisted IPRange (Tor)! <green>({IP})'
+        iprange_proxy: '{prefix} <aqua>{player} <gray>was kicked for joining with a blacklisted IPRange (Proxy)! <green>({IP})'
+        iprange_residential: '{prefix} <aqua>{player} <gray>was kicked for joining with a blacklisted IPRange (Residential Proxy)! <green>({IP})'
         bogon: '{prefix} <aqua>{player} <gray>tried to join from a bogon IP: <green>{IP}</green>!'
         country: '{prefix} <aqua>{player} <gray>was kicked for joining with a blacklisted country: <aqua>{COUNTRY}</aqua>! <green>({IP})'
         asn: '{prefix} <aqua>{player} <gray>was kicked for joining with a blacklisted ASN: <aqua>{ASN}</aqua>! <green>({IP})'
@@ -56,6 +61,9 @@ message:
     blocked:
         isp: <gold>Blocked by their ISP.
         iprange: <gold>Blocked by their IPRange.
+        iprange_tors: <gold>Blocked by their IPRange (Tor).
+        iprange_proxy: <gold>Blocked by their IPRange (Proxy).
+        iprange_residential: <gold>Blocked by their IPRange (Residential Proxy).
         bogon: <gold>Blocked for Bogon IP.
         country: <gold>Blocked by their Country.
         asn: <gold>Blocked by their ASN.
@@ -74,6 +82,7 @@ message:
         debug: Debug FoxGate in the console.
         reload: Reload configuration file.
         remove: Remove an IP from the database.
+        setconfig: Edit a value of the configuration in-game.
         status: View information about a cached IP in the database.
         update: Automatically updates plugin components for you.
         verbose: Enable/disable verbose mode.
@@ -92,8 +101,8 @@ message:
         # {OUTPUT} - Returns the format of 'output'.
         # {TIME} - Returns the last time. (only for 'output')
         # {TIME_AGO} - Returns the last time ago. (only for 'output')
-        # {COUNTRY} - Returns the IP's country. (Only works with premium version).
-        # {ASN} - Return the IP's ASN (Only works with premium version).
+        # {COUNTRY} - Returns the IP's country. (Only works with Plus Edition.
+        # {ASN} - Return the IP's ASN (Only works with Plus Edition).
         # {SIMILAR} - Display similar if was found with dynamic IP, otherwise will be blank.
         output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - Last connection: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
         info: ' \n <green>Viewing Alts of <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Alts:\n {ALTS}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Country: <aqua>{GEO_COUNTRY} \n '
@@ -139,6 +148,21 @@ message:
         disable: '{prefix} <red>Disabled debug mode.'
     reload:
         message: '{prefix} <green>The configuration file has been reloaded.'
+    setconfig:
+        invalid_usage: '{prefix} Use the command <aqua>/foxgate setconfig <ispfilter/geolocation/services> [...]<reset>.'
+        already_exists: '{prefix} <yellow>This value already exists, nothing changed.'
+        not_found: '{prefix} <red>This value was not found, nothing removed.'
+        invalid_action: '{prefix} You need to introduce <green>add</green> or <red>remove</red>. Use the command <aqua>/foxgate setconfig <ispfilter/geolocation> <add/remove> <option> <value><reset>.'
+        noargs: '{prefix} You need to introduce a <green>value</green> and an <yellow>option</yellow>. Use the command <aqua>/foxgate setconfig {TYPE} <add/remove> <option> <value><reset>.'
+        invalid_args: '{prefix} You need to introduce a valid option. Use the command <aqua>/foxgate setconfig {TYPE} <add/remove> {OPTIONS} <value><reset>.'
+        empty_services: '{prefix} <red>The list of services are empty for enable/disable all.'
+        invalid_args_services: '{prefix} You need to introduce <green>enable</green> or <red>disable</red>. Use the command <aqua>/foxgate setconfig services <enable/disable/setkey/seturl/setvls/seterrors> <service/all><reset>.'
+        nofound_services: '{prefix} <red>We can''t found the service in cache or in disk. Please, check your arguments.'
+        invalid_value_vls: '{prefix} <white>The value for <green>vls</green> must be a positive integer (e.g. 1, 2, 3). Please, check your arguments.'
+        invalid_value_errors: '{prefix} <white>The value for <aqua>errors</aqua> must be <green>true</green> or <red>false</red>. Please, check your arguments.'
+        invalid_value_model: '{prefix} <white>The value for <aqua>model</aqua> must be <green>JSON</green>, <yellow>HTML</yellow> or <light_purple>CONTAINS</light_purple>. Please, check your arguments.'
+        invalid_value_url: '{prefix} <white>The value for <aqua>url</aqua> must be a valid URL starting with <yellow>http://</yellow> or <yellow>https://</yellow>. Please, check your arguments.'
+        success: '{prefix} <green>Configuration updated successfully. Use <white><click:run_command:"/foxgate reload">/foxgate reload</click></white> to apply.'
     status:
         invalidip: '{prefix} {IP}<red> is not a valid IP!'
         # Here you can find new placeholders only for this message:
@@ -152,14 +176,15 @@ message:
         # {STATUS} - Return the status of the player.
         # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
         # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
-        # {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
-        # {GEO_ASN} - Return the player's ASN (Only works with premium version).
+        # {GEO_COUNTRY} - Returns the player's country. (Only works with Plus Edition).
+        # {GEO_ASN} - Return the player's ASN (Only works with Plus Edition).
         detected: <red>
         undetected: <green>
         none: <red>None.
         no_cached: <red>Not cached in the database.
         allow: <green>Verified.
         deny: <red>Blocked.
+        morevls: <aqua>(+{VLS})</aqua>
         saved: <yellow>Scanned.
         info: ' \n <green>Viewing status of <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Hostname: <yellow>{HOSTNAME}</yellow>\n <dark_gray>▪ <white>Status: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Undetected: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Detected: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Services: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Country: <aqua>{GEO_COUNTRY} \n '
     update:
@@ -210,8 +235,8 @@ message:
         # {EXPIRATION} - Return the expiration time.
         # {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
         # {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
-        # {GEO_COUNTRY} - Return the country player (Premium and only works enabling the feature).
-        # {GEO_ASN} - Return the ASN player (Premium and only works enabling the feature).
+        # {GEO_COUNTRY} - Return the country player (Plus Edition and only works enabling the feature).
+        # {GEO_ASN} - Return the ASN player (Plus Edition and only works enabling the feature).
         info: ' \n <green>Whitelist information of <aqua>{IP}\n <dark_gray>▪ <white>Type: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Reason: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Expire: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Country: <aqua>{GEO_COUNTRY} \n '
         # View about the format date here:
         # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html

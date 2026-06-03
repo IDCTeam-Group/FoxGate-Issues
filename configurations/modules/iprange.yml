@@ -84,69 +84,194 @@ blocker:
     - 145.14.133.0/24
     - 171.22.254.0/24
 
-    # ✨ Download known malicious Range's list.
-    # - Uses Zowi's Central for download a list of known
-    #   malicious Range's for blocking, available for
-    #   everyone that uses our plugin.
+    # ✨ Automatically download and block known malicious IP lists.
+    # - Contains sub-lists for known malicious Ranges, Tors
+    #   and Residential Proxies. Each one can be toggled individually
+    #   and supports Zowi's Central and custom sources/lists.
     #
-    # 📚 Note: You can report for add a malicious or removing
-    # a false flagged Range. Some Ranges blocked in this
-    # feature, are for bad reputation or for providing
-    # hosting/VPN.
+    # 📚 Note: You can report false flags at:
+    # ➡ https://discord.zowi.gay/
     known:
 
-        # 🚩 Enable this feature?
-        enable: true
-        # ⌛ Time (in hours) to scanning for downloading new
-        # information about known Range's list.
-        # - People can help in report known malicious Range's and
-        #   save in a list, which everyone with the plugin can
-        #   download and prevent more VPN's, Bot's, and others stuff.
+        # ⭕ Known malicious IP Ranges.
+        # - Block hosting, VPN and others malicious ranges done
+        #   by the FoxGate community via Zowi's Central and/or a
+        #   custom external provider.
         #
-        #   ➡ Use 'DISABLE' for disable the update.
-        time: '8'
+        # 📚 Note: This list can cause sometimes false flags if you
+        # are using Zowi's Central. Why? Those IPs can change anytime and
+        # are blacklisted for being malicious, residential proxy or
+        # others reasons in the moment.
+        ranges:
 
-        # 🧰 External provider.
-        # - Use this option in case you want use another external
-        #   list of Ranges. The plugin tries to handle it and update
-        #   it.
-        #   ⚠ Requeriments:
-        #     - Needs to be a JSON(5) format.
-        #     - Needs to be HTTPS always.
-        #     - Needs to return file size in header (avoid issues, If isn't raw).
-        #     - Needs to return status 200.
-        #     - Needs to be a dowloadable file in output (If isn't raw).
-        #     - Needs to be a array-json format only.
-        #
-        # 📚 Note: Supports JSON5, but requires to be a JSON format,
-        # without a JSON5 feature (plugin uses Gson for load and cache).
-        # ➡ https://discord.zowi.gay/
-        provider:
-
-            # 📁 Enable this feature?
+            # 🚩 Enable this feature?
+            enable: true
+            # ⌛ Time (in hours) to scanning for downloading new
+            # information about known ranges list.
+            # - People can help in report known malicious ranges and
+            #   save in a list, which everyone with the plugin can
+            #   download and prevent more VPNs, Bots, and others stuff.
             #
-            # ⚠ Warning: FoxGate will try to remove important data from the
-            # headers while using this option for prevent malicious actors,
-            # it's always recommended use original provider. USE THIS AT YOUR
-            # RISK WHILE USING THIS IN UNTRUSTED SOURCES!
-            enabled: false
-            # 🔗 URL to get the downloadable/raw file.
-            # - Follow all requeriments attached above first
-            #   for enabling provider. Leaving this empty will
-            #   make the feature non-functional.
-            url: ''
+            #   ➡ Use 'DISABLE' for disable the update.
+            time: '12'
 
-        # 💼 Exclude Ranges from the known list in case one
-        # give's false flags to you. Normally the list are
-        # attached like:
+            # 🧰 External provider.
+            # - Use this option in case you want use another external
+            #   list of ranges. The plugin tries to handle it and update
+            #   it.
+            #   ⚠ Requeriments:
+            #     - Needs to be a JSON(5) format.
+            #     - Needs to be HTTPS always.
+            #     - Needs to return file size in header (avoid issues, If isn't raw).
+            #     - Needs to return status 200.
+            #     - Needs to be a dowloadable file in output (If isn't raw).
+            #     - Needs to be a array-json format only.
+            #
+            # 📚 Note: Supports JSON5, but requires to be a JSON format,
+            # without a JSON5 feature (plugin uses Gson for load and cache).
+            # ➡ https://discord.zowi.gay/
+            provider:
+
+                # 📁 Enable the external provider?
+                enabled: false
+                # 🔗 URL to get the downloadable/raw file.
+                # - Follow all requeriments attached above first
+                #   for enabling provider. Leaving this empty will
+                #   make the feature non-functional.
+                url: ''
+
+            # 💼 Exclude specific Ranges from the known list
+            # in case of false flags:
+            #
+            #  - 1.1.1.0/24
+            #  - 1.1.0.0/23
+            #
+            # 📚 Note: You can request removal at: https://discord.zowi.gay/
+            excluded: [
+                ]
+
+        # 🧅 Known Tors.
+        # - Block players connecting through the Tor network.
+        #   Supports Zowi's Central and/or custom sources/lists.
         #
-        #  - 1.1.1.0/24
-        #  - 1.1.0.0/23
+        # 📚 Note: Block a Tor sometimes can be a bit hard, but
+        # using a good provider, can block better. This can block
+        # some connections from 'McOverTor' faster before reach
+        # to services. Also, some bots uses Tor.
+        tors:
+
+            # 🚩 Enable this feature?
+            enable: true
+            # ⌛ Time (in hours) to scanning for downloading new
+            # information about Tor lists.
+            #
+            #   ➡ Use 'DISABLE' for disable the update.
+            time: '12'
+
+            # 📍 Download from Zowi's Central.
+            # - Make the plugin download our latest cached known malicious
+            #   tor from our backend. That list updates constantly for adding
+            #   new malicious IPs and helps to you in block more accurate.
+            backend: true
+
+            # 📋 Custom downloadable sources for Tor exit node lists.
+            # - Add any list that returns IPs or CIDR ranges.
+            #   The plugin just works with some available formats for the
+            #   lists, one invalid can just skip from downloading/read.
+            #
+            # ⚠️ Supported formats:
+            #   - Plain-text: one IP/CIDR per line.
+            #   - JSON array: ["1.2.3.4", "5.6.7.0/24", ...]
+            #
+            # 📚 Note: Use '[]' to disable custom sources.
+            # ⚠️ Warning! Lines starting with '#' are ignored, only in
+            # plain-text format.
+            sources:
+            - https://check.torproject.org/torbulkexitlist
+
+        # 🚩 Known Residential Proxies and Proxies.
+        # - Block Residential proxy IPs. Zowi's Central is capable
+        #   of detecting residential proxies, which are significantly
+        #   harder to identify than traditional datacenter proxies.
+        #   Supports Zowi's Central and/or custom sources/lists.
         #
-        # 📚 Note: You can request for removing in case it's
-        # a false flag.
-        excluded: [
-            ]
+        # 📚 Note: You can too use custom sources/lists to block commonly proxies
+        # for provide extra layer. By default, FoxGate includes some for protect
+        # you from malicious actors.
+        proxies:
+
+            # 🚩 Enable this feature?
+            enable: true
+            # ⌛ Time (in hours) to scanning for downloading new
+            # information about proxies and residential proxies.
+            #
+            #   ➡ Use 'DISABLE' for disable the update.
+            time: '12'
+
+            # 📍 Download from Zowi's Central.
+            # - Make the plugin download our latest cached known malicious
+            #   proxies from our backend. That list updates constantly for adding
+            #   new malicious IPs and helps to you in block more accurate.
+            #
+            # 📚 Note: This feature doesn't will works until you get a key with
+            # this feature enable. Anyway, you can use external lists for download lists.
+            # ⚠️ WARNING! Zowi's Central contains their own list of residential
+            # proxies, a tool that have a cost of $1.99 USD. You can bought this in
+            # the Plus Edition like an addon, you just need to contact in the discord
+            # server support for receive a key that enables this feature.
+            #
+            #  ⭕ Contact us: https://discord.zowi.gay/
+            #     Alternative: https://discord.idcteam.xyz/
+            #
+            # This can also enable the usage in the API with same key, you will receive
+            # extra requests and that tool unblocked. Just to clarify, this uses our intelligence
+            # for detection about this. BYPASS CAN BE EXCEPTED, NOT ALL IT'S CACHED!
+            #
+            # Powered by FoxGate Analyzer 🦊
+            residential_proxy:
+
+                # 🚩 Enable this feature?
+                enable: true
+
+                # 🌱 Detect only when the residential proxy are in cross-provider.
+                # - Enable this feature when you want to only detect the residential proxy
+                #   if was detected in two or more providers. Useful to reduce false flags
+                #   because sometimes one provider means that the connection isn't totally
+                #   "a risk", but allows to be more easy to be bypassed if the provider
+                #   it's detected but only in one service.
+                #
+                # ⭐ Recommended: false
+                crossproviders_only: false
+
+                # 🧵 [PLACEHOLDER] Current and available residential proxies providers
+                # being cached by our backend.
+                # - This updates constantly and when checks for a new update, the list can be
+                #   updated dinamically with a modern result, independent of your version of
+                #   FoxGate.
+                providers:
+                - IPRoyal
+                - Proxy-Seller
+                - 711Proxy
+
+            # 📋 Custom downloadable sources for Proxies lists.
+            # - Add any list that returns IPs or CIDR ranges.
+            #   The plugin just works with some available formats for the
+            #   lists, one invalid can just skip from downloading/read.
+            #
+            # ⚠️ Supported formats:
+            #   - Plain-text: one IP/CIDR per line.
+            #   - JSON array: ["1.2.3.4", "5.6.7.0/24", ...]
+            #
+            # 📚 Note: Use '[]' to disable custom sources.
+            # ⚠️ Warning! Lines starting with '#' are ignored, only in
+            # plain-text format.
+            sources:
+            - https://tcpshield.com/blocklist.txt
+            - https://cinsscore.com/list/ci-badguys.txt
+            - https://blocklist.greensnow.co/greensnow.txt
+            - https://lists.blocklist.de/lists/all.txt
+            - https://api.proxyscrape.com/v2/?request=getproxies&protocol=all&timeout=10000&country=all&ssl=all&anonymity=all
+            - https://az0-vpnip-public.oooninja.com/ip.txt
 
     # 🦊 Block connections from denied IP using the database?
     # - This is useful if you want deny connections from future

@@ -16,7 +16,7 @@
 # name for search more easy. ^^
 
 # 🔩 Enable this service?
-enabled: true
+enabled: false
 # 🔑 Add this field in case require key.
 # - This is used for '{KEY}' variable in the
 #   headers or URL fields.

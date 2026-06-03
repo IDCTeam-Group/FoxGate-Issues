@@ -7,7 +7,7 @@
 # Block connections using your system firewall instead
 # using events.
 # When a player is blocked, instead of blocking them through
-# the events the server sends, they can be blocked through
+# the events that server sends, they can be blocked through
 # the machine's firewall. This is useful when bots are connecting
 # via a proxy/VPN and reduces resource overload when a bot
 # attack occurs.

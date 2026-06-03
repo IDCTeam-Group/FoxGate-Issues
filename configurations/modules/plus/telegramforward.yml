@@ -29,34 +29,83 @@
 #  - {COUNT_UNDETECTED} - Return the number of services that a player's IP hasn't been detected with.
 #  - {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
 #  - {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
-#  - {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
-#  - {GEO_ASN} - Return the player's ASN (Only works with premium version).
+#  - {GEO_COUNTRY} - Returns the player's country. (Only works with Plus Edition).
+#  - {GEO_ASN} - Return the player's ASN (Only works with Plus Edition).
 #
 # ❓ Has questions? Join to the discord server:
 # - https://discord.zowi.gay/
 # - https://discord.idcteam.xyz/
 
-# 🚩 Enter here the bot's token.
-#    - If you leave this empty, will disable this
-#      feature.
+# 💼 Enter here the bot's token.
+# - If you leave this empty, will disable this
+#   feature.
 #
 # 📚 See how to use in:
 # 🔗 https://core.telegram.org/bots/webhooks
 bot_token: ''
 
+# 🧵 Enter here the URL of Telegram.
+# - Change the URL if it's required to do reverse-proxy.
+#   It's required to still follow the Telegram format to
+#   make this works right.
+#
+# 📚 Always recommended to use the default value if you doesn't
+# contains problems. Use '{TOKEN}' for use 'bot_token' field.
+url: https://api.telegram.org/bot{TOKEN}/sendMessage
+
+# 🌱 Reverse Proxy for the requests.
+# - Use this feature in case you want to bypass any restriction
+#   in your country. This can make the request a bit slow, but can
+#   make the plugin works fine with this module.
+#
+#   ⚠ Supported types:
+#    - HTTP
+#    - SOCKS4
+#    - SOCKS5
+#
+# 📚 Note: Enable this feature when it's required and try to follow
+# the format-type.
+reverse_proxy:
+
+    # 🚩 Enable this feature?
+    enabled: false
+    # 💼 Type the proxy type.
+    # - Select one proxy type to use. Chooise right.
+    #
+    #   ⚠ Supported types:
+    #    - HTTP
+    #    - SOCKS4
+    #    - SOCKS5
+    type: HTTP
+    # 🚩 Determine the host of the Proxy.
+    # - Type one domain or IP for use the proxy and one port
+    #   for auth.
+    #
+    # ⚠️ Warning! Those values can't be empty.
+    host: ''
+    port: '8080'
+
+    # 🧵 Credentials.
+    # - Put any credential for authentication if it's required
+    #   by the proxy provider.
+    #
+    # 📚 Note: Leave empty for don't use any of those fields.
+    user: ''
+    password: ''
+
 # Message when the player was allowed to connect.
 allowed:
-    # Enable this forward?
+    # 🚩 Enable this forward?
     enable: true
-    # Enter here the channel to send the alert.
+    # 📚 Enter here the channel to send the alert.
     # - Must be unique identifier for the target chat or
     #   username of the target channel, ex. '@channel'
     chat_id: ''
 
-    # Determine here the content in the message.
+    # 🧩 Determine here the content in the message.
     # - This is required to send the message.
     text: '*FoxGate: High Quality AntiVPN*%nl%%nl%Player *{NAME}* `({IP})` has been verified by *FoxGate* with a result of `{COUNT_DETECTED}/{MAX}` detected services.%nl%%nl%- Detected in `({COUNT_DETECTED})`: `{DETECTED}`%nl%- Undetected in `({COUNT_UNDETECTED})`: `{UNDETECTED}`%nl%- Country: `{GEO_COUNTRY}`%nl%- ASN: `{GEO_ASN}`'
-    # Determine here the thread message ID to send.
+    # 🧵 Determine here the thread message ID to send.
     # Set "" to disable this feature.
     #
     # - Use this in case you want send in different
@@ -65,37 +114,37 @@ allowed:
     #   (topic) of the forum; for forum supergroups only.
     thread_id: ''
 
-    # Protect the message for privacy?
+    # 📍 Protect the message for privacy?
     # Protects the contents of the sent message from
     # forwarding and saving.
     protection: true
-    # Disable notification sound?
+    # ⚠️ Disable notification sound?
     # Sends the message silently. Users will receive a
     # notification with no sound.
     nosound: true
-    # Determine the mode of parsing.
+    # 💼 Determine the mode of parsing.
     # Values can be:
     # - MarkdownV2 (Recommended)
     # - HTML
     # - Markdown
     #
-    # 📚 Note: Invalid value go to use "MarkdownV2".
+    # 📚 Note: Invalid value will go to use "MarkdownV2".
     # 🔗 https://core.telegram.org/bots/api#formatting-options
     parsemode: MarkdownV2
 
 # Message when the player was denied to connect.
 denied:
-    # Enable this forward?
+    # 🚩 Enable this forward?
     enable: true
-    # Enter here the channel to send the alert.
+    # 📚 Enter here the channel to send the alert.
     # - Must be unique identifier for the target chat or
     #   username of the target channel, ex. '@channel'
     chat_id: ''
 
-    # Determine here the content in the message.
+    # 🧩 Determine here the content in the message.
     # - This is required to send the message.
     text: '*FoxGate: High Quality AntiVPN*%nl%%nl%Player *{NAME}* `({IP})` has been blocked by *FoxGate* for a result of `{COUNT_DETECTED}/{MAX}` detected services.%nl%%nl%- Detected in `({COUNT_DETECTED})`: `{DETECTED}`%nl%- Undetected in `({COUNT_UNDETECTED})`: `{UNDETECTED}`%nl%- Country: `{GEO_COUNTRY}`%nl%- ASN: `{GEO_ASN}`'
-    # Determine here the thread message ID to send.
+    # 🧵 Determine here the thread message ID to send.
     # Set "" to disable this feature.
     #
     # - Use this in case you want send in different
@@ -104,38 +153,38 @@ denied:
     #   (topic) of the forum; for forum supergroups only.
     thread_id: ''
 
-    # Protect the message for privacy?
+    # 📍 Protect the message for privacy?
     # Protects the contents of the sent message from
     # forwarding and saving.
     protection: true
-    # Disable notification sound?
+    # ⚠️ Disable notification sound?
     # Sends the message silently. Users will receive a
     # notification with no sound.
     nosound: true
-    # Determine the mode of parsing.
+    # 💼 Determine the mode of parsing.
     # Values can be:
     # - MarkdownV2 (Recommended)
     # - HTML
     # - Markdown
     #
-    # 📚 Note: Invalid value go to use "MarkdownV2".
+    # 📚 Note: Invalid value will go to use "MarkdownV2".
     # 🔗 https://core.telegram.org/bots/api#formatting-options
     parsemode: MarkdownV2
 
 # Message when the player was denied to connect
 # by their Country.
 country:
-    # Enable this forward?
+    # 🚩 Enable this forward?
     enable: true
-    # Enter here the channel to send the alert.
+    # 📚 Enter here the channel to send the alert.
     # - Must be unique identifier for the target chat or
     #   username of the target channel, ex. '@channel'
     chat_id: ''
 
-    # Determine here the content in the message.
+    # 🧩 Determine here the content in the message.
     # - This is required to send the message.
     text: '*FoxGate: High Quality AntiVPN*%nl%%nl%Player *{NAME}* `({IP})` has been blocked by *FoxGate* for their country.%nl%%nl%- Country: `{GEO_COUNTRY}`%nl%- ASN: `{GEO_ASN}`'
-    # Determine here the thread message ID to send.
+    # 🧵 Determine here the thread message ID to send.
     # Set "" to disable this feature.
     #
     # - Use this in case you want send in different
@@ -144,38 +193,38 @@ country:
     #   (topic) of the forum; for forum supergroups only.
     thread_id: ''
 
-    # Protect the message for privacy?
+    # 📍 Protect the message for privacy?
     # Protects the contents of the sent message from
     # forwarding and saving.
     protection: true
-    # Disable notification sound?
+    # ⚠️ Disable notification sound?
     # Sends the message silently. Users will receive a
     # notification with no sound.
     nosound: true
-    # Determine the mode of parsing.
+    # 💼 Determine the mode of parsing.
     # Values can be:
     # - MarkdownV2 (Recommended)
     # - HTML
     # - Markdown
     #
-    # 📚 Note: Invalid value go to use "MarkdownV2".
+    # 📚 Note: Invalid value will go to use "MarkdownV2".
     # 🔗 https://core.telegram.org/bots/api#formatting-options
     parsemode: MarkdownV2
 
 # Message when the player was denied to connect
 # by their ASN.
 asn:
-    # Enable this forward?
+    # 🚩 Enable this forward?
     enable: true
-    # Enter here the channel to send the alert.
+    # 📚 Enter here the channel to send the alert.
     # - Must be unique identifier for the target chat or
     #   username of the target channel, ex. '@channel'
     chat_id: ''
 
-    # Determine here the content in the message.
+    # 🧩 Determine here the content in the message.
     # - This is required to send the message.
     text: '*FoxGate: High Quality AntiVPN*%nl%%nl%Player *{NAME}* `({IP})` has been blocked by *FoxGate* for their ASN.%nl%%nl%- Country: `{GEO_COUNTRY}`%nl%- ASN: `{GEO_ASN}`'
-    # Determine here the thread message ID to send.
+    # 🧵 Determine here the thread message ID to send.
     # Set "" to disable this feature.
     #
     # - Use this in case you want send in different
@@ -184,38 +233,38 @@ asn:
     #   (topic) of the forum; for forum supergroups only.
     thread_id: ''
 
-    # Protect the message for privacy?
+    # 📍 Protect the message for privacy?
     # Protects the contents of the sent message from
     # forwarding and saving.
     protection: true
-    # Disable notification sound?
+    # ⚠️ Disable notification sound?
     # Sends the message silently. Users will receive a
     # notification with no sound.
     nosound: true
-    # Determine the mode of parsing.
+    # 💼 Determine the mode of parsing.
     # Values can be:
     # - MarkdownV2 (Recommended)
     # - HTML
     # - Markdown
     #
-    # 📚 Note: Invalid value go to use "MarkdownV2".
+    # 📚 Note: Invalid value will go to use "MarkdownV2".
     # 🔗 https://core.telegram.org/bots/api#formatting-options
     parsemode: MarkdownV2
 
 # Message when the player was denied to connect
 # by their ISP.
 isp:
-    # Enable this forward?
+    # 🚩 Enable this forward?
     enable: true
-    # Enter here the channel to send the alert.
+    # 📚 Enter here the channel to send the alert.
     # - Must be unique identifier for the target chat or
     #   username of the target channel, ex. '@channel'
     chat_id: ''
 
-    # Determine here the content in the message.
+    # 🧩 Determine here the content in the message.
     # - This is required to send the message.
     text: '*FoxGate: High Quality AntiVPN*%nl%%nl%Player *{NAME}* `({IP})` has been blocked by *FoxGate* for their ISP.%nl%%nl%- ISP: `{ISP}`'
-    # Determine here the thread message ID to send.
+    # 🧵 Determine here the thread message ID to send.
     # Set "" to disable this feature.
     #
     # - Use this in case you want send in different
@@ -224,38 +273,38 @@ isp:
     #   (topic) of the forum; for forum supergroups only.
     thread_id: ''
 
-    # Protect the message for privacy?
+    # 📍 Protect the message for privacy?
     # Protects the contents of the sent message from
     # forwarding and saving.
     protection: true
-    # Disable notification sound?
+    # ⚠️ Disable notification sound?
     # Sends the message silently. Users will receive a
     # notification with no sound.
     nosound: true
-    # Determine the mode of parsing.
+    # 💼 Determine the mode of parsing.
     # Values can be:
     # - MarkdownV2 (Recommended)
     # - HTML
     # - Markdown
     #
-    # 📚 Note: Invalid value go to use "MarkdownV2".
+    # 📚 Note: Invalid value will go to use "MarkdownV2".
     # 🔗 https://core.telegram.org/bots/api#formatting-options
     parsemode: MarkdownV2
 
 # Message when the player was denied to connect
 # by IPRange module.
 ipr:
-    # Enable this forward?
+    # 🚩 Enable this forward?
     enable: true
-    # Enter here the channel to send the alert.
+    # 📚 Enter here the channel to send the alert.
     # - Must be unique identifier for the target chat or
     #   username of the target channel, ex. '@channel'
     chat_id: ''
 
-    # Determine here the content in the message.
+    # 🧩 Determine here the content in the message.
     # - This is required to send the message.
     text: '*FoxGate: High Quality AntiVPN*%nl%%nl%Player *{NAME}* `({IP})` has been blocked by *FoxGate* for being banned in IPRange module.'
-    # Determine here the thread message ID to send.
+    # 🧵 Determine here the thread message ID to send.
     # Set "" to disable this feature.
     #
     # - Use this in case you want send in different
@@ -264,20 +313,20 @@ ipr:
     #   (topic) of the forum; for forum supergroups only.
     thread_id: ''
 
-    # Protect the message for privacy?
+    # 📍 Protect the message for privacy?
     # Protects the contents of the sent message from
     # forwarding and saving.
     protection: true
-    # Disable notification sound?
+    # ⚠️ Disable notification sound?
     # Sends the message silently. Users will receive a
     # notification with no sound.
     nosound: true
-    # Determine the mode of parsing.
+    # 💼 Determine the mode of parsing.
     # Values can be:
     # - MarkdownV2 (Recommended)
     # - HTML
     # - Markdown
     #
-    # 📚 Note: Invalid value go to use "MarkdownV2".
+    # 📚 Note: Invalid value will go to use "MarkdownV2".
     # 🔗 https://core.telegram.org/bots/api#formatting-options
     parsemode: MarkdownV2

@@ -306,7 +306,7 @@ asn:
             #
             # 📚 Note: Ask to our discord server for the list in case
             # you want only block specifies.
-            suspecious_isps: false
+            suspicious_isps: false
 
             # 🧰 External provider.
             # - Use this option in case you want use another external
@@ -332,7 +332,7 @@ asn:
                 #   available in the original provider, using another provider
                 #   only will be used their content of ASN List.
                 #
-                # ⚠ Warning: FoxGate will try to remove important data from the
+                # ⚠ Warning! FoxGate will try to remove important data from the
                 # headers while using this option for prevent malicious actors,
                 # it's always recommended use original provider. USE THIS AT YOUR
                 # RISK WHILE USING THIS IN UNTRUSTED SOURCES!

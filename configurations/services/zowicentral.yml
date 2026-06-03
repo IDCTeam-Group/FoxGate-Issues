@@ -54,7 +54,7 @@ vls: '2'
 # 📁 Supported placeholders:
 # - {IP} - Return the player's IP.
 # - {KEY} - Return 'key' field value.
-url: https://central.zowi.gay/check/{IP}
+url: https://api.zowi.gay/{IP}?key={KEY}
 # ⛓ Headers to use.
 # - Set custom headers in case it's required.
 #   The values can be in List or Map.
@@ -72,7 +72,12 @@ values:
     #   field 'type' will check if the final
     #   response contains that value.
     fields:
-    - malicious
+    - security.bogon
+    - security.vpn
+    - security.proxy
+    - security.hosting
+    - security.residential_proxy.detected
+    - security.tor
     # 🚩 Type to determine.
     # - Determine which value needs to determine
     #   if the connection it's a VPN/Proxy or another,

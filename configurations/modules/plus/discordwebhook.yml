@@ -29,18 +29,58 @@
 #  - {COUNT_UNDETECTED} - Return the number of services that a player's IP hasn't been detected with.
 #  - {ISP} - Returns the ISP of the IP, (in case it's cached/IP), from ISP module.
 #  - {HOSTNAME} - Returns the Hostname of the IP, (in case it's cached/IP), from ISP Module.
-#  - {GEO_COUNTRY} - Returns the player's country. (Only works with premium version).
-#  - {GEO_ASN} - Return the player's ASN (Only works with premium version).
+#  - {GEO_COUNTRY} - Returns the player's country. (Only works with Plus Edition).
+#  - {GEO_ASN} - Return the player's ASN (Only works with Plus Edition).
 #
 # ❓ Has questions? Join to the discord server:
 # - https://discord.zowi.gay/
 # - https://discord.idcteam.xyz/
 
+# 🌱 Reverse Proxy for the requests.
+# - Use this feature in case you want to bypass any restriction
+#   in your country. This can make the request a bit slow, but can
+#   make the plugin works fine with this module.
+#
+#   ⚠ Supported types:
+#    - HTTP
+#    - SOCKS4
+#    - SOCKS5
+#
+# 📚 Note: Enable this feature when it's required and try to follow
+# the format-type.
+reverse_proxy:
+
+    # 🚩 Enable this feature?
+    enabled: false
+    # 💼 Type the proxy type.
+    # - Select one proxy type to use. Chooise right.
+    #
+    #   ⚠ Supported types:
+    #    - HTTP
+    #    - SOCKS4
+    #    - SOCKS5
+    type: HTTP
+    # 🚩 Determine the host of the Proxy.
+    # - Type one domain or IP for use the proxy and one port
+    #   for auth.
+    #
+    # ⚠️ Warning! Those values can't be empty.
+    host: ''
+    port: '8080'
+
+    # 🧵 Credentials.
+    # - Put any credential for authentication if it's required
+    #   by the proxy provider.
+    #
+    # 📚 Note: Leave empty for don't use any of those fields.
+    user: ''
+    password: ''
+
 # Message when the player was allowed to connect.
 allowed:
-    # Enable this webhook?
+    # 🚩 Enable this webhook?
     enable: true
-    # Determine the URL of webhook to send.
+    # 📎 Determine the URL of webhook to send.
     # - See the documentation of Discord in how create a
     #   webhook.
     webhook: ''
@@ -103,9 +143,9 @@ allowed:
 
 # Message when the player was denied to connect.
 denied:
-    # Enable this webhook?
+    # 🚩 Enable this webhook?
     enable: true
-    # Determine the URL of webhook to send.
+    # 📎 Determine the URL of webhook to send.
     # - See the documentation of Discord in how create a
     #   webhook.
     webhook: ''
@@ -169,9 +209,9 @@ denied:
 # Message when the player was denied to connect
 # by their Country.
 country:
-    # Enable this webhook?
+    # 🚩 Enable this webhook?
     enable: true
-    # Determine the URL of webhook to send.
+    # 📎 Determine the URL of webhook to send.
     # - See the documentation of Discord in how create a
     #   webhook.
     webhook: ''
@@ -223,9 +263,9 @@ country:
 # Message when the player was denied to connect
 # by their ASN.
 asn:
-    # Enable this webhook?
+    # 🚩 Enable this webhook?
     enable: true
-    # Determine the URL of webhook to send.
+    # 📎 Determine the URL of webhook to send.
     # - See the documentation of Discord in how create a
     #   webhook.
     webhook: ''
@@ -277,9 +317,9 @@ asn:
 # Message when the player was denied to connect
 # by their ISP.
 isp:
-    # Enable this webhook?
+    # 🚩 Enable this webhook?
     enable: true
-    # Determine the URL of webhook to send.
+    # 📎 Determine the URL of webhook to send.
     # - See the documentation of Discord in how create a
     #   webhook.
     webhook: ''
@@ -331,9 +371,9 @@ isp:
 # Message when the player was denied to connect
 # by IPRange module.
 ipr:
-    # Enable this webhook?
+    # 🚩 Enable this webhook?
     enable: true
-    # Determine the URL of webhook to send.
+    # 📎 Determine the URL of webhook to send.
     # - See the documentation of Discord in how create a
     #   webhook.
     webhook: ''

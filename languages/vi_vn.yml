@@ -1,4 +1,4 @@
-# File này được dịch bởi dh.393 (Discord), báo lại nếu có lỗi:>
+# File này được dịch bởi ok.vip (Discord). Vui lòng báo lại nếu phát hiện lỗi.
 #                                             
 #   /\/\   ___  ___ ___  __ _  __ _  ___  ___ 
 #  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
@@ -6,10 +6,10 @@
 # \/    \/\___||___/___/\__,_|\__, |\___||___/
 #                             |___/           
 #  
-# 🔨 Config tin nhắn của FG.
+# 🔨 Cấu hình tin nhắn của FG.
 # Bạn có thể sử dụng MiniMessage trong phần này. Nó cũng hoạt động với
-# các mã màu bukkit cũ, nhưng không được khuyến khích vì có thể
-# không tương thích!
+# các mã màu Bukkit cũ, nhưng không được khuyến khích do có thể
+# không tương thích.
 # Ngoài ra, PlaceholderAPI cũng được hỗ trợ.
 #  
 # 📷 Trình xem trước:
@@ -23,78 +23,78 @@ message:
     #  
     # {PLAYER} - Trả về tên người chơi.
     # {IP} - Trả về địa chỉ IP của người chơi.
-    # {UUID} - Trả về UUID của người chơi. (BungeeCord không hỗ trợ cái này)
-    # {ISP} - Trả về nhà cung cấp dịch vụ mạng (ISP) của IP, (trong trường hợp IP/ISP được lưu trong cache), từ mô-đun ISP.
-    # {HOSTNAME} - Trả về tên máy chủ của IP, (trong trường hợp IP được lưu trong cache), từ mô-đun ISP.
-    # {GEO_COUNTRY} - Trả về quốc gia của người chơi. (Chỉ hoạt động với phiên bản premium).
-    # {GEO_ASN} - Trả về ASN của người chơi (Chỉ hoạt động với phiên bản premium).
+    # {UUID} - Trả về UUID của người chơi. (BungeeCord không hỗ trợ tính năng này)
+    # {ISP} - Trả về nhà cung cấp dịch vụ mạng (ISP) của IP (nếu IP/ISP đã được lưu trong bộ nhớ đệm), từ mô-đun ISP.
+    # {HOSTNAME} - Trả về hostname của IP (nếu IP đã được lưu trong bộ nhớ đệm), từ mô-đun ISP.
+    # {GEO_COUNTRY} - Trả về quốc gia của người chơi. (Chỉ hoạt động với phiên bản Premium)
+    # {GEO_ASN} - Trả về ASN của người chơi. (Chỉ hoạt động với phiên bản Premium)
     kick:
-        vpn: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn bị từ chối vì là VPN hoặc Proxy.\n<gray>Hãy thử tắt VPN/proxy của bạn trước khi tham gia.</gray>\n\n<gold>Đây có phải là lỗi không?</gold> <white>Tham gia máy chủ discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Mô-đun: Dịch vụ</dark_gray>'
-        iplimiter: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn bị từ chối để tham gia.\n<gray>Chúng tôi tìm thấy quá nhiều kết nối từ cùng một IP của bạn.</gray>\n\n<gold>Đây có phải là lỗi không?</gold> <white>Tham gia máy chủ discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Mô-đun: IPLimiter</dark_gray>'
-        isp: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn bị từ chối vì độc hại.\n<gray>Nhà cung cấp dịch vụ mạng "<light_purple>{ISP}</light_purple>" mà bạn sử dụng bị cấm trên máy chủ này.</gray>\n\n<gold>Đây có phải là lỗi không?</gold> <white>Tham gia máy chủ discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Mô-đun: ISPFilter</dark_gray>'
-        iprange: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn bị từ chối vì độc hại.\n<gray>IP đang trong danh sách đen của cơ sở dữ liệu vì thuộc phạm vi độc hại.</gray>\n\n<gold>Đây có phải là lỗi không?</gold> <white>Tham gia máy chủ discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Mô-đun: IPRange</dark_gray>'
-        bogon: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn bị từ chối vì là bogon.\n<gray>IP được coi là bogon (mạng riêng).</gray>\n\n<gold>Đây có phải là lỗi không?</gold> <white>Tham gia máy chủ discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz'
-        country: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn bị từ chối vì độc hại.\n<gray>Quốc gia bạn kết nối từ "<light_purple>{GEO_COUNTRY}</light_purple>" bị cấm trên máy chủ này.</gray>\n\n<gold>Đây có phải là lỗi không?</gold> <white>Tham gia máy chủ discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Mô-đun: Quốc gia</dark_gray>'
-        asn: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn bị từ chối vì là VPN hoặc Proxy.\n<gray>Nhà cung cấp dịch vụ mạng ASN "<light_purple>{GEO_ASN}</light_purple>" là nhà cung cấp VPN hoặc Tor đã biết.</gray>\n\n<gold>Đây có phải là lỗi không?</gold> <white>Tham gia máy chủ discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Mô-đun: ASN</dark_gray>'
-        # Một số placeholder không hoạt động trong tin nhắn này vì nó được sử dụng để kick
-        # người chơi khi họ cố gắng tham gia và IP của họ vẫn đang được xác minh trong
-        # quá trình tiền kiểm tra. Điều này ngăn chặn việc xác minh trùng lặp cho đến khi
+        vpn: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn bị từ chối do phát hiện VPN hoặc proxy.\n<gray>Hãy tắt VPN/proxy rồi thử tham gia lại.</gray>\n\n<gold>Bạn cho rằng đây là lỗi?</gold> <white>Hãy tham gia máy chủ Discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Mô-đun: Dịch vụ</dark_gray>'
+        iplimiter: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn đã bị từ chối.\n<gray>Phát hiện quá nhiều kết nối từ cùng một địa chỉ IP.</gray>\n\n<gold>Bạn cho rằng đây là lỗi?</gold> <white>Hãy tham gia máy chủ Discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Mô-đun: IPLimiter</dark_gray>'
+        isp: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn bị từ chối.\n<gray>Nhà cung cấp dịch vụ mạng "<light_purple>{ISP}</light_purple>" đang bị chặn trên máy chủ này.</gray>\n\n<gold>Bạn cho rằng đây là lỗi?</gold> <white>Hãy tham gia máy chủ Discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Mô-đun: ISPFilter</dark_gray>'
+        iprange: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn bị từ chối.\n<gray>Địa chỉ IP này nằm trong danh sách đen vì thuộc một dải IP bị chặn.</gray>\n\n<gold>Bạn cho rằng đây là lỗi?</gold> <white>Hãy tham gia máy chủ Discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Mô-đun: IPRange</dark_gray>'
+        bogon: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn bị từ chối vì địa chỉ IP thuộc dải bogon.\n<gray>Địa chỉ IP này được xác định là bogon (mạng riêng).</gray>\n\n<gold>Bạn cho rằng đây là lỗi?</gold> <white>Hãy tham gia máy chủ Discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz'
+        country: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn bị từ chối.\n<gray>Quốc gia bạn đang kết nối từ "<light_purple>{GEO_COUNTRY}</light_purple>" bị chặn trên máy chủ này.</gray>\n\n<gold>Bạn cho rằng đây là lỗi?</gold> <white>Hãy tham gia máy chủ Discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Mô-đun: Quốc gia</dark_gray>'
+        asn: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn bị từ chối vì là VPN hoặc Proxy.\n<gray>ASN "<light_purple>{GEO_ASN}</light_purple>" được xác định là thuộc một nhà cung cấp VPN hoặc Tor.</gray>\n\n<gold>Bạn cho rằng đây là lỗi?</gold> <white>Hãy tham gia máy chủ Discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz\n\n<gray>{IP} - {ISP} ({GEO_ASN})</gray>\n<dark_gray>Mô-đun: ASN</dark_gray>'
+        # Một số placeholder không hoạt động trong tin nhắn này vì tin nhắn được dùng để kick
+        # người chơi khi họ cố gắng tham gia trong lúc IP vẫn đang được xác minh ở
+        # bước tiền kiểm tra. Điều này giúp tránh xác minh trùng lặp cho đến khi
         # lần xác minh trước đó hoàn tất.
-        checking: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Chúng tôi đang kiểm tra kết nối của bạn.\n<gray>FoxGate đang quét kết nối của bạn, vui lòng đợi vài giây.</gray>\n\n<gold>Đây có phải là lỗi không?</gold> <white>Tham gia máy chủ discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz'
+        checking: '<red><bold>✘</bold> Bạn đã bị chặn bởi <bold>FoxGate AntiVPN</bold>:\n\n<white>Kết nối của bạn đang được kiểm tra.\n<gray>FoxGate đang quét kết nối, vui lòng đợi vài giây.</gray>\n\n<gold>Bạn cho rằng đây là lỗi?</gold> <white>Hãy tham gia máy chủ Discord của chúng tôi.\n<aqua><underlined>discord.idcteam.xyz'
     # Thông báo khi một người chơi bị kick. Bạn có thể tắt tin nhắn này bằng cách để trống.
     notify:
         vpn: '{prefix} <aqua>{player} <gray>đã bị phát hiện sử dụng VPN và đã bị kick! <green>({IP})'
-        isp: '{prefix} <aqua>{player} <gray>đã bị kick vì tham gia với ISP bị chặn: <aqua>{ISP}</aqua>! <green>({IP})'
-        iprange: '{prefix} <aqua>{player} <gray>đã bị kick vì tham gia với IPRange bị chặn! <green>({IP})'
+        isp: '{prefix} <aqua>{player} <gray>đã bị kick vì sử dụng ISP bị chặn: <aqua>{ISP}</aqua>! <green>({IP})'
+        iprange: '{prefix} <aqua>{player} <gray>đã bị kick vì IP thuộc dải bị chặn! <green>({IP})'
         bogon: '{prefix} <aqua>{player} <gray>đã cố gắng tham gia từ một IP bogon: <green>{IP}</green>!'
-        country: '{prefix} <aqua>{player} <gray>đã bị kick vì tham gia từ một quốc gia bị chặn: <aqua>{GEO_COUNTRY}</aqua>! <green>({IP})'
-        asn: '{prefix} <aqua>{player} <gray>đã bị kick vì tham gia với một ASN bị chặn: <aqua>{GEO_ASN}</aqua>! <green>({IP})'
+        country: '{prefix} <aqua>{player} <gray>đã bị kick vì kết nối từ quốc gia bị chặn: <aqua>{GEO_COUNTRY}</aqua>! <green>({IP})'
+        asn: '{prefix} <aqua>{player} <gray>đã bị kick vì sử dụng ASN bị chặn: <aqua>{GEO_ASN}</aqua>! <green>({IP})'
     # Tin nhắn hiển thị khi người chơi bị chặn bởi một mô-đun. (Dùng cho lệnh status)
     blocked:
         isp: '<gold>Bị chặn bởi nhà cung cấp mạng.'
-        iprange: '<gold>Bị chặn bởi IPRange của họ.'
-        bogon: '<gold>Bị chặn vì IP Bogon.'
+        iprange: '<gold>Bị chặn bởi dải IP.'
+        bogon: '<gold>Bị chặn vì địa chỉ IP thuộc dải bogon.'
         country: '<gold>Bị chặn bởi quốc gia.'
         asn: '<gold>Bị chặn bởi ASN.'
     # Tin nhắn này sẽ chỉ hiển thị trong console.
     # Điều này có thể giúp gỡ lỗi trong trường hợp một dịch vụ không hoạt động chính xác.
     # Bạn có thể tắt tin nhắn này bằng cách để trống.
-    error: '{prefix} Lỗi khi xác minh VPN với <aqua>"{service}"</aqua> và <yellow>{player}</yellow>: {error}'
+    error: '{prefix} Lỗi khi kiểm tra VPN bằng dịch vụ <aqua>"{service}"</aqua> cho <yellow>{player}</yellow>: {error}'
     # Tiền tố tin nhắn cho plugin.
     prefix: <yellow><bold>FGT</bold></yellow><dark_gray> ►</dark_gray>
     help:
         add: Thêm một IP vào cơ sở dữ liệu.
-        alts: Kiểm tra tất cả người dùng trong một IP.
-        check: Kiểm tra một IP bên ngoài và lưu vào cơ sở dữ liệu.
-        clearcache: Xóa tệp cache chứa tên người dùng đã lưu.
+        alts: Kiểm tra tất cả người dùng liên quan đến một IP.
+        check: Kiểm tra một IP và lưu kết quả vào cơ sở dữ liệu.
+        clearcache: Xóa bộ nhớ đệm chứa tên người dùng đã lưu.
         db: Dọn dẹp hoặc kết nối lại cơ sở dữ liệu.
         debug: Gỡ lỗi FoxGate trong console.
         reload: Tải lại tệp cấu hình.
         remove: Xóa một IP khỏi cơ sở dữ liệu.
-        status: Xem thông tin về một IP đã được cache trong cơ sở dữ liệu.
-        update: Cập nhật tự động các thành phần plugin.
+        status: Xem thông tin về một IP đã được lưu trong bộ nhớ đệm.
+        update: Tự động cập nhật các thành phần của plugin.
         verbose: Bật/tắt chế độ thông báo chi tiết.
         whitelist: Thêm người dùng hoặc IP vào danh sách trắng.
-        predebug: (Premium) Gửi một webhook discord hoặc tin nhắn telegram để kiểm tra hiển thị.
+        predebug: (Premium) Gửi webhook Discord hoặc tin nhắn Telegram để kiểm tra hiển thị.
     alts:
         invalidip: '{prefix} {IP}<red> không phải là IP/Tên người dùng hợp lệ!'
-        invalidcheck: '{prefix} {IP}<red> không thể tìm thấy yêu cầu IP/người dùng từ cache!'
+        invalidcheck: '{prefix} {IP}<red> không tìm thấy dữ liệu IP/người dùng trong bộ nhớ đệm!'
         checking: '{prefix} {IP}<yellow> đang kiểm tra các tài khoản phụ...'
         # Ở đây bạn có thể tìm thấy các placeholder sau:
         #
         # {NAME} - Trả về tên của người chơi. (chỉ dành cho 'output')
         # {IP} - Trả về địa chỉ IP của người chơi.
-        # {ISP} - Trả về ISP của IP (nếu đã cache), từ mô-đun ISP.
-        # {ALTS} - Trả về các tài khoản phụ của Người dùng/IP.
+        # {ISP} - Trả về ISP của IP (nếu đã được lưu trong bộ nhớ đệm), từ mô-đun ISP.
+        # {ALTS} - Trả về các tài khoản phụ của người dùng/IP.
         # {OUTPUT} - Trả về định dạng của 'output'.
-        # {TIME} - Trả về lần cuối cùng. (chỉ dành cho 'output')
+        # {TIME} - Trả về thời điểm kết nối gần nhất. (chỉ dành cho 'output')
         # {TIME_AGO} - Trả về thời gian đã trôi qua. (chỉ dành cho 'output')
         # {GEO_COUNTRY} - Trả về quốc gia của IP. (Chỉ phiên bản premium).
         # {GEO_ASN} - Trả về ASN của IP. (Chỉ phiên bản premium).
-        # {SIMILAR} - Hiển thị tương tự nếu tìm thấy với IP động, nếu không sẽ trống.
-        output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - Kết nối cuối: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
+        # {SIMILAR} - Hiển thị mục tương tự nếu phát hiện IP động; nếu không sẽ để trống.
+        output: ' <dark_gray>▪</dark_gray> <reset>{NAME} - Kết nối gần nhất: {TIME} <dark_gray>(</dark_gray>{TIME_AGO}<dark_gray>)</dark_gray> {SIMILAR}'
         info: ' \n <green>Đang xem các tài khoản phụ của <aqua>{IP}\n <dark_gray>▪ <white>ISP: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Tài khoản phụ:\n {ALTS}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Quốc gia: <aqua>{GEO_COUNTRY} \n '
-        # Xem về định dạng ngày tháng tại đây:
+        # Xem định dạng ngày giờ tại đây:
         # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
         format: 'dd-MM-yyyy HH:mm:ss'
         day: 'ngày'
@@ -109,27 +109,27 @@ message:
         online: '<click:run_command:"/foxgate status {IP}"><hover:show_text:"Nhấn để kiểm tra trạng thái."><green>Trực tuyến</green></hover></click>'
     add_remove:
         invalidip: '{prefix} {IP}<red> không phải là IP/Tên người dùng hợp lệ!'
-        already: '{prefix} {IP}<red> đã được thêm/xóa khỏi cơ sở dữ liệu!'
+        already: '{prefix} {IP}<red> đã tồn tại/không tồn tại trong cơ sở dữ liệu!'
         add: '{prefix} {IP}<green> đã được thêm vào cơ sở dữ liệu!'
         remove: '{prefix} {IP}<green> đã được xóa khỏi cơ sở dữ liệu!'
     check:
         invalidip: '{prefix} {IP}<red> không phải là IP/Tên người dùng hợp lệ!'
-        cached: '{prefix} {IP}<yellow> đã được lưu trong cache của cơ sở dữ liệu. Bạn có thể <white><underlined><click:run_command:"/foxgate status {IP}">nhấn vào đây để xem thông tin đã lưu</click></underlined></white>.'
+        cached: '{prefix} {IP}<yellow> đã được lưu trong bộ nhớ đệm của cơ sở dữ liệu. Bạn có thể <white><underlined><click:run_command:"/foxgate status {IP}">nhấn vào đây để xem thông tin đã lưu</click></underlined></white>.'
         checking: '{prefix} <yellow>Đang kiểm tra <white>{IP}<yellow>...'
-        checked: '{prefix} {IP}<green> đã được kiểm tra thành công, xem thông tin thu được trong cơ sở dữ liệu bằng lệnh <gray>(/foxgate status)</gray> hoặc <white><underlined><click:run_command:"/foxgate status {IP}">nhấn vào đây</click></underlined></white>.'
-        pre-checking: '{prefix} {IP}<yellow> đang được quét từ một lần kiểm tra trước, hãy đợi kết quả trước khi chạy một lần kiểm tra khác trên cùng IP này.'
+        checked: '{prefix} {IP}<green> đã được kiểm tra thành công. Xem thông tin đã lưu bằng lệnh <gray>(/foxgate status)</gray> hoặc <white><underlined><click:run_command:"/foxgate status {IP}">nhấn vào đây</click></underlined></white>.'
+        pre-checking: '{prefix} {IP}<yellow> đang được xử lý bởi một lần kiểm tra trước. Hãy đợi kết quả trước khi kiểm tra lại cùng IP này.'
     clearcache:
-        purging: '{prefix} <white>Chúng tôi đang <yellow>dọn dẹp</yellow> tệp cache...'
-        purging_correctly: '{prefix} <green>Tệp cache đã được dọn dẹp.'
-        purging_problem: '{prefix} <red>Lỗi khi cố gắng dọn dẹp tệp cache. Vui lòng kiểm tra console.'
+        purging: '{prefix} <white>Đang <yellow>dọn dẹp</yellow> bộ nhớ đệm...'
+        purging_correctly: '{prefix} <green>Bộ nhớ đệm đã được dọn dẹp.'
+        purging_problem: '{prefix} <red>Không thể dọn dẹp bộ nhớ đệm. Vui lòng kiểm tra console.'
     db:
         invalid_usage: '{prefix} Sử dụng lệnh <aqua>/foxgate db <purge/reconnect><reset>.'
-        reconnecting: '{prefix} <yellow>Đang cố gắng kết nối lại với cơ sở dữ liệu...'
+        reconnecting: '{prefix} <yellow>Đang kết nối lại với cơ sở dữ liệu...'
         reconnect_correctly: '{prefix} <green>Đã kết nối lại với cơ sở dữ liệu.'
-        reconnect_problem: '{prefix} <red>Lỗi khi cố gắng kết nối lại với cơ sở dữ liệu. Vui lòng kiểm tra console.'
-        purging: '{prefix} <yellow>Đang cố gắng dọn dẹp cơ sở dữ liệu...'
+        reconnect_problem: '{prefix} <red>Không thể kết nối lại với cơ sở dữ liệu. Vui lòng kiểm tra console.'
+        purging: '{prefix} <yellow>Đang dọn dẹp cơ sở dữ liệu...'
         purging_correctly: '{prefix} <green>Cơ sở dữ liệu đã được dọn dẹp.'
-        purging_problem: '{prefix} <red>Lỗi khi cố gắng dọn dẹp cơ sở dữ liệu. Vui lòng kiểm tra console.'
+        purging_problem: '{prefix} <red>Không thể dọn dẹp cơ sở dữ liệu. Vui lòng kiểm tra console.'
     debug:
         enable: '{prefix} <green>Đã bật chế độ gỡ lỗi. Vui lòng kiểm tra console.'
         disable: '{prefix} <red>Đã tắt chế độ gỡ lỗi.'
@@ -141,36 +141,36 @@ message:
         #  
         # {DETECTED} - Chỉ trả về các dịch vụ đã phát hiện VPN với một IP.
         # {UNDETECTED} - Chỉ trả về các dịch vụ không phát hiện VPN với một IP.
-        # {LIST} - Trả về cả hai danh sách, nhưng với màu sắc khác nhau (có thể tùy chỉnh).
-        # {MAX} - Trả về số lượng cờ báo tối đa cần thiết để từ chối quyền truy cập của người chơi.
-        # {COUNT_DETECTED} - Trả về số lượng dịch vụ đã phát hiện IP của người chơi.
-        # {COUNT_UNDETECTED} - Trả về số lượng dịch vụ không phát hiện IP của người chơi.
+        # {LIST} - Trả về cả hai danh sách với màu sắc khác nhau (có thể tùy chỉnh).
+        # {MAX} - Trả về số cờ tối đa cần thiết để từ chối quyền truy cập của người chơi.
+        # {COUNT_DETECTED} - Trả về số dịch vụ đã phát hiện IP của người chơi.
+        # {COUNT_UNDETECTED} - Trả về số dịch vụ không phát hiện IP của người chơi.
         # {STATUS} - Trả về trạng thái của người chơi.
-        # {ISP} - Trả về nhà cung cấp dịch vụ mạng (ISP) của IP, (trong trường hợp được lưu trong cache), từ mô-đun ISP.
-        # {HOSTNAME} - Trả về tên máy chủ của IP, (trong trường hợp được lưu trong cache), từ mô-đun ISP.
-        # {GEO_COUNTRY} - Trả về quốc gia của người chơi. (Chỉ hoạt động với phiên bản premium).
-        # {GEO_ASN} - Trả về ASN của người chơi (Chỉ hoạt động với phiên bản premium).
+        # {ISP} - Trả về nhà cung cấp dịch vụ mạng (ISP) của IP (nếu đã được lưu trong bộ nhớ đệm), từ mô-đun ISP.
+        # {HOSTNAME} - Trả về hostname của IP (nếu đã được lưu trong bộ nhớ đệm), từ mô-đun ISP.
+        # {GEO_COUNTRY} - Trả về quốc gia của người chơi. (Chỉ hoạt động với phiên bản Premium)
+        # {GEO_ASN} - Trả về ASN của người chơi. (Chỉ hoạt động với phiên bản Premium)
         detected: '<red>'
         undetected: '<green>'
         none: '<red>Không có.'
-        no_cached: '<red>Chưa được lưu trong cơ sở dữ liệu.'
-        allow: '<green>Đã xác minh.'
+        no_cached: '<red>Chưa có dữ liệu trong cơ sở dữ liệu.'
+        allow: '<green>Cho phép.'
         deny: '<red>Đã chặn.'
-        saved: '<yellow>Đã quét.'
+        saved: '<yellow>Đã kiểm tra.'
         info: ' \n <green>Xem trạng thái của <aqua>{IP}\n <dark_gray>▪ <white>Nhà mạng: <light_purple>{ISP}</light_purple>\n <dark_gray>▪ <white>Tên máy chủ: <yellow>{HOSTNAME}</yellow>\n <dark_gray>▪ <white>Trạng thái: {STATUS} <yellow>({COUNT_DETECTED}/{MAX})</yellow>\n    <white>Không phát hiện: <green>{COUNT_UNDETECTED} <dark_gray>❙ <white>Phát hiện: <red>{COUNT_DETECTED} \n <dark_gray>▪ <white>Dịch vụ: {LIST}\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Quốc gia: <aqua>{GEO_COUNTRY} \n '
     update:
         invalid_usage: '{prefix} Sử dụng lệnh <dark_gray>''</dark_gray>/fg update <green><asn/plugin/ranges/hostnames></green><dark_gray>''</dark_gray><reset>.'
-        already_downloading: '{prefix} <red>Chúng tôi đang tải một tệp tin...'
-        backend_down: '{prefix} <red>Backend của chúng tôi dường như đang gặp sự cố hoặc không ổn định. Chúng tôi không thể cập nhật và hoàn thành yêu cầu.'
-        invalid_license: '{prefix} <red>Giấy phép của bạn không hợp lệ, hãy nhập một khóa hợp lệ cho hành động này.'
+        already_downloading: '{prefix} <red>Một tệp đang được tải xuống...'
+        backend_down: '{prefix} <red>Backend hiện đang gặp sự cố hoặc không ổn định, vì vậy không thể hoàn tất yêu cầu cập nhật.'
+        invalid_license: '{prefix} <red>Key không hợp lệ. Vui lòng nhập key hợp lệ để thực hiện thao tác này.'
         downloading_asn: '{prefix} <yellow>Đang tải ASN...'
         downloading_ranges: '{prefix} <yellow>Đang tải phạm vi...'
         downloading_hostnames: '{prefix} <yellow>Đang tải tên máy chủ...'
         downloading_jar: '{prefix} <yellow>Đang tải plugin...'
-        downloaded_asn: '{prefix} <green>Đã tải ASN mới nhất từ backend/trung tâm của chúng tôi. Thay đổi đã được áp dụng.'
-        downloaded_ranges: '{prefix} <green>Đã tải phạm vi mới nhất từ backend/trung tâm của chúng tôi. Thay đổi đã được áp dụng.'
-        downloaded_hostnames: '{prefix} <green>Đã tải tên máy chủ mới nhất từ backend/trung tâm của chúng tôi. Thay đổi đã được áp dụng.'
-        downloaded_jar: '{prefix} <green>Đã tải JAR mới nhất từ backend/trung tâm của chúng tôi. Khởi động lại máy chủ để áp dụng thay đổi.'
+        downloaded_asn: '{prefix} <green>Đã tải ASN mới nhất từ backend. Các thay đổi đã được áp dụng.'
+        downloaded_ranges: '{prefix} <green>Đã tải danh sách dải IP mới nhất từ backend. Các thay đổi đã được áp dụng.'
+        downloaded_hostnames: '{prefix} <green>Đã tải danh sách hostname mới nhất từ backend. Các thay đổi đã được áp dụng.'
+        downloaded_jar: '{prefix} <green>Đã tải JAR mới nhất từ backend. Hãy khởi động lại máy chủ để áp dụng thay đổi.'
     verbose:
         enable: '{prefix} <green>Bạn đã bật chế độ thông báo chi tiết.'
         disable: '{prefix} <red>Bạn đã tắt chế độ thông báo chi tiết.'
@@ -179,42 +179,42 @@ message:
         # {PLAYER} - Trả về tên người chơi.
         # {IP} - Trả về địa chỉ IP của người chơi.
         # {SERVICE} - Trả về tên dịch vụ.
-        # {FLAGS} - Trả về số lượng cờ hiện tại.
-        # {FLAGS_ADDED} - Trả về số lượng cờ được thêm vào.
-        # {MAXFLAGS} - Trả về số lượng cờ để được phát hiện.
-        no_malicious: '{prefix} <green>[CHI TIẾT] <aqua>{player} <gray>không phải là VPN với dịch vụ: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>cờ:</gray><red>{FLAGS}</red><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
-        malicious: '{prefix} <red>[CHI TIẾT] <aqua>{player} <gray>được đánh dấu là VPN với dịch vụ: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>ip:</gray><yellow>{IP}</yellow> <gray>cờ:</gray><red>{FLAGS}</red><green>(+{FLAGS_ADDED})</green><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        # {FLAGS} - Trả về số cờ hiện tại.
+        # {FLAGS_ADDED} - Trả về số cờ vừa được thêm.
+        # {MAXFLAGS} - Trả về số cờ cần thiết để bị phát hiện.
+        no_malicious: '{prefix} <green>[CHI TIẾT] <aqua>{player} <gray>không bị phát hiện là VPN bởi dịch vụ: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>IP:</gray><yellow>{IP}</yellow> <gray>Cờ:</gray><red>{FLAGS}</red><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
+        malicious: '{prefix} <red>[CHI TIẾT] <aqua>{player} <gray>bị dịch vụ sau đánh dấu là VPN: <aqua>{SERVICE}</aqua> <dark_gray>|</dark_gray> <gray>IP:</gray><yellow>{IP}</yellow> <gray>Cờ:</gray><red>{FLAGS}</red><green>(+{FLAGS_ADDED})</green><dark_gray>/</dark_gray><light_purple>{MAXFLAGS}</light_purple>'
         ignored: '{prefix} <yellow>[CHI TIẾT] <aqua>{player} <gray>đã được bỏ qua do có trong danh sách trắng <green>{type} <dark_gray>({IP})'
     whitelist:
         invalid_usage: '{prefix} Sử dụng lệnh <dark_gray>''''</dark_gray>/fg whitelist <green><add/remove/info/purge></green> <yellow>[tên/ip]</yellow> <aqua>[lý do]</aqua> <light_purple>[thời gian]</light_purple><dark_gray>''''</dark_gray><reset>.'
-        already: '{prefix} {IP}<red> đã có/không có trong danh sách trắng!'
-        whitelisted: '{prefix} {IP}<green> đã được thêm vào danh sách trắng với loại <white>{type}</white> trong <white>{time}</white>. Bạn có thể <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">nhấn vào đây để xóa</click></underlined></white>.'
-        unwhitelisted: '{prefix} {IP}<green> đã được xóa khỏi danh sách trắng với loại <white>{type}</white>. Bạn có thể <white><underlined><click:run_command:"/foxgate whitelist add {IP}">nhấn vào đây để thêm lại</click></underlined></white>.'
+        already: '{prefix} {IP}<red> đã tồn tại/không tồn tại trong danh sách trắng!'
+        whitelisted: '{prefix} {IP}<green> đã được thêm vào danh sách trắng theo loại <white>{type}</white> trong <white>{time}</white>. Bạn có thể <white><underlined><click:run_command:"/foxgate whitelist remove {IP}">nhấn vào đây để xóa</click></underlined></white>.'
+        unwhitelisted: '{prefix} {IP}<green> đã được xóa khỏi danh sách trắng theo loại <white>{type}</white>. Bạn có thể <white><underlined><click:run_command:"/foxgate whitelist add {IP}">nhấn vào đây để thêm lại</click></underlined></white>.'
         type_ip: IP
         type_name: Tên
-        problem: '{prefix} <red>Lỗi khi cố gắng thêm/xóa khỏi danh sách trắng. Vui lòng kiểm tra console.'
+        problem: '{prefix} <red>Không thể thêm/xóa mục trong danh sách trắng. Vui lòng kiểm tra console.'
         invalid_time: '{prefix} <red>Định dạng thời gian không hợp lệ. Sử dụng epoch hoặc các định dạng như <white>1d</white>, <white>3h</white>, <white>15m</white>, <white>30s</white> hoặc <white>vĩnh viễn</white>.'
-        purging: '{prefix} <yellow>Đang cố gắng dọn dẹp danh sách trắng...'
+        purging: '{prefix} <yellow>Đang dọn dẹp danh sách trắng...'
         purging_correctly: '{prefix} <green>Danh sách trắng đã được dọn dẹp.'
-        purging_problem: '{prefix} <red>Lỗi khi cố gắng dọn dẹp danh sách trắng. Vui lòng kiểm tra console.'
+        purging_problem: '{prefix} <red>Không thể dọn dẹp danh sách trắng. Vui lòng kiểm tra console.'
         # Ở đây bạn có thể tìm thấy các placeholder mới chỉ dành cho tin nhắn này:
         #  
         # {TYPE} - Trả về "IP"/"Tên".
-        # {REASON} - Trả về lý do tại sao tên/IP này có trong danh sách trắng.
+        # {REASON} - Trả về lý do tên/IP này có trong danh sách trắng.
         # {EXPIRATION} - Trả về thời gian hết hạn.
-        # {ISP} - Trả về nhà cung cấp dịch vụ mạng (ISP) của IP, (trong trường hợp được lưu trong cache).
-        # {HOSTNAME} - Trả về tên máy chủ của IP, (trong trường hợp được lưu trong cache), từ mô-đun ISP.
+        # {ISP} - Trả về nhà cung cấp dịch vụ mạng (ISP) của IP (nếu đã được lưu trong bộ nhớ đệm).
+        # {HOSTNAME} - Trả về hostname của IP (nếu đã được lưu trong bộ nhớ đệm), từ mô-đun ISP.
         # {GEO_COUNTRY} - Trả về quốc gia của người chơi (Premium và chỉ hoạt động khi tính năng được bật).
         # {GEO_ASN} - Trả về ASN của người chơi (Premium và chỉ hoạt động khi tính năng được bật).
         info: ' \n <green>Thông tin danh sách trắng của <aqua>{IP}\n <dark_gray>▪ <white>Loại: <gold>{TYPE}</gold> \n <dark_gray>▪ <white>Lý do: <yellow>{REASON}</yellow>\n <dark_gray>▪ <white>Hết hạn: <light_purple>{EXPIRATION}</light_purple>\n <dark_gray>▪ <white>ASN: <yellow>{GEO_ASN} \n <dark_gray>▪ <white>Quốc gia: <aqua>{GEO_COUNTRY} \n '
-        # Xem về định dạng ngày tháng tại đây:
+        # Xem định dạng ngày giờ tại đây:
         # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
         format: 'dd-MM-yyyy HH:mm:ss'
         permanent: 'Vĩnh viễn.'
         noreason: 'Không có lý do.'
-        nowhitelist: '{prefix} {IP}<red> không được lưu trong danh sách trắng với loại <white>{type}</white>.'
+        nowhitelist: '{prefix} {IP}<red> không có trong danh sách trắng theo loại <white>{type}</white>.'
     predebug:
         invalid_usage: '{prefix} Sử dụng lệnh <aqua>/fg <dwdebug/tgdebug> <green><allow/deny/country/asn/isp></green><reset>.'
-        sending: '{prefix} <yellow>Đang gửi để kiểm tra <white>{type}</white> của bạn trong chế độ <white>{mode}</white>...</yellow>'
+        sending: '{prefix} <yellow>Đang gửi yêu cầu kiểm tra <white>{type}</white> ở chế độ <white>{mode}</white>...</yellow>'
         sended: '{prefix} <green>Đã gửi!'
-        problem: '{prefix} <red>Lỗi khi cố gắng gửi một bản gỡ lỗi của <white>{type}</white>!'
+        problem: '{prefix} <red>Không thể gửi dữ liệu gỡ lỗi cho <white>{type}</white>!'
